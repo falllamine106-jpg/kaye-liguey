@@ -3,65 +3,1150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A1E3F">
+
 <title>Kaye Liguey</title>
+
 <style>
-body{font-family:Arial;margin:0;background:#f4f4f4}
-header{background:#0A1E3F;color:white;text-align:center;padding:20px}
-nav{display:flex;justify-content:space-around;background:white;padding:10px}
-nav button{padding:10px;border:none;background:#00C853;color:white;border-radius:8px}
-.page{display:none;padding:20px}
-.active{display:block}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fa;
+    color:#172033;
+    padding-bottom:80px;
+}
+
+header{
+    background:#0A1E3F;
+    color:white;
+    padding:22px 18px;
+    border-radius:0 0 25px 25px;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#00C853;
+}
+
+.header-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.bell{
+    background:white;
+    color:#0A1E3F;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.welcome{
+    margin-top:25px;
+}
+
+.search-box{
+    background:white;
+    margin-top:20px;
+    padding:12px;
+    border-radius:12px;
+    display:flex;
+    gap:8px;
+}
+
+.search-box input{
+    border:0;
+    outline:0;
+    width:100%;
+    font-size:15px;
+}
+
+.container{
+    padding:18px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.title{
+    margin:20px 0 12px;
+}
+
+.categories{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+}
+
+.category{
+    background:white;
+    min-width:105px;
+    padding:15px 8px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.category-icon{
+    font-size:25px;
+    margin-bottom:7px;
+}
+
+.job{
+    background:white;
+    padding:17px;
+    border-radius:15px;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+
+.job-head{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.job h3{
+    margin-bottom:5px;
+}
+
+.company{
+    color:#667085;
+}
+
+.details{
+    color:#667085;
+    font-size:14px;
+    margin-top:9px;
+}
+
+.job-icon{
+    width:45px;
+    height:45px;
+    border-radius:10px;
+    background:#e8f5ee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.btn{
+    width:100%;
+    border:0;
+    padding:12px;
+    border-radius:9px;
+    background:#00C853;
+    color:white;
+    font-weight:bold;
+    margin-top:15px;
+    cursor:pointer;
+}
+
+.btn-blue{
+    background:#0A1E3F;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.form-group{
+    margin-top:15px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:15px;
+    outline:none;
+}
+
+.form-group textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.message{
+    background:white;
+    padding:16px;
+    border-radius:14px;
+    margin-bottom:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.profile{
+    text-align:center;
+}
+
+.avatar{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:#0A1E3F;
+    color:white;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.info{
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
+
+.empty{
+    text-align:center;
+    padding:35px;
+    color:#667085;
+}
+
+.bottom-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:70px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    box-shadow:0 -2px 10px rgba(0,0,0,.12);
+    z-index:100;
+}
+
+.nav{
+    text-align:center;
+    font-size:11px;
+    color:#777;
+    cursor:pointer;
+}
+
+.nav-icon{
+    font-size:21px;
+    margin-bottom:3px;
+}
+
+.nav.active{
+    color:#00A844;
+    font-weight:bold;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:200;
+    padding:20px;
+    overflow:auto;
+}
+
+.modal-box{
+    background:white;
+    max-width:500px;
+    margin:30px auto;
+    border-radius:18px;
+    padding:20px;
+}
+
+.modal-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.close{
+    font-size:30px;
+    cursor:pointer;
+    color:#777;
+}
 </style>
 </head>
+
 <body>
 
+<!-- ACCUEIL -->
+<section id="home" class="page active">
+
 <header>
-<h1>KAYE LIGUEY</h1>
-<p>L'emploi à portée de main</p>
+    <div class="header-top">
+        <div class="logo">KAYE <span>LIGUEY</span></div>
+        <div class="bell" onclick="showNotifications()">🔔</div>
+    </div>
+
+    <div class="welcome">
+        <h2>Bonjour 👋</h2>
+        <p>L'emploi à portée de main.</p>
+    </div>
+
+    <div class="search-box">
+        🔍
+        <input id="search" type="text"
+        placeholder="Rechercher un emploi..."
+        oninput="searchJobs()">
+    </div>
 </header>
 
-<nav>
-<button onclick="showPage('home')">🏠 Accueil</button>
-<button onclick="showPage('jobs')">💼 Jobs</button>
-<button onclick="showPage('publish')">➕ Publier</button>
-<button onclick="showPage('messages')">💬 Messages</button>
-<button onclick="showPage('profile')">👤 Profil</button>
+<main class="container">
+
+    <h3 class="title">Catégories</h3>
+
+    <div class="categories">
+        <div class="category">💻<br>Informatique</div>
+        <div class="category">📊<br>Gestion</div>
+        <div class="category">📢<br>Marketing</div>
+        <div class="category">🏗️<br>BTP</div>
+        <div class="category">🚚<br>Transport</div>
+    </div>
+
+    <h3 class="title">Offres récentes</h3>
+
+    <div id="homeJobs"></div>
+
+</main>
+</section>
+
+
+<!-- JOBS -->
+<section id="jobs" class="page">
+
+<header>
+    <div class="logo">KAYE <span>LIGUEY</span></div>
+
+    <div class="welcome">
+        <h2>Offres d'emploi 💼</h2>
+        <p>Découvrez les opportunités disponibles.</p>
+    </div>
+</header>
+
+<main class="container">
+    <div id="jobsList"></div>
+</main>
+
+</section>
+
+
+<!-- PUBLICATION -->
+<section id="publish" class="page">
+
+<header>
+    <div class="logo">KAYE <span>LIGUEY</span></div>
+
+    <div class="welcome">
+        <h2>Publier une offre 🏢</h2>
+        <p>Trouvez votre prochain candidat.</p>
+    </div>
+</header>
+
+<main class="container">
+
+<div class="card">
+
+<h3>Nouvelle offre d'emploi</h3>
+
+<div class="form-group">
+<label>Nom de l'entreprise</label>
+<input id="company" placeholder="Ex : Kaye Business">
+</div>
+
+<div class="form-group">
+<label>Poste à pourvoir</label>
+<input id="title" placeholder="Ex : Développeur Web">
+</div>
+
+<div class="form-group">
+<label>Ville</label>
+<input id="city" placeholder="Ex : Dakar">
+</div>
+
+<div class="form-group">
+<label>Domaine</label>
+<select id="domain">
+<option value="">Choisir un domaine</option>
+<option>Informatique</option>
+<option>Gestion</option>
+<option>Commerce</option>
+<option>Marketing</option>
+<option>BTP</option>
+<option>Transport</option>
+<option>Autre</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Type de contrat</label>
+<select id="contract">
+<option value="">Choisir</option>
+<option>CDI</option>
+<option>CDD</option>
+<option>Stage</option>
+<option>Freelance</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Salaire</label>
+<input id="salary" placeholder="Ex : 200 000 FCFA / mois">
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<textarea id="description"
+placeholder="Décrivez le poste..."></textarea>
+</div>
+
+<button class="btn" onclick="publishJob()">
+Publier l'offre
+</button>
+
+</div>
+</main>
+</section>
+
+
+<!-- MESSAGES -->
+<section id="messages" class="page">
+
+<header>
+    <div class="logo">KAYE <span>LIGUEY</span></div>
+
+    <div class="welcome">
+        <h2>Messages 💬</h2>
+        <p>Discutez avec les recruteurs.</p>
+    </div>
+</header>
+
+<main class="container">
+
+<div id="messagesList">
+
+<div class="message">
+<strong>Entreprise ABC</strong>
+<p style="margin-top:8px">
+Bonjour, nous avons bien reçu votre candidature.
+</p>
+</div>
+
+<div class="message">
+<strong>Kaye Business</strong>
+<p style="margin-top:8px">
+Votre profil nous intéresse.
+</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Envoyer un message</h3>
+
+<div class="form-group">
+<input id="message"
+placeholder="Écrire un message...">
+</div>
+
+<button class="btn" onclick="sendMessage()">
+Envoyer
+</button>
+
+</div>
+
+</main>
+</section>
+
+
+<!-- PROFIL -->
+<section id="profile" class="page">
+
+<header>
+    <div class="logo">KAYE <span>LIGUEY</span></div>
+
+    <div class="welcome">
+        <h2>Mon profil 👤</h2>
+        <p>Gérez vos informations.</p>
+    </div>
+</header>
+
+<main class="container">
+
+<div class="card profile">
+
+<div class="avatar">👤</div>
+
+<h2 id="profileName">Mon profil</h2>
+
+<p>Chercheur d'emploi</p>
+
+</div>
+
+<div class="card">
+
+<div class="info">
+<strong>📧 Email</strong>
+<p id="profileEmail">Non renseigné</p>
+</div>
+
+<div class="info">
+<strong>📍 Ville</strong>
+<p id="profileCity">Non renseignée</p>
+</div>
+
+<div class="info">
+<strong>💼 Domaine</strong>
+<p id="profileDomain">Non renseigné</p>
+</div>
+
+<div class="info">
+<strong>📝 Bio</strong>
+<p id="profileBio">Aucune présentation.</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Modifier mon profil</h3>
+
+<div class="form-group">
+<label>Nom complet</label>
+<input id="name" placeholder="Votre nom">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input id="email" type="email"
+placeholder="Votre email">
+</div>
+
+<div class="form-group">
+<label>Ville</label>
+<input id="profileCityInput"
+placeholder="Votre ville">
+</div>
+
+<div class="form-group">
+<label>Domaine</label>
+<select id="profileDomainInput">
+<option value="">Choisir</option>
+<option>Informatique</option>
+<option>Gestion</option>
+<option>Commerce</option>
+<option>Marketing</option>
+<option>BTP</option>
+<option>Transport</option>
+<option>Autre</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Bio</label>
+<textarea id="bio"
+placeholder="Présentez-vous..."></textarea>
+</div>
+
+<button class="btn" onclick="saveProfile()">
+Enregistrer mon profil
+</button>
+
+</div>
+
+</main>
+</section>
+
+
+<!-- MODAL CANDIDATURE -->
+<div id="applicationModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-top">
+<h2>Postuler</h2>
+<div class="close" onclick="closeApplication()">×</div>
+</div>
+
+<p id="selectedJob"
+style="color:#667085;margin-bottom:15px"></p>
+
+<div class="form-group">
+<label>Nom complet</label>
+<input id="candidateName"
+placeholder="Votre nom complet">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input id="candidateEmail"
+type="email"
+placeholder="Votre email">
+</div>
+
+<div class="form-group">
+<label>Téléphone</label>
+<input id="candidatePhone"
+type="tel"
+placeholder="+221 77 000 00 00">
+</div>
+
+<div class="form-group">
+<label>Motivation</label>
+<textarea id="motivation"
+placeholder="Pourquoi voulez-vous ce poste ?"></textarea>
+</div>
+
+<button class="btn" onclick="submitApplication()">
+Envoyer ma candidature
+</button>
+
+</div>
+</div>
+
+
+<!-- MENU -->
+<nav class="bottom-nav">
+
+<div class="nav active"
+onclick="go('home',this)">
+<div class="nav-icon">🏠</div>
+Accueil
+</div>
+
+<div class="nav"
+onclick="go('jobs',this)">
+<div class="nav-icon">💼</div>
+Jobs
+</div>
+
+<div class="nav"
+onclick="go('publish',this)">
+<div class="nav-icon">➕</div>
+Publier
+</div>
+
+<div class="nav"
+onclick="go('messages',this)">
+<div class="nav-icon">💬</div>
+Messages
+</div>
+
+<div class="nav"
+onclick="go('profile',this)">
+<div class="nav-icon">👤</div>
+Profil
+</div>
+
 </nav>
 
-<div id="home" class="page active">
-<h2>Accueil</h2>
-<p>Bienvenue sur Kaye Liguey.</p>
-</div>
-
-<div id="jobs" class="page">
-<h2>Jobs</h2>
-<p>Développeur Web - Dakar</p>
-</div>
-
-<div id="publish" class="page">
-<h2>Publier une offre</h2>
-<input placeholder="Nom entreprise"><br><br>
-<button>Publier</button>
-</div>
-
-<div id="messages" class="page">
-<h2>Messages</h2>
-<p>Aucun message.</p>
-</div>
-
-<div id="profile" class="page">
-<h2>Profil</h2>
-<input type="file" accept="image/*">
-</div>
 
 <script>
-function showPage(page){
-document.querySelectorAll('.page').forEach(function(p){
-p.classList.remove('active');
-});
-document.getElementById(page).classList.add('active');
-}
-</script>
 
-</body>
-</html>
+/* =========================
+   DONNÉES
+========================= */
+
+const defaultJobs = [
+{
+company:"Entreprise ABC",
+title:"Développeur Web",
+city:"Dakar",
+domain:"Informatique",
+contract:"CDI",
+salary:"Salaire selon expérience",
+description:"Développement et maintenance de sites web.",
+icon:"💻"
+},
+{
+company:"Kaye Business",
+title:"Assistant administratif",
+city:"Thiès",
+domain:"Gestion",
+contract:"CDD",
+salary:"150 000 FCFA / mois",
+description:"Gestion administrative et accueil des clients.",
+icon:"🏢"
+},
+{
+company:"Sénégal Commerce",
+title:"Commercial",
+city:"Touba",
+domain:"Commerce",
+contract:"CDI",
+salary:"Salaire + commissions",
+description:"Développement commercial et recherche de clients.",
+icon:"📈"
+}
+];
+
+let selectedJob = null;
+
+
+/* =========================
+   STOCKAGE DES OFFRES
+========================= */
+
+function getJobs(){
+
+    const saved = localStorage.getItem("kayeJobs");
+
+    if(saved){
+        return JSON.parse(saved);
+    }
+
+    return defaultJobs;
+}
+
+function saveJobs(jobs){
+
+    localStorage.setItem(
+        "kayeJobs",
+        JSON.stringify(jobs)
+    );
+}
+
+
+/* =========================
+   AFFICHER LES OFFRES
+========================= */
+
+function displayJobs(){
+
+    const jobs = getJobs();
+
+    const list = document.getElementById("jobsList");
+    const home = document.getElementById("homeJobs");
+
+    list.innerHTML = "";
+    home.innerHTML = "";
+
+    if(jobs.length === 0){
+
+        list.innerHTML =
+        '<div class="empty">Aucune offre disponible.</div>';
+
+        home.innerHTML =
+        '<div class="empty">Aucune offre disponible.</div>';
+
+        return;
+    }
+
+    jobs.forEach(function(job,index){
+
+        const card = createJobCard(job,index);
+
+        list.innerHTML += card;
+
+        if(index < 3){
+            home.innerHTML += card;
+        }
+
+    });
+}
+
+
+/* =========================
+   CARTE OFFRE
+========================= */
+
+function createJobCard(job,index){
+
+    return `
+    <div class="job">
+
+        <div class="job-head">
+
+            <div>
+                <h3>${safe(job.title)}</h3>
+                <p class="company">
+                    ${safe(job.company)}
+                </p>
+            </div>
+
+            <div class="job-icon">
+                ${job.icon || "💼"}
+            </div>
+
+        </div>
+
+        <p class="details">
+            📍 ${safe(job.city)}
+        </p>
+
+        <p class="details">
+            💼 ${safe(job.contract)}
+        </p>
+
+        <p class="details">
+            💰 ${safe(job.salary)}
+        </p>
+
+        <p class="details">
+            ${safe(job.description)}
+        </p>
+
+        <button class="btn"
+        onclick="openApplication(${index})">
+            Postuler
+        </button>
+
+    </div>
+    `;
+}
+
+
+/* =========================
+   PROTECTION TEXTE
+========================= */
+
+function safe(text){
+
+    return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function go(page,element){
+
+    document.querySelectorAll(".page")
+    .forEach(function(p){
+        p.classList.remove("active");
+    });
+
+    document.getElementById(page)
+    .classList.add("active");
+
+    document.querySelectorAll(".nav")
+    .forEach(function(n){
+        n.classList.remove("active");
+    });
+
+    if(element){
+        element.classList.add("active");
+    }
+
+    window.scrollTo(0,0);
+}
+
+
+/* =========================
+   PUBLIER UNE OFFRE
+========================= */
+
+function publishJob(){
+
+    const company =
+    document.getElementById("company").value.trim();
+
+    const title =
+    document.getElementById("title").value.trim();
+
+    const city =
+    document.getElementById("city").value.trim();
+
+    const domain =
+    document.getElementById("domain").value;
+
+    const contract =
+    document.getElementById("contract").value;
+
+    const salary =
+    document.getElementById("salary").value.trim();
+
+    const description =
+    document.getElementById("description").value.trim();
+
+    if(
+        !company ||
+        !title ||
+        !city ||
+        !domain ||
+        !contract ||
+        !salary ||
+        !description
+    ){
+
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
+
+    let icon = "💼";
+
+    if(domain === "Informatique") icon = "💻";
+    if(domain === "Gestion") icon = "📊";
+    if(domain === "Commerce") icon = "📈";
+    if(domain === "Marketing") icon = "📢";
+    if(domain === "BTP") icon = "🏗️";
+    if(domain === "Transport") icon = "🚚";
+
+    const newJob = {
+        company,
+        title,
+        city,
+        domain,
+        contract,
+        salary,
+        description,
+        icon
+    };
+
+    const jobs = getJobs();
+
+    jobs.unshift(newJob);
+
+    saveJobs(jobs);
+
+    displayJobs();
+
+    document.getElementById("company").value="";
+    document.getElementById("title").value="";
+    document.getElementById("city").value="";
+    document.getElementById("domain").value="";
+    document.getElementById("contract").value="";
+    document.getElementById("salary").value="";
+    document.getElementById("description").value="";
+
+    alert("✅ Offre publiée avec succès !");
+
+    go("jobs");
+
+}
+
+
+/* =========================
+   OUVRIR CANDIDATURE
+========================= */
+
+function openApplication(index){
+
+    const jobs = getJobs();
+
+    selectedJob = jobs[index];
+
+    document.getElementById("selectedJob").innerText =
+    "Poste : " +
+    selectedJob.title +
+    " — " +
+    selectedJob.company;
+
+    document.getElementById("candidateName").value =
+    localStorage.getItem("candidateName") || "";
+
+    document.getElementById("candidateEmail").value =
+    localStorage.getItem("candidateEmail") || "";
+
+    document.getElementById("applicationModal")
+    .style.display = "block";
+}
+
+
+/* =========================
+   FERMER CANDIDATURE
+========================= */
+
+function closeApplication(){
+
+    document.getElementById("applicationModal")
+    .style.display = "none";
+}
+
+
+/* =========================
+   ENVOYER CANDIDATURE
+========================= */
+
+function submitApplication(){
+
+    if(!selectedJob){
+        alert("Aucune offre sélectionnée.");
+        return;
+    }
+
+    const name =
+    document.getElementById("candidateName")
+    .value.trim();
+
+    const email =
+    document.getElementById("candidateEmail")
+    .value.trim();
+
+    const phone =
+    document.getElementById("candidatePhone")
+    .value.trim();
+
+    const motivation =
+    document.getElementById("motivation")
+    .value.trim();
+
+    if(!name || !email || !phone || !motivation){
+
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
+
+    const applications =
+    JSON.parse(
+        localStorage.getItem("kayeApplications") || "[]"
+    );
+
+    applications.push({
+
+        entreprise:selectedJob.company,
+        poste:selectedJob.title,
+        nom:name,
+        email:email,
+        telephone:phone,
+        motivation:motivation,
+        date:new Date().toLocaleString("fr-FR")
+
+    });
+
+    localStorage.setItem(
+        "kayeApplications",
+        JSON.stringify(applications)
+    );
+
+    localStorage.setItem("candidateName",name);
+    localStorage.setItem("candidateEmail",email);
+
+    closeApplication();
+
+    document.getElementById("candidatePhone").value="";
+    document.getElementById("motivation").value="";
+
+    alert(
+        "✅ Votre candidature a été envoyée avec succès !"
+    );
+}
+
+
+/* =========================
+   RECHERCHE
+========================= */
+
+function searchJobs(){
+
+    const value =
+    document.getElementById("search")
+    .value
+    .toLowerCase();
+
+    const cards =
+    document.querySelectorAll("#homeJobs .job");
+
+    cards.forEach(function(card){
+
+        const text =
+        card.innerText.toLowerCase();
+
+        card.style.display =
+        text.includes(value)
+        ? "block"
+        : "none";
+
+    });
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+function sendMessage(){
+
+    const input =
+    document.getElementById("message");
+
+    const text =
+    input.value.trim();
+
+    if(!text){
+
+        alert("Écrivez un message.");
+        return;
+    }
+
+    const box =
+    document.getElementById("messagesList");
+
+    box.innerHTML += `
+        <div class="message">
+            <strong>Moi</strong>
+            <p style="margin-top:8px">
+                ${safe(text)}
+            </p>
+        </div>
+    `;
+
+    input.value="";
+
+    alert("✅ Message envoyé !");
+}
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+function showNotifications(){
+
+    alert(
+        "🔔 Vous n'avez pas encore de nouvelles notifications."
+    );
+}
+
+
+/* =========================
+   PROFIL
+========================= */
+
+function saveProfile(){
+
+    const name =
+    document.getElementById("name").value.trim();
+
+    const email =
+    docu
