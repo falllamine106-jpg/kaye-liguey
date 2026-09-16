@@ -6,168 +6,831 @@
 <title>Kaye Liguey</title>
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
 body{
-font-family:Arial,sans-serif;
-margin:0;
-background:#f4f4f4;
+    background:#f4f7fa;
 }
 
-.page{
-display:none;
-padding:20px;
-}
-
-.active{
-display:block;
-}
-
-.card{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 2px 5px rgba(0,0,0,0.1);
-margin-top:20px;
-}
-
-button{
-background:#0A1E3F;
-color:white;
-border:none;
-padding:12px;
-border-radius:8px;
-width:100%;
-margin-top:10px;
-}
-
-input,select{
-width:100%;
-padding:10px;
-margin-top:10px;
+header{
+    background:#0A1E3F;
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
 .logo{
-text-align:center;
-font-size:32px;
-font-weight:bold;
-color:#0A1E3F;
+    font-size:32px;
+    font-weight:bold;
+    color:#00C853;
+}
+
+.hero{
+    text-align:center;
+    padding:50px 20px;
+}
+
+.hero h1{
+    color:#0A1E3F;
+    margin-bottom:15px;
+}
+
+.hero p{
+    color:#555;
+    margin-bottom:25px;
+}
+
+.btn{
+    background:#00C853;
+    color:white;
+    padding:12px 25px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">KAYE LIGUEY</div>
+    <p>L'emploi à portée de main</p>
+</header>
+
+<section class="hero">
+    <h1>Trouvez votre emploi idéal</h1>
+    <p>Connectez entreprises et chercheurs d'emploi.</p>
+    <button class="btn">Commencer</button>
+</section>
+
+<section class="cards">
+
+    <div class="card">
+        <h2>Pour les candidats</h2>
+        <p>Créer un profil et déposer un CV.</p>
+    </div>
+
+    <div class="card">
+        <h2>Pour les entreprises</h2>
+        <p>Publier des offres et recruter.</p>
+    </div>
+
+    <div class="card">
+        <h2>Messagerie</h2>
+        <p>Discuter directement avec les recruteurs.</p>
+    </div>
+
+</section>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaye Liguey - Créer un compte</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f7fa;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:white;
+    width:350px;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    color:#0A1E3F;
+}
+
+.option{
+    border:1px solid #ddd;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.option:hover{
+    border-color:#00C853;
+}
+
+.btn{
+    width:100%;
+    margin-top:20px;
+    background:#00C853;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:8px;
+    font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Créer un compte</h2>
+<p style="text-align:center;">Choisissez votre profil</p>
+
+<div class="option">
+    <h3>👤 Candidat</h3>
+    <p>Je cherche un emploi</p>
+</div>
+
+<div class="option">
+    <h3>🏢 Entreprise</h3>
+    <p>Je recrute des talents</p>
+</div>
+
+<button class="btn">Continuer</button>
+
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaye Liguey - Inscription</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f7fa;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:400px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    color:#0A1E3F;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    margin-bottom:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#00C853;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
 }
 </style>
 </head>
 <body>
 
-<!-- PAGE 1 -->
-<div id="page1" class="page active">
-<div class="card">
-<div class="logo">KAYE LIGUEY</div>
-<p align="center">L'emploi à portée de main</p>
+<div class="container">
 
-<button onclick="suivant('page2')">
-Commencer
+<h2>Créer mon profil</h2>
+
+<input type="text" placeholder="Nom complet">
+
+<input type="tel" placeholder="Téléphone">
+
+<input type="email" placeholder="Adresse e-mail">
+
+<input type="text" placeholder="Ville">
+
+<select>
+    <option>Choisir un domaine</option>
+    <option>Informatique</option>
+    <option>Commerce</option>
+    <option>Gestion</option>
+    <option>Marketing</option>
+    <option>BTP</option>
+    <option>Autre</option>
+</select>
+
+<textarea placeholder="Présentez-vous en quelques lignes"></textarea>
+
+<input type="file">
+
+<button>Créer mon compte</button>
+
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaye Liguey - Validation</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f7fa;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    width:350px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+h2{
+    color:#0A1E3F;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    text-align:center;
+    font-size:20px;
+    letter-spacing:5px;
+}
+
+button{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    background:#00C853;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Validation du compte</h2>
+
+<p>
+Un code de vérification a été envoyé à votre téléphone ou à votre e-mail.
+</p>
+
+<input type="text" maxlength="6" placeholder="123456">
+
+<button>Valider</button>
+
+<button style="background:#0A1E3F;">
+Renvoyer le code
 </button>
-</div>
-</div>
-
-<!-- PAGE 2 -->
-<div id="page2" class="page">
-<div class="card">
-<h2>Choisir votre profil</h2>
-
-<button onclick="choisirType('Candidat')">
-Je cherche un emploi
-</button>
-
-<button onclick="choisirType('Entreprise')">
-Je suis une entreprise
-</button>
-</div>
-</div>
-
-<!-- PAGE 3 -->
-<div id="page3" class="page">
-<div class="card">
-<h2>Informations</h2>
-
-<input type="text" id="nom" placeholder="Nom complet">
-
-<input type="text" id="telephone" placeholder="Téléphone">
-
-<input type="email" id="email" placeholder="Email">
-
-<button onclick="suivant('page4')">
-Continuer
-</button>
-</div>
-</div>
-
-<!-- PAGE 4 -->
-<div id="page4" class="page">
-<div class="card">
-<h2>Validation</h2>
-
-<p>Vérifiez vos informations.</p>
-
-<button onclick="validerCompte()">
-Valider mon compte
-</button>
-</div>
-</div>
-
-<!-- PAGE 5 -->
-<div id="page5" class="page">
-<div class="card">
-<h1>Tableau de bord</h1>
-
-<p id="bienvenue"></p>
-
-<hr>
-
-<h3>Menu</h3>
-
-<button>Voir les offres</button>
-
-<button>Publier une offre</button>
-
-<button>Mes candidatures</button>
-
-<button>Messages</button>
-
-<button>Mon profil</button>
 
 </div>
-</div>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kaye Liguey - Tableau de bord</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fa;
+    color:#172033;
+    padding-bottom:80px;
+}
+
+/* HEADER */
+.header{
+    background:#0A1E3F;
+    color:white;
+    padding:20px;
+    border-radius:0 0 25px 25px;
+}
+
+.header-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#00C853;
+}
+
+.notification{
+    background:white;
+    color:#0A1E3F;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+}
+
+.welcome{
+    margin-top:25px;
+}
+
+.welcome h2{
+    margin-bottom:7px;
+}
+
+/* RECHERCHE */
+.search{
+    margin-top:20px;
+    background:white;
+    border-radius:12px;
+    padding:12px;
+    display:flex;
+    gap:10px;
+}
+
+.search input{
+    border:none;
+    outline:none;
+    width:100%;
+    font-size:15px;
+}
+
+/* CONTENU */
+.container{
+    padding:20px;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:20px 0 12px;
+}
+
+.section-title a{
+    color:#00A844;
+    font-size:14px;
+}
+
+/* CATEGORIES */
+.categories{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+}
+
+.category{
+    min-width:105px;
+    background:white;
+    padding:15px 10px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.category-icon{
+    font-size:25px;
+    margin-bottom:7px;
+}
+
+/* OFFRES */
+.job{
+    background:white;
+    padding:17px;
+    margin-bottom:15px;
+    border-radius:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+
+.job-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.company-logo{
+    width:45px;
+    height:45px;
+    background:#e8f5ee;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+}
+
+.job h3{
+    margin-top:12px;
+}
+
+.company{
+    color:#667085;
+    margin-top:5px;
+}
+
+.details{
+    color:#667085;
+    font-size:14px;
+    margin-top:10px;
+}
+
+.apply{
+    width:100%;
+    margin-top:15px;
+    padding:11px;
+    border:none;
+    background:#00C853;
+    color:white;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* MENU BAS */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:70px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    box-shadow:0 -2px 10px rgba(0,0,0,.1);
+}
+
+.nav-item{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.nav-item.active{
+    color:#00A844;
+    font-weight:bold;
+}
+
+.nav-icon{
+    font-size:22px;
+    margin-bottom:3px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="header-top">
+
+        <div class="logo">
+            KAYE <span>LIGUEY</span>
+        </div>
+
+        <div class="notification" onclick="notifications()">
+            🔔
+        </div>
+
+    </div>
+
+    <div class="welcome">
+        <h2>Bonjour 👋</h2>
+        <p>Trouvez votre prochaine opportunité.</p>
+    </div>
+
+    <div class="search">
+        🔍
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Rechercher un emploi..."
+            onkeyup="rechercher()">
+    </div>
+
+</header>
+
+
+<!-- CONTENU -->
+
+<main class="container">
+
+    <!-- CATEGORIES -->
+
+    <div class="section-title">
+        <h3>Catégories</h3>
+        <a>Voir tout</a>
+    </div>
+
+    <div class="categories">
+
+        <div class="category">
+            <div class="category-icon">💻</div>
+            Informatique
+        </div>
+
+        <div class="category">
+            <div class="category-icon">📊</div>
+            Gestion
+        </div>
+
+        <div class="category">
+            <div class="category-icon">📢</div>
+            Marketing
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🏗️</div>
+            BTP
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🚚</div>
+            Transport
+        </div>
+
+    </div>
+
+
+    <!-- OFFRES -->
+
+    <div class="section-title">
+        <h3>Offres récentes</h3>
+        <a>Voir tout</a>
+    </div>
+
+
+    <div id="jobs">
+
+
+        <!-- OFFRE 1 -->
+
+        <div class="job">
+
+            <div class="job-top">
+
+                <div>
+                    <h3>Développeur Web</h3>
+                    <p class="company">Entreprise ABC</p>
+                </div>
+
+                <div class="company-logo">
+                    💻
+                </div>
+
+            </div>
+
+            <p class="details">
+                📍 Dakar &nbsp; • &nbsp;
+                💼 CDI
+            </p>
+
+            <p class="details">
+                💰 Salaire selon expérience
+            </p>
+
+            <button
+                class="apply"
+                onclick="postuler('Développeur Web')">
+                Postuler
+            </button>
+
+        </div>
+
+
+        <!-- OFFRE 2 -->
+
+        <div class="job">
+
+            <div class="job-top">
+
+                <div>
+                    <h3>Assistant administratif</h3>
+                    <p class="company">Kaye Business</p>
+                </div>
+
+                <div class="company-logo">
+                    🏢
+                </div>
+
+            </div>
+
+            <p class="details">
+                📍 Thiès &nbsp; • &nbsp;
+                💼 CDD
+            </p>
+
+            <p class="details">
+                💰 150 000 FCFA / mois
+            </p>
+
+            <button
+                class="apply"
+                onclick="postuler('Assistant administratif')">
+                Postuler
+            </button>
+
+        </div>
+
+
+        <!-- OFFRE 3 -->
+
+        <div class="job">
+
+            <div class="job-top">
+
+                <div>
+                    <h3>Commercial</h3>
+                    <p class="company">Sénégal Commerce</p>
+                </div>
+
+                <div class="company-logo">
+                    📈
+                </div>
+
+            </div>
+
+            <p class="details">
+                📍 Touba &nbsp; • &nbsp;
+                💼 CDI
+            </p>
+
+            <p class="details">
+                💰 Salaire + commissions
+            </p>
+
+            <button
+                class="apply"
+                onclick="postuler('Commercial')">
+                Postuler
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- MENU -->
+
+<nav class="bottom-nav">
+
+    <div class="nav-item active">
+        <div class="nav-icon">🏠</div>
+        Accueil
+    </div>
+
+    <div class="nav-item">
+        <div class="nav-icon">🔍</div>
+        Rechercher
+    </div>
+
+    <div class="nav-item">
+        <div class="nav-icon">📄</div>
+        Candidatures
+    </div>
+
+    <div class="nav-item">
+        <div class="nav-icon">💬</div>
+        Messages
+    </div>
+
+    <div class="nav-item">
+        <div class="nav-icon">👤</div>
+        Profil
+    </div>
+
+</nav>
+
 
 <script>
 
-let typeCompte="";
+/* POSTULER */
 
-function suivant(page){
+function postuler(poste){
 
-document.querySelectorAll('.page')
-.forEach(p=>p.classList.remove('active'));
+    alert(
+        "Votre candidature pour le poste « "
+        + poste
+        + " » va être préparée."
+    );
 
-document.getElementById(page)
-.classList.add('active');
 }
 
-function choisirType(type){
-typeCompte=type;
-suivant('page3');
+
+/* NOTIFICATIONS */
+
+function notifications(){
+
+    alert(
+        "🔔 Vous n'avez pas encore de nouvelles notifications."
+    );
+
 }
 
-function validerCompte(){
 
-let nom=
-document.getElementById('nom').value;
+/* RECHERCHE */
 
-document.getElementById('bienvenue')
-.innerHTML=
-"Bienvenue "+nom+
-" ("+typeCompte+") sur Kaye Liguey";
+function rechercher(){
 
-suivant('page5');
+    let recherche =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let jobs =
+        document
+        .querySelectorAll(".job");
+
+    jobs.forEach(function(job){
+
+        let texte =
+            job.innerText.toLowerCase();
+
+        if(texte.includes(recherche)){
+            job.style.display="block";
+        }else{
+            job.style.display="none";
+        }
+
+    });
+
 }
 
 </script>
 
 </body>
-</html>
+  </html>
