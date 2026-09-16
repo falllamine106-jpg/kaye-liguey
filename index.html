@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0A1E3F">
-<title>Kaye Liguey - L'emploi à portée de main</title>
+
+<title>Kaye Liguey</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -17,7 +19,7 @@
 body{
     background:#f4f7fa;
     color:#172033;
-    padding-bottom:80px;
+    padding-bottom:85px;
 }
 
 header{
@@ -49,8 +51,8 @@ header{
     color:#0A1E3F;
     border-radius:50%;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     cursor:pointer;
 }
 
@@ -72,9 +74,9 @@ header{
 }
 
 .search input{
+    width:100%;
     border:none;
     outline:none;
-    width:100%;
     font-size:15px;
 }
 
@@ -295,10 +297,45 @@ header{
     font-size:21px;
     margin-bottom:3px;
 }
+
+/* FENETRE CANDIDATURE */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:200;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.modal-content{
+    background:white;
+    max-width:500px;
+    margin:30px auto;
+    border-radius:18px;
+    padding:20px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    font-size:28px;
+    cursor:pointer;
+    color:#777;
+}
+
 </style>
 </head>
 
 <body>
+
 
 <!-- ================= ACCUEIL ================= -->
 
@@ -540,8 +577,7 @@ placeholder="Ex : 200 000 FCFA / mois">
 
 <textarea
 id="descriptionInput"
-placeholder="Décrivez le poste, les missions et les compétences recherchées...">
-</textarea>
+placeholder="Décrivez le poste, les missions et les compétences recherchées..."></textarea>
 
 </div>
 
@@ -615,9 +651,7 @@ placeholder="Écrire un message...">
 </div>
 
 <button class="btn" onclick="sendMessage()">
-
 Envoyer
-
 </button>
 
 </div>
@@ -772,8 +806,7 @@ placeholder="Votre ville">
 
 <textarea
 id="bioInput"
-placeholder="Présentez-vous...">
-</textarea>
+placeholder="Présentez-vous..."></textarea>
 
 </div>
 
@@ -790,7 +823,81 @@ Enregistrer mon profil
 </div>
 
 
-<!-- ================= MENU ================= -->
+<!-- ================= FORMULAIRE CANDIDATURE ================= -->
+
+<div id="applicationModal" class="modal">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h2>Postuler</h2>
+
+<div class="close" onclick="closeApplication()">
+×
+</div>
+
+</div>
+
+<p id="applicationJob"
+style="color:#667085;margin-bottom:20px;">
+</p>
+
+<div class="form-group">
+
+<label>Nom complet</label>
+
+<input
+type="text"
+id="candidateName"
+placeholder="Votre nom complet">
+
+</div>
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+type="email"
+id="candidateEmail"
+placeholder="Votre adresse e-mail">
+
+</div>
+
+<div class="form-group">
+
+<label>Téléphone</label>
+
+<input
+type="tel"
+id="candidatePhone"
+placeholder="Ex : +221 77 000 00 00">
+
+</div>
+
+<div class="form-group">
+
+<label>Motivation</label>
+
+<textarea
+id="candidateMotivation"
+placeholder="Expliquez brièvement pourquoi vous êtes intéressé par ce poste..."></textarea>
+
+</div>
+
+<button class="btn" onclick="submitApplication()">
+
+Envoyer ma candidature
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= MENU BAS ================= -->
 
 <nav class="bottom-nav">
 
@@ -849,7 +956,7 @@ Profil
 
 <script>
 
-/* ================= DONNEES ================= */
+/* ================= OFFRES ================= */
 
 const defaultJobs = [
 
@@ -889,8 +996,6 @@ icon:"📈"
 ];
 
 
-/* ================= CHARGER OFFRES ================= */
-
 function getJobs(){
 
 let saved =
@@ -906,8 +1011,6 @@ return defaultJobs;
 
 }
 
-
-/* ================= SAUVEGARDER OFFRES ================= */
 
 function saveJobs(jobs){
 
@@ -931,15 +1034,12 @@ document.getElementById("jobsList");
 let homeJobs =
 document.getElementById("homeJobs");
 
-jobsList.innerHTML = "";
-homeJobs.innerHTML = "";
+jobsList.innerHTML="";
+homeJobs.innerHTML="";
 
-if(jobs.length === 0){
+if(jobs.length===0){
 
-jobsList.innerHTML =
-'<div class="empty">Aucune offre disponible.</div>';
-
-homeJobs.innerHTML =
+jobsList.innerHTML=
 '<div class="empty">Aucune offre disponible.</div>';
 
 return;
@@ -956,10 +1056,10 @@ let html = `
 
 <div>
 
-<h3>${job.title}</h3>
+<h3>${escapeHTML(job.title)}</h3>
 
 <p class="company">
-${job.company}
+${escapeHTML(job.company)}
 </p>
 
 </div>
@@ -971,20 +1071,20 @@ ${job.icon || "💼"}
 </div>
 
 <p class="details">
-📍 ${job.city} • 💼 ${job.contract}
+📍 ${escapeHTML(job.city)} • 💼 ${escapeHTML(job.contract)}
 </p>
 
 <p class="details">
-💰 ${job.salary}
+💰 ${escapeHTML(job.salary)}
 </p>
 
 <p class="details">
-${job.description}
+${escapeHTML(job.description)}
 </p>
 
 <button
 class="apply"
-onclick="applyJob('${job.title.replace(/'/g,"\\'")}')">
+onclick="openApplication(${index})">
 
 Postuler
 
@@ -996,13 +1096,27 @@ Postuler
 
 jobsList.innerHTML += html;
 
-if(index < 3){
+if(index<3){
 
 homeJobs.innerHTML += html;
 
 }
 
 });
+
+}
+
+
+/* ================= PROTECTION TEXTE ================= */
+
+function escapeHTML(text){
+
+return String(text)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
@@ -1034,48 +1148,32 @@ document.getElementById("descriptionInput").value.trim();
 
 
 if(
-company === "" ||
-title === "" ||
-city === "" ||
-domain === "" ||
-contract === "" ||
-salary === "" ||
-description === ""
+!company ||
+!title ||
+!city ||
+!domain ||
+!contract ||
+!salary ||
+!description
 ){
 
-alert(
-"Veuillez remplir tous les champs."
-);
+alert("Veuillez remplir tous les champs.");
 
 return;
 
 }
 
 
-let icon = "💼";
+let icon="💼";
 
-if(domain === "Informatique"){
-icon = "💻";
-}
-
-if(domain === "Gestion"){
-icon = "📊";
-}
-
-if(domain === "Marketing"){
-icon = "📢";
-}
-
-if(domain === "BTP"){
-icon = "🏗️";
-}
-
-if(domain === "Transport"){
-icon = "🚚";
-}
+if(domain==="Informatique") icon="💻";
+if(domain==="Gestion") icon="📊";
+if(domain==="Marketing") icon="📢";
+if(domain==="BTP") icon="🏗️";
+if(domain==="Transport") icon="🚚";
 
 
-let newJob = {
+let newJob={
 
 company:company,
 title:title,
@@ -1089,7 +1187,7 @@ icon:icon
 };
 
 
-let jobs = getJobs();
+let jobs=getJobs();
 
 jobs.unshift(newJob);
 
@@ -1107,23 +1205,126 @@ document.getElementById("salaryInput").value="";
 document.getElementById("descriptionInput").value="";
 
 
-alert(
-"✅ Offre publiée avec succès !"
-);
+alert("✅ Offre publiée avec succès !");
 
 showPage("jobsPage");
 
 }
 
 
-/* ================= POSTULER ================= */
+/* ================= CANDIDATURE ================= */
 
-function applyJob(title){
+let selectedJobIndex = null;
+
+
+function openApplication(index){
+
+let jobs=getJobs();
+
+let job=jobs[index];
+
+selectedJobIndex=index;
+
+document.getElementById("applicationJob").innerText =
+"Poste : " + job.title +
+" — " + job.company;
+
+
+document.getElementById("candidateName").value =
+localStorage.getItem("kayeName") || "";
+
+document.getElementById("candidateEmail").value =
+localStorage.getItem("kayeEmail") || "";
+
+document.getElementById("applicationModal").style.display="block";
+
+}
+
+
+function closeApplication(){
+
+document.getElementById("applicationModal").style.display="none";
+
+}
+
+
+function submitApplication(){
+
+let name =
+document.getElementById("candidateName").value.trim();
+
+let email =
+document.getElementById("candidateEmail").value.trim();
+
+let phone =
+document.getElementById("candidatePhone").value.trim();
+
+let motivation =
+document.getElementById("candidateMotivation").value.trim();
+
+
+if(!name || !email || !phone || !motivation){
+
+alert("Veuillez remplir tous les champs.");
+
+return;
+
+}
+
+
+let jobs=getJobs();
+
+let job=jobs[selectedJobIndex];
+
+
+let application={
+
+poste:job.title,
+entreprise:job.company,
+nom:name,
+email:email,
+telephone:phone,
+motivation:motivation,
+date:new Date().toLocaleString("fr-FR")
+
+};
+
+
+let applications =
+JSON.parse(
+localStorage.getItem("kayeApplications") || "[]"
+);
+
+
+applications.push(application);
+
+
+localStorage.setItem(
+"kayeApplications",
+JSON.stringify(applications)
+);
+
+
+localStorage.setItem(
+"kayeName",
+name
+);
+
+localStorage.setItem(
+"kayeEmail",
+email
+);
+
+
+closeApplication();
+
+
+document.getElementById("candidatePhone").value="";
+document.getElementById("candidateMotivation").value="";
+
 
 alert(
-"Votre candidature pour « "
-+ title
-+ " » a été enregistrée."
+"✅ Votre candidature a été envoyée avec succès !"
 );
 
 }
@@ -1141,20 +1342,16 @@ document.getElementById("searchInput")
 let jobs =
 document.querySelectorAll("#homeJobs .job");
 
+
 jobs.forEach(function(job){
 
 let text =
 job.innerText.toLowerCase();
 
-if(text.includes(search)){
-
-job.style.display="block";
-
-}else{
-
-job.style.display="none";
-
-}
+job.style.display =
+text.includes(search)
+? "block"
+: "none";
 
 });
 
@@ -1172,29 +1369,24 @@ alert(
 }
 
 
-/* ================= MESSAGE ================= */
+/* ================= MESSAGES ================= */
 
 function sendMessage(){
 
 let input =
 document.getElementById("messageInput");
 
-let message =
-input.value.trim();
+let message=input.value.trim();
 
-if(message === ""){
+if(!message){
 
-alert(
-"Veuillez écrire un message."
-);
+alert("Veuillez écrire un message.");
 
 return;
 
 }
 
-alert(
-"✅ Message envoyé."
-);
+alert("✅ Message envoyé.");
 
 input.value="";
 
@@ -1221,74 +1413,53 @@ let bio =
 document.getElementById("bioInput").value.trim();
 
 
-if(name !== ""){
+if(name){
 
-document.getElementById(
-"profileName"
-).innerText = name;
+document.getElementById("profileName")
+.innerText=name;
 
-localStorage.setItem(
-"kayeName",
-name
-);
+localStorage.setItem("kayeName",name);
 
 }
 
-if(email !== ""){
+if(email){
 
-document.getElementById(
-"profileEmail"
-).innerText = email;
+document.getElementById("profileEmail")
+.innerText=email;
 
-localStorage.setItem(
-"kayeEmail",
-email
-);
+localStorage.setItem("kayeEmail",email);
 
 }
 
-if(city !== ""){
+if(city){
 
-document.getElementById(
-"profileCity"
-).innerText = city;
+document.getElementById("profileCity")
+.innerText=city;
 
-localStorage.setItem(
-"kayeCity",
-city
-);
+localStorage.setItem("kayeCity",city);
 
 }
 
-if(domain !== ""){
+if(domain){
 
-document.getElementById(
-"profileDomain"
-).innerText = domain;
+document.getElementById("profileDomain")
+.innerText=domain;
 
-localStorage.setItem(
-"kayeDomain",
-domain
-);
+localStorage.setItem("kayeDomain",domain);
 
 }
 
-if(bio !== ""){
+if(bio){
 
-document.getElementById(
-"profileBio"
-).innerText = bio;
+document.getElementById("profileBio")
+.innerText=bio;
 
-localStorage.setItem(
-"kayeBio",
-bio
-);
+localStorage.setItem("kayeBio",bio);
 
 }
 
-alert(
-"✅ Profil enregistré avec succès !"
-);
+
+alert("✅ Profil enregistré avec succès !");
 
 }
 
@@ -1297,59 +1468,45 @@ alert(
 
 function loadProfile(){
 
-let name =
-localStorage.getItem("kayeName");
-
-let email =
-localStorage.getItem("kayeEmail");
-
-let city =
-localStorage.getItem("kayeCity");
-
-let domain =
-localStorage.getItem("kayeDomain");
-
-let bio =
-localStorage.getItem("kayeBio");
+let name=localStorage.getItem("kayeName");
+let email=localStorage.getItem("kayeEmail");
+let city=localStorage.getItem("kayeCity");
+let domain=localStorage.getItem("kayeDomain");
+let bio=localStorage.getItem("kayeBio");
 
 
 if(name){
 
-document.getElementById(
-"profileName"
-).innerText = name;
+document.getElementById("profileName")
+.innerText=name;
 
 }
 
 if(email){
 
-document.getElementById(
-"profileEmail"
-).innerText = email;
+document.getElementById("profileEmail")
+.innerText=email;
 
 }
 
 if(city){
 
-document.getElementById(
-"profileCity"
-).innerText = city;
+document.getElementById("profileCity")
+.innerText=city;
 
 }
 
 if(domain){
 
-document.getElementById(
-"profileDomain"
-).innerText = domain;
+document.getElementById("profileDomain")
+.innerText=domain;
 
 }
 
 if(bio){
 
-document.getElementById(
-"profileBio"
-).innerText = bio;
+document.getElementById("profileBio")
+.innerText=bio;
 
 }
 
@@ -1386,28 +1543,24 @@ element.classList.add("active");
 
 }else{
 
-let buttons =
+let items=
 document.querySelectorAll(".nav-item");
 
-if(pageId === "homePage"){
-buttons[0].classList.add("active");
-}
 
-if(pageId === "jobsPage"){
-buttons[1].classList.add("active");
-}
+if(pageId==="homePage")
+items[0].classList.add("active");
 
-if(pageId === "publishPage"){
-buttons[2].classList.add("active");
-}
+if(pageId==="jobsPage")
+items[1].classList.add("active");
 
-if(pageId === "messagesPage"){
-buttons[3].classList.add("active");
-}
+if(pageId==="publishPage")
+items[2].classList.add("active");
 
-if(pageId === "profilePage"){
-buttons[4].classList.add("active");
-}
+if(pageId==="messagesPage")
+items[3].classList.add("active");
+
+if(pageId==="profilePage")
+items[4].classList.add("active");
 
 }
 
@@ -1418,7 +1571,7 @@ window.scrollTo(0,0);
 
 /* ================= DEMARRAGE ================= */
 
-window.onload = function(){
+window.onload=function(){
 
 displayJobs();
 
