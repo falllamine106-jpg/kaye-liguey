@@ -53,7 +53,6 @@ header{
     align-items:center;
     justify-content:center;
     font-size:20px;
-    cursor:pointer;
 }
 
 .welcome{
@@ -163,6 +162,10 @@ header{
     cursor:pointer;
 }
 
+.btn-blue{
+    background:#0A1E3F;
+}
+
 .card{
     background:white;
     padding:20px;
@@ -209,28 +212,17 @@ header{
     text-align:center;
 }
 
-/* PHOTO DE PROFIL */
 .avatar{
-    width:100px;
-    height:100px;
+    width:80px;
+    height:80px;
     border-radius:50%;
     background:#0A1E3F;
     color:white;
-    margin:0 auto 10px;
+    margin:auto;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:38px;
-    cursor:pointer;
-    background-size:cover;
-    background-position:center;
-    border:4px solid white;
-    box-shadow:0 2px 10px rgba(0,0,0,.15);
-}
-
-.photo-help{
-    color:#667085;
-    font-size:13px;
+    font-size:32px;
     margin-bottom:15px;
 }
 
@@ -311,330 +303,155 @@ header{
 
 <body>
 
-<!-- ================= ACCUEIL ================= -->
-
+<!-- ACCUEIL -->
 <section id="home" class="page active">
 
 <header>
+    <div class="header-top">
+        <div class="logo">KAYE <span>LIGUEY</span></div>
+        <div class="bell" onclick="showNotifications()">🔔</div>
+    </div>
 
-<div class="header-top">
+    <div class="welcome">
+        <h2>Bonjour 👋</h2>
+        <p>L'emploi à portée de main.</p>
+    </div>
 
-<div class="logo">
-KAYE <span>LIGUEY</span>
-</div>
-
-<div class="bell" onclick="showNotifications()">
-🔔
-</div>
-
-</div>
-
-<div class="welcome">
-
-<h2>Bonjour 👋</h2>
-
-<p>L'emploi à portée de main.</p>
-
-</div>
-
-<div class="search-box">
-
-🔍
-
-<input
-id="search"
-type="text"
-placeholder="Rechercher un emploi..."
-oninput="searchJobs()">
-
-</div>
-
+    <div class="search-box">
+        🔍
+        <input id="search" type="text"
+        placeholder="Rechercher un emploi..."
+        oninput="searchJobs()">
+    </div>
 </header>
 
 <main class="container">
 
-<h3 class="title">
-Catégories
-</h3>
+    <h3 class="title">Catégories</h3>
 
-<div class="categories">
+    <div class="categories">
+        <div class="category">💻<br>Informatique</div>
+        <div class="category">📊<br>Gestion</div>
+        <div class="category">📢<br>Marketing</div>
+        <div class="category">🏗️<br>BTP</div>
+        <div class="category">🚚<br>Transport</div>
+    </div>
 
-<div class="category">
-<div class="category-icon">💻</div>
-Informatique
-</div>
+    <h3 class="title">Offres récentes</h3>
 
-<div class="category">
-<div class="category-icon">📊</div>
-Gestion
-</div>
-
-<div class="category">
-<div class="category-icon">📢</div>
-Marketing
-</div>
-
-<div class="category">
-<div class="category-icon">🏗️</div>
-BTP
-</div>
-
-<div class="category">
-<div class="category-icon">🚚</div>
-Transport
-</div>
-
-</div>
-
-<h3 class="title">
-Offres récentes
-</h3>
-
-<div id="homeJobs"></div>
+    <div id="homeJobs"></div>
 
 </main>
-
 </section>
 
 
-<!-- ================= JOBS ================= -->
-
+<!-- JOBS -->
 <section id="jobs" class="page">
 
 <header>
+    <div class="logo">KAYE <span>LIGUEY</span></div>
 
-<div class="logo">
-KAYE <span>LIGUEY</span>
-</div>
-
-<div class="welcome">
-
-<h2>
-Offres d'emploi 💼
-</h2>
-
-<p>
-Découvrez les opportunités disponibles.
-</p>
-
-</div>
-
+    <div class="welcome">
+        <h2>Offres d'emploi 💼</h2>
+        <p>Découvrez les opportunités disponibles.</p>
+    </div>
 </header>
 
 <main class="container">
-
-<div id="jobsList"></div>
-
+    <div id="jobsList"></div>
 </main>
 
 </section>
 
 
-<!-- ================= PUBLICATION ================= -->
-
+<!-- PUBLICATION -->
 <section id="publish" class="page">
 
 <header>
+    <div class="logo">KAYE <span>LIGUEY</span></div>
 
-<div class="logo">
-KAYE <span>LIGUEY</span>
-</div>
-
-<div class="welcome">
-
-<h2>
-Publier une offre 🏢
-</h2>
-
-<p>
-Trouvez votre prochain candidat.
-</p>
-
-</div>
-
+    <div class="welcome">
+        <h2>Publier une offre 🏢</h2>
+        <p>Trouvez votre prochain candidat.</p>
+    </div>
 </header>
 
 <main class="container">
 
 <div class="card">
 
-<h3>
-Nouvelle offre d'emploi
-</h3>
+<h3>Nouvelle offre d'emploi</h3>
 
 <div class="form-group">
-
-<label>
-Nom de l'entreprise
-</label>
-
-<input
-id="company"
-placeholder="Ex : Kaye Business">
-
+<label>Nom de l'entreprise</label>
+<input id="company" placeholder="Ex : Kaye Business">
 </div>
 
 <div class="form-group">
-
-<label>
-Poste à pourvoir
-</label>
-
-<input
-id="title"
-placeholder="Ex : Développeur Web">
-
+<label>Poste à pourvoir</label>
+<input id="title" placeholder="Ex : Développeur Web">
 </div>
 
 <div class="form-group">
-
-<label>
-Ville
-</label>
-
-<input
-id="city"
-placeholder="Ex : Dakar">
-
+<label>Ville</label>
+<input id="city" placeholder="Ex : Dakar">
 </div>
 
 <div class="form-group">
-
-<label>
-Domaine
-</label>
-
+<label>Domaine</label>
 <select id="domain">
-
-<option value="">
-Choisir un domaine
-</option>
-
-<option>
-Informatique
-</option>
-
-<option>
-Gestion
-</option>
-
-<option>
-Commerce
-</option>
-
-<option>
-Marketing
-</option>
-
-<option>
-BTP
-</option>
-
-<option>
-Transport
-</option>
-
-<option>
-Autre
-</option>
-
+<option value="">Choisir un domaine</option>
+<option>Informatique</option>
+<option>Gestion</option>
+<option>Commerce</option>
+<option>Marketing</option>
+<option>BTP</option>
+<option>Transport</option>
+<option>Autre</option>
 </select>
-
 </div>
 
 <div class="form-group">
-
-<label>
-Type de contrat
-</label>
-
+<label>Type de contrat</label>
 <select id="contract">
-
-<option value="">
-Choisir
-</option>
-
-<option>
-CDI
-</option>
-
-<option>
-CDD
-</option>
-
-<option>
-Stage
-</option>
-
-<option>
-Freelance
-</option>
-
+<option value="">Choisir</option>
+<option>CDI</option>
+<option>CDD</option>
+<option>Stage</option>
+<option>Freelance</option>
 </select>
-
 </div>
 
 <div class="form-group">
-
-<label>
-Salaire
-</label>
-
-<input
-id="salary"
-placeholder="Ex : 200 000 FCFA / mois">
-
+<label>Salaire</label>
+<input id="salary" placeholder="Ex : 200 000 FCFA / mois">
 </div>
 
 <div class="form-group">
-
-<label>
-Description
-</label>
-
-<textarea
-id="description"
+<label>Description</label>
+<textarea id="description"
 placeholder="Décrivez le poste..."></textarea>
-
 </div>
 
-<button
-class="btn"
-onclick="publishJob()">
-
+<button class="btn" onclick="publishJob()">
 Publier l'offre
-
 </button>
 
 </div>
-
 </main>
-
 </section>
 
 
-<!-- ================= MESSAGES ================= -->
-
+<!-- MESSAGES -->
 <section id="messages" class="page">
 
 <header>
+    <div class="logo">KAYE <span>LIGUEY</span></div>
 
-<div class="logo">
-KAYE <span>LIGUEY</span>
-</div>
-
-<div class="welcome">
-
-<h2>
-Messages 💬
-</h2>
-
-<p>
-Discutez avec les recruteurs.
-</p>
-
-</div>
-
+    <div class="welcome">
+        <h2>Messages 💬</h2>
+        <p>Discutez avec les recruteurs.</p>
+    </div>
 </header>
 
 <main class="container">
@@ -642,445 +459,217 @@ Discutez avec les recruteurs.
 <div id="messagesList">
 
 <div class="message">
-
-<strong>
-Entreprise ABC
-</strong>
-
+<strong>Entreprise ABC</strong>
 <p style="margin-top:8px">
 Bonjour, nous avons bien reçu votre candidature.
 </p>
-
 </div>
 
 <div class="message">
-
-<strong>
-Kaye Business
-</strong>
-
+<strong>Kaye Business</strong>
 <p style="margin-top:8px">
 Votre profil nous intéresse.
 </p>
-
 </div>
 
 </div>
 
 <div class="card">
 
-<h3>
-Envoyer un message
-</h3>
+<h3>Envoyer un message</h3>
 
 <div class="form-group">
-
-<input
-id="message"
+<input id="message"
 placeholder="Écrire un message...">
-
 </div>
 
-<button
-class="btn"
-onclick="sendMessage()">
-
+<button class="btn" onclick="sendMessage()">
 Envoyer
-
 </button>
 
 </div>
 
 </main>
-
 </section>
 
 
-<!-- ================= PROFIL ================= -->
-
+<!-- PROFIL -->
 <section id="profile" class="page">
 
 <header>
+    <div class="logo">KAYE <span>LIGUEY</span></div>
 
-<div class="logo">
-KAYE <span>LIGUEY</span>
-</div>
-
-<div class="welcome">
-
-<h2>
-Mon profil 👤
-</h2>
-
-<p>
-Gérez vos informations.
-</p>
-
-</div>
-
+    <div class="welcome">
+        <h2>Mon profil 👤</h2>
+        <p>Gérez vos informations.</p>
+    </div>
 </header>
 
 <main class="container">
 
 <div class="card profile">
 
-<!-- CLIQUE SUR LA PHOTO POUR OUVRIR LA GALERIE -->
+<div class="avatar">👤</div>
 
-<div
-class="avatar"
-id="avatar"
-onclick="choosePhoto()">
+<h2 id="profileName">Mon profil</h2>
 
-👤
+<p>Chercheur d'emploi</p>
 
 </div>
-
-<input
-type="file"
-id="photoInput"
-accept="image/*"
-style="display:none"
-onchange="displayPhoto(event)">
-
-<p class="photo-help">
-Appuyez sur la photo pour choisir une image
-</p>
-
-<h2 id="profileName">
-Mon profil
-</h2>
-
-<p>
-Chercheur d'emploi
-</p>
-
-</div>
-
 
 <div class="card">
 
 <div class="info">
-
-<strong>
-📧 Email
-</strong>
-
-<p id="profileEmail">
-Non renseigné
-</p>
-
+<strong>📧 Email</strong>
+<p id="profileEmail">Non renseigné</p>
 </div>
 
 <div class="info">
-
-<strong>
-📍 Ville
-</strong>
-
-<p id="profileCity">
-Non renseignée
-</p>
-
+<strong>📍 Ville</strong>
+<p id="profileCity">Non renseignée</p>
 </div>
 
 <div class="info">
-
-<strong>
-💼 Domaine
-</strong>
-
-<p id="profileDomain">
-Non renseigné
-</p>
-
+<strong>💼 Domaine</strong>
+<p id="profileDomain">Non renseigné</p>
 </div>
 
 <div class="info">
-
-<strong>
-📝 Bio
-</strong>
-
-<p id="profileBio">
-Aucune présentation.
-</p>
-
+<strong>📝 Bio</strong>
+<p id="profileBio">Aucune présentation.</p>
 </div>
 
 </div>
-
 
 <div class="card">
 
-<h3>
-Modifier mon profil
-</h3>
+<h3>Modifier mon profil</h3>
 
 <div class="form-group">
-
-<label>
-Nom complet
-</label>
-
-<input
-id="name"
-placeholder="Votre nom">
-
+<label>Nom complet</label>
+<input id="name" placeholder="Votre nom">
 </div>
 
 <div class="form-group">
-
-<label>
-Email
-</label>
-
-<input
-id="email"
-type="email"
+<label>Email</label>
+<input id="email" type="email"
 placeholder="Votre email">
-
 </div>
 
 <div class="form-group">
-
-<label>
-Ville
-</label>
-
-<input
-id="profileCityInput"
+<label>Ville</label>
+<input id="profileCityInput"
 placeholder="Votre ville">
-
 </div>
 
 <div class="form-group">
-
-<label>
-Domaine
-</label>
-
+<label>Domaine</label>
 <select id="profileDomainInput">
-
-<option value="">
-Choisir
-</option>
-
-<option>
-Informatique
-</option>
-
-<option>
-Gestion
-</option>
-
-<option>
-Commerce
-</option>
-
-<option>
-Marketing
-</option>
-
-<option>
-BTP
-</option>
-
-<option>
-Transport
-</option>
-
-<option>
-Autre
-</option>
-
+<option value="">Choisir</option>
+<option>Informatique</option>
+<option>Gestion</option>
+<option>Commerce</option>
+<option>Marketing</option>
+<option>BTP</option>
+<option>Transport</option>
+<option>Autre</option>
 </select>
-
 </div>
 
 <div class="form-group">
-
-<label>
-Bio
-</label>
-
-<textarea
-id="bio"
+<label>Bio</label>
+<textarea id="bio"
 placeholder="Présentez-vous..."></textarea>
-
 </div>
 
-<button
-class="btn"
-onclick="saveProfile()">
-
+<button class="btn" onclick="saveProfile()">
 Enregistrer mon profil
-
 </button>
 
 </div>
 
 </main>
-
 </section>
 
 
-<!-- ================= CANDIDATURE ================= -->
-
-<div
-id="applicationModal"
-class="modal">
+<!-- MODAL CANDIDATURE -->
+<div id="applicationModal" class="modal">
 
 <div class="modal-box">
 
 <div class="modal-top">
-
-<h2>
-Postuler
-</h2>
-
-<div
-class="close"
-onclick="closeApplication()">
-×
+<h2>Postuler</h2>
+<div class="close" onclick="closeApplication()">×</div>
 </div>
 
-</div>
-
-<p
-id="selectedJob"
-style="color:#667085;margin-bottom:15px">
-</p>
+<p id="selectedJob"
+style="color:#667085;margin-bottom:15px"></p>
 
 <div class="form-group">
-
-<label>
-Nom complet
-</label>
-
-<input
-id="candidateName"
+<label>Nom complet</label>
+<input id="candidateName"
 placeholder="Votre nom complet">
-
 </div>
 
 <div class="form-group">
-
-<label>
-Email
-</label>
-
-<input
-id="candidateEmail"
+<label>Email</label>
+<input id="candidateEmail"
 type="email"
 placeholder="Votre email">
-
 </div>
 
 <div class="form-group">
-
-<label>
-Téléphone
-</label>
-
-<input
-id="candidatePhone"
+<label>Téléphone</label>
+<input id="candidatePhone"
 type="tel"
 placeholder="+221 77 000 00 00">
-
 </div>
 
 <div class="form-group">
-
-<label>
-Motivation
-</label>
-
-<textarea
-id="motivation"
-placeholder="Pourquoi voulez-vous ce poste ?">
-</textarea>
-
+<label>Motivation</label>
+<textarea id="motivation"
+placeholder="Pourquoi voulez-vous ce poste ?"></textarea>
 </div>
 
-<button
-class="btn"
-onclick="submitApplication()">
-
+<button class="btn" onclick="submitApplication()">
 Envoyer ma candidature
-
 </button>
 
 </div>
-
 </div>
 
 
-<!-- ================= MENU BAS ================= -->
-
+<!-- MENU -->
 <nav class="bottom-nav">
 
-<div
-class="nav active"
+<div class="nav active"
 onclick="go('home',this)">
-
-<div class="nav-icon">
-🏠
-</div>
-
+<div class="nav-icon">🏠</div>
 Accueil
-
 </div>
 
-
-<div
-class="nav"
+<div class="nav"
 onclick="go('jobs',this)">
-
-<div class="nav-icon">
-💼
-</div>
-
+<div class="nav-icon">💼</div>
 Jobs
-
 </div>
 
-
-<div
-class="nav"
+<div class="nav"
 onclick="go('publish',this)">
-
-<div class="nav-icon">
-➕
-</div>
-
+<div class="nav-icon">➕</div>
 Publier
-
 </div>
 
-
-<div
-class="nav"
+<div class="nav"
 onclick="go('messages',this)">
-
-<div class="nav-icon">
-💬
-</div>
-
+<div class="nav-icon">💬</div>
 Messages
-
 </div>
 
-
-<div
-class="nav"
+<div class="nav"
 onclick="go('profile',this)">
-
-<div class="nav-icon">
-👤
-</div>
-
+<div class="nav-icon">👤</div>
 Profil
-
 </div>
 
 </nav>
@@ -1089,11 +678,10 @@ Profil
 <script>
 
 /* =========================
-   OFFRES PAR DÉFAUT
+   DONNÉES
 ========================= */
 
 const defaultJobs = [
-
 {
 company:"Entreprise ABC",
 title:"Développeur Web",
@@ -1104,7 +692,6 @@ salary:"Salaire selon expérience",
 description:"Développement et maintenance de sites web.",
 icon:"💻"
 },
-
 {
 company:"Kaye Business",
 title:"Assistant administratif",
@@ -1115,7 +702,6 @@ salary:"150 000 FCFA / mois",
 description:"Gestion administrative et accueil des clients.",
 icon:"🏢"
 },
-
 {
 company:"Sénégal Commerce",
 title:"Commercial",
@@ -1126,86 +712,71 @@ salary:"Salaire + commissions",
 description:"Développement commercial et recherche de clients.",
 icon:"📈"
 }
-
 ];
 
 let selectedJob = null;
 
 
 /* =========================
-   OFFRES
+   STOCKAGE DES OFFRES
 ========================= */
 
 function getJobs(){
 
-const saved =
-localStorage.getItem("kayeJobs");
+    const saved = localStorage.getItem("kayeJobs");
 
-if(saved){
+    if(saved){
+        return JSON.parse(saved);
+    }
 
-return JSON.parse(saved);
-
+    return defaultJobs;
 }
-
-return defaultJobs;
-
-}
-
 
 function saveJobs(jobs){
 
-localStorage.setItem(
-"kayeJobs",
-JSON.stringify(jobs)
-);
-
+    localStorage.setItem(
+        "kayeJobs",
+        JSON.stringify(jobs)
+    );
 }
 
 
 /* =========================
-   AFFICHER OFFRES
+   AFFICHER LES OFFRES
 ========================= */
 
 function displayJobs(){
 
-const jobs = getJobs();
+    const jobs = getJobs();
 
-const list =
-document.getElementById("jobsList");
+    const list = document.getElementById("jobsList");
+    const home = document.getElementById("homeJobs");
 
-const home =
-document.getElementById("homeJobs");
+    list.innerHTML = "";
+    home.innerHTML = "";
 
-list.innerHTML = "";
-home.innerHTML = "";
+    if(jobs.length === 0){
 
-if(jobs.length === 0){
+        list.innerHTML =
+        '<div class="empty">Aucune offre disponible.</div>';
 
-list.innerHTML =
-'<div class="empty">Aucune offre disponible.</div>';
+        home.innerHTML =
+        '<div class="empty">Aucune offre disponible.</div>';
 
-home.innerHTML =
-'<div class="empty">Aucune offre disponible.</div>';
+        return;
+    }
 
-return;
+    jobs.forEach(function(job,index){
 
-}
+        const card = createJobCard(job,index);
 
-jobs.forEach(function(job,index){
+        list.innerHTML += card;
 
-const card =
-createJobCard(job,index);
+        if(index < 3){
+            home.innerHTML += card;
+        }
 
-list.innerHTML += card;
-
-if(index < 3){
-
-home.innerHTML += card;
-
-}
-
-});
-
+    });
 }
 
 
@@ -1215,74 +786,62 @@ home.innerHTML += card;
 
 function createJobCard(job,index){
 
-return `
+    return `
+    <div class="job">
 
-<div class="job">
+        <div class="job-head">
 
-<div class="job-head">
+            <div>
+                <h3>${safe(job.title)}</h3>
+                <p class="company">
+                    ${safe(job.company)}
+                </p>
+            </div>
 
-<div>
+            <div class="job-icon">
+                ${job.icon || "💼"}
+            </div>
 
-<h3>
-${safe(job.title)}
-</h3>
+        </div>
 
-<p class="company">
-${safe(job.company)}
-</p>
+        <p class="details">
+            📍 ${safe(job.city)}
+        </p>
 
-</div>
+        <p class="details">
+            💼 ${safe(job.contract)}
+        </p>
 
-<div class="job-icon">
-${job.icon || "💼"}
-</div>
+        <p class="details">
+            💰 ${safe(job.salary)}
+        </p>
 
-</div>
+        <p class="details">
+            ${safe(job.description)}
+        </p>
 
-<p class="details">
-📍 ${safe(job.city)}
-</p>
+        <button class="btn"
+        onclick="openApplication(${index})">
+            Postuler
+        </button>
 
-<p class="details">
-💼 ${safe(job.contract)}
-</p>
-
-<p class="details">
-💰 ${safe(job.salary)}
-</p>
-
-<p class="details">
-${safe(job.description)}
-</p>
-
-<button
-class="btn"
-onclick="openApplication(${index})">
-
-Postuler
-
-</button>
-
-</div>
-
-`;
-
+    </div>
+    `;
 }
 
 
 /* =========================
-   PROTECTION
+   PROTECTION TEXTE
 ========================= */
 
 function safe(text){
 
-return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
+    return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
 
@@ -1292,281 +851,215 @@ return String(text)
 
 function go(page,element){
 
-document.querySelectorAll(".page")
-.forEach(function(p){
+    document.querySelectorAll(".page")
+    .forEach(function(p){
+        p.classList.remove("active");
+    });
 
-p.classList.remove("active");
+    document.getElementById(page)
+    .classList.add("active");
 
-});
+    document.querySelectorAll(".nav")
+    .forEach(function(n){
+        n.classList.remove("active");
+    });
 
-document.getElementById(page)
-.classList.add("active");
+    if(element){
+        element.classList.add("active");
+    }
 
-document.querySelectorAll(".nav")
-.forEach(function(n){
-
-n.classList.remove("active");
-
-});
-
-if(element){
-
-element.classList.add("active");
-
-}
-
-window.scrollTo(0,0);
-
+    window.scrollTo(0,0);
 }
 
 
 /* =========================
-   PUBLIER
+   PUBLIER UNE OFFRE
 ========================= */
 
 function publishJob(){
 
-const company =
-document.getElementById("company")
-.value.trim();
+    const company =
+    document.getElementById("company").value.trim();
 
-const title =
-document.getElementById("title")
-.value.trim();
+    const title =
+    document.getElementById("title").value.trim();
 
-const city =
-document.getElementById("city")
-.value.trim();
+    const city =
+    document.getElementById("city").value.trim();
 
-const domain =
-document.getElementById("domain")
-.value;
+    const domain =
+    document.getElementById("domain").value;
 
-const contract =
-document.getElementById("contract")
-.value;
+    const contract =
+    document.getElementById("contract").value;
 
-const salary =
-document.getElementById("salary")
-.value.trim();
+    const salary =
+    document.getElementById("salary").value.trim();
 
-const description =
-document.getElementById("description")
-.value.trim();
+    const description =
+    document.getElementById("description").value.trim();
 
-if(
-!company ||
-!title ||
-!city ||
-!domain ||
-!contract ||
-!salary ||
-!description
-){
+    if(
+        !company ||
+        !title ||
+        !city ||
+        !domain ||
+        !contract ||
+        !salary ||
+        !description
+    ){
 
-alert(
-"Veuillez remplir tous les champs."
-);
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
 
-return;
+    let icon = "💼";
 
-}
+    if(domain === "Informatique") icon = "💻";
+    if(domain === "Gestion") icon = "📊";
+    if(domain === "Commerce") icon = "📈";
+    if(domain === "Marketing") icon = "📢";
+    if(domain === "BTP") icon = "🏗️";
+    if(domain === "Transport") icon = "🚚";
 
-let icon = "💼";
+    const newJob = {
+        company,
+        title,
+        city,
+        domain,
+        contract,
+        salary,
+        description,
+        icon
+    };
 
-if(domain === "Informatique")
-icon = "💻";
+    const jobs = getJobs();
 
-if(domain === "Gestion")
-icon = "📊";
+    jobs.unshift(newJob);
 
-if(domain === "Commerce")
-icon = "📈";
+    saveJobs(jobs);
 
-if(domain === "Marketing")
-icon = "📢";
+    displayJobs();
 
-if(domain === "BTP")
-icon = "🏗️";
+    document.getElementById("company").value="";
+    document.getElementById("title").value="";
+    document.getElementById("city").value="";
+    document.getElementById("domain").value="";
+    document.getElementById("contract").value="";
+    document.getElementById("salary").value="";
+    document.getElementById("description").value="";
 
-if(domain === "Transport")
-icon = "🚚";
+    alert("✅ Offre publiée avec succès !");
 
-const newJob = {
-
-company,
-title,
-city,
-domain,
-contract,
-salary,
-description,
-icon
-
-};
-
-const jobs = getJobs();
-
-jobs.unshift(newJob);
-
-saveJobs(jobs);
-
-displayJobs();
-
-document.getElementById("company").value="";
-document.getElementById("title").value="";
-document.getElementById("city").value="";
-document.getElementById("domain").value="";
-document.getElementById("contract").value="";
-document.getElementById("salary").value="";
-document.getElementById("description").value="";
-
-alert(
-"✅ Offre publiée avec succès !"
-);
-
-go("jobs");
+    go("jobs");
 
 }
 
 
 /* =========================
-   CANDIDATURE
+   OUVRIR CANDIDATURE
 ========================= */
 
 function openApplication(index){
 
-const jobs = getJobs();
+    const jobs = getJobs();
 
-selectedJob = jobs[index];
+    selectedJob = jobs[index];
 
-document.getElementById("selectedJob")
-.innerText =
-"Poste : " +
-selectedJob.title +
-" — " +
-selectedJob.company;
+    document.getElementById("selectedJob").innerText =
+    "Poste : " +
+    selectedJob.title +
+    " — " +
+    selectedJob.company;
 
-document.getElementById("candidateName")
-.value =
-localStorage.getItem("candidateName") || "";
+    document.getElementById("candidateName").value =
+    localStorage.getItem("candidateName") || "";
 
-document.getElementById("candidateEmail")
-.value =
-localStorage.getItem("candidateEmail") || "";
+    document.getElementById("candidateEmail").value =
+    localStorage.getItem("candidateEmail") || "";
 
-document.getElementById("applicationModal")
-.style.display = "block";
-
+    document.getElementById("applicationModal")
+    .style.display = "block";
 }
 
+
+/* =========================
+   FERMER CANDIDATURE
+========================= */
 
 function closeApplication(){
 
-document.getElementById("applicationModal")
-.style.display = "none";
-
+    document.getElementById("applicationModal")
+    .style.display = "none";
 }
 
+
+/* =========================
+   ENVOYER CANDIDATURE
+========================= */
 
 function submitApplication(){
 
-if(!selectedJob){
+    if(!selectedJob){
+        alert("Aucune offre sélectionnée.");
+        return;
+    }
 
-alert(
-"Aucune offre sélectionnée."
-);
+    const name =
+    document.getElementById("candidateName")
+    .value.trim();
 
-return;
+    const email =
+    document.getElementById("candidateEmail")
+    .value.trim();
 
-}
+    const phone =
+    document.getElementById("candidatePhone")
+    .value.trim();
 
-const name =
-document.getElementById("candidateName")
-.value.trim();
+    const motivation =
+    document.getElementById("motivation")
+    .value.trim();
 
-const email =
-document.getElementById("candidateEmail")
-.value.trim();
+    if(!name || !email || !phone || !motivation){
 
-const phone =
-document.getElementById("candidatePhone")
-.value.trim();
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
 
-const motivation =
-document.getElementById("motivation")
-.value.trim();
+    const applications =
+    JSON.parse(
+        localStorage.getItem("kayeApplications") || "[]"
+    );
 
-if(
-!name ||
-!email ||
-!phone ||
-!motivation
-){
+    applications.push({
 
-alert(
-"Veuillez remplir tous les champs."
-);
+        entreprise:selectedJob.company,
+        poste:selectedJob.title,
+        nom:name,
+        email:email,
+        telephone:phone,
+        motivation:motivation,
+        date:new Date().toLocaleString("fr-FR")
 
-return;
+    });
 
-}
+    localStorage.setItem(
+        "kayeApplications",
+        JSON.stringify(applications)
+    );
 
-const applications =
-JSON.parse(
-localStorage.getItem(
-"kayeApplications"
-) || "[]"
-);
+    localStorage.setItem("candidateName",name);
+    localStorage.setItem("candidateEmail",email);
 
-applications.push({
+    closeApplication();
 
-entreprise:selectedJob.company,
+    document.getElementById("candidatePhone").value="";
+    document.getElementById("motivation").value="";
 
-poste:selectedJob.title,
-
-nom:name,
-
-email:email,
-
-telephone:phone,
-
-motivation:motivation,
-
-date:new Date()
-.toLocaleString("fr-FR")
-
-});
-
-localStorage.setItem(
-"kayeApplications",
-JSON.stringify(applications)
-);
-
-localStorage.setItem(
-"candidateName",
-name
-);
-
-localStorage.setItem(
-"candidateEmail",
-email
-);
-
-closeApplication();
-
-document.getElementById(
-"candidatePhone"
-).value="";
-
-document.getElementById(
-"motivation"
-).value="";
-
-alert(
-"✅ Votre candidature a été envoyée avec succès !"
-);
-
+    alert(
+        "✅ Votre candidature a été envoyée avec succès !"
+    );
 }
 
 
@@ -1576,28 +1069,25 @@ alert(
 
 function searchJobs(){
 
-const value =
-document.getElementById("search")
-.value
-.toLowerCase();
+    const value =
+    document.getElementById("search")
+    .value
+    .toLowerCase();
 
-const cards =
-document.querySelectorAll(
-"#homeJobs .job"
-);
+    const cards =
+    document.querySelectorAll("#homeJobs .job");
 
-cards.forEach(function(card){
+    cards.forEach(function(card){
 
-const text =
-card.innerText.toLowerCase();
+        const text =
+        card.innerText.toLowerCase();
 
-card.style.display =
-text.includes(value)
-? "block"
-: "none";
+        card.style.display =
+        text.includes(value)
+        ? "block"
+        : "none";
 
-});
-
+    });
 }
 
 
@@ -1607,49 +1097,33 @@ text.includes(value)
 
 function sendMessage(){
 
-const input =
-document.getElementById("message");
+    const input =
+    document.getElementById("message");
 
-const text =
-input.value.trim();
+    const text =
+    input.value.trim();
 
-if(!text){
+    if(!text){
 
-alert(
-"Écrivez un message."
-);
+        alert("Écrivez un message.");
+        return;
+    }
 
-return;
+    const box =
+    document.getElementById("messagesList");
 
-}
+    box.innerHTML += `
+        <div class="message">
+            <strong>Moi</strong>
+            <p style="margin-top:8px">
+                ${safe(text)}
+            </p>
+        </div>
+    `;
 
-const box =
-document.getElementById(
-"messagesList"
-);
+    input.value="";
 
-box.innerHTML += `
-
-<div class="message">
-
-<strong>
-Moi
-</strong>
-
-<p style="margin-top:8px">
-${safe(text)}
-</p>
-
-</div>
-
-`;
-
-input.value="";
-
-alert(
-"✅ Message envoyé !"
-);
-
+    alert("✅ Message envoyé !");
 }
 
 
@@ -1659,75 +1133,20 @@ alert(
 
 function showNotifications(){
 
-alert(
-"🔔 Vous n'avez pas encore de nouvelles notifications."
-);
-
+    alert(
+        "🔔 Vous n'avez pas encore de nouvelles notifications."
+    );
 }
 
 
 /* =========================
-   PHOTO DE PROFIL
+   PROFIL
 ========================= */
 
-function choosePhoto(){
+function saveProfile(){
 
-document.getElementById(
-"photoInput"
-).click();
+    const name =
+    document.getElementById("name").value.trim();
 
-}
-
-
-function displayPhoto(event){
-
-const file =
-event.target.files[0];
-
-if(!file){
-
-return;
-
-}
-
-if(!file.type.startsWith("image/")){
-
-alert(
-"Veuillez choisir une image."
-);
-
-return;
-
-}
-
-const reader =
-new FileReader();
-
-reader.onload =
-function(e){
-
-const avatar =
-document.getElementById("avatar");
-
-avatar.innerHTML = "";
-
-avatar.style.backgroundImage =
-"url('" +
-e.target.result +
-"')";
-
-localStorage.setItem(
-"kayeProfilePhoto",
-e.target.result
-);
-
-};
-
-reader.readAsDataURL(file);
-
-}
-
-
-/* =========================
-   CHARGER PHOTO
-=========
+    const email =
+    docu
