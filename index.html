@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -27,14 +26,8 @@ header{
   text-align:center;
 }
 
-header h1{
-  font-size:25px;
-}
-
-header p{
-  margin-top:5px;
-  opacity:.9;
-}
+header h1{font-size:25px}
+header p{margin-top:5px}
 
 .page{
   display:none;
@@ -43,9 +36,7 @@ header p{
   margin:auto;
 }
 
-.page.active{
-  display:block;
-}
+.page.active{display:block}
 
 .card{
   background:white;
@@ -53,6 +44,14 @@ header p{
   padding:18px;
   margin:15px 0;
   box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.hero{
+  background:linear-gradient(135deg,#0b7a55,#16a36f);
+  color:white;
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:20px;
 }
 
 button{
@@ -107,16 +106,10 @@ label{
 }
 
 .job p{
-  margin:6px 0;
+  margin:7px 0;
 }
 
-.search{
-  margin-bottom:15px;
-}
-
-.profile{
-  text-align:center;
-}
+.profile{text-align:center}
 
 .profile-photo{
   width:110px;
@@ -141,14 +134,8 @@ label{
 }
 
 .profile-info div{
-  padding:10px 0;
+  padding:11px 0;
   border-bottom:1px solid #eee;
-}
-
-.empty{
-  text-align:center;
-  padding:30px;
-  color:#777;
 }
 
 .bottom-nav{
@@ -184,8 +171,18 @@ label{
   font-weight:bold;
 }
 
-.hidden{
-  display:none!important;
+.hidden{display:none!important}
+
+.empty{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
+
+.loading{
+  text-align:center;
+  padding:25px;
+  color:#777;
 }
 
 .success{
@@ -204,22 +201,12 @@ label{
   margin-top:10px;
 }
 
-.hero{
-  background:linear-gradient(135deg,#0b7a55,#16a36f);
-  color:white;
-  border-radius:18px;
-  padding:25px;
-  margin-bottom:20px;
-}
-
-.hero h2{
-  margin-bottom:8px;
-}
-
-.loading{
-  text-align:center;
-  padding:25px;
-  color:#777;
+.message-box{
+  background:#f5f7fb;
+  padding:14px;
+  border-radius:12px;
+  margin-top:12px;
+  line-height:1.5;
 }
 </style>
 </head>
@@ -237,13 +224,15 @@ label{
 
   <div class="hero">
     <h2>Bienvenue sur Kaye Liguey 👋</h2>
-    <p>Découvrez des offres d'emploi et de stage.</p>
+    <p style="margin-top:8px">
+      Découvrez des offres d'emploi et de stage.
+    </p>
   </div>
 
   <div class="card">
     <h2>🔎 Trouver un emploi</h2>
-    <p style="margin-top:8px;">
-      Consultez les offres disponibles sur notre plateforme.
+    <p style="margin-top:8px">
+      Consultez les offres disponibles.
     </p>
 
     <button id="goJobs" class="btn">
@@ -253,8 +242,9 @@ label{
 
   <div class="card">
     <h2>➕ Vous recrutez ?</h2>
-    <p style="margin-top:8px;">
-      Publiez gratuitement votre offre.
+
+    <p style="margin-top:8px">
+      Publiez votre offre sur Kaye Liguey.
     </p>
 
     <button id="goPublish" class="btn">
@@ -272,13 +262,14 @@ label{
 
   <input
     id="searchInput"
-    class="search"
     type="text"
     placeholder="🔎 Rechercher un emploi..."
   >
 
   <div id="jobsList">
-    <div class="loading">Chargement des offres...</div>
+    <div class="loading">
+      ⏳ Chargement des offres...
+    </div>
   </div>
 
 </section>
@@ -292,26 +283,26 @@ label{
   <div class="card">
 
     <label>Titre du poste</label>
-    <input id="jobTitle" type="text" placeholder="Ex : Développeur Web">
+    <input id="jobTitle" placeholder="Ex : Développeur Web">
 
     <label>Entreprise</label>
-    <input id="jobCompany" type="text" placeholder="Nom de l'entreprise">
+    <input id="jobCompany" placeholder="Nom de l'entreprise">
 
     <label>Localisation</label>
-    <input id="jobLocation" type="text" placeholder="Ex : Dakar">
+    <input id="jobLocation" placeholder="Ex : Dakar">
 
     <label>Type</label>
     <select id="jobType">
       <option value="">Choisir</option>
-      <option value="Emploi">Emploi</option>
-      <option value="Stage">Stage</option>
-      <option value="CDD">CDD</option>
-      <option value="CDI">CDI</option>
-      <option value="Freelance">Freelance</option>
+      <option>Emploi</option>
+      <option>Stage</option>
+      <option>CDD</option>
+      <option>CDI</option>
+      <option>Freelance</option>
     </select>
 
     <label>Salaire</label>
-    <input id="jobSalary" type="text" placeholder="Ex : 100000 FCFA">
+    <input id="jobSalary" placeholder="Ex : 100000 FCFA">
 
     <label>Description</label>
     <textarea
@@ -335,12 +326,9 @@ label{
 
   <h2>💬 Messages</h2>
 
-  <div class="card">
-    <div class="empty">
-      💬<br><br>
-      Vous n'avez pas encore de messages.
-      <br><br>
-      Les conversations avec les recruteurs apparaîtront ici.
+  <div id="messagesList">
+    <div class="loading">
+      ⏳ Chargement des messages...
     </div>
   </div>
 
@@ -352,14 +340,12 @@ label{
 
   <h2>👤 Mon profil</h2>
 
-  <!-- AFFICHAGE -->
   <div id="profileView" class="card profile">
 
     <img
       id="profilePhoto"
       class="profile-photo"
       src="https://via.placeholder.com/110?text=Photo"
-      alt="Photo de profil"
     >
 
     <div id="profileNameDisplay" class="profile-name">
@@ -394,7 +380,9 @@ label{
 
       <div>
         📝 <strong>Présentation :</strong><br>
-        <span id="profileBioDisplay">Aucune présentation.</span>
+        <span id="profileBioDisplay">
+          Aucune présentation.
+        </span>
       </div>
 
     </div>
@@ -411,14 +399,13 @@ label{
 
     <h3>✏️ Modifier mon profil</h3>
 
-    <label>Photo</label>
-
     <img
       id="editPhotoPreview"
       class="profile-photo"
       src="https://via.placeholder.com/110?text=Photo"
-      alt="Aperçu"
     >
+
+    <label>📷 Photo</label>
 
     <input
       id="photoInput"
@@ -427,41 +414,22 @@ label{
     >
 
     <label>Nom complet</label>
-    <input
-      id="profileName"
-      type="text"
-      placeholder="Ex : Lamine Fall"
-    >
+    <input id="profileName" placeholder="Ex : Lamine Fall">
 
     <label>Email</label>
-    <input
-      id="profileEmail"
-      type="email"
-      placeholder="Ex : exemple@gmail.com"
-    >
+    <input id="profileEmail" type="email">
 
     <label>Téléphone</label>
-    <input
-      id="profilePhone"
-      type="tel"
-      placeholder="Ex : +221 77 000 00 00"
-    >
+    <input id="profilePhone" type="tel">
 
     <label>Ville</label>
-    <input
-      id="profileCity"
-      type="text"
-      placeholder="Ex : Dakar"
-    >
+    <input id="profileCity">
 
     <label>Métier / Domaine</label>
-    <input
-      id="profileJob"
-      type="text"
-      placeholder="Ex : Développement Web"
-    >
+    <input id="profileJob" placeholder="Ex : Développement Web">
 
     <label>Présentation</label>
+
     <textarea
       id="profileBio"
       placeholder="Présentez-vous..."
@@ -482,7 +450,7 @@ label{
 </section>
 
 
-<!-- DETAILS D'UNE OFFRE -->
+<!-- DETAIL -->
 <section id="detail" class="page">
 
   <button id="backJobsButton" class="btn-secondary">
@@ -494,7 +462,7 @@ label{
 </section>
 
 
-<!-- MENU BAS -->
+<!-- MENU -->
 <nav class="bottom-nav">
 
   <button class="nav active" data-page="accueil">
@@ -546,36 +514,34 @@ from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvt0l",
+  apiKey:
+  "AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvtl0",
 
-  authDomain: "kaye-liguey.firebaseapp.com",
+  authDomain:
+  "kaye-liguey.firebaseapp.com",
 
-  projectId: "kaye-liguey",
+  projectId:
+  "kaye-liguey",
 
-  storageBucket: "kaye-liguey.firebasestorage.app",
+  storageBucket:
+  "kaye-liguey.firebasestorage.app",
 
-  messagingSenderId: "6308207019",
+  messagingSenderId:
+  "6308207019",
 
-  appId: "1:6308207019:web:6dca2b99992ef11dcb1aee",
+  appId:
+  "1:6308207019:web:6dca2b99992ef11dcb1aee",
 
-  measurementId: "G-C7244S0ZLM"
-
+  measurementId:
+  "G-C7244S0ZLM"
 };
 
 
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
 
-
-/* =========================
-   VARIABLES
-========================= */
-
 let jobs = [];
-
 let selectedPhoto = "";
-
 
 
 /* =========================
@@ -586,16 +552,16 @@ function showPage(pageId){
 
   document
     .querySelectorAll(".page")
-    .forEach(page => {
-      page.classList.remove("active");
-    });
+    .forEach(page =>
+      page.classList.remove("active")
+    );
 
-  const page = document.getElementById(pageId);
+  const page =
+    document.getElementById(pageId);
 
   if(page){
     page.classList.add("active");
   }
-
 
   document
     .querySelectorAll(".nav")
@@ -604,23 +570,14 @@ function showPage(pageId){
       button.classList.remove("active");
 
       if(button.dataset.page === pageId){
-
         button.classList.add("active");
-
       }
 
     });
 
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
+  window.scrollTo(0,0);
 }
 
-
-/* MENU */
 
 document
   .querySelectorAll(".nav")
@@ -628,21 +585,37 @@ document
 
     button.addEventListener("click", () => {
 
-      showPage(button.dataset.page);
+      const page =
+        button.dataset.page;
+
+      showPage(page);
+
+      if(page === "jobs"){
+        loadJobs();
+      }
+
+      if(page === "messages"){
+        loadMessages();
+      }
+
+      if(page === "profil"){
+        displayProfile();
+      }
 
     });
 
   });
 
 
-/* BOUTONS ACCUEIL */
+/* =========================
+   ACCUEIL
+========================= */
 
 document
   .getElementById("goJobs")
   .addEventListener("click", () => {
 
     showPage("jobs");
-
     loadJobs();
 
   });
@@ -657,9 +630,8 @@ document
   });
 
 
-
 /* =========================
-   CHARGER LES OFFRES
+   JOBS
 ========================= */
 
 async function loadJobs(){
@@ -684,18 +656,15 @@ async function loadJobs(){
     snapshot.forEach(doc => {
 
       jobs.push({
-        id: doc.id,
+        id:doc.id,
         ...doc.data()
       });
 
     });
 
-
     displayJobs(jobs);
 
-  }
-
-  catch(error){
+  }catch(error){
 
     console.error(error);
 
@@ -703,23 +672,17 @@ async function loadJobs(){
       `<div class="error">
         ❌ Impossible de charger les offres.
         <br><br>
-        Vérifiez votre connexion Internet.
+        ${escapeHTML(error.message)}
       </div>`;
 
   }
-
 }
 
-
-/* =========================
-   AFFICHER LES OFFRES
-========================= */
 
 function displayJobs(list){
 
   const container =
     document.getElementById("jobsList");
-
 
   if(list.length === 0){
 
@@ -729,54 +692,57 @@ function displayJobs(list){
       </div>`;
 
     return;
-
   }
 
-
   container.innerHTML = "";
-
 
   list.forEach(job => {
 
     const card =
       document.createElement("div");
 
-    card.className =
-      "card job";
-
+    card.className = "card job";
 
     card.innerHTML = `
 
-      <h3>${escapeHTML(job.title || "Sans titre")}</h3>
+      <h3>
+        ${escapeHTML(job.title || "Sans titre")}
+      </h3>
 
-      <p>🏢 <strong>${escapeHTML(job.company || "Entreprise")}</strong></p>
+      <p>
+        🏢 <strong>
+        ${escapeHTML(job.company || "Entreprise")}
+        </strong>
+      </p>
 
-      <p>📍 ${escapeHTML(job.location || "Non précisé")}</p>
+      <p>
+        📍 ${escapeHTML(job.location || "Non précisé")}
+      </p>
 
-      <p>💼 ${escapeHTML(job.type || "Non précisé")}</p>
+      <p>
+        💼 ${escapeHTML(job.type || "Non précisé")}
+      </p>
 
-      <p>💰 ${escapeHTML(job.salary || "Salaire non précisé")}</p>
+      <p>
+        💰 ${escapeHTML(job.salary || "Non précisé")}
+      </p>
 
       <button class="btn viewJobButton">
         👁️ Voir l'offre
       </button>
-
     `;
-
 
     card
       .querySelector(".viewJobButton")
-      .addEventListener("click", () => {
+      .addEventListener("click",() => {
 
         showJobDetail(job);
 
       });
 
-
     container.appendChild(card);
 
   });
-
 }
 
 
@@ -786,13 +752,10 @@ function displayJobs(list){
 
 document
   .getElementById("searchInput")
-  .addEventListener("input", function(){
+  .addEventListener("input",function(){
 
     const search =
-      this.value
-        .toLowerCase()
-        .trim();
-
+      this.value.toLowerCase().trim();
 
     const filtered =
       jobs.filter(job => {
@@ -807,20 +770,17 @@ document
 
         `.toLowerCase();
 
-
         return text.includes(search);
 
       });
-
 
     displayJobs(filtered);
 
   });
 
 
-
 /* =========================
-   DETAILS OFFRE
+   DETAIL JOB
 ========================= */
 
 function showJobDetail(job){
@@ -828,60 +788,145 @@ function showJobDetail(job){
   const detail =
     document.getElementById("jobDetail");
 
-
   detail.innerHTML = `
 
     <div class="card">
 
-      <h2>${escapeHTML(job.title || "Sans titre")}</h2>
+      <h2>
+        ${escapeHTML(job.title || "Sans titre")}
+      </h2>
 
-      <p style="margin-top:15px;">
+      <p style="margin-top:15px">
         🏢 <strong>Entreprise :</strong>
         ${escapeHTML(job.company || "Non précisée")}
       </p>
 
-      <p>
+      <p style="margin-top:10px">
         📍 <strong>Lieu :</strong>
         ${escapeHTML(job.location || "Non précisé")}
       </p>
 
-      <p>
+      <p style="margin-top:10px">
         💼 <strong>Type :</strong>
         ${escapeHTML(job.type || "Non précisé")}
       </p>
 
-      <p>
+      <p style="margin-top:10px">
         💰 <strong>Salaire :</strong>
         ${escapeHTML(job.salary || "Non précisé")}
       </p>
 
-      <hr style="margin:20px 0;border:0;border-top:1px solid #ddd;">
+      <hr style="
+        margin:20px 0;
+        border:0;
+        border-top:1px solid #ddd;
+      ">
 
       <h3>Description</h3>
 
-      <p style="margin-top:10px;line-height:1.6;">
-        ${escapeHTML(job.description || "Aucune description.")}
+      <p style="
+        margin-top:10px;
+        line-height:1.6;
+      ">
+        ${escapeHTML(
+          job.description ||
+          "Aucune description."
+        )}
       </p>
 
       <button id="contactButton" class="btn">
-        💬 Contacter
+        💬 Contacter le recruteur
       </button>
 
     </div>
-
   `;
-
 
   showPage("detail");
 
 
   document
     .getElementById("contactButton")
-    .addEventListener("click", () => {
+    .addEventListener("click",async()=>{
 
-      alert(
-        "La messagerie avec le recruteur sera disponible dans une prochaine version."
-      );
+      const profile = getProfile();
+
+      if(!profile.name){
+
+        alert(
+          "Veuillez d'abord compléter votre profil."
+        );
+
+        showPage("profil");
+
+        return;
+      }
+
+
+      const message =
+        prompt(
+          "Écrivez votre message au recruteur :",
+          "Bonjour, je suis intéressé(e) par votre offre."
+        );
+
+
+      if(!message || !message.trim()){
+        return;
+      }
+
+
+      try{
+
+        await addDoc(
+          collection(db,"Messages"),
+          {
+
+            senderName:
+              profile.name,
+
+            senderEmail:
+              profile.email || "",
+
+            senderPhone:
+              profile.phone || "",
+
+            message:
+              message.trim(),
+
+            jobTitle:
+              job.title || "",
+
+            company:
+              job.company || "",
+
+            location:
+              job.location || "",
+
+            createdAt:
+              serverTimestamp()
+
+          }
+        );
+
+
+        alert(
+          "✅ Message envoyé au recruteur !"
+        );
+
+        showPage("messages");
+
+        loadMessages();
+
+
+      }catch(error){
+
+        console.error(error);
+
+        alert(
+          "❌ Erreur lors de l'envoi : " +
+          error.message
+        );
+
+      }
 
     });
 
@@ -890,53 +935,64 @@ function showJobDetail(job){
 
 document
   .getElementById("backJobsButton")
-  .addEventListener("click", () => {
+  .addEventListener("click",()=>{
 
     showPage("jobs");
+    loadJobs();
 
   });
 
 
-
 /* =========================
-   PUBLIER UNE OFFRE
+   PUBLICATION
 ========================= */
 
 document
   .getElementById("publishButton")
-  .addEventListener("click", async () => {
+  .addEventListener("click",async()=>{
 
     const title =
-      document.getElementById("jobTitle").value.trim();
+      document.getElementById("jobTitle")
+      .value.trim();
 
     const company =
-      document.getElementById("jobCompany").value.trim();
+      document.getElementById("jobCompany")
+      .value.trim();
 
     const location =
-      document.getElementById("jobLocation").value.trim();
+      document.getElementById("jobLocation")
+      .value.trim();
 
     const type =
-      document.getElementById("jobType").value;
+      document.getElementById("jobType")
+      .value;
 
     const salary =
-      document.getElementById("jobSalary").value.trim();
+      document.getElementById("jobSalary")
+      .value.trim();
 
     const description =
-      document.getElementById("jobDescription").value.trim();
+      document.getElementById("jobDescription")
+      .value.trim();
 
     const message =
       document.getElementById("publishMessage");
 
 
-    if(!title || !company || !location || !type || !description){
+    if(
+      !title ||
+      !company ||
+      !location ||
+      !type ||
+      !description
+    ){
 
       message.innerHTML =
         `<div class="error">
-          ❌ Veuillez remplir tous les champs obligatoires.
+          ❌ Remplissez tous les champs obligatoires.
         </div>`;
 
       return;
-
     }
 
 
@@ -944,7 +1000,6 @@ document
       document.getElementById("publishButton");
 
     button.disabled = true;
-
     button.textContent =
       "⏳ Publication...";
 
@@ -956,17 +1011,11 @@ document
         {
 
           title:title,
-
           company:company,
-
           location:location,
-
           type:type,
-
           salary:salary,
-
           description:description,
-
           createdAt:serverTimestamp()
 
         }
@@ -979,49 +1028,150 @@ document
         </div>`;
 
 
-      document.getElementById("jobTitle").value = "";
-      document.getElementById("jobCompany").value = "";
-      document.getElementById("jobLocation").value = "";
-      document.getElementById("jobType").value = "";
-      document.getElementById("jobSalary").value = "";
-      document.getElementById("jobDescription").value = "";
+      document.getElementById("jobTitle").value="";
+      document.getElementById("jobCompany").value="";
+      document.getElementById("jobLocation").value="";
+      document.getElementById("jobType").value="";
+      document.getElementById("jobSalary").value="";
+      document.getElementById("jobDescription").value="";
 
 
       await loadJobs();
 
 
-      setTimeout(() => {
+      setTimeout(()=>{
 
         showPage("jobs");
 
       },1000);
 
-    }
 
-    catch(error){
+    }catch(error){
 
       console.error(error);
 
       message.innerHTML =
         `<div class="error">
-          ❌ Erreur lors de la publication.
-          <br><br>
+          ❌ Erreur :
           ${escapeHTML(error.message)}
         </div>`;
 
-    }
+    }finally{
 
-    finally{
-
-      button.disabled = false;
-
-      button.textContent =
+      button.disabled=false;
+      button.textContent=
         "📤 Publier l'offre";
 
     }
 
   });
 
+
+/* =========================
+   MESSAGES
+========================= */
+
+async function loadMessages(){
+
+  const container =
+    document.getElementById("messagesList");
+
+  container.innerHTML =
+    `<div class="loading">
+      ⏳ Chargement des messages...
+    </div>`;
+
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(db,"Messages")
+      );
+
+
+    if(snapshot.empty){
+
+      container.innerHTML =
+        `<div class="card">
+          <div class="empty">
+            💬<br><br>
+            Vous n'avez encore aucun message.
+          </div>
+        </div>`;
+
+      return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    snapshot.forEach(doc=>{
+
+      const data = doc.data();
+
+      const card =
+        document.createElement("div");
+
+      card.className="card";
+
+
+      card.innerHTML = `
+
+        <h3>
+          💼 ${escapeHTML(
+            data.jobTitle || "Offre"
+          )}
+        </h3>
+
+        <p style="margin-top:10px">
+          🏢 <strong>
+          ${escapeHTML(
+            data.company || "Entreprise"
+          )}
+          </strong>
+        </p>
+
+        <p style="margin-top:10px">
+          📍 ${escapeHTML(
+            data.location || "Non précisé"
+          )}
+        </p>
+
+        <p style="margin-top:10px">
+          👤 ${escapeHTML(
+            data.senderName || "Utilisateur"
+          )}
+        </p>
+
+        <div class="message-box">
+          💬 ${escapeHTML(
+            data.message || ""
+          )}
+        </div>
+
+      `;
+
+      container.appendChild(card);
+
+    });
+
+
+  }catch(error){
+
+    console.error(error);
+
+    container.innerHTML =
+      `<div class="error">
+        ❌ Impossible de charger les messages.
+        <br><br>
+        ${escapeHTML(error.message)}
+      </div>`;
+
+  }
+
+}
 
 
 /* =========================
@@ -1033,313 +1183,46 @@ function getProfile(){
   return {
 
     name:
-      localStorage.getItem("kayeProfileName") || "",
+      localStorage.getItem(
+        "kayeProfileName"
+      ) || "",
 
     email:
-      localStorage.getItem("kayeProfileEmail") || "",
+      localStorage.getItem(
+        "kayeProfileEmail"
+      ) || "",
 
     phone:
-      localStorage.getItem("kayeProfilePhone") || "",
+      localStorage.getItem(
+        "kayeProfilePhone"
+      ) || "",
 
     city:
-      localStorage.getItem("kayeProfileCity") || "",
+      localStorage.getItem(
+        "kayeProfileCity"
+      ) || "",
 
     job:
-      localStorage.getItem("kayeProfileJob") || "",
+      localStorage.getItem(
+        "kayeProfileJob"
+      ) || "",
 
     bio:
-      localStorage.getItem("kayeProfileBio") || "",
+      localStorage.getItem(
+        "kayeProfileBio"
+      ) || "",
 
     photo:
-      localStorage.getItem("kayeLigueyPhoto") || ""
+      localStorage.getItem(
+        "kayeLigueyPhoto"
+      ) || ""
 
   };
 
 }
 
 
-/* AFFICHER PROFIL */
-
 function displayProfile(){
 
-  const profile = getProfile();
-
-
-  document
-    .getElementById("profileNameDisplay")
-    .textContent =
-      profile.name || "Votre nom";
-
-
-  document
-    .getElementById("profileJobDisplay")
-    .textContent =
-      profile.job || "Votre métier / domaine";
-
-
-  document
-    .getElementById("profileEmailDisplay")
-    .textContent =
-      profile.email || "Non renseigné";
-
-
-  document
-    .getElementById("profilePhoneDisplay")
-    .textContent =
-      profile.phone || "Non renseigné";
-
-
-  document
-    .getElementById("profileCityDisplay")
-    .textContent =
-      profile.city || "Non renseignée";
-
-
-  document
-    .getElementById("profileJobDisplay2")
-    .textContent =
-      profile.job || "Non renseigné";
-
-
-  document
-    .getElementById("profileBioDisplay")
-    .textContent =
-      profile.bio || "Aucune présentation.";
-
-
-  const photo =
-    profile.photo ||
-    "https://via.placeholder.com/110?text=Photo";
-
-
-  document
-    .getElementById("profilePhoto")
-    .src = photo;
-
-
-  document
-    .getElementById("editPhotoPreview")
-    .src = photo;
-
-}
-
-
-/* OUVRIR MODIFICATION */
-
-document
-  .getElementById("editProfileButton")
-  .addEventListener("click", () => {
-
-    const profile = getProfile();
-
-
-    document.getElementById("profileName").value =
-      profile.name;
-
-    document.getElementById("profileEmail").value =
-      profile.email;
-
-    document.getElementById("profilePhone").value =
-      profile.phone;
-
-    document.getElementById("profileCity").value =
-      profile.city;
-
-    document.getElementById("profileJob").value =
-      profile.job;
-
-    document.getElementById("profileBio").value =
-      profile.bio;
-
-
-    document
-      .getElementById("profileView")
-      .classList.add("hidden");
-
-
-    document
-      .getElementById("profileForm")
-      .classList.remove("hidden");
-
-  });
-
-
-
-/* PHOTO */
-
-document
-  .getElementById("photoInput")
-  .addEventListener("change", function(){
-
-    const file = this.files[0];
-
-    if(!file) return;
-
-
-    const reader =
-      new FileReader();
-
-
-    reader.onload = function(event){
-
-      selectedPhoto =
-        event.target.result;
-
-
-      document
-        .getElementById("editPhotoPreview")
-        .src = selectedPhoto;
-
-    };
-
-
-    reader.readAsDataURL(file);
-
-  });
-
-
-
-/* ENREGISTRER PROFIL */
-
-document
-  .getElementById("saveProfileButton")
-  .addEventListener("click", () => {
-
-    const name =
-      document.getElementById("profileName").value.trim();
-
-    const email =
-      document.getElementById("profileEmail").value.trim();
-
-    const phone =
-      document.getElementById("profilePhone").value.trim();
-
-    const city =
-      document.getElementById("profileCity").value.trim();
-
-    const job =
-      document.getElementById("profileJob").value.trim();
-
-    const bio =
-      document.getElementById("profileBio").value.trim();
-
-
-    localStorage.setItem(
-      "kayeProfileName",
-      name
-    );
-
-    localStorage.setItem(
-      "kayeProfileEmail",
-      email
-    );
-
-    localStorage.setItem(
-      "kayeProfilePhone",
-      phone
-    );
-
-    localStorage.setItem(
-      "kayeProfileCity",
-      city
-    );
-
-    localStorage.setItem(
-      "kayeProfileJob",
-      job
-    );
-
-    localStorage.setItem(
-      "kayeProfileBio",
-      bio
-    );
-
-
-    if(selectedPhoto){
-
-      localStorage.setItem(
-        "kayeLigueyPhoto",
-        selectedPhoto
-      );
-
-    }
-
-
-    displayProfile();
-
-
-    document
-      .getElementById("profileForm")
-      .classList.add("hidden");
-
-
-    document
-      .getElementById("profileView")
-      .classList.remove("hidden");
-
-
-    document
-      .getElementById("profileMessage")
-      .innerHTML =
-        `<div class="success">
-          ✅ Profil enregistré avec succès !
-        </div>`;
-
-
-    selectedPhoto = "";
-
-  });
-
-
-
-/* ANNULER */
-
-document
-  .getElementById("cancelProfileButton")
-  .addEventListener("click", () => {
-
-    selectedPhoto = "";
-
-
-    document
-      .getElementById("profileForm")
-      .classList.add("hidden");
-
-
-    document
-      .getElementById("profileView")
-      .classList.remove("hidden");
-
-  });
-
-
-
-/* =========================
-   SECURITE AFFICHAGE TEXTE
-========================= */
-
-function escapeHTML(value){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-
-/* =========================
-   DEMARRAGE
-========================= */
-
-displayProfile();
-
-loadJobs();
-
-</script>
-
-</body>
-</html>
+  const profile =
+    getProfi
