@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Kaye Liguey</title>
 
 <style>
@@ -20,14 +21,20 @@ body{
 }
 
 header{
-  background:#0b7a55;
+  background:#0b6b4f;
   color:white;
-  padding:20px;
+  padding:18px;
   text-align:center;
 }
 
-header h1{font-size:25px}
-header p{margin-top:5px}
+header h1{
+  font-size:25px;
+}
+
+header p{
+  margin-top:5px;
+  opacity:.9;
+}
 
 .page{
   display:none;
@@ -36,7 +43,9 @@ header p{margin-top:5px}
   margin:auto;
 }
 
-.page.active{display:block}
+.page.active{
+  display:block;
+}
 
 .card{
   background:white;
@@ -46,42 +55,22 @@ header p{margin-top:5px}
   box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
-.hero{
-  background:linear-gradient(135deg,#0b7a55,#16a36f);
-  color:white;
-  border-radius:18px;
-  padding:25px;
-  margin-bottom:20px;
+h2{
+  margin-bottom:15px;
 }
 
-button{
-  border:0;
-  border-radius:10px;
-  padding:13px 17px;
-  cursor:pointer;
-  font-size:15px;
+h3{
+  margin-bottom:8px;
 }
 
-.btn{
-  background:#0b7a55;
-  color:white;
-  width:100%;
-  margin-top:10px;
-}
-
-.btn-secondary{
-  background:#e9f5ef;
-  color:#0b7a55;
-  width:100%;
-  margin-top:10px;
-}
-
-input,select,textarea{
+input,
+textarea,
+select{
   width:100%;
   padding:13px;
   border:1px solid #ddd;
   border-radius:10px;
-  margin:7px 0 14px;
+  margin:7px 0 12px;
   font-size:15px;
 }
 
@@ -90,52 +79,99 @@ textarea{
   resize:vertical;
 }
 
-label{
-  font-weight:bold;
-  display:block;
-  margin-top:8px;
+button{
+  border:0;
+  border-radius:10px;
+  padding:13px 16px;
+  cursor:pointer;
+  font-size:15px;
+  background:#0b6b4f;
+  color:white;
+  margin:4px 0;
+}
+
+button.secondary{
+  background:#e9eef2;
+  color:#172033;
+}
+
+button.danger{
+  background:#c0392b;
+}
+
+.search{
+  display:flex;
+  gap:8px;
+}
+
+.search input{
+  margin:0;
 }
 
 .job{
-  border-left:5px solid #0b7a55;
+  border-left:5px solid #0b6b4f;
 }
 
-.job h3{
-  color:#0b7a55;
-  margin-bottom:8px;
+.job .info{
+  margin:8px 0;
+  color:#596579;
+  font-size:14px;
 }
 
-.job p{
-  margin:7px 0;
+.badge{
+  display:inline-block;
+  background:#e8f5ef;
+  color:#0b6b4f;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
+  margin-top:5px;
 }
 
-.profile{text-align:center}
+.empty{
+  text-align:center;
+  padding:30px 10px;
+  color:#777;
+}
 
 .profile-photo{
   width:110px;
   height:110px;
   border-radius:50%;
   object-fit:cover;
-  border:4px solid #0b7a55;
-  margin:10px auto;
   display:block;
-  background:#ddd;
+  margin:10px auto 15px;
+  border:4px solid #0b6b4f;
 }
 
-.profile-name{
-  font-size:23px;
-  font-weight:bold;
-  margin:10px 0 5px;
+.profile-center{
+  text-align:center;
 }
 
-.profile-info{
-  text-align:left;
-  margin-top:20px;
+.message{
+  padding:14px;
+  background:#f0f5f3;
+  border-radius:12px;
+  margin:10px 0;
 }
 
-.profile-info div{
-  padding:11px 0;
-  border-bottom:1px solid #eee;
+.error{
+  display:none;
+  background:#ffe8e8;
+  color:#9b1c1c;
+  padding:12px;
+  margin:10px;
+  border-radius:10px;
+  font-size:13px;
+}
+
+.success{
+  background:#e8f7ed;
+  color:#176b35;
+  padding:12px;
+  border-radius:10px;
+  margin:10px 0;
+  display:none;
 }
 
 .bottom-nav{
@@ -143,8 +179,8 @@ label{
   bottom:0;
   left:0;
   right:0;
-  background:white;
   height:70px;
+  background:white;
   display:flex;
   justify-content:space-around;
   align-items:center;
@@ -152,61 +188,51 @@ label{
   z-index:1000;
 }
 
-.nav{
+.nav-btn{
   background:none;
-  color:#666;
+  color:#667085;
   padding:5px;
   font-size:12px;
-  text-align:center;
+  margin:0;
 }
 
-.nav span{
-  display:block;
-  font-size:23px;
-  margin-bottom:3px;
-}
-
-.nav.active{
-  color:#0b7a55;
+.nav-btn.active{
+  color:#0b6b4f;
   font-weight:bold;
 }
 
-.hidden{display:none!important}
+.nav-icon{
+  display:block;
+  font-size:22px;
+}
 
-.empty{
-  text-align:center;
-  padding:30px;
-  color:#777;
+.back{
+  background:#e9eef2;
+  color:#172033;
 }
 
 .loading{
   text-align:center;
-  padding:25px;
+  padding:20px;
   color:#777;
 }
 
-.success{
-  background:#dff6e9;
-  color:#126b43;
-  padding:12px;
-  border-radius:10px;
-  margin-top:10px;
+.hero{
+  background:linear-gradient(135deg,#0b6b4f,#138a68);
+  color:white;
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:20px;
 }
 
-.error{
-  background:#ffe5e5;
-  color:#a50000;
-  padding:12px;
-  border-radius:10px;
-  margin-top:10px;
+.hero button{
+  background:white;
+  color:#0b6b4f;
 }
 
-.message-box{
-  background:#f5f7fb;
-  padding:14px;
-  border-radius:12px;
-  margin-top:12px;
-  line-height:1.5;
+.small{
+  font-size:13px;
+  color:#777;
 }
 </style>
 </head>
@@ -215,41 +241,31 @@ label{
 
 <header>
   <h1>💼 Kaye Liguey</h1>
-  <p>Trouvez un emploi près de chez vous</p>
+  <p>Trouvez votre prochaine opportunité</p>
 </header>
 
+<div id="errorBox" class="error"></div>
 
 <!-- ACCUEIL -->
-<section id="accueil" class="page active">
+<section id="home" class="page active">
 
   <div class="hero">
     <h2>Bienvenue sur Kaye Liguey 👋</h2>
-    <p style="margin-top:8px">
-      Découvrez des offres d'emploi et de stage.
-    </p>
+    <p>Trouvez des offres d'emploi et de stage près de chez vous.</p>
+    <br>
+    <button onclick="showPage('jobs')">🔎 Voir les offres</button>
   </div>
 
   <div class="card">
-    <h2>🔎 Trouver un emploi</h2>
-    <p style="margin-top:8px">
-      Consultez les offres disponibles.
-    </p>
-
-    <button id="goJobs" class="btn">
-      💼 Voir les offres
-    </button>
+    <h2>🚀 Kaye Liguey</h2>
+    <p>Une plateforme simple pour rechercher et publier des opportunités.</p>
   </div>
 
   <div class="card">
-    <h2>➕ Vous recrutez ?</h2>
-
-    <p style="margin-top:8px">
-      Publiez votre offre sur Kaye Liguey.
-    </p>
-
-    <button id="goPublish" class="btn">
-      Publier une offre
-    </button>
+    <h3>📢 Vous recrutez ?</h3>
+    <p>Publiez gratuitement votre offre.</p>
+    <br>
+    <button onclick="showPage('publish')">➕ Publier une offre</button>
   </div>
 
 </section>
@@ -260,45 +276,50 @@ label{
 
   <h2>💼 Offres disponibles</h2>
 
-  <input
-    id="searchInput"
-    type="text"
-    placeholder="🔎 Rechercher un emploi..."
-  >
+  <div class="search">
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Rechercher une offre..."
+      oninput="searchJobs()"
+    >
+    <button onclick="loadJobs()">🔄</button>
+  </div>
 
   <div id="jobsList">
-    <div class="loading">
-      ⏳ Chargement des offres...
-    </div>
+    <div class="loading">Chargement des offres...</div>
   </div>
 
 </section>
 
 
 <!-- PUBLICATION -->
-<section id="publier" class="page">
+<section id="publish" class="page">
 
   <h2>➕ Publier une offre</h2>
 
+  <div id="publishSuccess" class="success">
+    ✅ Offre publiée avec succès !
+  </div>
+
   <div class="card">
 
-    <label>Titre du poste</label>
+    <label>Titre de l'offre</label>
     <input id="jobTitle" placeholder="Ex : Développeur Web">
 
     <label>Entreprise</label>
     <input id="jobCompany" placeholder="Nom de l'entreprise">
 
-    <label>Localisation</label>
+    <label>Lieu</label>
     <input id="jobLocation" placeholder="Ex : Dakar">
 
     <label>Type</label>
     <select id="jobType">
-      <option value="">Choisir</option>
-      <option>Emploi</option>
-      <option>Stage</option>
-      <option>CDD</option>
-      <option>CDI</option>
-      <option>Freelance</option>
+      <option value="Emploi">Emploi</option>
+      <option value="Stage">Stage</option>
+      <option value="CDD">CDD</option>
+      <option value="CDI">CDI</option>
+      <option value="Freelance">Freelance</option>
     </select>
 
     <label>Salaire</label>
@@ -307,16 +328,26 @@ label{
     <label>Description</label>
     <textarea
       id="jobDescription"
-      placeholder="Décrivez le poste..."
+      placeholder="Décrivez l'offre..."
     ></textarea>
 
-    <button id="publishButton" class="btn">
+    <button onclick="publishJob()">
       📤 Publier l'offre
     </button>
 
-    <div id="publishMessage"></div>
-
   </div>
+
+</section>
+
+
+<!-- DÉTAIL OFFRE -->
+<section id="details" class="page">
+
+  <button class="back" onclick="showPage('jobs')">
+    ← Retour aux offres
+  </button>
+
+  <div id="jobDetails"></div>
 
 </section>
 
@@ -326,167 +357,154 @@ label{
 
   <h2>💬 Messages</h2>
 
+  <div class="card">
+
+    <label>Destinataire</label>
+    <input id="messageReceiver" placeholder="Nom ou entreprise">
+
+    <label>Message</label>
+    <textarea
+      id="messageText"
+      placeholder="Écrivez votre message..."
+    ></textarea>
+
+    <button onclick="sendMessage()">
+      📤 Envoyer
+    </button>
+
+  </div>
+
   <div id="messagesList">
-    <div class="loading">
-      ⏳ Chargement des messages...
-    </div>
+    <div class="loading">Chargement des messages...</div>
   </div>
 
 </section>
 
 
 <!-- PROFIL -->
-<section id="profil" class="page">
+<section id="profile" class="page">
 
   <h2>👤 Mon profil</h2>
 
-  <div id="profileView" class="card profile">
+  <div class="card profile-center">
 
     <img
       id="profilePhoto"
       class="profile-photo"
-      src="https://via.placeholder.com/110?text=Photo"
+      src="https://via.placeholder.com/150"
+      alt="Photo de profil"
     >
-
-    <div id="profileNameDisplay" class="profile-name">
-      Votre nom
-    </div>
-
-    <p id="profileJobDisplay">
-      Votre métier / domaine
-    </p>
-
-    <div class="profile-info">
-
-      <div>
-        📧 <strong>Email :</strong>
-        <span id="profileEmailDisplay">Non renseigné</span>
-      </div>
-
-      <div>
-        📱 <strong>Téléphone :</strong>
-        <span id="profilePhoneDisplay">Non renseigné</span>
-      </div>
-
-      <div>
-        📍 <strong>Ville :</strong>
-        <span id="profileCityDisplay">Non renseignée</span>
-      </div>
-
-      <div>
-        💼 <strong>Domaine :</strong>
-        <span id="profileJobDisplay2">Non renseigné</span>
-      </div>
-
-      <div>
-        📝 <strong>Présentation :</strong><br>
-        <span id="profileBioDisplay">
-          Aucune présentation.
-        </span>
-      </div>
-
-    </div>
-
-    <button id="editProfileButton" class="btn">
-      ✏️ Modifier mon profil
-    </button>
-
-  </div>
-
-
-  <!-- FORMULAIRE PROFIL -->
-  <div id="profileForm" class="card hidden">
-
-    <h3>✏️ Modifier mon profil</h3>
-
-    <img
-      id="editPhotoPreview"
-      class="profile-photo"
-      src="https://via.placeholder.com/110?text=Photo"
-    >
-
-    <label>📷 Photo</label>
 
     <input
       id="photoInput"
       type="file"
       accept="image/*"
+      style="display:none"
+      onchange="changePhoto(event)"
     >
 
-    <label>Nom complet</label>
-    <input id="profileName" placeholder="Ex : Lamine Fall">
-
-    <label>Email</label>
-    <input id="profileEmail" type="email">
-
-    <label>Téléphone</label>
-    <input id="profilePhone" type="tel">
-
-    <label>Ville</label>
-    <input id="profileCity">
-
-    <label>Métier / Domaine</label>
-    <input id="profileJob" placeholder="Ex : Développement Web">
-
-    <label>Présentation</label>
-
-    <textarea
-      id="profileBio"
-      placeholder="Présentez-vous..."
-    ></textarea>
-
-    <button id="saveProfileButton" class="btn">
-      💾 Enregistrer
+    <button onclick="document.getElementById('photoInput').click()">
+      📷 Changer la photo
     </button>
 
-    <button id="cancelProfileButton" class="btn-secondary">
-      ❌ Annuler
-    </button>
+    <div id="profileDisplay">
 
-    <div id="profileMessage"></div>
+      <h3 id="displayName">Utilisateur</h3>
+
+      <p id="displayEmail" class="small">
+        Email non renseigné
+      </p>
+
+      <p id="displayPhone" class="small">
+        Téléphone non renseigné
+      </p>
+
+      <p id="displayBio" class="small">
+        Aucune présentation
+      </p>
+
+    </div>
+
+    <br>
+
+    <button onclick="showPage('editProfile')">
+      ✏️ Modifier mon profil
+    </button>
 
   </div>
 
 </section>
 
 
-<!-- DETAIL -->
-<section id="detail" class="page">
+<!-- MODIFICATION PROFIL -->
+<section id="editProfile" class="page">
 
-  <button id="backJobsButton" class="btn-secondary">
-    ← Retour aux offres
-  </button>
+  <h2>✏️ Modifier mon profil</h2>
 
-  <div id="jobDetail"></div>
+  <div id="profileSuccess" class="success">
+    ✅ Profil enregistré !
+  </div>
+
+  <div class="card">
+
+    <label>Nom</label>
+    <input id="profileName" placeholder="Votre nom">
+
+    <label>Email</label>
+    <input id="profileEmail" type="email" placeholder="Votre email">
+
+    <label>Téléphone</label>
+    <input id="profilePhone" placeholder="Votre numéro">
+
+    <label>Présentation</label>
+    <textarea
+      id="profileBio"
+      placeholder="Parlez un peu de vous..."
+    ></textarea>
+
+    <button onclick="saveProfile()">
+      💾 Enregistrer
+    </button>
+
+    <button class="secondary" onclick="showPage('profile')">
+      Annuler
+    </button>
+
+  </div>
 
 </section>
 
 
-<!-- MENU -->
+<!-- NAVIGATION -->
 <nav class="bottom-nav">
 
-  <button class="nav active" data-page="accueil">
-    <span>🏠</span>
+  <button class="nav-btn active" id="nav-home"
+    onclick="showPage('home')">
+    <span class="nav-icon">🏠</span>
     Accueil
   </button>
 
-  <button class="nav" data-page="jobs">
-    <span>💼</span>
+  <button class="nav-btn" id="nav-jobs"
+    onclick="showPage('jobs')">
+    <span class="nav-icon">💼</span>
     Jobs
   </button>
 
-  <button class="nav" data-page="publier">
-    <span>➕</span>
+  <button class="nav-btn" id="nav-publish"
+    onclick="showPage('publish')">
+    <span class="nav-icon">➕</span>
     Publier
   </button>
 
-  <button class="nav" data-page="messages">
-    <span>💬</span>
+  <button class="nav-btn" id="nav-messages"
+    onclick="showPage('messages')">
+    <span class="nav-icon">💬</span>
     Messages
   </button>
 
-  <button class="nav" data-page="profil">
-    <span>👤</span>
+  <button class="nav-btn" id="nav-profile"
+    onclick="showPage('profile')">
+    <span class="nav-icon">👤</span>
     Profil
   </button>
 
@@ -494,10 +512,6 @@ label{
 
 
 <script type="module">
-
-/* =========================
-   FIREBASE
-========================= */
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
@@ -512,237 +526,292 @@ import {
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
+/* =========================
+   FIREBASE
+========================= */
+
 const firebaseConfig = {
 
-  apiKey:
-  "AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvtl0",
+  apiKey: "AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvtl0",
 
-  authDomain:
-  "kaye-liguey.firebaseapp.com",
+  authDomain: "kaye-liguey.firebaseapp.com",
 
-  projectId:
-  "kaye-liguey",
+  projectId: "kaye-liguey",
 
-  storageBucket:
-  "kaye-liguey.firebasestorage.app",
+  storageBucket: "kaye-liguey.firebasestorage.app",
 
-  messagingSenderId:
-  "6308207019",
+  messagingSenderId: "6308207019",
 
-  appId:
-  "1:6308207019:web:6dca2b99992ef11dcb1aee",
+  appId: "1:6308207019:web:6dca2b99992ef11dcb1aee",
 
-  measurementId:
-  "G-C7244S0ZLM"
+  measurementId: "G-C7244S0ZLM"
+
 };
 
 
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
 
-let jobs = [];
-let selectedPhoto = "";
+
+/* =========================
+   VARIABLES
+========================= */
+
+let allJobs = [];
+
+let currentJob = null;
+
+
+/* =========================
+   AFFICHER ERREUR
+========================= */
+
+function showError(message){
+
+  const box = document.getElementById("errorBox");
+
+  box.style.display = "block";
+
+  box.textContent = "⚠️ " + message;
+
+  setTimeout(() => {
+
+    box.style.display = "none";
+
+  }, 8000);
+
+}
 
 
 /* =========================
    NAVIGATION
 ========================= */
 
-function showPage(pageId){
+window.showPage = function(pageId){
 
-  document
-    .querySelectorAll(".page")
-    .forEach(page =>
-      page.classList.remove("active")
-    );
+  document.querySelectorAll(".page").forEach(page => {
 
-  const page =
-    document.getElementById(pageId);
+    page.classList.remove("active");
 
-  if(page){
-    page.classList.add("active");
+  });
+
+
+  const page = document.getElementById(pageId);
+
+  if(!page){
+
+    showError("Page introuvable : " + pageId);
+
+    return;
+
   }
 
-  document
-    .querySelectorAll(".nav")
-    .forEach(button => {
 
-      button.classList.remove("active");
+  page.classList.add("active");
 
-      if(button.dataset.page === pageId){
-        button.classList.add("active");
-      }
 
-    });
+  document.querySelectorAll(".nav-btn").forEach(button => {
 
-  window.scrollTo(0,0);
+    button.classList.remove("active");
+
+  });
+
+
+  const nav = document.getElementById("nav-" + pageId);
+
+  if(nav){
+
+    nav.classList.add("active");
+
+  }
+
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"smooth"
+
+  });
+
+
+  if(pageId === "jobs"){
+
+    loadJobs();
+
+  }
+
+
+  if(pageId === "messages"){
+
+    loadMessages();
+
+  }
+
+
+  if(pageId === "profile"){
+
+    displayProfile();
+
+  }
+
+
+  if(pageId === "editProfile"){
+
+    loadProfileForm();
+
+  }
+
+};
+
+
+/* =========================
+   ÉCHAPPER HTML
+========================= */
+
+function escapeHTML(text){
+
+  if(text === undefined || text === null){
+
+    return "";
+
+  }
+
+  return String(text)
+
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
+
 }
 
 
-document
-  .querySelectorAll(".nav")
-  .forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      const page =
-        button.dataset.page;
-
-      showPage(page);
-
-      if(page === "jobs"){
-        loadJobs();
-      }
-
-      if(page === "messages"){
-        loadMessages();
-      }
-
-      if(page === "profil"){
-        displayProfile();
-      }
-
-    });
-
-  });
-
-
 /* =========================
-   ACCUEIL
+   CHARGER JOBS
 ========================= */
 
-document
-  .getElementById("goJobs")
-  .addEventListener("click", () => {
+window.loadJobs = async function(){
 
-    showPage("jobs");
-    loadJobs();
-
-  });
-
-
-document
-  .getElementById("goPublish")
-  .addEventListener("click", () => {
-
-    showPage("publier");
-
-  });
-
-
-/* =========================
-   JOBS
-========================= */
-
-async function loadJobs(){
-
-  const container =
-    document.getElementById("jobsList");
+  const container = document.getElementById("jobsList");
 
   container.innerHTML =
-    `<div class="loading">
-      ⏳ Chargement des offres...
-    </div>`;
+    '<div class="loading">⏳ Chargement...</div>';
+
 
   try{
 
     const snapshot =
-      await getDocs(
-        collection(db,"Jobs")
-      );
+      await getDocs(collection(db,"Jobs"));
 
-    jobs = [];
+
+    allJobs = [];
+
 
     snapshot.forEach(doc => {
 
-      jobs.push({
+      allJobs.push({
+
         id:doc.id,
+
         ...doc.data()
+
       });
 
     });
 
-    displayJobs(jobs);
+
+    displayJobs(allJobs);
 
   }catch(error){
 
     console.error(error);
 
     container.innerHTML =
-      `<div class="error">
-        ❌ Impossible de charger les offres.
-        <br><br>
-        ${escapeHTML(error.message)}
-      </div>`;
+      '<div class="empty">Impossible de charger les offres.</div>';
+
+    showError(
+      "Erreur Firebase : " + error.message
+    );
 
   }
-}
+
+};
 
 
-function displayJobs(list){
+/* =========================
+   AFFICHER JOBS
+========================= */
+
+function displayJobs(jobs){
 
   const container =
     document.getElementById("jobsList");
 
-  if(list.length === 0){
 
-    container.innerHTML =
-      `<div class="empty">
-        Aucune offre trouvée.
-      </div>`;
+  if(!jobs.length){
+
+    container.innerHTML = `
+      <div class="card empty">
+        <h3>😔 Aucune offre</h3>
+        <p>Aucune offre ne correspond à votre recherche.</p>
+      </div>
+    `;
 
     return;
+
   }
+
 
   container.innerHTML = "";
 
-  list.forEach(job => {
 
-    const card =
-      document.createElement("div");
+  jobs.forEach(job => {
 
-    card.className = "card job";
+    const div = document.createElement("div");
 
-    card.innerHTML = `
+    div.className = "card job";
 
-      <h3>
-        ${escapeHTML(job.title || "Sans titre")}
-      </h3>
 
-      <p>
-        🏢 <strong>
-        ${escapeHTML(job.company || "Entreprise")}
-        </strong>
-      </p>
+    div.innerHTML = `
 
-      <p>
-        📍 ${escapeHTML(job.location || "Non précisé")}
-      </p>
+      <h3>${escapeHTML(job.title || "Sans titre")}</h3>
 
-      <p>
-        💼 ${escapeHTML(job.type || "Non précisé")}
-      </p>
+      <div class="info">
+        🏢 ${escapeHTML(job.company || "Entreprise non précisée")}
+      </div>
 
-      <p>
-        💰 ${escapeHTML(job.salary || "Non précisé")}
-      </p>
+      <div class="info">
+        📍 ${escapeHTML(job.location || "Lieu non précisé")}
+      </div>
 
-      <button class="btn viewJobButton">
+      <span class="badge">
+        ${escapeHTML(job.type || "Emploi")}
+      </span>
+
+      <div class="info">
+        💰 ${escapeHTML(job.salary || "Salaire non précisé")}
+      </div>
+
+      <br>
+
+      <button onclick="viewJob('${job.id}')">
         👁️ Voir l'offre
       </button>
+
     `;
 
-    card
-      .querySelector(".viewJobButton")
-      .addEventListener("click",() => {
 
-        showJobDetail(job);
-
-      });
-
-    container.appendChild(card);
+    container.appendChild(div);
 
   });
+
 }
 
 
@@ -750,410 +819,415 @@ function displayJobs(list){
    RECHERCHE
 ========================= */
 
-document
-  .getElementById("searchInput")
-  .addEventListener("input",function(){
+window.searchJobs = function(){
 
-    const search =
-      this.value.toLowerCase().trim();
+  const input =
+    document.getElementById("searchInput");
 
-    const filtered =
-      jobs.filter(job => {
+  const query =
+    input.value.toLowerCase().trim();
 
-        const text = `
 
-          ${job.title || ""}
-          ${job.company || ""}
-          ${job.location || ""}
-          ${job.type || ""}
-          ${job.description || ""}
+  if(!query){
 
-        `.toLowerCase();
+    displayJobs(allJobs);
 
-        return text.includes(search);
+    return;
 
-      });
+  }
 
-    displayJobs(filtered);
 
-  });
+  const filtered =
+    allJobs.filter(job => {
+
+      const text = `
+
+        ${job.title || ""}
+
+        ${job.company || ""}
+
+        ${job.location || ""}
+
+        ${job.type || ""}
+
+        ${job.description || ""}
+
+      `.toLowerCase();
+
+
+      return text.includes(query);
+
+    });
+
+
+  displayJobs(filtered);
+
+};
 
 
 /* =========================
-   DETAIL JOB
+   VOIR UNE OFFRE
 ========================= */
 
-function showJobDetail(job){
+window.viewJob = function(jobId){
 
-  const detail =
-    document.getElementById("jobDetail");
+  const job =
+    allJobs.find(item => item.id === jobId);
 
-  detail.innerHTML = `
+
+  if(!job){
+
+    showError("Cette offre n'existe pas.");
+
+    return;
+
+  }
+
+
+  currentJob = job;
+
+
+  const container =
+    document.getElementById("jobDetails");
+
+
+  container.innerHTML = `
 
     <div class="card">
 
       <h2>
-        ${escapeHTML(job.title || "Sans titre")}
+        ${escapeHTML(job.title || "Offre")}
       </h2>
 
-      <p style="margin-top:15px">
+      <p>
         🏢 <strong>Entreprise :</strong>
         ${escapeHTML(job.company || "Non précisée")}
       </p>
 
-      <p style="margin-top:10px">
+      <br>
+
+      <p>
         📍 <strong>Lieu :</strong>
         ${escapeHTML(job.location || "Non précisé")}
       </p>
 
-      <p style="margin-top:10px">
-        💼 <strong>Type :</strong>
+      <br>
+
+      <p>
+        📋 <strong>Type :</strong>
         ${escapeHTML(job.type || "Non précisé")}
       </p>
 
-      <p style="margin-top:10px">
+      <br>
+
+      <p>
         💰 <strong>Salaire :</strong>
         ${escapeHTML(job.salary || "Non précisé")}
       </p>
 
-      <hr style="
-        margin:20px 0;
-        border:0;
-        border-top:1px solid #ddd;
-      ">
+      <br>
 
       <h3>Description</h3>
 
-      <p style="
-        margin-top:10px;
-        line-height:1.6;
-      ">
+      <p>
         ${escapeHTML(
-          job.description ||
-          "Aucune description."
+          job.description || "Aucune description."
         )}
       </p>
 
-      <button id="contactButton" class="btn">
-        💬 Contacter le recruteur
+      <br>
+
+      <button onclick="contactCompany()">
+        💬 Contacter
       </button>
 
     </div>
+
   `;
 
-  showPage("detail");
 
+  showPage("details");
 
-  document
-    .getElementById("contactButton")
-    .addEventListener("click",async()=>{
-
-      const profile = getProfile();
-
-      if(!profile.name){
-
-        alert(
-          "Veuillez d'abord compléter votre profil."
-        );
-
-        showPage("profil");
-
-        return;
-      }
-
-
-      const message =
-        prompt(
-          "Écrivez votre message au recruteur :",
-          "Bonjour, je suis intéressé(e) par votre offre."
-        );
-
-
-      if(!message || !message.trim()){
-        return;
-      }
-
-
-      try{
-
-        await addDoc(
-          collection(db,"Messages"),
-          {
-
-            senderName:
-              profile.name,
-
-            senderEmail:
-              profile.email || "",
-
-            senderPhone:
-              profile.phone || "",
-
-            message:
-              message.trim(),
-
-            jobTitle:
-              job.title || "",
-
-            company:
-              job.company || "",
-
-            location:
-              job.location || "",
-
-            createdAt:
-              serverTimestamp()
-
-          }
-        );
-
-
-        alert(
-          "✅ Message envoyé au recruteur !"
-        );
-
-        showPage("messages");
-
-        loadMessages();
-
-
-      }catch(error){
-
-        console.error(error);
-
-        alert(
-          "❌ Erreur lors de l'envoi : " +
-          error.message
-        );
-
-      }
-
-    });
-
-}
-
-
-document
-  .getElementById("backJobsButton")
-  .addEventListener("click",()=>{
-
-    showPage("jobs");
-    loadJobs();
-
-  });
+};
 
 
 /* =========================
-   PUBLICATION
+   CONTACT
 ========================= */
 
-document
-  .getElementById("publishButton")
-  .addEventListener("click",async()=>{
+window.contactCompany = function(){
 
-    const title =
-      document.getElementById("jobTitle")
-      .value.trim();
+  if(!currentJob){
 
-    const company =
-      document.getElementById("jobCompany")
-      .value.trim();
+    showError("Aucune offre sélectionnée.");
 
-    const location =
-      document.getElementById("jobLocation")
-      .value.trim();
+    return;
 
-    const type =
-      document.getElementById("jobType")
-      .value;
-
-    const salary =
-      document.getElementById("jobSalary")
-      .value.trim();
-
-    const description =
-      document.getElementById("jobDescription")
-      .value.trim();
-
-    const message =
-      document.getElementById("publishMessage");
+  }
 
 
-    if(
-      !title ||
-      !company ||
-      !location ||
-      !type ||
-      !description
-    ){
-
-      message.innerHTML =
-        `<div class="error">
-          ❌ Remplissez tous les champs obligatoires.
-        </div>`;
-
-      return;
-    }
+  document.getElementById("messageReceiver").value =
+    currentJob.company || "";
 
 
-    const button =
-      document.getElementById("publishButton");
+  showPage("messages");
+
+};
+
+
+/* =========================
+   PUBLIER UNE OFFRE
+========================= */
+
+window.publishJob = async function(){
+
+  const title =
+    document.getElementById("jobTitle").value.trim();
+
+  const company =
+    document.getElementById("jobCompany").value.trim();
+
+  const location =
+    document.getElementById("jobLocation").value.trim();
+
+  const type =
+    document.getElementById("jobType").value;
+
+  const salary =
+    document.getElementById("jobSalary").value.trim();
+
+  const description =
+    document.getElementById("jobDescription").value.trim();
+
+
+  if(!title || !company || !location || !description){
+
+    showError(
+      "Veuillez remplir le titre, l'entreprise, le lieu et la description."
+    );
+
+    return;
+
+  }
+
+
+  const button =
+    event?.target;
+
+
+  if(button){
 
     button.disabled = true;
-    button.textContent =
-      "⏳ Publication...";
+
+    button.textContent = "⏳ Publication...";
+
+  }
 
 
-    try{
+  try{
 
-      await addDoc(
-        collection(db,"Jobs"),
-        {
+    await addDoc(
+      collection(db,"Jobs"),
+      {
 
-          title:title,
-          company:company,
-          location:location,
-          type:type,
-          salary:salary,
-          description:description,
-          createdAt:serverTimestamp()
+        title:title,
 
-        }
-      );
+        company:company,
 
+        location:location,
 
-      message.innerHTML =
-        `<div class="success">
-          ✅ Offre publiée avec succès !
-        </div>`;
+        type:type,
 
+        salary:salary,
 
-      document.getElementById("jobTitle").value="";
-      document.getElementById("jobCompany").value="";
-      document.getElementById("jobLocation").value="";
-      document.getElementById("jobType").value="";
-      document.getElementById("jobSalary").value="";
-      document.getElementById("jobDescription").value="";
+        description:description,
+
+        createdAt:serverTimestamp()
+
+      }
+    );
 
 
-      await loadJobs();
+    document.getElementById("jobTitle").value = "";
+
+    document.getElementById("jobCompany").value = "";
+
+    document.getElementById("jobLocation").value = "";
+
+    document.getElementById("jobSalary").value = "";
+
+    document.getElementById("jobDescription").value = "";
 
 
-      setTimeout(()=>{
+    const success =
+      document.getElementById("publishSuccess");
 
-        showPage("jobs");
-
-      },1000);
+    success.style.display = "block";
 
 
-    }catch(error){
+    setTimeout(() => {
 
-      console.error(error);
+      success.style.display = "none";
 
-      message.innerHTML =
-        `<div class="error">
-          ❌ Erreur :
-          ${escapeHTML(error.message)}
-        </div>`;
+    },5000);
 
-    }finally{
 
-      button.disabled=false;
-      button.textContent=
-        "📤 Publier l'offre";
+    await loadJobs();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showError(
+      "Publication impossible : " + error.message
+    );
+
+  }finally{
+
+    if(button){
+
+      button.disabled = false;
+
+      button.textContent = "📤 Publier l'offre";
 
     }
 
-  });
+  }
+
+};
 
 
 /* =========================
    MESSAGES
 ========================= */
 
-async function loadMessages(){
+window.sendMessage = async function(){
+
+  const receiver =
+    document.getElementById("messageReceiver").value.trim();
+
+  const text =
+    document.getElementById("messageText").value.trim();
+
+
+  if(!receiver || !text){
+
+    showError(
+      "Veuillez remplir le destinataire et le message."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    await addDoc(
+      collection(db,"Messages"),
+      {
+
+        receiver:receiver,
+
+        message:text,
+
+        createdAt:serverTimestamp()
+
+      }
+    );
+
+
+    document.getElementById("messageText").value = "";
+
+
+    alert("✅ Message envoyé !");
+
+
+    loadMessages();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showError(
+      "Erreur lors de l'envoi : " + error.message
+    );
+
+  }
+
+};
+
+
+/* =========================
+   CHARGER MESSAGES
+========================= */
+
+window.loadMessages = async function(){
 
   const container =
     document.getElementById("messagesList");
 
+
   container.innerHTML =
-    `<div class="loading">
-      ⏳ Chargement des messages...
-    </div>`;
+    '<div class="loading">⏳ Chargement...</div>';
 
 
   try{
 
     const snapshot =
-      await getDocs(
-        collection(db,"Messages")
-      );
+      await getDocs(collection(db,"Messages"));
 
 
     if(snapshot.empty){
 
-      container.innerHTML =
-        `<div class="card">
-          <div class="empty">
-            💬<br><br>
-            Vous n'avez encore aucun message.
-          </div>
-        </div>`;
+      container.innerHTML = `
+
+        <div class="card empty">
+
+          <h3>💬 Aucun message</h3>
+
+          <p>Vos messages apparaîtront ici.</p>
+
+        </div>
+
+      `;
 
       return;
+
     }
 
 
     container.innerHTML = "";
 
 
-    snapshot.forEach(doc=>{
+    snapshot.forEach(doc => {
 
       const data = doc.data();
 
-      const card =
+
+      const div =
         document.createElement("div");
 
-      card.className="card";
+
+      div.className = "message";
 
 
-      card.innerHTML = `
+      div.innerHTML = `
 
-        <h3>
-          💼 ${escapeHTML(
-            data.jobTitle || "Offre"
-          )}
-        </h3>
+        <strong>
+          👤 ${escapeHTML(data.receiver || "Destinataire")}
+        </strong>
 
-        <p style="margin-top:10px">
-          🏢 <strong>
-          ${escapeHTML(
-            data.company || "Entreprise"
-          )}
-          </strong>
+        <p>
+          ${escapeHTML(data.message || "")}
         </p>
-
-        <p style="margin-top:10px">
-          📍 ${escapeHTML(
-            data.location || "Non précisé"
-          )}
-        </p>
-
-        <p style="margin-top:10px">
-          👤 ${escapeHTML(
-            data.senderName || "Utilisateur"
-          )}
-        </p>
-
-        <div class="message-box">
-          💬 ${escapeHTML(
-            data.message || ""
-          )}
-        </div>
 
       `;
 
-      container.appendChild(card);
+
+      container.appendChild(div);
 
     });
 
@@ -1163,11 +1237,62 @@ async function loadMessages(){
     console.error(error);
 
     container.innerHTML =
-      `<div class="error">
-        ❌ Impossible de charger les messages.
-        <br><br>
-        ${escapeHTML(error.message)}
-      </div>`;
+      '<div class="empty">Impossible de charger les messages.</div>';
+
+    showError(
+      "Erreur Messages : " + error.message
+    );
+
+  }
+
+};
+
+
+/* =========================
+   PROFIL LOCAL
+========================= */
+
+function getProfile(){
+
+  const defaultProfile = {
+
+    name:"Utilisateur",
+
+    email:"",
+
+    phone:"",
+
+    bio:"",
+
+    photo:""
+
+  };
+
+
+  try{
+
+    const saved =
+      localStorage.getItem("kayeLigueyProfile");
+
+
+    if(!saved){
+
+      return defaultProfile;
+
+    }
+
+
+    return {
+
+      ...defaultProfile,
+
+      ...JSON.parse(saved)
+
+    };
+
+  }catch(error){
+
+    return defaultProfile;
 
   }
 
@@ -1175,54 +1300,51 @@ async function loadMessages(){
 
 
 /* =========================
-   PROFIL
+   AFFICHER PROFIL
 ========================= */
 
-function getProfile(){
-
-  return {
-
-    name:
-      localStorage.getItem(
-        "kayeProfileName"
-      ) || "",
-
-    email:
-      localStorage.getItem(
-        "kayeProfileEmail"
-      ) || "",
-
-    phone:
-      localStorage.getItem(
-        "kayeProfilePhone"
-      ) || "",
-
-    city:
-      localStorage.getItem(
-        "kayeProfileCity"
-      ) || "",
-
-    job:
-      localStorage.getItem(
-        "kayeProfileJob"
-      ) || "",
-
-    bio:
-      localStorage.getItem(
-        "kayeProfileBio"
-      ) || "",
-
-    photo:
-      localStorage.getItem(
-        "kayeLigueyPhoto"
-      ) || ""
-
-  };
-
-}
-
-
-function displayProfile(){
+window.displayProfile = function(){
 
   const profile =
-    getProfi
+    getProfile();
+
+
+  document.getElementById("displayName").textContent =
+    profile.name || "Utilisateur";
+
+
+  document.getElementById("displayEmail").textContent =
+    profile.email || "Email non renseigné";
+
+
+  document.getElementById("displayPhone").textContent =
+    profile.phone || "Téléphone non renseigné";
+
+
+  document.getElementById("displayBio").textContent =
+    profile.bio || "Aucune présentation";
+
+
+  const photo =
+    document.getElementById("profilePhoto");
+
+
+  if(profile.photo){
+
+    photo.src = profile.photo;
+
+  }else{
+
+    photo.src =
+      "https://via.placeholder.com/150";
+
+  }
+
+};
+
+
+/* =========================
+   FORMULAIRE PROFIL
+========================= */
+
+window.loadProfil
