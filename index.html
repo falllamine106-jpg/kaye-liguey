@@ -1,1042 +1,865 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kaye Liguey</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaye Liguey</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f7f6;
+  color:#17202a;
+  padding-bottom:75px
+}
+header{
+  background:#087f5b;
+  color:white;
+  padding:20px;
+}
+header h1{margin:0;font-size:26px}
+header p{margin:6px 0 0}
 
-    body {
-      background: #f5f7fb;
-      color: #172033;
-      padding-bottom: 75px;
-    }
+.page{
+  display:none;
+  max-width:800px;
+  margin:auto;
+  padding:20px
+}
+.page.active{display:block}
 
-    /* HEADER */
-    header {
-      background: #087f5b;
-      color: white;
-      padding: 18px;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
+h2{margin-top:0}
 
-    header h1 {
-      font-size: 25px;
-    }
+.search,input,textarea,select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:15px;
+  background:white;
+}
 
-    header p {
-      margin-top: 5px;
-      font-size: 13px;
-      opacity: 0.9;
-    }
+.search{margin-bottom:15px}
 
-    /* PAGES */
-    .page {
-      display: none;
-      padding: 18px;
-      max-width: 800px;
-      margin: auto;
-    }
+.form-group{margin-bottom:15px}
+.form-group label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold
+}
 
-    .page.active {
-      display: block;
-    }
+textarea{min-height:130px}
 
-    .title {
-      font-size: 23px;
-      margin-bottom: 15px;
-    }
+button{
+  border:0;
+  cursor:pointer
+}
 
-    /* SEARCH */
-    .search {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      margin-bottom: 18px;
-      font-size: 15px;
-      outline: none;
-      background: white;
-    }
+.main-btn{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  background:#087f5b;
+  color:white;
+  font-size:16px;
+}
 
-    .search:focus {
-      border-color: #087f5b;
-    }
+.job-card{
+  background:white;
+  padding:17px;
+  margin-bottom:13px;
+  border-radius:14px;
+  box-shadow:0 3px 12px #00000012;
+  cursor:pointer;
+}
 
-    /* CARDS */
-    .job-card {
-      background: white;
-      border-radius: 15px;
-      padding: 17px;
-      margin-bottom: 14px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.job-card h3{
+  margin:0 0 10px;
+  color:#087f5b
+}
 
-    .job-card:active {
-      transform: scale(0.98);
-    }
+.job-card p{
+  margin:7px 0;
+  color:#555
+}
 
-    .job-card h3 {
-      color: #087f5b;
-      margin-bottom: 8px;
-    }
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  background:#e7f6f0;
+  color:#087f5b;
+  border-radius:20px;
+  font-size:12px;
+}
 
-    .job-card p {
-      margin: 6px 0;
-      color: #555;
-      font-size: 14px;
-    }
+.detail{
+  background:white;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 3px 12px #00000012;
+}
 
-    .badge {
-      display: inline-block;
-      background: #e8f7f1;
-      color: #087f5b;
-      padding: 6px 9px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-top: 7px;
-    }
+.back{
+  padding:10px 14px;
+  border-radius:9px;
+  background:#e7f6f0;
+  color:#087f5b;
+  margin-bottom:15px
+}
 
-    /* BUTTON */
-    button {
-      border: none;
-      cursor: pointer;
-    }
+.message{
+  padding:14px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
 
-    .main-btn {
-      width: 100%;
-      padding: 14px;
-      background: #087f5b;
-      color: white;
-      border-radius: 11px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
+.success{
+  background:#e7f6f0;
+  color:#087f5b
+}
 
-    .main-btn:active {
-      transform: scale(0.98);
-    }
+.error{
+  background:#ffe8e8;
+  color:#b00020
+}
 
-    .back-btn {
-      background: #e8f7f1;
-      color: #087f5b;
-      padding: 10px 14px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
+.empty{
+  text-align:center;
+  padding:30px;
+  background:white;
+  border-radius:14px;
+  color:#777
+}
 
-    /* FORM */
-    .form-group {
-      margin-bottom: 14px;
-    }
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:70px;
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:space-around;
+  z-index:1000;
+}
 
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
-      font-size: 14px;
-    }
+.nav{
+  background:white;
+  color:#777;
+  font-size:11px;
+  min-width:60px
+}
 
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      outline: none;
-      background: white;
-      font-size: 15px;
-    }
+.nav span{
+  display:block;
+  font-size:22px
+}
 
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
+.nav.active{
+  color:#087f5b;
+  font-weight:bold
+}
 
-    /* DETAIL */
-    .detail-card {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-    }
+.profile{
+  background:white;
+  padding:25px;
+  border-radius:14px;
+  text-align:center
+}
 
-    .detail-card h2 {
-      color: #087f5b;
-      margin-bottom: 15px;
-    }
+.profile img{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #087f5b
+}
 
-    .detail-line {
-      margin: 12px 0;
-      font-size: 15px;
-    }
+.photo-btn{
+  margin-top:15px;
+  padding:10px 15px;
+  background:#e7f6f0;
+  color:#087f5b;
+  border-radius:9px
+}
 
-    .description {
-      background: #f5f7fb;
-      padding: 14px;
-      border-radius: 10px;
-      line-height: 1.6;
-      margin-top: 10px;
-      white-space: pre-wrap;
-    }
-
-    /* PROFILE */
-    .profile-box {
-      text-align: center;
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-    }
-
-    .profile-photo {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #087f5b;
-      margin-bottom: 12px;
-    }
-
-    .photo-btn {
-      background: #e8f7f1;
-      color: #087f5b;
-      padding: 10px 14px;
-      border-radius: 10px;
-      margin-top: 10px;
-    }
-
-    /* MESSAGES */
-    .empty {
-      background: white;
-      padding: 25px;
-      text-align: center;
-      border-radius: 15px;
-      color: #777;
-    }
-
-    /* BOTTOM NAV */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 68px;
-      background: white;
-      border-top: 1px solid #ddd;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      z-index: 100;
-    }
-
-    .nav-btn {
-      background: transparent;
-      color: #777;
-      font-size: 11px;
-      text-align: center;
-      padding: 5px;
-      min-width: 60px;
-    }
-
-    .nav-btn .icon {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 2px;
-    }
-
-    .nav-btn.active {
-      color: #087f5b;
-      font-weight: bold;
-    }
-
-    /* LOADING */
-    .loading {
-      text-align: center;
-      padding: 25px;
-      color: #777;
-    }
-
-    .error {
-      background: #ffecec;
-      color: #b00020;
-      padding: 14px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      font-size: 14px;
-    }
-
-    .success {
-      background: #e8f7f1;
-      color: #087f5b;
-      padding: 14px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      font-size: 14px;
-    }
-  </style>
+.loading{
+  text-align:center;
+  padding:25px;
+  color:#777
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>💼 Kaye Liguey</h1>
-    <p>Trouvez votre prochaine opportunité</p>
-  </header>
+<header>
+  <h1>💼 Kaye Liguey</h1>
+  <p>Trouvez votre prochaine opportunité</p>
+</header>
 
+<!-- ACCUEIL -->
+<section id="home" class="page active">
+  <h2>🏠 Accueil</h2>
 
-  <!-- ACCUEIL -->
-  <section id="homePage" class="page active">
-    <h2 class="title">🏠 Accueil</h2>
+  <input
+    id="searchHome"
+    class="search"
+    placeholder="🔎 Rechercher un emploi"
+  >
 
-    <input
-      type="text"
-      id="homeSearch"
-      class="search"
-      placeholder="🔎 Rechercher un emploi..."
+  <div id="homeJobs">
+    <div class="loading">Chargement...</div>
+  </div>
+</section>
+
+<!-- JOBS -->
+<section id="jobs" class="page">
+  <h2>💼 Jobs</h2>
+
+  <input
+    id="searchJobs"
+    class="search"
+    placeholder="🔎 Rechercher une offre"
+  >
+
+  <div id="jobsList">
+    <div class="loading">Chargement...</div>
+  </div>
+</section>
+
+<!-- PUBLICATION -->
+<section id="publish" class="page">
+  <h2>➕ Publier une offre</h2>
+
+  <div id="publishMessage"></div>
+
+  <form id="jobForm">
+
+    <div class="form-group">
+      <label>Titre du poste</label>
+      <input id="title" required placeholder="Ex : Développeur Web">
+    </div>
+
+    <div class="form-group">
+      <label>Entreprise</label>
+      <input id="company" required placeholder="Nom de l'entreprise">
+    </div>
+
+    <div class="form-group">
+      <label>Localisation</label>
+      <input id="location" required placeholder="Ex : Dakar">
+    </div>
+
+    <div class="form-group">
+      <label>Type</label>
+      <select id="type">
+        <option>Stage</option>
+        <option>CDI</option>
+        <option>CDD</option>
+        <option>Freelance</option>
+        <option>Temps partiel</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Salaire</label>
+      <input id="salary" placeholder="Ex : 100000 FCFA">
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea
+        id="description"
+        required
+        placeholder="Décrivez le poste..."
+      ></textarea>
+    </div>
+
+    <button class="main-btn" id="publishButton">
+      📢 Publier l'offre
+    </button>
+
+  </form>
+</section>
+
+<!-- MESSAGES -->
+<section id="messages" class="page">
+  <h2>💬 Messages</h2>
+
+  <div class="empty">
+    💬<br><br>
+    <strong>Aucun message</strong>
+    <p>Vos conversations apparaîtront ici.</p>
+  </div>
+</section>
+
+<!-- PROFIL -->
+<section id="profile" class="page">
+  <h2>👤 Profil</h2>
+
+  <div class="profile">
+
+    <img
+      id="profileImage"
+      src="https://via.placeholder.com/110"
+      alt="Profil"
     >
 
-    <div id="homeJobs">
-      <div class="loading">Chargement des offres...</div>
-    </div>
-  </section>
-
-
-  <!-- JOBS -->
-  <section id="jobsPage" class="page">
-    <h2 class="title">💼 Toutes les offres</h2>
+    <h3>Utilisateur Kaye Liguey</h3>
 
     <input
-      type="text"
-      id="jobsSearch"
-      class="search"
-      placeholder="🔎 Rechercher une offre..."
+      type="file"
+      id="photoInput"
+      accept="image/*"
+      hidden
     >
 
-    <div id="jobsList">
-      <div class="loading">Chargement des offres...</div>
-    </div>
-  </section>
+    <button class="photo-btn" id="photoButton">
+      📷 Changer la photo
+    </button>
+
+  </div>
+</section>
+
+<!-- DÉTAIL -->
+<section id="detail" class="page">
+
+  <button class="back" id="backButton">
+    ← Retour
+  </button>
+
+  <div id="detailContent"></div>
+
+</section>
+
+<!-- NAVIGATION -->
+<nav class="bottom">
+
+  <button class="nav active" data-page="home">
+    <span>🏠</span>
+    Accueil
+  </button>
+
+  <button class="nav" data-page="jobs">
+    <span>💼</span>
+    Jobs
+  </button>
+
+  <button class="nav" data-page="publish">
+    <span>➕</span>
+    Publier
+  </button>
+
+  <button class="nav" data-page="messages">
+    <span>💬</span>
+    Messages
+  </button>
+
+  <button class="nav" data-page="profile">
+    <span>👤</span>
+    Profil
+  </button>
+
+</nav>
+
+<script type="module">
+
+/* FIREBASE */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-  <!-- PUBLIER -->
-  <section id="publishPage" class="page">
-    <h2 class="title">➕ Publier une offre</h2>
+const firebaseConfig = {
+  apiKey: "AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvtl0",
+  authDomain: "kaye-liguey.firebaseapp.com",
+  projectId: "kaye-liguey",
+  storageBucket: "kaye-liguey.firebasestorage.app",
+  messagingSenderId: "6308207019",
+  appId: "1:6308207019:web:6dca2b99992ef11dcb1aee",
+  measurementId: "G-C7244S0ZLM"
+};
 
-    <div id="publishMessage"></div>
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    <form id="jobForm">
 
-      <div class="form-group">
-        <label>Titre du poste</label>
-        <input
-          type="text"
-          id="jobTitle"
-          placeholder="Exemple : Développeur Web"
-          required
-        >
+/* VARIABLES */
+
+let jobs = [];
+
+
+/* NAVIGATION */
+
+function showPage(id){
+
+  document.querySelectorAll(".page")
+    .forEach(p => p.classList.remove("active"));
+
+  const page = document.getElementById(id);
+
+  if(page){
+    page.classList.add("active");
+  }
+
+  document.querySelectorAll(".nav")
+    .forEach(n => n.classList.remove("active"));
+
+  const nav = document.querySelector(
+    `.nav[data-page="${id}"]`
+  );
+
+  if(nav){
+    nav.classList.add("active");
+  }
+
+  window.scrollTo(0,0);
+}
+
+
+document.querySelectorAll(".nav")
+.forEach(button => {
+
+  button.addEventListener("click",function(){
+
+    showPage(this.dataset.page);
+
+  });
+
+});
+
+
+/* ÉCHAPPEMENT HTML */
+
+function safe(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* AFFICHER LES JOBS */
+
+function renderJobs(list,containerId){
+
+  const container =
+    document.getElementById(containerId);
+
+  if(!container) return;
+
+  if(list.length === 0){
+
+    container.innerHTML = `
+      <div class="empty">
+        💼<br><br>
+        <strong>Aucune offre trouvée</strong>
       </div>
+    `;
 
-      <div class="form-group">
-        <label>Entreprise</label>
-        <input
-          type="text"
-          id="jobCompany"
-          placeholder="Nom de l'entreprise"
-          required
-        >
-      </div>
+    return;
+  }
 
-      <div class="form-group">
-        <label>Localisation</label>
-        <input
-          type="text"
-          id="jobLocation"
-          placeholder="Exemple : Dakar"
-          required
-        >
-      </div>
+  container.innerHTML = "";
 
-      <div class="form-group">
-        <label>Type de contrat</label>
+  list.forEach(job => {
 
-        <select id="jobType">
-          <option value="Stage">Stage</option>
-          <option value="CDI">CDI</option>
-          <option value="CDD">CDD</option>
-          <option value="Temps partiel">Temps partiel</option>
-          <option value="Freelance">Freelance</option>
-          <option value="Autre">Autre</option>
-        </select>
-      </div>
+    const card =
+      document.createElement("div");
 
-      <div class="form-group">
-        <label>Salaire</label>
-        <input
-          type="text"
-          id="jobSalary"
-          placeholder="Exemple : 100 000 FCFA"
-        >
-      </div>
+    card.className = "job-card";
 
-      <div class="form-group">
-        <label>Description</label>
+    card.innerHTML = `
+      <h3>${safe(job.title)}</h3>
 
-        <textarea
-          id="jobDescription"
-          placeholder="Décrivez le poste, les compétences demandées..."
-          required
-        ></textarea>
-      </div>
+      <p>🏢 ${safe(job.company)}</p>
 
-      <button type="submit" class="main-btn">
-        📢 Publier l'offre
-      </button>
+      <p>📍 ${safe(job.location)}</p>
 
-    </form>
-  </section>
+      <p>💰 ${safe(job.salary || "Non précisé")}</p>
+
+      <span class="badge">
+        ${safe(job.type || "Non précisé")}
+      </span>
+    `;
+
+    card.addEventListener("click",() => {
+
+      showDetail(job);
+
+    });
+
+    container.appendChild(card);
+
+  });
+
+}
 
 
-  <!-- MESSAGES -->
-  <section id="messagesPage" class="page">
-    <h2 class="title">💬 Messages</h2>
+/* DÉTAIL */
 
-    <div class="empty">
-      <div style="font-size:40px;">💬</div>
-      <br>
-      <strong>Aucun message</strong>
-      <p style="margin-top:8px;">
-        Vos conversations apparaîtront ici.
+function showDetail(job){
+
+  document.getElementById("detailContent").innerHTML = `
+
+    <div class="detail">
+
+      <h2>${safe(job.title)}</h2>
+
+      <p>🏢 <strong>Entreprise :</strong>
+      ${safe(job.company)}</p>
+
+      <p>📍 <strong>Lieu :</strong>
+      ${safe(job.location)}</p>
+
+      <p>💼 <strong>Type :</strong>
+      ${safe(job.type || "Non précisé")}</p>
+
+      <p>💰 <strong>Salaire :</strong>
+      ${safe(job.salary || "Non précisé")}</p>
+
+      <hr>
+
+      <h3>Description</h3>
+
+      <p style="line-height:1.6">
+        ${safe(job.description)}
       </p>
-    </div>
-  </section>
-
-
-  <!-- PROFIL -->
-  <section id="profilePage" class="page">
-    <h2 class="title">👤 Mon profil</h2>
-
-    <div class="profile-box">
-
-      <img
-        id="profilePhoto"
-        class="profile-photo"
-        src="https://via.placeholder.com/110"
-        alt="Photo de profil"
-      >
-
-      <h3 id="profileName">Utilisateur Kaye Liguey</h3>
-
-      <p style="margin-top:8px;color:#777;">
-        Votre profil
-      </p>
-
-      <input
-        type="file"
-        id="photoInput"
-        accept="image/*"
-        style="display:none;"
-      >
 
       <button
-        class="photo-btn"
-        id="changePhotoBtn"
+        id="applyButton"
+        class="main-btn"
+        style="margin-top:20px"
       >
-        📷 Changer la photo
+        📩 Postuler
       </button>
 
     </div>
-  </section>
+  `;
 
+  showPage("detail");
 
-  <!-- DETAIL D'UNE OFFRE -->
-  <section id="detailPage" class="page">
+  document
+    .getElementById("applyButton")
+    .addEventListener("click",() => {
 
-    <button class="back-btn" id="backBtn">
-      ← Retour
-    </button>
-
-    <div id="jobDetail"></div>
-
-  </section>
-
-
-  <!-- NAVIGATION -->
-  <nav class="bottom-nav">
-
-    <button class="nav-btn active" data-page="homePage">
-      <span class="icon">🏠</span>
-      Accueil
-    </button>
-
-    <button class="nav-btn" data-page="jobsPage">
-      <span class="icon">💼</span>
-      Jobs
-    </button>
-
-    <button class="nav-btn" data-page="publishPage">
-      <span class="icon">➕</span>
-      Publier
-    </button>
-
-    <button class="nav-btn" data-page="messagesPage">
-      <span class="icon">💬</span>
-      Messages
-    </button>
-
-    <button class="nav-btn" data-page="profilePage">
-      <span class="icon">👤</span>
-      Profil
-    </button>
-
-  </nav>
-
-
-  <!-- JAVASCRIPT -->
-  <script type="module">
-
-    /* =========================
-       FIREBASE
-    ========================= */
-
-    import {
-      initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
-    import {
-      getFirestore,
-      collection,
-      getDocs,
-      addDoc,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvtl0",
-      authDomain: "kaye-liguey.firebaseapp.com",
-      projectId: "kaye-liguey",
-      storageBucket: "kaye-liguey.firebasestorage.app",
-      messagingSenderId: "6308207019",
-      appId: "1:6308207019:web:6dca2b99992ef11dcb1aee",
-      measurementId: "G-C7244S0ZLM"
-    };
-
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-
-    /* =========================
-       VARIABLES
-    ========================= */
-
-    let jobs = [];
-
-
-    /* =========================
-       NAVIGATION
-    ========================= */
-
-    function showPage(pageId) {
-
-      document.querySelectorAll(".page").forEach(page => {
-        page.classList.remove("active");
-      });
-
-      const page = document.getElementById(pageId);
-
-      if (page) {
-        page.classList.add("active");
-      }
-
-      document.querySelectorAll(".nav-btn").forEach(button => {
-        button.classList.remove("active");
-      });
-
-      const activeButton = document.querySelector(
-        `.nav-btn[data-page="${pageId}"]`
+      alert(
+        "La candidature sera disponible avec le système de comptes utilisateurs."
       );
 
-      if (activeButton) {
-        activeButton.classList.add("active");
-      }
+    });
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
+}
 
 
-    /* =========================
-       NAV BUTTONS
-    ========================= */
+/* RETOUR */
 
-    document.querySelectorAll(".nav-btn").forEach(button => {
+document
+.getElementById("backButton")
+.addEventListener("click",() => {
 
-      button.addEventListener("click", () => {
+  showPage("jobs");
 
-        const pageId = button.dataset.page;
+});
 
-        showPage(pageId);
 
+/* CHARGER FIREBASE */
+
+async function loadJobs(){
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(db,"Jobs")
+      );
+
+    jobs = [];
+
+    snapshot.forEach(doc => {
+
+      jobs.push({
+        id:doc.id,
+        ...doc.data()
       });
 
     });
 
+    jobs.reverse();
 
-    /* =========================
-       AFFICHAGE DES OFFRES
-    ========================= */
+    renderJobs(
+      jobs.slice(0,5),
+      "homeJobs"
+    );
 
-    function displayJobs(list, containerId) {
+    renderJobs(
+      jobs,
+      "jobsList"
+    );
 
-      const container = document.getElementById(containerId);
+  }catch(error){
 
-      if (!container) return;
+    console.error(error);
 
-      if (!list || list.length === 0) {
+    document.getElementById("homeJobs").innerHTML = `
+      <div class="message error">
+        ❌ Erreur Firebase :<br>
+        ${safe(error.message)}
+      </div>
+    `;
 
-        container.innerHTML = `
-          <div class="empty">
-            <div style="font-size:40px;">💼</div>
-            <br>
-            <strong>Aucune offre trouvée</strong>
-            <p style="margin-top:8px;">
-              Les nouvelles offres apparaîtront ici.
-            </p>
-          </div>
-        `;
+    document.getElementById("jobsList").innerHTML = `
+      <div class="message error">
+        ❌ Impossible de charger les offres.
+      </div>
+    `;
 
-        return;
-      }
+  }
 
+}
 
-      container.innerHTML = "";
 
+/* RECHERCHE ACCUEIL */
 
-      list.forEach(job => {
+document
+.getElementById("searchHome")
+.addEventListener("input",function(){
 
-        const card = document.createElement("div");
+  const q =
+    this.value.toLowerCase().trim();
 
-        card.className = "job-card";
+  const results =
+    jobs.filter(job =>
 
-        card.innerHTML = `
+      `${job.title} ${job.company} ${job.location} ${job.type}`
+      .toLowerCase()
+      .includes(q)
 
-          <h3>${escapeHTML(job.title)}</h3>
+    );
 
-          <p>🏢 ${escapeHTML(job.company)}</p>
+  renderJobs(
+    q ? results : jobs.slice(0,5),
+    "homeJobs"
+  );
 
-          <p>📍 ${escapeHTML(job.location)}</p>
+});
 
-          <p>💰 ${escapeHTML(job.salary || "Non précisé")}</p>
 
-          <span class="badge">
-            ${escapeHTML(job.type || "Non précisé")}
-          </span>
+/* RECHERCHE JOBS */
 
-        `;
+document
+.getElementById("searchJobs")
+.addEventListener("input",function(){
 
+  const q =
+    this.value.toLowerCase().trim();
 
-        card.addEventListener("click", () => {
+  const results =
+    jobs.filter(job =>
 
-          showJobDetail(job);
+      `${job.title} ${job.company} ${job.location} ${job.type} ${job.description}`
+      .toLowerCase()
+      .includes(q)
 
-        });
+    );
 
+  renderJobs(
+    results,
+    "jobsList"
+  );
 
-        container.appendChild(card);
+});
 
-      });
 
-    }
+/* PUBLICATION */
 
+document
+.getElementById("jobForm")
+.addEventListener("submit",async function(e){
 
-    /* =========================
-       DETAIL OFFRE
-    ========================= */
+  e.preventDefault();
 
-    function showJobDetail(job) {
+  const button =
+    document.getElementById("publishButton");
 
-      const detail = document.getElementById("jobDetail");
+  const message =
+    document.getElementById("publishMessage");
 
-      detail.innerHTML = `
+  button.disabled = true;
+  button.textContent = "⏳ Publication...";
 
-        <div class="detail-card">
+  try{
 
-          <h2>${escapeHTML(job.title)}</h2>
+    const data = {
 
-          <div class="detail-line">
-            🏢 <strong>Entreprise :</strong>
-            ${escapeHTML(job.company)}
-          </div>
+      title:
+        document.getElementById("title").value.trim(),
 
-          <div class="detail-line">
-            📍 <strong>Lieu :</strong>
-            ${escapeHTML(job.location)}
-          </div>
+      company:
+        document.getElementById("company").value.trim(),
 
-          <div class="detail-line">
-            💼 <strong>Type :</strong>
-            ${escapeHTML(job.type || "Non précisé")}
-          </div>
+      location:
+        document.getElementById("location").value.trim(),
 
-          <div class="detail-line">
-            💰 <strong>Salaire :</strong>
-            ${escapeHTML(job.salary || "Non précisé")}
-          </div>
+      type:
+        document.getElementById("type").value,
 
-          <hr style="margin:18px 0;border:none;border-top:1px solid #eee;">
+      salary:
+        document.getElementById("salary").value.trim()
+        || "Non précisé",
 
-          <strong>Description :</strong>
+      description:
+        document.getElementById("description").value.trim(),
 
-          <div class="description">
-            ${escapeHTML(job.description || "Aucune description.")}
-          </div>
+      createdAt:
+        serverTimestamp()
 
-          <button
-            class="main-btn"
-            id="applyButton"
-          >
-            📩 Postuler
-          </button>
+    };
 
-        </div>
 
-      `;
+    const ref =
+      await addDoc(
+        collection(db,"Jobs"),
+        data
+      );
 
 
-      showPage("detailPage");
+    jobs.unshift({
+      id:ref.id,
+      ...data
+    });
 
 
-      document
-        .getElementById("applyButton")
-        .addEventListener("click", () => {
+    renderJobs(
+      jobs.slice(0,5),
+      "homeJobs"
+    );
 
-          alert(
-            "Votre demande de candidature a été enregistrée. La fonction de candidature avec compte utilisateur sera ajoutée dans la prochaine version."
-          );
+    renderJobs(
+      jobs,
+      "jobsList"
+    );
 
-        });
 
-    }
+    message.innerHTML = `
+      <div class="message success">
+        ✅ Offre publiée avec succès !
+      </div>
+    `;
 
 
-    /* =========================
-       RETOUR
-    ========================= */
+    this.reset();
 
-    document
-      .getElementById("backBtn")
-      .addEventListener("click", () => {
 
-        showPage("jobsPage");
+    setTimeout(() => {
 
-      });
+      message.innerHTML = "";
 
+      showPage("jobs");
 
-    /* =========================
-       CHARGER FIRESTORE
-    ========================= */
+    },1000);
 
-    async function loadJobs() {
 
-      const homeContainer = document.getElementById("homeJobs");
-      const jobsContainer = document.getElementById("jobsList");
+  }catch(error){
 
-      try {
+    console.error(error);
 
-        const snapshot = await getDocs(
-          collection(db, "Jobs")
-        );
+    message.innerHTML = `
+      <div class="message error">
+        ❌ Erreur :<br>
+        ${safe(error.message)}
+      </div>
+    `;
 
+  }
 
-        jobs = [];
 
+  button.disabled = false;
+  button.textContent = "📢 Publier l'offre";
 
-        snapshot.forEach(doc => {
+});
 
-          jobs.push({
-            id: doc.id,
-            ...doc.data()
-          });
 
-        });
+/* PHOTO */
 
+const photoInput =
+  document.getElementById("photoInput");
 
-        // Les plus récentes en premier
-        jobs.reverse();
+const photoButton =
+  document.getElementById("photoButton");
 
+const profileImage =
+  document.getElementById("profileImage");
 
-        displayJobs(
-          jobs.slice(0, 5),
-          "homeJobs"
-        );
 
+const savedPhoto =
+  localStorage.getItem(
+    "kayeLigueyPhoto"
+  );
 
-        displayJobs(
-          jobs,
-          "jobsList"
-        );
 
+if(savedPhoto){
 
-      } catch (error) {
+  profileImage.src = savedPhoto;
 
-        console.error("Erreur Firebase :", error);
+}
 
 
-        homeContainer.innerHTML = `
-          <div class="error">
-            ❌ Impossible de charger les offres.
-            <br><br>
-            Vérifiez votre connexion et les règles Firestore.
-          </div>
-        `;
+photoButton.addEventListener("click",() => {
 
+  photoInput.click();
 
-        jobsContainer.innerHTML = `
-          <div class="error">
-            ❌ Impossible de charger les offres.
-          </div>
-        `;
+});
 
-      }
 
-    }
+photoInput.addEventListener("change",function(){
 
+  const file = this.files[0];
 
-    /* =========================
-       RECHERCHE ACCUEIL
-    ========================= */
+  if(!file) return;
 
-    document
-      .getElementById("homeSearch")
-      .addEventListener("input", event => {
+  const reader =
+    new FileReader();
 
-        const search = event.target.value
-          .toLowerCase()
-          .trim();
+  reader.onload = function(){
 
+    profileImage.src =
+      reader.result;
 
-        if (!search) {
+    localStorage.setItem(
+      "kayeLigueyPhoto",
+      reader.result
+    );
 
-          displayJobs(
-            jobs.slice(0, 5),
-            "homeJobs"
-          );
+  };
 
-          return;
+  reader.readAsDataURL(file);
 
-        }
+});
 
 
-        const results = jobs.filter(job => {
+/* DÉMARRAGE */
 
-          return (
+loadJobs();
 
-            String(job.title || "")
-              .toLowerCase()
-              .includes(search)
+</script>
 
-            ||
-
-            String(job.company || "")
-              .toLowerCase()
-              .includes(search)
-
-            ||
-
-            String(job.location || "")
-              .toLowerCase()
-              .includes(search)
-
-            ||
-
-            String(job.type || "")
-              .toLowerCase()
-              .includes(search)
-
-          );
-
-        });
-
-
-        displayJobs(
-          results,
-          "homeJobs"
-        );
-
-      });
-
-
-    /* =========================
-       RECHERCHE JOBS
-    ========================= */
-
-    document
-      .getElementById("jobsSearch")
-      .addEventListener("input", event => {
-
-        const search = event.target.value
-          .toLowerCase()
-          .trim();
-
-
-        if (!search) {
-
-          displayJobs(
-            jobs,
-            "jobsList"
-          );
-
-          return;
-
-        }
-
-
-        const results = jobs.filter(job => {
-
-          return (
-
-            String(job.title || "")
-              .toLowerCase()
-              .includes(search)
-
-            ||
-
-            String(job.company || "")
-              .toLowerCase()
-              .includes(search)
-
-            ||
-
-            String(job.location || "")
-              .toLowerCase()
-              .includes(search)
-
-            ||
-
-            String(job.type || "")
-              .toLowerCase()
-              .includes(search)
-
-            ||
-
-            String(job.description || "")
-              .toLowerCase()
-              .includes(search)
-
-          );
-
-        });
-
-
-        displayJobs(
-          results,
-          "jobsList"
-        );
-
-      });
-
-
-    /* =========================
-       PUBLIER UNE OFFRE
-    ========================= */
-
-    document
-      .getElementById("jobForm")
-      .addEventListener("submit", async event => {
-
-        event.preventDefault();
-
-
-        const message =
-          document.getElementById("publishMessage");
-
-
-        const title =
-          document.getElementById("jobTitle").value.trim();
-
-        const company =
-          document.getElementById("jobCompany").value.trim();
-
-        const location =
-          document.getElementById("jobLocation").value.trim();
-
-        const type =
-          document.getElementById("jobType").value;
-
-        const salary =
-          document.getElementById("jobSalary").value.trim();
-
-        const description =
-          document.getElementById("jobDescription").value.trim();
-
-
-        if (!title ||
-            !company ||
-            !location ||
-            !description) {
-
-          message.innerHTML = `
-            <div class="error">
-              ❌ Veuillez remplir tous les champs obligatoires.
-            </div>
-          `;
-
-          return;
-
-        }
-
-
-        const submitButton =
-          document.querySelector(
-            "#jobForm .main-btn"
-          );
-
-
-        submitButton.disabled = true;
-
-        submitButton.textContent =
-          "⏳ Publication...";
-
-
-        try {
-
-          const docRef = await addDoc(
-            collection(db, "Jobs"),
-            {
-              title: title,
-              company: company,
-              location: location,
-              type: type,
-              salary: salary || "Non précisé",
-              description: description,
-              createdAt: serverTimestamp()
-            }
-          );
-
-
-          const newJob = {
-
-            id: docRef.id,
-            title: title,
-            company: company,
-            location: location,
-            type: type,
-            salary: salary || "Non précisé",
-            descrip
+</body>
+</html>
