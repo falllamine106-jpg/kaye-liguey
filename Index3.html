@@ -1,0 +1,4177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaye Liguey — Seul le travail qui paye</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --primary:#087f5b;
+  --primary-dark:#056044;
+  --bg:#f5f7f8;
+  --card:#ffffff;
+  --text:#17202a;
+  --muted:#667085;
+  --border:#e4e7ec;
+  --danger:#d92d20;
+  --warning:#b54708;
+  --success:#067647;
+  --shadow:0 8px 25px rgba(16,24,40,.08);
+}
+
+body.dark{
+  --bg:#101828;
+  --card:#1d2939;
+  --text:#f2f4f7;
+  --muted:#98a2b3;
+  --border:#344054;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{display:none!important}
+
+header{
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.nav{
+  max-width:1100px;
+  margin:auto;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-weight:800;
+  color:var(--primary);
+  cursor:pointer;
+}
+
+.logo-icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:#e7f6f0;
+  font-size:22px;
+}
+
+.logo-text{
+  font-size:19px;
+}
+
+.logo small{
+  display:block;
+  font-size:10px;
+  color:var(--muted);
+  font-weight:500;
+  margin-top:2px;
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:10px 14px;
+  background:var(--primary);
+  color:white;
+  font-weight:700;
+  min-height:42px;
+}
+
+.btn:hover{background:var(--primary-dark)}
+
+.btn.secondary{
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+.btn.danger{
+  background:var(--danger);
+}
+
+.btn.warning{
+  background:#f79009;
+}
+
+.btn.small{
+  padding:7px 10px;
+  min-height:36px;
+  font-size:13px;
+}
+
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:24px 16px 50px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.hero{
+  background:linear-gradient(135deg,#087f5b,#0b9b70);
+  color:white;
+  border-radius:24px;
+  padding:42px 28px;
+  margin-bottom:22px;
+}
+
+.hero h1{
+  font-size:clamp(30px,6vw,52px);
+  margin-bottom:10px;
+}
+
+.hero p{
+  font-size:17px;
+  opacity:.95;
+  max-width:650px;
+  line-height:1.6;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:22px;
+}
+
+.hero .btn.secondary{
+  background:white;
+  color:#056044;
+  border:0;
+}
+
+.section-title{
+  margin:26px 0 14px;
+}
+
+.section-title h2{
+  font-size:24px;
+}
+
+.section-title p{
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.grid-2{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.card h3{
+  margin-bottom:8px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.form{
+  max-width:650px;
+  margin:auto;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  display:block;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px;
+  background:var(--card);
+  color:var(--text);
+  outline:none;
+}
+
+.field textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--primary);
+}
+
+.page-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+
+.page-head h1{
+  font-size:28px;
+}
+
+.search-box{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:20px;
+}
+
+.search-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:10px;
+}
+
+.search-grid input,
+.search-grid select{
+  width:100%;
+  padding:11px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--card);
+  color:var(--text);
+}
+
+.job-card{
+  position:relative;
+}
+
+.job-top{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.company-logo{
+  width:52px;
+  height:52px;
+  border-radius:12px;
+  object-fit:cover;
+  background:#e7f6f0;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  flex:none;
+}
+
+.job-title{
+  font-size:19px;
+  font-weight:800;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:12px;
+  font-weight:700;
+  margin:4px 4px 0 0;
+}
+
+.badge.green{
+  background:#ecfdf3;
+  color:#067647;
+}
+
+.badge.gray{
+  background:#f2f4f7;
+  color:#475467;
+}
+
+.badge.orange{
+  background:#fff6ed;
+  color:#b54708;
+}
+
+body.dark .badge.gray{
+  background:#344054;
+  color:#e4e7ec;
+}
+
+.job-info{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  color:var(--muted);
+  font-size:14px;
+  margin:12px 0;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.stat{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+}
+
+.stat strong{
+  display:block;
+  font-size:28px;
+  margin-top:7px;
+  color:var(--primary);
+}
+
+.profile-head{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.avatar{
+  width:76px;
+  height:76px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#e7f6f0;
+  display:grid;
+  place-items:center;
+  font-size:28px;
+  border:2px solid var(--border);
+}
+
+.list{
+  display:grid;
+  gap:10px;
+}
+
+.list-item{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+  background:var(--card);
+}
+
+.notification{
+  border-left:4px solid var(--primary);
+}
+
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:var(--muted);
+}
+
+.alert{
+  padding:12px 14px;
+  border-radius:10px;
+  margin-bottom:15px;
+  display:none;
+}
+
+.alert.show{display:block}
+
+.alert.error{
+  background:#fef3f2;
+  color:#b42318;
+}
+
+.alert.success{
+  background:#ecfdf3;
+  color:#067647;
+}
+
+.center{
+  text-align:center;
+}
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  padding:25px 15px;
+  border-top:1px solid var(--border);
+}
+
+@media(max-width:800px){
+  .grid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .search-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:560px){
+  .nav{
+    align-items:flex-start;
+  }
+
+  .logo-text{
+    font-size:16px;
+  }
+
+  .nav-actions{
+    max-width:58%;
+  }
+
+  .nav-actions .btn{
+    padding:7px 9px;
+    font-size:12px;
+    min-height:36px;
+  }
+
+  main{
+    padding:18px 12px 40px;
+  }
+
+  .hero{
+    padding:28px 20px;
+    border-radius:18px;
+  }
+
+  .grid,
+  .grid-2,
+  .form-grid,
+  .search-grid,
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .page-head h1{
+    font-size:24px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+
+    <div class="logo" onclick="goHome()">
+      <div class="logo-icon">🏠</div>
+      <div>
+        <div class="logo-text">KAYE LIGUEY</div>
+        <small>Seul le travail qui paye</small>
+      </div>
+    </div>
+
+    <div class="nav-actions" id="navActions"></div>
+
+  </div>
+</header>
+
+<main>
+
+<!-- ================= ACCUEIL PUBLIC ================= -->
+
+<section id="homePage" class="page active">
+
+  <div class="hero">
+    <h1>KAYE LIGUEY</h1>
+    <p>
+      Trouvez des opportunités, présentez vos compétences et
+      connectez-vous avec des entreprises.
+      <strong>Seul le travail qui paye.</strong>
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn secondary" onclick="showPage('jobsPage');renderJobs()">
+        🔎 Voir les offres
+      </button>
+
+      <button class="btn secondary" onclick="showPage('candidateRegisterPage')">
+        👤 Créer un compte candidat
+      </button>
+
+      <button class="btn secondary" onclick="showPage('companyRegisterPage')">
+        🏢 Créer un compte entreprise
+      </button>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>Pourquoi Kaye Liguey ?</h2>
+    <p>Une plateforme simple pour rapprocher les talents et les entreprises.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>💼 Trouver un emploi</h3>
+      <p class="muted">Recherchez des offres selon votre métier, votre ville et votre catégorie.</p>
+    </div>
+
+    <div class="card">
+      <h3>🏢 Recruter</h3>
+      <p class="muted">Les entreprises peuvent publier leurs offres et recevoir des candidatures.</p>
+    </div>
+
+    <div class="card">
+      <h3>🔐 Espace sécurisé</h3>
+      <p class="muted">Chaque utilisateur dispose d'un espace adapté à son rôle.</p>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>Quelques offres</h2>
+  </div>
+
+  <div id="homeJobs" class="grid"></div>
+
+</section>
+
+
+<!-- ================= INSCRIPTION CANDIDAT ================= -->
+
+<section id="candidateRegisterPage" class="page">
+
+  <div class="page-head">
+    <div>
+      <h1>👤 Créer un compte candidat</h1>
+      <p class="muted">Créez votre profil professionnel.</p>
+    </div>
+    <button class="btn secondary" onclick="goHome()">← Retour</button>
+  </div>
+
+  <div class="card form">
+
+    <div id="candidateRegisterAlert" class="alert"></div>
+
+    <form id="candidateRegisterForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Prénom *</label>
+          <input id="cFirstName" required>
+        </div>
+
+        <div class="field">
+          <label>Nom *</label>
+          <input id="cLastName" required>
+        </div>
+
+        <div class="field">
+          <label>Email *</label>
+          <input id="cEmail" type="email" required>
+        </div>
+
+        <div class="field">
+          <label>Téléphone *</label>
+          <input id="cPhone" required>
+        </div>
+
+        <div class="field">
+          <label>Mot de passe *</label>
+          <input id="cPassword" type="password" minlength="4" required>
+        </div>
+
+        <div class="field">
+          <label>Date de naissance</label>
+          <input id="cBirthDate" type="date">
+        </div>
+
+        <div class="field">
+          <label>Sexe</label>
+          <select id="cGender">
+            <option value="">Non précisé</option>
+            <option>Homme</option>
+            <option>Femme</option>
+            <option>Autre</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Nationalité</label>
+          <input id="cNationality" placeholder="Ex : Sénégalaise">
+        </div>
+
+        <div class="field">
+          <label>Région</label>
+          <input id="cRegion" placeholder="Ex : Dakar">
+        </div>
+
+        <div class="field">
+          <label>Ville</label>
+          <input id="cCity" placeholder="Ex : Dakar">
+        </div>
+
+        <div class="field">
+          <label>Niveau d'étude</label>
+          <input id="cEducation" placeholder="Ex : Bac, Licence...">
+        </div>
+
+        <div class="field">
+          <label>Disponibilité</label>
+          <select id="cAvailability">
+            <option value="true">Disponible immédiatement</option>
+            <option value="false">Pas disponible immédiatement</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>Langues parlées</label>
+          <input id="cLanguages" placeholder="Ex : Français, Wolof, Anglais">
+        </div>
+
+        <div class="field full">
+          <label>Compétences</label>
+          <textarea id="cSkills" placeholder="Ex : HTML, marketing, comptabilité..."></textarea>
+        </div>
+
+        <div class="field full">
+          <label>Présentation</label>
+          <textarea id="cBio" placeholder="Présentez-vous brièvement..."></textarea>
+        </div>
+
+        <div class="field full">
+          <label>📷 Photo de profil</label>
+          <input id="cPhoto" type="file" accept="image/*">
+        </div>
+
+        <div class="field full">
+          <label>📄 CV PDF</label>
+          <input id="cCV" type="file" accept="application/pdf">
+        </div>
+
+      </div>
+
+      <button class="btn" type="submit">Créer mon compte</button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- ================= INSCRIPTION ENTREPRISE ================= -->
+
+<section id="companyRegisterPage" class="page">
+
+  <div class="page-head">
+    <div>
+      <h1>🏢 Créer un compte entreprise</h1>
+      <p class="muted">Présentez votre entreprise et recrutez.</p>
+    </div>
+    <button class="btn secondary" onclick="goHome()">← Retour</button>
+  </div>
+
+  <div class="card form">
+
+    <div id="companyRegisterAlert" class="alert"></div>
+
+    <form id="companyRegisterForm">
+
+      <div class="form-grid">
+
+        <div class="field full">
+          <label>Nom de l'entreprise *</label>
+          <input id="coName" required>
+        </div>
+
+        <div class="field">
+          <label>Email *</label>
+          <input id="coEmail" type="email" required>
+        </div>
+
+        <div class="field">
+          <label>Téléphone *</label>
+          <input id="coPhone" required>
+        </div>
+
+        <div class="field">
+          <label>Mot de passe *</label>
+          <input id="coPassword" type="password" minlength="4" required>
+        </div>
+
+        <div class="field">
+          <label>Secteur d'activité</label>
+          <input id="coSector" placeholder="Ex : Informatique">
+        </div>
+
+        <div class="field">
+          <label>Région</label>
+          <input id="coRegion">
+        </div>
+
+        <div class="field">
+          <label>Ville</label>
+          <input id="coCity">
+        </div>
+
+        <div class="field full">
+          <label>Adresse</label>
+          <input id="coAddress">
+        </div>
+
+        <div class="field full">
+          <label>Description</label>
+          <textarea id="coDescription"></textarea>
+        </div>
+
+        <div class="field full">
+          <label>🏷️ Logo de l'entreprise</label>
+          <input id="coLogo" type="file" accept="image/*">
+        </div>
+
+      </div>
+
+      <button class="btn" type="submit">Créer mon entreprise</button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CONNEXION ================= -->
+
+<section id="loginPage" class="page">
+
+  <div class="page-head">
+    <div>
+      <h1>🔐 Connexion</h1>
+      <p class="muted">Connectez-vous à votre espace.</p>
+    </div>
+    <button class="btn secondary" onclick="goHome()">← Retour</button>
+  </div>
+
+  <div class="card form">
+
+    <div id="loginAlert" class="alert"></div>
+
+    <form id="loginForm">
+
+      <div class="field">
+        <label>Email</label>
+        <input id="loginEmail" type="email" required>
+      </div>
+
+      <div class="field">
+        <label>Mot de passe</label>
+        <input id="loginPassword" type="password" required>
+      </div>
+
+      <button class="btn" type="submit">Se connecter</button>
+
+    </form>
+
+    <div class="center" style="margin-top:18px">
+      <p class="muted">Compte administrateur de démonstration :</p>
+      <p><strong>admin@kayeliguey.com</strong></p>
+      <p><strong>admin123</strong></p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= OFFRES ================= -->
+
+<section id="jobsPage" class="page">
+
+  <div class="page-head">
+    <div>
+      <h1>💼 Offres d'emploi</h1>
+      <p class="muted">Trouvez l'opportunité qui vous correspond.</p>
+    </div>
+  </div>
+
+  <div class="search-box">
+
+    <div class="search-grid">
+
+      <input id="searchKeyword" placeholder="🔎 Métier, mot-clé...">
+
+      <select id="searchCategory">
+        <option value="">Toutes les catégories</option>
+        <option>Informatique</option>
+        <option>Développement Web</option>
+        <option>Intelligence Artificielle</option>
+        <option>Gestion</option>
+        <option>Comptabilité</option>
+        <option>Droit</option>
+        <option>Marketing Digital</option>
+        <option>Santé</option>
+        <option>BTP</option>
+        <option>Logistique</option>
+        <option>Commerce</option>
+        <option>Éducation</option>
+        <option>Technique</option>
+        <option>Restauration</option>
+        <option>Services</option>
+        <option>Autres</option>
+      </select>
+
+      <input id="searchCity" placeholder="📍 Ville">
+
+      <select id="searchContract">
+        <option value="">Tous les contrats</option>
+        <option>CDI</option>
+        <option>CDD</option>
+        <option>Stage</option>
+        <option>Freelance</option>
+        <option>Temps partiel</option>
+        <option>Temps plein</option>
+      </select>
+
+    </div>
+
+    <div class="actions">
+      <button class="btn" onclick="renderJobs()">🔍 Rechercher</button>
+      <button class="btn secondary" onclick="resetSearch()">Réinitialiser</button>
+    </div>
+
+  </div>
+
+  <div id="jobsList" class="grid"></div>
+
+</section>
+
+
+<!-- ================= DETAIL OFFRE ================= -->
+
+<section id="jobDetailPage" class="page">
+
+  <div id="jobDetail"></div>
+
+</section>
+
+
+<!-- ================= CANDIDAT DASHBOARD ================= -->
+
+<section id="candidateDashboardPage" class="page">
+
+  <div id="candidateDashboard"></div>
+
+</section>
+
+
+<!-- ================= PROFIL CANDIDAT ================= -->
+
+<section id="candidateProfilePage" class="page">
+
+  <div id="candidateProfile"></div>
+
+</section>
+
+
+<!-- ================= CANDIDATURES CANDIDAT ================= -->
+
+<section id="candidateApplicationsPage" class="page">
+
+  <div id="candidateApplications"></div>
+
+</section>
+
+
+<!-- ================= FAVORIS ================= -->
+
+<section id="favoritesPage" class="page">
+
+  <div id="favoritesContent"></div>
+
+</section>
+
+
+<!-- ================= ENTREPRISES SUIVIES ================= -->
+
+<section id="followedCompaniesPage" class="page">
+
+  <div id="followedCompanies"></div>
+
+</section>
+
+
+<!-- ================= MESSAGES ================= -->
+
+<section id="messagesPage" class="page">
+
+  <div id="messagesContent"></div>
+
+</section>
+
+
+<!-- ================= NOTIFICATIONS ================= -->
+
+<section id="notificationsPage" class="page">
+
+  <div id="notificationsContent"></div>
+
+</section>
+
+
+<!-- ================= ENTREPRISE DASHBOARD ================= -->
+
+<section id="companyDashboardPage" class="page">
+
+  <div id="companyDashboard"></div>
+
+</section>
+
+
+<!-- ================= PROFIL ENTREPRISE ================= -->
+
+<section id="companyProfilePage" class="page">
+
+  <div id="companyProfile"></div>
+
+</section>
+
+
+<!-- ================= MES OFFRES ================= -->
+
+<section id="companyJobsPage" class="page">
+
+  <div id="companyJobs"></div>
+
+</section>
+
+
+<!-- ================= PUBLIER OFFRE ================= -->
+
+<section id="publishJobPage" class="page">
+
+  <div class="page-head">
+    <div>
+      <h1>➕ Publier une offre</h1>
+      <p class="muted">Publiez une nouvelle opportunité.</p>
+    </div>
+  </div>
+
+  <div class="card form">
+
+    <div id="publishAlert" class="alert"></div>
+
+    <form id="publishJobForm">
+
+      <div class="form-grid">
+
+        <div class="field full">
+          <label>Titre du poste *</label>
+          <input id="jobTitle" required placeholder="Ex : Développeur Web">
+        </div>
+
+        <div class="field">
+          <label>Catégorie *</label>
+          <select id="jobCategory" required>
+            <option value="">Choisir</option>
+            <option>Informatique</option>
+            <option>Développement Web</option>
+            <option>Intelligence Artificielle</option>
+            <option>Gestion</option>
+            <option>Comptabilité</option>
+            <option>Droit</option>
+            <option>Marketing Digital</option>
+            <option>Santé</option>
+            <option>BTP</option>
+            <option>Logistique</option>
+            <option>Commerce</option>
+            <option>Éducation</option>
+            <option>Technique</option>
+            <option>Restauration</option>
+            <option>Services</option>
+            <option>Autres</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Type de contrat *</label>
+          <select id="jobContract" required>
+            <option value="">Choisir</option>
+            <option>CDI</option>
+            <option>CDD</option>
+            <option>Stage</option>
+            <option>Freelance</option>
+            <option>Temps partiel</option>
+            <option>Temps plein</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Région</label>
+          <input id="jobRegion">
+        </div>
+
+        <div class="field">
+          <label>Ville</label>
+          <input id="jobCity">
+        </div>
+
+        <div class="field">
+          <label>Salaire minimum</label>
+          <input id="jobSalaryMin" type="number" min="0">
+        </div>
+
+        <div class="field">
+          <label>Salaire maximum</label>
+          <input id="jobSalaryMax" type="number" min="0">
+        </div>
+
+        <div class="field">
+          <label>Date limite</label>
+          <input id="jobDeadline" type="date">
+        </div>
+
+        <div class="field full">
+          <label>Description *</label>
+          <textarea id="jobDescription" required></textarea>
+        </div>
+
+        <div class="field full">
+          <label>Compétences recherchées</label>
+          <textarea id="jobSkills" placeholder="Ex : HTML, CSS, JavaScript..."></textarea>
+        </div>
+
+      </div>
+
+      <button class="btn" type="submit">Publier l'offre</button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CANDIDATURES ENTREPRISE ================= -->
+
+<section id="companyApplicationsPage" class="page">
+
+  <div id="companyApplications"></div>
+
+</section>
+
+
+<!-- ================= ADMIN ================= -->
+
+<section id="adminDashboardPage" class="page">
+
+  <div id="adminDashboard"></div>
+
+</section>
+
+<section id="adminCandidatesPage" class="page">
+
+  <div id="adminCandidates"></div>
+
+</section>
+
+<section id="adminCompaniesPage" class="page">
+
+  <div id="adminCompanies"></div>
+
+</section>
+
+<section id="adminJobsPage" class="page">
+
+  <div id="adminJobs"></div>
+
+</section>
+
+<section id="adminNotificationsPage" class="page">
+
+  <div id="adminNotifications"></div>
+
+</section>
+
+</main>
+
+<footer>
+  <strong>KAYE LIGUEY</strong> — Seul le travail qui paye
+</footer>
+
+
+<script>
+/* =========================================================
+   KAYE LIGUEY V2
+   JavaScript principal
+   ========================================================= */
+
+/* ================= DONNÉES ================= */
+
+const KEY = {
+  users: "kl3_users",
+  jobs: "kl3_jobs",
+  applications: "kl3_applications",
+  favorites: "kl3_favorites",
+  follows: "kl3_follows",
+  messages: "kl3_messages",
+  notifications: "kl3_notifications",
+  session: "kl3_session",
+  settings: "kl3_settings"
+};
+
+function read(key, fallback = []) {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch(e) {
+    return fallback;
+  }
+}
+
+function write(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function uid(prefix = "id") {
+  return prefix + "_" + Date.now().toString(36) + "_" +
+         Math.random().toString(36).slice(2,8);
+}
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function money(value) {
+  const n = Number(value);
+  if (!n) return "Non précisé";
+  return new Intl.NumberFormat("fr-FR").format(n) + " FCFA";
+}
+
+function dateFR(value) {
+  if (!value) return "Non précisée";
+  const d = new Date(value);
+  if (isNaN(d)) return value;
+  return d.toLocaleDateString("fr-FR");
+}
+
+
+/* ================= SESSION ================= */
+
+function getSession() {
+  return localStorage.getItem(KEY.session) || "";
+}
+
+function getCurrentUser() {
+  const id = getSession();
+  if (!id) return null;
+
+  const users = read(KEY.users);
+  return users.find(u => u.id === id) || null;
+}
+
+function setSession(id) {
+  localStorage.setItem(KEY.session, id);
+}
+
+function logout() {
+  localStorage.removeItem(KEY.session);
+  updateNavigation();
+  goHome();
+}
+
+function requireLogin() {
+  const user = getCurrentUser();
+
+  if (!user) {
+    showPage("loginPage");
+    return null;
+  }
+
+  return user;
+}
+
+
+/* ================= NAVIGATION ================= */
+
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  const page = document.getElementById(id);
+
+  if (page) {
+    page.classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  updateNavigation();
+}
+
+function goHome() {
+  const user = getCurrentUser();
+
+  if (!user) {
+    showPage("homePage");
+    renderHome();
+  } else if (user.role === "candidate") {
+    showPage("candidateDashboardPage");
+    renderCandidateDashboard();
+  } else if (user.role === "company") {
+    showPage("companyDashboardPage");
+    renderCompanyDashboard();
+  } else if (user.role === "admin") {
+    showPage("adminDashboardPage");
+    renderAdminDashboard();
+  }
+}
+
+function updateNavigation() {
+
+  const nav = document.getElementById("navActions");
+  const user = getCurrentUser();
+
+  if (!user) {
+
+    nav.innerHTML = `
+      <button class="btn small secondary" onclick="showPage('jobsPage');renderJobs()">💼 Jobs</button>
+      <button class="btn small secondary" onclick="showPage('loginPage')">🔐 Connexion</button>
+      <button class="btn small" onclick="showPage('candidateRegisterPage')">👤 Inscription</button>
+      <button class="btn small" onclick="showPage('companyRegisterPage')">🏢 Entreprise</button>
+      <button class="btn small secondary" onclick="toggleDarkMode()">🌙</button>
+    `;
+
+    return;
+  }
+
+  let html = `
+    <button class="btn small secondary" onclick="goHome()">🏠 Accueil</button>
+    <button class="btn small secondary" onclick="showPage('jobsPage');renderJobs()">💼 Jobs</button>
+  `;
+
+  if (user.role === "candidate") {
+
+    html += `
+      <button class="btn small secondary" onclick="showPage('favoritesPage');renderFavorites()">❤️</button>
+      <button class="btn small secondary" onclick="showPage('messagesPage');renderMessages()">💬</button>
+      <button class="btn small secondary" onclick="showPage('notificationsPage');renderNotifications()">🔔</button>
+      <button class="btn small secondary" onclick="showPage('candidateProfilePage');renderCandidateProfile()">👤 Profil</button>
+    `;
+
+  } else if (user.role === "company") {
+
+    html += `
+      <button class="btn small secondary" onclick="showPage('publishJobPage')">➕ Publier</button>
+      <button class="btn small secondary" onclick="showPage('companyApplicationsPage');renderCompanyApplications()">👥 Candidats</button>
+      <button class="btn small secondary" onclick="showPage('messagesPage');renderMessages()">💬</button>
+      <button class="btn small secondary" onclick="showPage('notificationsPage');renderNotifications()">🔔</button>
+      <button class="btn small secondary" onclick="showPage('companyProfilePage');renderCompanyProfile()">🏢</button>
+    `;
+
+  } else if (user.role === "admin") {
+
+    html += `
+      <button class="btn small secondary" onclick="showPage('adminCandidatesPage');renderAdminCandidates()">👤 Candidats</button>
+      <button class="btn small secondary" onclick="showPage('adminCompaniesPage');renderAdminCompanies()">🏢 Entreprises</button>
+      <button class="btn small secondary" onclick="showPage('adminJobsPage');renderAdminJobs()">💼 Offres</button>
+    `;
+  }
+
+  html += `
+    <button class="btn small secondary" onclick="toggleDarkMode()">🌙</button>
+    <button class="btn small danger" onclick="logout()">Déconnexion</button>
+  `;
+
+  nav.innerHTML = html;
+}
+
+
+/* ================= FICHIERS ================= */
+
+function fileToDataURL(file) {
+  return new Promise((resolve,reject) => {
+
+    if (!file) {
+      resolve("");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+
+    reader.readAsDataURL(file);
+  });
+}
+
+
+/* ================= ALERTES ================= */
+
+function alertBox(id,message,type="success") {
+
+  const el = document.getElementById(id);
+
+  if (!el) return;
+
+  el.className = "alert " + type + " show";
+  el.textContent = message;
+
+  setTimeout(() => {
+    el.classList.remove("show");
+  },4000);
+}
+
+
+/* ================= INSCRIPTION CANDIDAT ================= */
+
+document.getElementById("candidateRegisterForm")
+.addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  const users = read(KEY.users);
+
+  const email = document.getElementById("cEmail").value.trim().toLowerCase();
+
+  if (users.some(u => u.email === email)) {
+    alertBox(
+      "candidateRegisterAlert",
+      "Cet email est déjà utilisé.",
+      "error"
+    );
+    return;
+  }
+
+  const photoFile = document.getElementById("cPhoto").files[0];
+  const cvFile = document.getElementById("cCV").files[0];
+
+  let photo = "";
+  let cv = "";
+
+  try {
+    photo = await fileToDataURL(photoFile);
+    cv = await fileToDataURL(cvFile);
+  } catch(error) {
+    alertBox(
+      "candidateRegisterAlert",
+      "Impossible de lire le fichier.",
+      "error"
+    );
+    return;
+  }
+
+  const candidate = {
+    id: uid("candidate"),
+    role: "candidate",
+
+    firstName: document.getElementById("cFirstName").value.trim(),
+    lastName: document.getElementById("cLastName").value.trim(),
+    name:
+      document.getElementById("cFirstName").value.trim() +
+      " " +
+      document.getElementById("cLastName").value.trim(),
+
+    email,
+    phone: document.getElementById("cPhone").value.trim(),
+    password: document.getElementById("cPassword").value,
+
+    birthDate: document.getElementById("cBirthDate").value,
+    gender: document.getElementById("cGender").value,
+    nationality: document.getElementById("cNationality").value.trim(),
+
+    region: document.getElementById("cRegion").value.trim(),
+    city: document.getElementById("cCity").value.trim(),
+
+    education: document.getElementById("cEducation").value.trim(),
+
+    availability:
+      document.getElementById("cAvailability").value === "true",
+
+    languages:
+      document.getElementById("cLanguages").value
+      .split(",")
+      .map(x => x.trim())
+      .filter(Boolean),
+
+    skills:
+      document.getElementById("cSkills").value
+      .split(",")
+      .map(x => x.trim())
+      .filter(Boolean),
+
+    bio: document.getElementById("cBio").value.trim(),
+
+    photo,
+    cv,
+
+    portfolio: [],
+    certificates: [],
+    diplomas: [],
+
+    createdAt: new Date().toISOString()
+  };
+
+  users.push(candidate);
+
+  write(KEY.users,users);
+
+  setSession(candidate.id);
+
+  updateNavigation();
+
+  alertBox(
+    "candidateRegisterAlert",
+    "Compte candidat créé avec succès !",
+    "success"
+  );
+
+  setTimeout(() => {
+    goHome();
+  },700);
+
+});
+
+
+/* ================= INSCRIPTION ENTREPRISE ================= */
+
+document.getElementById("companyRegisterForm")
+.addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  const users = read(KEY.users);
+
+  const email = document.getElementById("coEmail").value.trim().toLowerCase();
+
+  if (users.some(u => u.email === email)) {
+    alertBox(
+      "companyRegisterAlert",
+      "Cet email est déjà utilisé.",
+      "error"
+    );
+    return;
+  }
+
+  let logo = "";
+
+  const logoFile = document.getElementById("coLogo").files[0];
+
+  try {
+    logo = await fileToDataURL(logoFile);
+  } catch(error) {
+    alertBox(
+      "companyRegisterAlert",
+      "Impossible de lire le logo.",
+      "error"
+    );
+    return;
+  }
+
+  const company = {
+    id: uid("company"),
+    role: "company",
+
+    name: document.getElementById("coName").value.trim(),
+    email,
+    phone: document.getElementById("coPhone").value.trim(),
+    password: document.getElementById("coPassword").value,
+
+    sector: document.getElementById("coSector").value.trim(),
+    region: document.getElementById("coRegion").value.trim(),
+    city: document.getElementById("coCity").value.trim(),
+    address: document.getElementById("coAddress").value.trim(),
+
+    description:
+      document.getElementById("coDescription").value.trim(),
+
+    logo,
+
+    verified: false,
+
+    createdAt: new Date().toISOString()
+  };
+
+  users.push(company);
+
+  write(KEY.users,users);
+
+  setSession(company.id);
+
+  updateNavigation();
+
+  alertBox(
+    "companyRegisterAlert",
+    "Entreprise créée avec succès !",
+    "success"
+  );
+
+  setTimeout(() => {
+    goHome();
+  },700);
+
+});
+
+
+/* ================= CONNEXION ================= */
+
+document.getElementById("loginForm")
+.addEventListener("submit",function(e) {
+
+  e.preventDefault();
+
+  const email =
+    document.getElementById("loginEmail")
+    .value.trim()
+    .toLowerCase();
+
+  const password =
+    document.getElementById("loginPassword")
+    .value;
+
+  const users = read(KEY.users);
+
+  const user = users.find(
+    u => u.email === email && u.password === password
+  );
+
+  if (!user) {
+
+    alertBox(
+      "loginAlert",
+      "Email ou mot de passe incorrect.",
+      "error"
+    );
+
+    return;
+  }
+
+  if (user.suspended) {
+
+    alertBox(
+      "loginAlert",
+      "Ce compte est suspendu.",
+      "error"
+    );
+
+    return;
+  }
+
+  setSession(user.id);
+
+  updateNavigation();
+
+  goHome();
+
+});
+
+
+/* ================= OFFRES ================= */
+
+function getJobs() {
+  return read(KEY.jobs);
+}
+
+function getCompany(companyId) {
+  const users = read(KEY.users);
+
+  return users.find(
+    u => u.id === companyId && u.role === "company"
+  );
+}
+
+function getJobStatus(job) {
+
+  if (job.status === "filled") return "Pourvue";
+
+  if (job.status === "closed") return "Fermée";
+
+  if (job.deadline) {
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    const deadline = new Date(job.deadline);
+    deadline.setHours(23,59,59,999);
+
+    if (deadline < today) {
+      return "Fermée";
+    }
+  }
+
+  return "Ouverte";
+}
+
+function renderHome() {
+
+  const jobs = getJobs()
+    .filter(j => getJobStatus(j) === "Ouverte")
+    .slice(0,6);
+
+  const box = document.getElementById("homeJobs");
+
+  if (!jobs.length) {
+
+    box.innerHTML = `
+      <div class="card empty">
+        Aucune offre disponible pour le moment.
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML = jobs.map(jobCardHTML).join("");
+}
+
+function renderJobs() {
+
+  let jobs = getJobs();
+
+  const keyword =
+    (document.getElementById("searchKeyword")?.value || "")
+    .trim()
+    .toLowerCase();
+
+  const category =
+    document.getElementById("searchCategory")?.value || "";
+
+  const city =
+    (document.getElementById("searchCity")?.value || "")
+    .trim()
+    .toLowerCase();
+
+  const contract =
+    document.getElementById("searchContract")?.value || "";
+
+  jobs = jobs.filter(job => {
+
+    const company = getCompany(job.companyId);
+
+    const text = [
+      job.title,
+      job.description,
+      job.skills,
+      job.category,
+      job.city,
+      company?.name || ""
+    ].join(" ").toLowerCase();
+
+    if (keyword && !text.includes(keyword)) return false;
+
+    if (category && job.category !== category) return false;
+
+    if (city &&
+        !(job.city || "").toLowerCase().includes(city)) {
+      return false;
+    }
+
+    if (contract && job.contract !== contract) return false;
+
+    return getJobStatus(job) === "Ouverte";
+  });
+
+  const box = document.getElementById("jobsList");
+
+  if (!jobs.length) {
+
+    box.innerHTML = `
+      <div class="card empty">
+        Aucune offre ne correspond à votre recherche.
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML = jobs.map(jobCardHTML).join("");
+}
+
+function resetSearch() {
+
+  document.getElementById("searchKeyword").value = "";
+  document.getElementById("searchCategory").value = "";
+  document.getElementById("searchCity").value = "";
+  document.getElementById("searchContract").value = "";
+
+  renderJobs();
+}
+
+function jobCardHTML(job) {
+
+  const company = getCompany(job.companyId);
+
+  const logo = company?.logo
+    ? `<img class="company-logo" src="${company.logo}" alt="Logo">`
+    : `<div class="company-logo">🏢</div>`;
+
+  const verified = company?.verified
+    ? `<span class="badge green">✓ Entreprise vérifiée</span>`
+    : "";
+
+  const favs = read(KEY.favorites);
+
+  const user = getCurrentUser();
+
+  const isFav = user?.role === "candidate" &&
+    favs.some(
+      f => f.userId === user.id && f.jobId === job.id
+    );
+
+  return `
+    <div class="card job-card">
+
+      <div class="job-top">
+
+        ${logo}
+
+        <div style="min-width:0">
+
+          <div class="job-title">
+            ${escapeHTML(job.title)}
+          </div>
+
+          <div class="muted">
+            ${escapeHTML(company?.name || "Entreprise")}
+          </div>
+
+          ${verified}
+
+        </div>
+
+      </div>
+
+      <div class="job-info">
+        <span>📍 ${escapeHTML(job.city || "Ville non précisée")}</span>
+        <span>🗂️ ${escapeHTML(job.category)}</span>
+        <span>💼 ${escapeHTML(job.contract)}</span>
+      </div>
+
+      <div>
+        <span class="badge green">Ouverte</span>
+        ${
+          job.deadline
+          ? `<span class="badge gray">Limite : ${dateFR(job.deadline)}</span>`
+          : ""
+        }
+      </div>
+
+      <p class="muted" style="margin-top:12px">
+        ${escapeHTML((job.description || "").slice(0,140))}
+        ${(job.description || "").length > 140 ? "..." : ""}
+      </p>
+
+      <div class="actions">
+
+        <button
+          class="btn small"
+          onclick="viewJob('${job.id}')">
+          Voir l'offre
+        </button>
+
+        ${
+          user?.role === "candidate"
+          ? `
+            <button
+              class="btn small secondary"
+              onclick="toggleFavorite('${job.id}')">
+              ${isFav ? "❤️ Favori" : "♡ Favori"}
+            </button>
+          `
+          : ""
+        }
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* ================= DETAIL OFFRE ================= */
+
+function viewJob(jobId) {
+
+  const job = getJobs().find(j => j.id === jobId);
+
+  if (!job) return;
+
+  const company = getCompany(job.companyId);
+  const user = getCurrentUser();
+
+  const applications = read(KEY.applications);
+
+  const alreadyApplied =
+    user?.role === "candidate" &&
+    applications.some(
+      a => a.jobId === job.id && a.candidateId === user.id
+    );
+
+  const logo = company?.logo
+    ? `<img class="avatar" src="${company.logo}" alt="Logo">`
+    : `<div class="avatar">🏢</div>`;
+
+  document.getElementById("jobDetail").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>${escapeHTML(job.title)}</h1>
+        <p class="muted">${escapeHTML(company?.name || "")}</p>
+      </div>
+      <button class="btn secondary" onclick="showPage('jobsPage');renderJobs()">← Retour</button>
+    </div>
+
+    <div class="grid-2">
+
+      <div class="card">
+
+        <div class="profile-head">
+          ${logo}
+          <div>
+            <h2>${escapeHTML(company?.name || "Entreprise")}</h2>
+            ${
+              company?.verified
+              ? `<span class="badge green">✓ Entreprise vérifiée</span>`
+              : ""
+            }
+          </div>
+        </div>
+
+        <h3>Description du poste</h3>
+        <p style="white-space:pre-line;margin-top:10px">
+          ${escapeHTML(job.description)}
+        </p>
+
+        <h3 style="margin-top:20px">Compétences</h3>
+        <p class="muted" style="margin-top:8px">
+          ${escapeHTML(job.skills || "Non précisées")}
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>📋 Informations</h3>
+
+        <div class="list" style="margin-top:12px">
+
+          <div class="list-item">
+            🗂️ Catégorie<br>
+            <strong>${escapeHTML(job.category)}</strong>
+          </div>
+
+          <div class="list-item">
+            💼 Contrat<br>
+            <strong>${escapeHTML(job.contract)}</strong>
+          </div>
+
+          <div class="list-item">
+            📍 Localisation<br>
+            <strong>
+              ${escapeHTML(job.region || "")}
+              ${job.region && job.city ? " — " : ""}
+              ${escapeHTML(job.city || "")}
+            </strong>
+          </div>
+
+          <div class="list-item">
+            💰 Salaire<br>
+            <strong>
+              ${money(job.salaryMin)}
+              ${
+                job.salaryMax
+                ? " — " + money(job.salaryMax)
+                : ""
+              }
+            </strong>
+          </div>
+
+          <div class="list-item">
+            📅 Date limite<br>
+            <strong>${dateFR(job.deadline)}</strong>
+          </div>
+
+        </div>
+
+        <div class="actions">
+
+          ${
+            user?.role === "candidate"
+            ? alreadyApplied
+              ? `<button class="btn secondary" disabled>✓ Candidature envoyée</button>`
+              : `<button class="btn" onclick="applyJob('${job.id}')">📄 Postuler</button>`
+            : !user
+              ? `<button class="btn" onclick="showPage('loginPage')">🔐 Connectez-vous pour postuler</button>`
+              : ""
+          }
+
+          ${
+            user?.role === "candidate"
+            ? `<button class="btn secondary" onclick="toggleFavorite('${job.id}')">❤️ Favori</button>`
+            : ""
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  showPage("jobDetailPage");
+}
+
+
+/* ================= CANDIDATURE ================= */
+
+function applyJob(jobId) {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "candidate") return;
+
+  const jobs = getJobs();
+
+  const job = jobs.find(j => j.id === jobId);
+
+  if (!job) return;
+
+  if (getJobStatus(job) !== "Ouverte") {
+    alert("Cette offre n'est plus ouverte.");
+    return;
+  }
+
+  const applications = read(KEY.applications);
+
+  const exists = applications.some(
+    a => a.jobId === jobId && a.candidateId === user.id
+  );
+
+  if (exists) {
+    alert("Vous avez déjà postulé à cette offre.");
+    return;
+  }
+
+  applications.push({
+    id: uid("application"),
+    jobId,
+    companyId: job.companyId,
+    candidateId: user.id,
+    status: "pending",
+    createdAt: new Date().toISOString()
+  });
+
+  write(KEY.applications,applications);
+
+  addNotification(
+    job.companyId,
+    "Nouvelle candidature",
+    user.name + " a postulé à votre offre : " + job.title
+  );
+
+  alert("Votre candidature a été envoyée.");
+
+  viewJob(jobId);
+}
+
+
+/* ================= FAVORIS ================= */
+
+function toggleFavorite(jobId) {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "candidate") return;
+
+  let favorites = read(KEY.favorites);
+
+  const index = favorites.findIndex(
+    f => f.userId === user.id && f.jobId === jobId
+  );
+
+  if (index >= 0) {
+    favorites.splice(index,1);
+  } else {
+    favorites.push({
+      id: uid("favorite"),
+      userId: user.id,
+      jobId
+    });
+  }
+
+  write(KEY.favorites,favorites);
+
+  const active = document.querySelector(".page.active")?.id;
+
+  if (active === "jobsPage") renderJobs();
+  if (active === "favoritesPage") renderFavorites();
+  if (active === "jobDetailPage") viewJob(jobId);
+}
+
+function renderFavorites() {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "candidate") return;
+
+  const favorites = read(KEY.favorites)
+    .filter(f => f.userId === user.id);
+
+  const jobs = getJobs()
+    .filter(j => favorites.some(f => f.jobId === j.id));
+
+  const box = document.getElementById("favoritesContent");
+
+  box.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1>❤️ Mes favoris</h1>
+        <p class="muted">${jobs.length} offre(s) enregistrée(s).</p>
+      </div>
+    </div>
+
+    ${
+      jobs.length
+      ? `<div class="grid">${jobs.map(jobCardHTML).join("")}</div>`
+      : `<div class="card empty">Aucun favori pour le moment.</div>`
+    }
+  `;
+}
+
+
+/* ================= PROFIL CANDIDAT ================= */
+
+function renderCandidateProfile() {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "candidate") return;
+
+  const box = document.getElementById("candidateProfile");
+
+  box.innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>👤 Mon profil</h1>
+        <p class="muted">Votre profil professionnel.</p>
+      </div>
+    </div>
+
+    <div class="card">
+
+      <div class="profile-head">
+
+        ${
+          user.photo
+          ? `<img class="avatar" src="${user.photo}" alt="Photo">`
+          : `<div class="avatar">👤</div>`
+        }
+
+        <div>
+          <h2>${escapeHTML(user.name)}</h2>
+          <p class="muted">${escapeHTML(user.email)}</p>
+        </div>
+
+      </div>
+
+      <div class="grid-2">
+
+        <div class="list-item">
+          📞 Téléphone<br>
+          <strong>${escapeHTML(user.phone)}</strong>
+        </div>
+
+        <div class="list-item">
+          📍 Localisation<br>
+          <strong>
+            ${escapeHTML(user.region || "")}
+            ${user.region && user.city ? " — " : ""}
+            ${escapeHTML(user.city || "")}
+          </strong>
+        </div>
+
+        <div class="list-item">
+          🎂 Date de naissance<br>
+          <strong>${dateFR(user.birthDate)}</strong>
+        </div>
+
+        <div class="list-item">
+          ⚧ Sexe<br>
+          <strong>${escapeHTML(user.gender || "Non précisé")}</strong>
+        </div>
+
+        <div class="list-item">
+          🌍 Nationalité<br>
+          <strong>${escapeHTML(user.nationality || "Non précisée")}</strong>
+        </div>
+
+        <div class="list-item">
+          🎓 Niveau d'étude<br>
+          <strong>${escapeHTML(user.education || "Non précisé")}</strong>
+        </div>
+
+        <div class="list-item">
+          🕐 Disponibilité<br>
+          <strong>
+            ${user.availability ? "Immédiatement" : "Pas immédiatement"}
+          </strong>
+        </div>
+
+        <div class="list-item">
+          🗣️ Langues<br>
+          <strong>${escapeHTML((user.languages || []).join(", ") || "Non précisées")}</strong>
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>🛠️ Compétences</h3>
+        <p class="muted" style="margin-top:8px">
+          ${escapeHTML((user.skills || []).join(", ") || "Aucune compétence renseignée.")}
+        </p>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>📝 Présentation</h3>
+        <p style="white-space:pre-line;margin-top:8px">
+          ${escapeHTML(user.bio || "Aucune présentation.")}
+        </p>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>📄 CV</h3>
+
+        ${
+          user.cv
+          ? `<a class="btn small" href="${user.cv}" target="_blank">Ouvrir mon CV PDF</a>`
+          : `<p class="muted">Aucun CV ajouté.</p>`
+        }
+
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>🏆 Portfolio</h3>
+        <p class="muted">
+          ${
+            user.portfolio?.length
+            ? user.portfolio.join(", ")
+            : "Aucune réalisation ajoutée pour le moment."
+          }
+        </p>
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* ================= DASHBOARD CANDIDAT ================= */
+
+function renderCandidateDashboard() {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "candidate") return;
+
+  const apps = read(KEY.applications)
+    .filter(a => a.candidateId === user.id);
+
+  const accepted =
+    apps.filter(a => a.status === "accepted").length;
+
+  const rejected =
+    apps.filter(a => a.status === "rejected").length;
+
+  const favorites =
+    read(KEY.favorites)
+    .filter(f => f.userId === user.id).length;
+
+  const jobs = getJobs();
+
+  const recommended = jobs
+    .filter(j =>
+      (user.skills || []).some(skill =>
+        (j.skills || "").toLowerCase()
+        .includes(skill.toLowerCase())
+      )
+      ||
+      (j.category &&
+       (user.skills || []).some(skill =>
+         j.category.toLowerCase()
+         .includes(skill.toLowerCase())
+       ))
+    )
+    .filter(j => getJobStatus(j) === "Ouverte")
+    .slice(0,6);
+
+  document.getElementById("candidateDashboard").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>Bonjour, ${escapeHTML(user.firstName || user.name)} 👋</h1>
+        <p class="muted">Bienvenue dans votre espace candidat.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        📄 Candidatures
+        <strong>${apps.length}</strong>
+      </div>
+
+      <div class="stat">
+        ✅ Acceptées
+        <strong>${accepted}</strong>
+      </div>
+
+      <div class="stat">
+        ❌ Refusées
+        <strong>${rejected}</strong>
+      </div>
+
+      <div class="stat">
+        ❤️ Favoris
+        <strong>${favorites}</strong>
+      </div>
+
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>💼 Rechercher un emploi</h3>
+        <p class="muted">Consultez toutes les offres disponibles.</p>
+        <button class="btn small" style="margin-top:12px"
+          onclick="showPage('jobsPage');renderJobs()">
+          Voir les offres
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>📄 Mes candidatures</h3>
+        <p class="muted">Suivez l'évolution de vos candidatures.</p>
+        <button class="btn small" style="margin-top:12px"
+          onclick="showPage('candidateApplicationsPage');renderCandidateApplications()">
+          Mes candidatures
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>👤 Mon profil</h3>
+        <p class="muted">Présentez vos compétences aux entreprises.</p>
+        <button class="btn small" style="margin-top:12px"
+          onclick="showPage('candidateProfilePage');renderCandidateProfile()">
+          Voir mon profil
+        </button>
+      </div>
+
+    </div>
+
+    <div class="section-title">
+      <h2>🤖 Offres recommandées</h2>
+      <p>Quelques offres correspondant à votre profil.</p>
+    </div>
+
+    ${
+      recommended.length
+      ? `<div class="grid">${recommended.map(jobCardHTML).join("")}</div>`
+      : `<div class="card empty">
+          Ajoutez des compétences à votre profil pour obtenir des recommandations.
+        </div>`
+    }
+
+  `;
+}
+
+
+/* ================= CANDIDATURES CANDIDAT ================= */
+
+function renderCandidateApplications() {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "candidate") return;
+
+  const apps = read(KEY.applications)
+    .filter(a => a.candidateId === user.id);
+
+  const jobs = getJobs();
+
+  document.getElementById("candidateApplications").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>📄 Mes candidatures</h1>
+        <p class="muted">Seules vos candidatures sont affichées.</p>
+      </div>
+    </div>
+
+    ${
+      apps.length
+      ? `<div class="list">
+          ${apps.map(app => {
+
+            const job = jobs.find(j => j.id === app.jobId);
+
+            if (!job) return "";
+
+            let statusText = "En attente";
+            let statusClass = "orange";
+
+            if (app.status === "accepted") {
+              statusText = "Acceptée";
+              statusClass = "green";
+            }
+
+            if (app.status === "rejected") {
+              statusText = "Refusée";
+              statusClass = "gray";
+            }
+
+            return `
+              <div class="list-item">
+
+                <strong>${escapeHTML(job.title)}</strong>
+
+                <div class="muted">
+                  ${escapeHTML(getCompany(job.companyId)?.name || "")}
+                </div>
+
+                <span class="badge ${statusClass}">
+                  ${statusText}
+                </span>
+
+                <div class="muted" style="margin-top:8px">
+                  Envoyée le ${dateFR(app.createdAt)}
+                </div>
+
+              </div>
+            `;
+
+          }).join("")}
+        </div>`
+      : `<div class="card empty">
+          Vous n'avez encore envoyé aucune candidature.
+        </div>`
+    }
+
+  `;
+}
+
+
+/* ================= ENTREPRISE DASHBOARD ================= */
+
+function renderCompanyDashboard() {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "company") return;
+
+  const jobs =
+    getJobs().filter(j => j.companyId === user.id);
+
+  const apps =
+    read(KEY.applications)
+    .filter(a => a.companyId === user.id);
+
+  const contacted =
+    new Set(
+      read(KEY.messages)
+      .filter(m => m.senderId === user.id)
+      .map(m => m.receiverId)
+    ).size;
+
+  document.getElementById("companyDashboard").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>🏢 ${escapeHTML(user.name)}</h1>
+        <p class="muted">Bienvenue dans votre espace entreprise.</p>
+      </div>
+
+      ${
+        user.verified
+        ? `<span class="badge green">✓ Entreprise vérifiée</span>`
+        : `<span class="badge orange">Entreprise non vérifiée</span>`
+      }
+
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        💼 Offres publiées
+        <strong>${jobs.length}</strong>
+      </div>
+
+      <div class="stat">
+        📄 Candidatures reçues
+        <strong>${apps.length}</strong>
+      </div>
+
+      <div class="stat">
+        💬 Candidats contactés
+        <strong>${contacted}</strong>
+      </div>
+
+      <div class="stat">
+        🟢 Offres ouvertes
+        <strong>
+          ${jobs.filter(j => getJobStatus(j) === "Ouverte").length}
+        </strong>
+      </div>
+
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>➕ Publier une offre</h3>
+        <p class="muted">Créez une nouvelle opportunité.</p>
+        <button class="btn small" style="margin-top:12px"
+          onclick="showPage('publishJobPage')">
+          Publier
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>👥 Candidats</h3>
+        <p class="muted">Voir uniquement les candidats qui ont postulé à vos offres.</p>
+        <button class="btn small" style="margin-top:12px"
+          onclick="showPage('companyApplicationsPage');renderCompanyApplications()">
+          Voir les candidats
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>💼 Mes offres</h3>
+        <p class="muted">Gérez vos offres d'emploi.</p>
+        <button class="btn small" style="margin-top:12px"
+          onclick="showPage('companyJobsPage');renderCompanyJobs()">
+          Mes offres
+        </button>
+      </div>
+
+    </div>
+
+  `;
+}
+
+
+/* ================= PUBLIER OFFRE ================= */
+
+document.getElementById("publishJobForm")
+.addEventListener("submit",function(e) {
+
+  e.preventDefault();
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "company") return;
+
+  const salaryMin =
+    Number(document.getElementById("jobSalaryMin").value) || 0;
+
+  const salaryMax =
+    Number(document.getElementById("jobSalaryMax").value) || 0;
+
+  if (salaryMax && salaryMin && salaryMax < salaryMin) {
+
+    alertBox(
+      "publishAlert",
+      "Le salaire maximum doit être supérieur au salaire minimum.",
+      "error"
+    );
+
+    return;
+  }
+
+  const jobs = read(KEY.jobs);
+
+  jobs.push({
+
+    id: uid("job"),
+
+    companyId: user.id,
+
+    title:
+      document.getElementById("jobTitle").value.trim(),
+
+    description:
+      document.getElementById("jobDescription").value.trim(),
+
+    category:
+      document.getElementById("jobCategory").value,
+
+    region:
+      document.getElementById("jobRegion").value.trim(),
+
+    city:
+      document.getElementById("jobCity").value.trim(),
+
+    salaryMin,
+    salaryMax,
+
+    contract:
+      document.getElementById("jobContract").value,
+
+    deadline:
+      document.getElementById("jobDeadline").value,
+
+    skills:
+      document.getElementById("jobSkills").value.trim(),
+
+    status: "open",
+
+    publishedAt:
+      new Date().toISOString()
+
+  });
+
+  write(KEY.jobs,jobs);
+
+  alertBox(
+    "publishAlert",
+    "Offre publiée avec succès !",
+    "success"
+  );
+
+  document.getElementById("publishJobForm").reset();
+
+  setTimeout(() => {
+    showPage("companyJobsPage");
+    renderCompanyJobs();
+  },700);
+
+});
+
+
+/* ================= MES OFFRES ENTREPRISE ================= */
+
+function renderCompanyJobs() {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "company") return;
+
+  const jobs =
+    getJobs().filter(j => j.companyId === user.id);
+
+  document.getElementById("companyJobs").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>💼 Mes offres</h1>
+        <p class="muted">Seules vos offres sont affichées.</p>
+      </div>
+
+      <button class="btn" onclick="showPage('publishJobPage')">
+        ➕ Publier
+      </button>
+    </div>
+
+    ${
+      jobs.length
+      ? `<div class="grid">
+          ${jobs.map(job => {
+
+            const status = getJobStatus(job);
+
+            const statusClass =
+              status === "Ouverte"
+              ? "green"
+              : status === "Pourvue"
+                ? "orange"
+                : "gray";
+
+            return `
+              <div class="card">
+
+                <h3>${escapeHTML(job.title)}</h3>
+
+                <p class="muted">
+                  ${escapeHTML(job.category)}
+                  •
+                  ${escapeHTML(job.contract)}
+                </p>
+
+                <span class="badge ${statusClass}">
+                  ${status}
+                </span>
+
+                <p class="muted" style="margin-top:10px">
+                  ${escapeHTML(job.city || "Ville non précisée")}
+                </p>
+
+                <div class="actions">
+
+                  <button class="btn small"
+                    onclick="viewJob('${job.id}')">
+                    Voir
+                  </button>
+
+                  ${
+                    status === "Ouverte"
+                    ? `
+                      <button class="btn small warning"
+                        onclick="markJobFilled('${job.id}')">
+                        Marquer pourvue
+                      </button>
+
+                      <button class="btn small danger"
+                        onclick="closeJob('${job.id}')">
+                        Fermer
+                      </button>
+                    `
+                    : ""
+                  }
+
+                  <button class="btn small danger"
+                    onclick="deleteCompanyJob('${job.id}')">
+                    Supprimer
+                  </button>
+
+                </div>
+
+              </div>
+            `;
+
+          }).join("")}
+        </div>`
+      : `<div class="card empty">
+          Vous n'avez publié aucune offre.
+        </div>`
+    }
+
+  `;
+}
+
+function markJobFilled(jobId) {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "company") return;
+
+  const jobs = read(KEY.jobs);
+
+  const job = jobs.find(
+    j => j.id === jobId && j.companyId === user.id
+  );
+
+  if (!job) return;
+
+  job.status = "filled";
+
+  write(KEY.jobs,jobs);
+
+  renderCompanyJobs();
+}
+
+function closeJob(jobId) {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "company") return;
+
+  const jobs = read(KEY.jobs);
+
+  const job = jobs.find(
+    j => j.id === jobId && j.companyId === user.id
+  );
+
+  if (!job) return;
+
+  job.status = "closed";
+
+  write(KEY.jobs,jobs);
+
+  renderCompanyJobs();
+}
+
+function deleteCompanyJob(jobId) {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "company") return;
+
+  const jobs = read(KEY.jobs);
+
+  const job = jobs.find(
+    j => j.id === jobId && j.companyId === user.id
+  );
+
+  if (!job) return;
+
+  if (!confirm("Supprimer cette offre ?")) return;
+
+  write(
+    KEY.jobs,
+    jobs.filter(j => j.id !== jobId)
+  );
+
+  renderCompanyJobs();
+}
+
+
+/* ================= CANDIDATURES ENTREPRISE ================= */
+
+function renderCompanyApplications() {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "company") return;
+
+  const applications =
+    read(KEY.applications)
+    .filter(a => a.companyId === user.id);
+
+  const users = read(KEY.users);
+  const jobs = read(KEY.jobs);
+
+  const candidateIds =
+    [...new Set(applications.map(a => a.candidateId))];
+
+  document.getElementById("companyApplications").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>👥 Candidats</h1>
+        <p class="muted">
+          Vous voyez uniquement les candidats ayant postulé à vos offres.
+        </p>
+      </div>
+    </div>
+
+    ${
+      applications.length
+      ? `<div class="list">
+          ${applications.map(app => {
+
+            const candidate =
+              users.find(
+                u => u.id === app.candidateId &&
+                     u.role === "candidate"
+              );
+
+            const job =
+              jobs.find(j => j.id === app.jobId);
+
+            if (!candidate || !job) return "";
+
+            let status = "En attente";
+
+            if (app.status === "accepted")
+              status = "Acceptée";
+
+            if (app.status === "rejected")
+              status = "Refusée";
+
+            return `
+              <div class="list-item">
+
+                <div class="profile-head">
+
+                  ${
+                    candidate.photo
+                    ? `<img class="avatar" src="${candidate.photo}" alt="Photo">`
+                    : `<div class="avatar">👤</div>`
+                  }
+
+                  <div>
+                    <h3>${escapeHTML(candidate.name)}</h3>
+                    <p class="muted">
+                      ${escapeHTML(candidate.email)}
+                    </p>
+                  </div>
+
+                </div>
+
+                <p>
+                  A postulé à :
+                  <strong>${escapeHTML(job.title)}</strong>
+                </p>
+
+                <span class="badge ${
+                  app.status === "accepted"
+                  ? "green"
+                  : app.status === "rejected"
+                    ? "gray"
+                    : "orange"
+                }">
+                  ${status}
+                </span>
+
+                <div class="actions">
+
+                  ${
+                    candidate.cv
+                    ? `<a class="btn small" href="${candidate.cv}" target="_blank">
+                         📄 CV PDF
+                       </a>`
+                    : ""
+                  }
+
+                  <button class="btn small"
+                    onclick="contactCandidate('${candidate.id}')">
+                    💬 Contacter
+                  </button>
+
+                  ${
+                    app.status === "pending"
+                    ? `
+                      <button class="btn small"
+                        onclick="updateApplication('${app.id}','accepted')">
+                        ✅ Accepter
+                      </button>
+
+                      <button class="btn small danger"
+                        onclick="updateApplication('${app.id}','rejected')">
+                        ❌ Refuser
+                      </button>
+                    `
+                    : ""
+                  }
+
+                </div>
+
+              </div>
+            `;
+
+          }).join("")}
+        </div>`
+      : `<div class="card empty">
+          Aucun candidat n'a encore postulé à vos offres.
+        </div>`
+    }
+
+  `;
+}
+
+function updateApplication(appId,status) {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "company") return;
+
+  const applications = read(KEY.applications);
+
+  const app = applications.find(
+    a => a.id === appId && a.companyId === user.id
+  );
+
+  if (!app) return;
+
+  app.status = status;
+
+  write(KEY.applications,applications);
+
+  const job = getJobs().find(j => j.id === app.jobId);
+
+  addNotification(
+    app.candidateId,
+    status === "accepted"
+      ? "Candidature acceptée"
+      : "Candidature refusée",
+    job
+      ? job.title
+      : "Votre candidature"
+  );
+
+  renderCompanyApplications();
+}
+
+function contactCandidate(candidateId) {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "company") return;
+
+  const applications = read(KEY.applications);
+
+  const allowed = applications.some(
+    a => a.companyId === user.id &&
+         a.candidateId === candidateId
+  );
+
+  if (!allowed) {
+
+    alert(
+      "Vous ne pouvez contacter que les candidats ayant postulé à vos offres."
+    );
+
+    return;
+  }
+
+  showPage("messagesPage");
+
+  renderMessages(candidateId);
+}
+
+
+/* ================= PROFIL ENTREPRISE ================= */
+
+function renderCompanyProfile() {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "company") return;
+
+  document.getElementById("companyProfile").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>🏢 Mon entreprise</h1>
+      </div>
+    </div>
+
+    <div class="card">
+
+      <div class="profile-head">
+
+        ${
+          user.logo
+          ? `<img class="avatar" src="${user.logo}" alt="Logo">`
+          : `<div class="avatar">🏢</div>`
+        }
+
+        <div>
+          <h2>${escapeHTML(user.name)}</h2>
+
+          ${
+            user.verified
+            ? `<span class="badge green">✓ Entreprise vérifiée</span>`
+            : `<span class="badge orange">Non vérifiée</span>`
+          }
+
+        </div>
+
+      </div>
+
+      <div class="grid-2">
+
+        <div class="list-item">
+          📧 Email<br>
+          <strong>${escapeHTML(user.email)}</strong>
+        </div>
+
+        <div class="list-item">
+          📞 Téléphone<br>
+          <strong>${escapeHTML(user.phone)}</strong>
+        </div>
+
+        <div class="list-item">
+          🗂️ Secteur<br>
+          <strong>${escapeHTML(user.sector || "Non précisé")}</strong>
+        </div>
+
+        <div class="list-item">
+          📍 Localisation<br>
+          <strong>
+            ${escapeHTML(user.region || "")}
+            ${user.region && user.city ? " — " : ""}
+            ${escapeHTML(user.city || "")}
+          </strong>
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>📝 Description</h3>
+        <p style="white-space:pre-line;margin-top:8px">
+          ${escapeHTML(user.description || "Aucune description.")}
+        </p>
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* ================= MESSAGERIE ================= */
+
+function canMessage(senderId,receiverId) {
+
+  const users = read(KEY.users);
+
+  const sender =
+    users.find(u => u.id === senderId);
+
+  const receiver =
+    users.find(u => u.id === receiverId);
+
+  if (!sender || !receiver) return false;
+
+  if (sender.role === "admin") return true;
+
+  if (
+    sender.role === "company" &&
+    receiver.role === "candidate"
+  ) {
+
+    return read(KEY.applications).some(
+      a =>
+        a.companyId === sender.id &&
+        a.candidateId === receiver.id
+    );
+  }
+
+  if (
+    sender.role === "candidate" &&
+    receiver.role === "company"
+  ) {
+
+    return read(KEY.applications).some(
+      a =>
+        a.companyId === receiver.id &&
+        a.candidateId === sender.id
+    );
+  }
+
+  return false;
+}
+
+function renderMessages(selectedId="") {
+
+  const user = requireLogin();
+
+  if (!user) return;
+
+  const users = read(KEY.users);
+  const messages = read(KEY.messages);
+
+  let contacts = [];
+
+  if (user.role === "candidate") {
+
+    const companyIds =
+      [...new Set(
+        read(KEY.applications)
+        .filter(a => a.candidateId === user.id)
+        .map(a => a.companyId)
+      )];
+
+    contacts = users.filter(
+      u => companyIds.includes(u.id)
+    );
+
+  } else if (user.role === "company") {
+
+    const candidateIds =
+      [...new Set(
+        read(KEY.applications)
+        .filter(a => a.companyId === user.id)
+        .map(a => a.candidateId)
+      )];
+
+    contacts = users.filter(
+      u => candidateIds.includes(u.id)
+    );
+
+  } else if (user.role === "admin") {
+
+    contacts = users.filter(
+      u => u.id !== user.id
+    );
+  }
+
+  let selected = selectedId || contacts[0]?.id || "";
+
+  if (selected && !contacts.some(c => c.id === selected)) {
+    selected = contacts[0]?.id || "";
+  }
+
+  const conversation =
+    messages
+    .filter(m =>
+      (m.senderId === user.id && m.receiverId === selected) ||
+      (m.senderId === selected && m.receiverId === user.id)
+    )
+    .sort(
+      (a,b) =>
+        new Date(a.createdAt) - new Date(b.createdAt)
+    );
+
+  const selectedUser =
+    users.find(u => u.id === selected);
+
+  document.getElementById("messagesContent").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>💬 Messages</h1>
+        <p class="muted">
+          Les conversations sont limitées aux relations autorisées.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+
+      <div class="card">
+
+        <h3>Contacts</h3>
+
+        <div class="list" style="margin-top:12px">
+
+          ${
+            contacts.length
+            ? contacts.map(contact => `
+                <button
+                  class="btn secondary"
+                  style="text-align:left"
+                  onclick="renderMessages('${contact.id}')">
+
+                  ${
+                    contact.role === "company"
+                    ? "🏢"
+                    : "👤"
+                  }
+
+                  ${escapeHTML(contact.name)}
+
+                </button>
+              `).join("")
+            : `<div class="empty">
+                Aucun contact disponible.
+               </div>`
+          }
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        ${
+          selectedUser
+          ? `
+            <h3>
+              Conversation avec
+              ${escapeHTML(selectedUser.name)}
+            </h3>
+
+            <div
+              style="
+                max-height:380px;
+                overflow:auto;
+                margin-top:14px;
+                display:grid;
+                gap:8px;
+              ">
+
+              ${
+                conversation.length
+                ? conversation.map(m => `
+                    <div
+                      class="list-item"
+                      style="
+                        margin-left:${m.senderId === user.id ? "20%" : "0"};
+                      ">
+
+                      <p>${escapeHTML(m.text)}</p>
+
+                      ${
+                        m.attachmentName
+                        ? `
+                          <p class="muted" style="margin-top:5px">
+                            📎 ${escapeHTML(m.attachmentName)}
+                          </p>
+                        `
+                        : ""
+                      }
+
+                      <small class="muted">
+                        ${dateFR(m.createdAt)}
+                        ${
+                          m.senderId === user.id
+                          ? " • " + (m.read ? "Lu" : "Envoyé")
+                          : " • Reçu"
+                        }
+                      </small>
+
+                    </div>
+                  `).join("")
+                : `<div class="empty">
+                    Aucun message.
+                   </div>`
+              }
+
+            </div>
+
+            <form
+              onsubmit="sendMessage(event,'${selected}')"
+              style="margin-top:14px">
+
+              <div class="field">
+                <textarea
+                  id="messageText"
+                  placeholder="Écrire un message..."
+                  required></textarea>
+              </div>
+
+              <div class="field">
+                <label>📎 Document</label>
+                <input
+                  id="messageFile"
+                  type="file"
+                  accept=".pdf,image/*">
+              </div>
+
+              <button class="btn" type="submit">
+                Envoyer
+              </button>
+
+            </form>
+
+          `
+          : `
+            <div class="empty">
+              Sélectionnez un contact.
+            </div>
+          `
+        }
+
+      </div>
+
+    </div>
+  `;
+}
+
+async function sendMessage(event,receiverId) {
+
+  event.preventDefault();
+
+  const user = requireLogin();
+
+  if (!user) return;
+
+  if (!canMessage(user.id,receiverId)) {
+
+    alert(
+      "Cette conversation n'est pas autorisée."
+    );
+
+    return;
+  }
+
+  const text =
+    document.getElementById("messageText")
+    .value.trim();
+
+  const file =
+    document.getElementById("messageFile")
+    .files[0];
+
+  let attachment = "";
+  let attachmentName = "";
+
+  if (file) {
+
+    if (file.size > 2 * 1024 * 1024) {
+
+      alert(
+        "Le fichier est trop volumineux. Maximum : 2 Mo."
+      );
+
+      return;
+    }
+
+    attachment =
+      await fileToDataURL(file);
+
+    attachmentName = file.name;
+  }
+
+  const messages = read(KEY.messages);
+
+  messages.push({
+
+    id: uid("message"),
+
+    senderId: user.id,
+    receiverId,
+
+    text,
+
+    attachment,
+    attachmentName,
+
+    read: false,
+
+    createdAt:
+      new Date().toISOString()
+
+  });
+
+  write(KEY.messages,messages);
+
+  addNotification(
+    receiverId,
+    "Nouveau message",
+    "Vous avez reçu un nouveau message."
+  );
+
+  renderMessages(receiverId);
+}
+
+
+/* ================= NOTIFICATIONS ================= */
+
+function addNotification(userId,title,text) {
+
+  const notifications =
+    read(KEY.notifications);
+
+  notifications.push({
+
+    id: uid("notification"),
+
+    userId,
+    title,
+    text,
+
+    read:false,
+
+    createdAt:
+      new Date().toISOString()
+
+  });
+
+  write(KEY.notifications,notifications);
+}
+
+function renderNotifications() {
+
+  const user = requireLogin();
+
+  if (!user) return;
+
+  const notifications =
+    read(KEY.notifications)
+    .filter(n => n.userId === user.id)
+    .sort(
+      (a,b) =>
+        new Date(b.createdAt) -
+        new Date(a.createdAt)
+    );
+
+  document.getElementById("notificationsContent").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>🔔 Notifications</h1>
+      </div>
+
+      ${
+        notifications.length
+        ? `<button class="btn small secondary"
+            onclick="markNotificationsRead()">
+            Tout marquer comme lu
+          </button>`
+        : ""
+      }
+
+    </div>
+
+    ${
+      notifications.length
+      ? `<div class="list">
+          ${notifications.map(n => `
+            <div class="list-item notification">
+
+              <strong>${escapeHTML(n.title)}</strong>
+
+              <p style="margin-top:5px">
+                ${escapeHTML(n.text)}
+              </p>
+
+              <small class="muted">
+                ${dateFR(n.createdAt)}
+                ${n.read ? " • Lu" : " • Nouveau"}
+              </small>
+
+            </div>
+          `).join("")}
+        </div>`
+      : `<div class="card empty">
+          Aucune notification.
+        </div>`
+    }
+
+  `;
+}
+
+function markNotificationsRead() {
+
+  const user = requireLogin();
+
+  if (!user) return;
+
+  const notifications =
+    read(KEY.notifications);
+
+  notifications.forEach(n => {
+
+    if (n.userId === user.id) {
+      n.read = true;
+    }
+
+  });
+
+  write(KEY.notifications,notifications);
+
+  renderNotifications();
+}
+
+
+/* ================= ENTREPRISES SUIVIES ================= */
+
+function renderFollowedCompanies() {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "candidate") return;
+
+  const follows =
+    read(KEY.follows)
+    .filter(f => f.userId === user.id);
+
+  const companies =
+    read(KEY.users)
+    .filter(u =>
+      u.role === "company" &&
+      follows.some(f => f.companyId === u.id)
+    );
+
+  document.getElementById("followedCompanies").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>⭐ Entreprises suivies</h1>
+      </div>
+    </div>
+
+    ${
+      companies.length
+      ? `<div class="grid">
+          ${companies.map(company => `
+            <div class="card">
+
+              ${
+                company.logo
+                ? `<img class="avatar" src="${company.logo}" alt="Logo">`
+                : `<div class="avatar">🏢</div>`
+              }
+
+              <h3 style="margin-top:10px">
+                ${escapeHTML(company.name)}
+              </h3>
+
+              <p class="muted">
+                ${escapeHTML(company.sector || "")}
+              </p>
+
+              ${
+                company.verified
+                ? `<span class="badge green">✓ Vérifiée</span>`
+                : ""
+              }
+
+            </div>
+          `).join("")}
+        </div>`
+      : `<div class="card empty">
+          Vous ne suivez aucune entreprise.
+        </div>`
+    }
+
+  `;
+}
+
+
+/* ================= ADMIN DASHBOARD ================= */
+
+function requireAdmin() {
+
+  const user = requireLogin();
+
+  if (!user || user.role !== "admin") {
+    goHome();
+    return null;
+  }
+
+  return user;
+}
+
+function renderAdminDashboard() {
+
+  const user = requireAdmin();
+
+  if (!user) return;
+
+  const users = read(KEY.users);
+
+  const candidates =
+    users.filter(u => u.role === "candidate");
+
+  const companies =
+    users.filter(u => u.role === "company");
+
+  const jobs = getJobs();
+
+  const applications =
+    read(KEY.applications);
+
+  document.getElementById("adminDashboard").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>👑 Administration</h1>
+        <p class="muted">
+          Tableau de bord de l'administrateur principal.
+        </p>
+      </div>
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        👤 Candidats
+        <strong>${candidates.length}</strong>
+      </div>
+
+      <div class="stat">
+        🏢 Entreprises
+        <strong>${companies.length}</strong>
+      </div>
+
+      <div class="stat">
+        💼 Offres
+        <strong>${jobs.length}</strong>
+      </div>
+
+      <div class="stat">
+        📄 Candidatures
+        <strong>${applications.length}</strong>
+      </div>
+
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>👤 Gestion des candidats</h3>
+        <p class="muted">Voir et gérer les comptes candidats.</p>
+        <button class="btn small" style="margin-top:12px"
+          onclick="showPage('adminCandidatesPage');renderAdminCandidates()">
+          Ouvrir
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>🏢 Gestion des entreprises</h3>
+        <p class="muted">Vérifier ou gérer les entreprises.</p>
+        <button class="btn small" style="margin-top:12px"
+          onclick="showPage('adminCompaniesPage');renderAdminCompanies()">
+          Ouvrir
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>💼 Gestion des offres</h3>
+        <p class="muted">Modérer les offres publiées.</p>
+        <button class="btn small" style="margin-top:12px"
+          onclick="showPage('adminJobsPage');renderAdminJobs()">
+          Ouvrir
+        </button>
+      </div>
+
+    </div>
+
+  `;
+}
+
+
+/* ================= ADMIN CANDIDATS ================= */
+
+function renderAdminCandidates() {
+
+  const admin = requireAdmin();
+
+  if (!admin) return;
+
+  const candidates =
+    read(KEY.users)
+    .filter(u => u.role === "candidate");
+
+  document.getElementById("adminCandidates").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>👤 Candidats</h1>
+      </div>
+    </div>
+
+    ${
+      candidates.length
+      ? `<div class="list">
+          ${candidates.map(c => `
+
+            <div class="list-item">
+
+              <div class="profile-head">
+
+                ${
+                  c.photo
+                  ? `<img class="avatar" src="${c.photo}" alt="Photo">`
+                  : `<div class="avatar">👤</div>`
+                }
+
+                <div>
+                  <h3>${escapeHTML(c.name)}</h3>
+                  <p class="muted">${escapeHTML(c.email)}</p>
+                </div>
+
+              </div>
+
+              <p>
+                📍 ${escapeHTML(c.city || "Ville non précisée")}
+              </p>
+
+              ${
+                c.suspended
+                ? `<span class="badge gray">Suspendu</span>`
+                : `<span class="badge green">Actif</span>`
+              }
+
+              <div class="actions">
+
+                <button class="btn small ${
+                  c.suspended ? "" : "warning"
+                }"
+                  onclick="toggleSuspend('${c.id}')">
+                  ${c.suspended ? "Réactiver" : "Suspendre"}
+                </button>
+
+                <button class="btn small danger"
+                  onclick="deleteUser('${c.id}')">
+                  Supprimer
+                </button>
+
+              </div>
+
+            </div>
+
+          `).join("")}
+        </div>`
+      : `<div class="card empty">Aucun candidat.</div>`
+    }
+
+  `;
+}
+
+
+/* ================= ADMIN ENTREPRISES ================= */
+
+function renderAdminCompanies() {
+
+  const admin = requireAdmin();
+
+  if (!admin) return;
+
+  const companies =
+    read(KEY.users)
+    .filter(u => u.role === "company");
+
+  document.getElementById("adminCompanies").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>🏢 Entreprises</h1>
+      </div>
+    </div>
+
+    ${
+      companies.length
+      ? `<div class="grid">
+          ${companies.map(c => `
+
+            <div class="card">
+
+              <div class="profile-head">
+
+                ${
+                  c.logo
+                  ? `<img class="avatar" src="${c.logo}" alt="Logo">`
+                  : `<div class="avatar">🏢</div>`
+                }
+
+                <div>
+                  <h3>${escapeHTML(c.name)}</h3>
+
+                  ${
+                    c.verified
+                    ? `<span class="badge green">✓ Vérifiée</span>`
+                    : `<span class="badge orange">Non vérifiée</span>`
+                  }
+
+                </div>
+
+              </div>
+
+              <p class="muted">
+                ${escapeHTML(c.sector || "Secteur non précisé")}
+              </p>
+
+              <p class="muted">
+                ${escapeHTML(c.city || "Ville non précisée")}
+              </p>
+
+              <div class="actions">
+
+                <button class="btn small"
+                  onclick="toggleVerified('${c.id}')">
+                  ${c.verified
+                    ? "Retirer vérification"
+                    : "✓ Vérifier"}
+                </button>
+
+                <button class="btn small ${
+                  c.suspended ? "" : "warning"
+                }"
+                  onclick="toggleSuspend('${c.id}')">
+                  ${c.suspended ? "Réactiver" : "Suspendre"}
+                </button>
+
+                <button class="btn small danger"
+                  onclick="deleteUser('${c.id}')">
+                  Supprimer
+                </button>
+
+              </div>
+
+            </div>
+
+          `).join("")}
+        </div>`
+      : `<div class="card empty">Aucune entreprise.</div>`
+    }
+
+  `;
+}
+
+function toggleVerified(userId) {
+
+  const admin = requireAdmin();
+
+  if (!admin) return;
+
+  const users = read(KEY.users);
+
+  const user =
+    users.find(
+      u => u.id === userId && u.role === "company"
+    );
+
+  if (!user) return;
+
+  user.verified = !user.verified;
+
+  write(KEY.users,users);
+
+  renderAdminCompanies();
+}
+
+function toggleSuspend(userId) {
+
+  const admin = requireAdmin();
+
+  if (!admin) return;
+
+  const users = read(KEY.users);
+
+  const user =
+    users.find(u => u.id === userId);
+
+  if (!user) return;
+
+  user.suspended = !user.suspended;
+
+  write(KEY.users,users);
+
+  renderAdminCandidates();
+  renderAdminCompanies();
+}
+
+function deleteUser(userId) {
+
+  const admin = requireAdmin();
+
+  if (!admin) return;
+
+  if (!confirm("Supprimer ce compte ?")) return;
+
+  const users = read(KEY.users);
+
+  write(
+    KEY.users,
+    users.filter(u => u.id !== userId)
+  );
+
+  renderAdminCandidates();
+  renderAdminCompanies();
+}
+
+
+/* ================= ADMIN OFFRES ================= */
+
+function renderAdminJobs() {
+
+  const admin = requireAdmin();
+
+  if (!admin) return;
+
+  const jobs = getJobs();
+
+  document.getElementById("adminJobs").innerHTML = `
+
+    <div class="page-head">
+      <div>
+        <h1>💼 Gestion des offres</h1>
+      </div>
+    </div>
+
+    ${
+      jobs.length
+      ? `<div class="grid">
+          ${jobs.map(job => {
+
+            const company =
+              getCompany(job.companyId);
+
+            return `
+              <div class="card">
+
+                <h3>${escapeHTML(job.title)}</h3>
+
+                <p class="muted">
+                  ${escapeHTML(company?.name || "")}
+                </p>
+
+                <span class="badge ${
+                  getJobStatus(job) === "Ouverte"
+                  ? "green"
+                  : "gray"
+                }">
+                  ${getJobStatus(job)}
+                </span>
+
+                <div class="actions">
+
+                  <button class="btn small"
+                    onclick="viewJob('${job.id}')">
+                    Voir
+                  </button>
+
+                  <button class="btn small danger"
+                    onclick="adminDeleteJob('${job.id}')">
+                    Supprimer
+                  </button>
+
+                </div>
+
+              </div>
+            `;
+
+          }).join("")}
+        </div>`
+      : `<div class="card empty">Aucune offre.</div>`
+    }
+
+  `;
+}
+
+function adminDeleteJob(jobId) {
+
+  const admin = requireAdmin();
+
+  if (!admin) return;
+
+  if (!confirm("Supprimer cette offre ?")) return;
+
+  const jobs = getJobs();
+
+  write(
+    KEY.jobs,
+    jobs.filter(j => j.id !== jobId)
+  );
+
+  renderAdminJobs();
+}
+
+
+/* ================= MODE SOMBRE ================= */
+
+function toggleDarkMode() {
+
+  document.body.classList.toggle("dark");
+
+  const settings = read(
+    KEY.settings,
+    {dark:false}
+  );
+
+  settings.dark =
+    document.body.classList.contains("dark");
+
+  write(KEY.settings,settings);
+}
+
+function loadSettings() {
+
+  const settings =
+    read(KEY.settings,{dark:false});
+
+  if (settings.dark) {
+    document.body.classList.add("dark");
+  }
+}
+
+
+/* ================= DONNÉES DE DÉMONSTRATION ================= */
+
+function seedData() {
+
+  const users = read(KEY.users);
+
+  /*
+    Nous créons seulement l'administrateur
+    si aucun compte admin n'existe.
+  */
+
+  if (!users.some(u => u.role === "admin")) {
+
+    users.push({
+
+      id:"admin_main",
+
+      role:"admin",
+
+      name:"Administrateur Kaye Liguey",
+
+      email:"admin@kayeliguey.com",
+
+      password:"admin123",
+
+      createdAt:new Date().toISOString()
+
+    });
+
+    write(KEY.users,users);
+  }
+
+  /*
+    Quelques offres de démonstration sont créées
+    seulement si aucune offre n'existe.
+  */
+
+  if (read(KEY.jobs).length === 0) {
+
+    const company = {
+
+      id:"demo_company",
+
+      role:"company",
+
+      name:"Kaye Liguey Demo",
+
+      email:"demo@kayeliguey.com",
+
+      phone:"770000000",
+
+      password:"demo123",
+
+      sector:"Services",
+
+      region:"Dakar",
+
+      city:"Dakar",
+
+      description:
+        "Entreprise de démonstration de Kaye Liguey.",
+
+      logo:"",
+
+      verified:true,
+
+      createdAt:new Date().toISOString()
+
+    };
+
+    const currentUsers = read(KEY.users);
+
+    if (!currentUsers.some(u => u.id === company.id)) {
+
+      currentUsers.push(company);
+
+      write(KEY.users,currentUsers);
+    }
+
+    const jobs = [
+
+      {
+        id:"demo_job_1",
+        companyId:"demo_company",
+        title:"Développeur Web",
+        description:
+          "Nous recherchons un profil intéressé par le développement web.",
+        category:"Développement Web",
+        region:"Dakar",
+        city:"Dakar",
+        salaryMin:150000,
+        salaryMax:300000,
+        contract:"CDI",
+        deadline:"",
+        skills:"HTML, CSS, JavaScript",
+        status:"open",
+        publishedAt:new Date().toISOString()
+      },
+
+      {
+        id:"demo_job_2",
+        companyId:"demo_company",
+        title:"Assistant administratif",
+        description:
+          "Poste d'assistant administratif au sein de notre équipe.",
+        category:"Gestion",
+        region:"Dakar",
+        city:"Pikine",
+        salaryMin:120000,
+        salaryMax:200000,
+        contract:"CDD",
+        deadline:"",
+        skills:"Organisation, bureautique, communication",
+        status:"open",
+        publishedAt:new Date().toISOString()
+      },
+
+      {
+        id:"demo_job_3",
+        companyId:"demo_company",
+        title:"Community Manager",
+        description:
+          "Gestion et animation des réseaux sociaux de l'entreprise.",
+        category:"Marketing Digital",
+        region:"Dakar",
+        city:"Dakar",
+        salaryMin:150000,
+        salaryMax:250000,
+        contract:"Stage",
+        deadline:"",
+        skills:"Réseaux sociaux, communication, marketing",
+        status:"open",
+        publishedAt:new Date().toISOString()
+      }
+
+    ];
+
+    write(KEY.jobs,jobs);
+  }
+}
+
+
+/* ================= INITIALISATION ================= */
+
+seedData();
+loadSettings();
+updateNavigation();
+renderHome();
+
+/*
+  Si un utilisateur est déjà connecté,
+  on affiche directement son espace.
+*/
+
+const current = getCurrentUser();
+
+if (current) {
+  goHome();
+}
+
+</script>
+
+</body>
+</html>
