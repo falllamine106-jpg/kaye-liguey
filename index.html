@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Kaye Liguey</title>
 
 <style>
@@ -14,152 +13,14 @@
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Arial,sans-serif;
   background:#f5f7fb;
   color:#172033;
-  min-height:100vh;
-}
-
-button,
-input,
-textarea,
-select{
-  font:inherit;
 }
 
 button{
+  border:0;
   cursor:pointer;
-  border:none;
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* =========================
-   SPLASH
-========================= */
-
-#splashScreen{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  background:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  transition:opacity .7s ease,visibility .7s ease;
-}
-
-#splashScreen.hide{
-  opacity:0;
-  visibility:hidden;
-}
-
-.splash-content{
-  width:90%;
-  animation:splashAppear 1s ease forwards;
-}
-
-.logo-animation{
-  animation:logoFloat 1.5s ease-in-out infinite;
-}
-
-.logo-circle{
-  width:110px;
-  height:110px;
-  margin:auto;
-  border-radius:50%;
-  background:linear-gradient(135deg,#087cf5,#ff8a00);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:55px;
-  box-shadow:0 12px 35px rgba(0,0,0,.15);
-}
-
-.splash-content h1{
-  margin-top:24px;
-  color:#087cf5;
-  font-size:34px;
-  font-weight:800;
-  animation:titleAppear 1.2s ease forwards;
-}
-
-.splash-content p{
-  margin-top:8px;
-  color:#667085;
-  font-size:15px;
-}
-
-.loading{
-  display:flex;
-  justify-content:center;
-  gap:7px;
-  margin-top:25px;
-}
-
-.loading span{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:#087cf5;
-  animation:loadingDot 1s infinite ease-in-out;
-}
-
-.loading span:nth-child(2){
-  animation-delay:.15s;
-}
-
-.loading span:nth-child(3){
-  animation-delay:.30s;
-}
-
-@keyframes splashAppear{
-  from{
-    opacity:0;
-    transform:scale(.85);
-  }
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-@keyframes logoFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
-}
-
-@keyframes titleAppear{
-  from{
-    opacity:0;
-    transform:translateY(15px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-@keyframes loadingDot{
-  0%,100%{
-    opacity:.3;
-    transform:scale(.8);
-  }
-  50%{
-    opacity:1;
-    transform:scale(1.2);
-  }
-}
-
-/* =========================
-   STRUCTURE
-========================= */
-
-#app{
-  min-height:100vh;
 }
 
 .screen{
@@ -171,443 +32,368 @@ button{
   display:block;
 }
 
-.container{
-  width:min(1100px,92%);
-  margin:auto;
-}
+/* =========================
+   ANIMATION DE DÉMARRAGE
+========================= */
 
-.header{
-  background:white;
-  padding:18px 0;
-  box-shadow:0 2px 10px rgba(0,0,0,.05);
-  position:sticky;
+#splashScreen{
+  position:fixed;
   top:0;
-  z-index:100;
-}
-
-.header-inner{
+  left:0;
+  width:100%;
+  height:100%;
+  background:#fff;
+  z-index:99999;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:10px;
+  justify-content:center;
+  text-align:center;
+  transition:opacity .7s ease;
 }
 
-.brand{
-  font-size:23px;
-  font-weight:800;
-  color:#087cf5;
+#splashScreen.hide{
+  opacity:0;
 }
 
-.brand span{
-  color:#ff8a00;
+.splash-content{
+  animation:apparition 1.2s ease;
 }
 
-.header-user{
-  font-size:13px;
-  color:#667085;
+.splash-logo{
+  width:120px;
+  height:120px;
+  object-fit:contain;
+  border-radius:25px;
+  animation:logo 1.4s ease-in-out infinite alternate;
+}
+
+.splash-title{
+  margin-top:15px;
+  font-size:32px;
+  font-weight:bold;
+  color:#0866d6;
+  animation:title 1.5s ease;
+}
+
+.splash-text{
+  margin-top:8px;
+  color:#777;
+}
+
+.loader{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:6px;
+}
+
+.loader span{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#0866d6;
+  animation:points 1s infinite;
+}
+
+.loader span:nth-child(2){
+  animation-delay:.2s;
+}
+
+.loader span:nth-child(3){
+  animation-delay:.4s;
+}
+
+@keyframes apparition{
+  from{
+    opacity:0;
+    transform:scale(.8);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes logo{
+  from{
+    transform:translateY(8px) scale(.9);
+  }
+  to{
+    transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes title{
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes points{
+  0%,100%{
+    transform:scale(.5);
+    opacity:.4;
+  }
+  50%{
+    transform:scale(1);
+    opacity:1;
+  }
 }
 
 /* =========================
-   AUTH
+   CHOIX DU COMPTE
 ========================= */
 
-.auth-wrapper{
+.account{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:30px 0;
+  padding:20px;
 }
 
-.auth-card{
-  background:white;
-  width:min(560px,100%);
-  padding:25px;
-  border-radius:20px;
-  box-shadow:0 10px 35px rgba(0,0,0,.08);
+.account-box{
+  width:100%;
+  max-width:500px;
+  text-align:center;
 }
 
-.auth-title{
-  font-size:27px;
+.logo{
+  width:100px;
+  height:100px;
+  object-fit:contain;
+  margin-bottom:15px;
+}
+
+.account h1{
+  color:#0866d6;
+  font-size:30px;
   margin-bottom:8px;
 }
 
-.auth-subtitle{
-  color:#667085;
-  margin-bottom:22px;
+.account p{
+  color:#777;
+  margin-bottom:25px;
 }
 
-.account-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.account-choice{
-  background:#f8fafc;
-  border:2px solid #e5e7eb;
+.choice{
+  width:100%;
+  background:#fff;
+  padding:22px;
+  margin-bottom:15px;
   border-radius:18px;
-  padding:25px 15px;
-  text-align:center;
+  text-align:left;
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
   transition:.2s;
 }
 
-.account-choice:hover{
-  border-color:#087cf5;
-  transform:translateY(-2px);
+.choice:hover{
+  transform:translateY(-3px);
 }
 
-.account-choice .icon{
-  font-size:42px;
-  margin-bottom:12px;
-}
-
-.account-choice strong{
+.choice strong{
   display:block;
+  font-size:18px;
+  margin-bottom:7px;
+}
+
+.choice span{
+  color:#777;
+}
+
+.container{
+  width:92%;
+  max-width:800px;
+  margin:auto;
+}
+
+.form-page{
+  padding:30px 0 50px;
+}
+
+.back{
+  background:none;
+  color:#0866d6;
   font-size:16px;
+  margin-bottom:20px;
 }
 
-.account-choice small{
-  display:block;
-  color:#667085;
-  margin-top:7px;
+.card{
+  background:#fff;
+  padding:20px;
+  border-radius:18px;
+  margin-bottom:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,.06);
 }
 
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.form-group{
-  margin-bottom:14px;
-}
-
-.form-group.full{
-  grid-column:1/-1;
+h2{
+  margin-bottom:8px;
 }
 
 label{
   display:block;
-  margin-bottom:7px;
-  font-weight:600;
-  font-size:14px;
+  font-weight:bold;
+  margin-top:12px;
 }
 
 input,
 textarea,
 select{
   width:100%;
-  padding:12px 13px;
-  border:1px solid #d9dee8;
-  border-radius:11px;
-  outline:none;
-  background:white;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-  border-color:#087cf5;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  margin-top:7px;
+  margin-bottom:8px;
+  font-size:15px;
 }
 
 textarea{
   min-height:110px;
-  resize:vertical;
 }
 
-.btn{
-  padding:12px 17px;
-  border-radius:11px;
-  font-weight:700;
-  transition:.2s;
-}
-
-.btn-primary{
-  background:#087cf5;
-  color:white;
-}
-
-.btn-primary:hover{
-  background:#0668d1;
-}
-
-.btn-orange{
-  background:#ff8a00;
-  color:white;
-}
-
-.btn-light{
-  background:#eef3f9;
-  color:#172033;
-}
-
-.btn-danger{
-  background:#ef4444;
-  color:white;
-}
-
-.btn-success{
-  background:#16a34a;
-  color:white;
-}
-
-.btn-block{
+.primary{
   width:100%;
+  padding:14px;
+  background:#0866d6;
+  color:#fff;
+  border-radius:11px;
+  font-weight:bold;
+  font-size:15px;
+  margin-top:10px;
 }
 
-.auth-footer{
-  text-align:center;
-  margin-top:18px;
-  color:#667085;
-  font-size:14px;
-}
-
-.link{
-  color:#087cf5;
-  font-weight:700;
-  cursor:pointer;
+.secondary{
+  width:100%;
+  padding:14px;
+  background:#eaf2ff;
+  color:#0866d6;
+  border-radius:11px;
+  font-weight:bold;
 }
 
 /* =========================
-   DASHBOARD
+   BARRE
 ========================= */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#fff;
+  padding:16px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);
+}
+
+.topbar-inner{
+  max-width:900px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  color:#0866d6;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.logout{
+  background:#ffe8e8;
+  color:#c62828;
+  padding:9px 12px;
+  border-radius:8px;
+}
 
 .dashboard{
   padding:25px 0 100px;
 }
 
 .welcome{
-  background:linear-gradient(135deg,#087cf5,#075fc0);
-  color:white;
-  padding:25px;
-  border-radius:20px;
   margin-bottom:20px;
 }
 
-.welcome h2{
-  margin-bottom:8px;
-}
-
-.dashboard-grid{
+.stats{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-bottom:22px;
-}
-
-.stat-card{
-  background:white;
-  padding:20px;
-  border-radius:16px;
-  box-shadow:0 4px 18px rgba(0,0,0,.05);
-}
-
-.stat-card .number{
-  font-size:27px;
-  font-weight:800;
-  color:#087cf5;
-  margin-bottom:5px;
-}
-
-.stat-card small{
-  color:#667085;
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-.search-box{
-  background:white;
-  padding:15px;
-  border-radius:16px;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
   margin-bottom:20px;
-  display:flex;
-  gap:10px;
 }
 
-.search-box input{
-  flex:1;
+.stat{
+  background:#fff;
+  padding:18px;
+  border-radius:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.stat strong{
+  display:block;
+  font-size:25px;
+  color:#0866d6;
+}
+
+.stat span{
+  color:#777;
+  font-size:13px;
 }
 
 /* =========================
-   JOB CARDS
+   OFFRES
 ========================= */
-
-.jobs-list{
-  display:grid;
-  gap:15px;
-}
-
-.job-card{
-  background:white;
-  border-radius:17px;
-  padding:20px;
-  box-shadow:0 4px 18px rgba(0,0,0,.05);
-}
-
-.job-top{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-}
 
 .job-title{
   font-size:19px;
-  font-weight:800;
-  margin-bottom:7px;
+  font-weight:bold;
 }
 
-.company{
-  color:#087cf5;
-  font-weight:700;
+.job-company{
+  color:#0866d6;
+  margin-top:8px;
 }
 
-.job-meta{
+.tags{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
-  margin:14px 0;
+  gap:7px;
+  margin:12px 0;
 }
 
-.badge{
-  background:#eef4ff;
-  color:#075fc0;
+.tag{
+  background:#edf4ff;
+  color:#0866d6;
   padding:6px 9px;
-  border-radius:20px;
+  border-radius:8px;
   font-size:12px;
-  font-weight:700;
 }
 
-.job-actions{
+.job-buttons{
   display:flex;
-  gap:8px;
-  flex-wrap:wrap;
+  gap:10px;
+  margin-top:15px;
 }
 
-/* =========================
-   PANELS
-========================= */
-
-.panel{
-  background:white;
-  padding:20px;
-  border-radius:17px;
-  box-shadow:0 4px 18px rgba(0,0,0,.05);
-  margin-bottom:18px;
-}
-
-.panel h3{
-  margin-bottom:15px;
-}
-
-.empty{
-  text-align:center;
-  padding:30px;
-  color:#667085;
-}
-
-/* =========================
-   APPLICATION
-========================= */
-
-.application-card{
-  background:white;
-  padding:18px;
-  border-radius:16px;
-  box-shadow:0 4px 15px rgba(0,0,0,.05);
+.job-buttons button{
+  flex:1;
 }
 
 .status{
   display:inline-block;
-  margin-top:10px;
-  padding:6px 10px;
-  border-radius:20px;
+  padding:7px 10px;
+  border-radius:8px;
   font-size:12px;
-  font-weight:700;
-}
-
-.status.pending{
-  background:#fff7ed;
-  color:#c2410c;
-}
-
-.status.accepted{
-  background:#ecfdf3;
-  color:#15803d;
-}
-
-.status.rejected{
-  background:#fef2f2;
-  color:#b91c1c;
+  background:#fff3d4;
+  color:#966400;
 }
 
 /* =========================
-   MESSAGES
-========================= */
-
-.message{
-  padding:14px;
-  border-bottom:1px solid #edf0f5;
-}
-
-.message:last-child{
-  border-bottom:none;
-}
-
-.message strong{
-  display:block;
-  margin-bottom:5px;
-}
-
-.message small{
-  color:#98a2b3;
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile-box{
-  text-align:center;
-  padding:25px;
-}
-
-.avatar{
-  width:90px;
-  height:90px;
-  border-radius:50%;
-  background:#eaf2ff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:40px;
-  margin:0 auto 15px;
-}
-
-.profile-info{
-  display:grid;
-  gap:10px;
-  text-align:left;
-  margin-top:20px;
-}
-
-.info-row{
-  padding:12px;
-  background:#f8fafc;
-  border-radius:10px;
-}
-
-.info-row strong{
-  display:block;
-  font-size:12px;
-  color:#667085;
-  margin-bottom:4px;
-}
-
-/* =========================
-   BOTTOM NAV
+   NAVIGATION
 ========================= */
 
 .bottom-nav{
@@ -615,29 +401,29 @@ textarea{
   bottom:0;
   left:0;
   right:0;
-  background:white;
-  border-top:1px solid #e5e7eb;
-  display:none;
-  grid-template-columns:repeat(5,1fr);
+  background:#fff;
+  display:flex;
+  justify-content:space-around;
+  padding:8px 2px;
+  box-shadow:0 -3px 15px rgba(0,0,0,.08);
   z-index:500;
 }
 
-.bottom-nav button{
-  background:white;
-  padding:9px 3px;
-  color:#667085;
-  font-size:11px;
+.nav-btn{
+  background:none;
+  color:#777;
+  font-size:10px;
 }
 
-.bottom-nav button span{
+.nav-btn.active{
+  color:#0866d6;
+  font-weight:bold;
+}
+
+.nav-icon{
   display:block;
   font-size:20px;
   margin-bottom:3px;
-}
-
-.bottom-nav button.active{
-  color:#087cf5;
-  font-weight:800;
 }
 
 /* =========================
@@ -647,82 +433,49 @@ textarea{
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.45);
+  background:rgba(0,0,0,.5);
   display:none;
   align-items:center;
   justify-content:center;
   padding:20px;
-  z-index:1000;
+  z-index:2000;
 }
 
 .modal.show{
   display:flex;
 }
 
-.modal-card{
+.modal-box{
   background:white;
-  width:min(600px,100%);
+  width:100%;
+  max-width:600px;
   max-height:90vh;
   overflow:auto;
-  border-radius:18px;
   padding:22px;
-}
-
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:18px;
+  border-radius:18px;
 }
 
 .close{
-  background:#eef2f7;
+  float:right;
   width:35px;
   height:35px;
   border-radius:50%;
+  background:#eee;
+  font-size:20px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:750px){
-
-  .account-grid,
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .dashboard-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .search-box{
+@media(max-width:600px){
+  .job-buttons{
     flex-direction:column;
   }
 
-  .bottom-nav{
-    display:grid;
+  .splash-logo{
+    width:105px;
+    height:105px;
   }
 
-  .dashboard{
-    padding-bottom:90px;
-  }
-
-  .job-top{
-    flex-direction:column;
-  }
-}
-
-@media(max-width:450px){
-
-  .dashboard-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .auth-card{
-    padding:18px;
+  .splash-title{
+    font-size:28px;
   }
 }
 </style>
@@ -731,434 +484,1033 @@ textarea{
 <body>
 
 <!-- =========================
-     SPLASH
+     PREMIÈRE INTERFACE
 ========================= -->
 
 <div id="splashScreen">
+
   <div class="splash-content">
 
-    <div class="logo-animation">
-      <div class="logo-circle">🤝</div>
+    <img
+      src="assets/images/logo.png"
+      class="splash-logo"
+      alt="Logo Kaye Liguey"
+      onerror="this.style.display='none'"
+    >
+
+    <div class="splash-title">
+      Kaye Liguey
     </div>
 
-    <h1>Kaye Liguey</h1>
+    <div class="splash-text">
+      Trouvez un emploi. Trouvez des talents.
+    </div>
 
-    <p>Trouvez votre prochaine opportunité</p>
-
-    <div class="loading">
+    <div class="loader">
       <span></span>
       <span></span>
       <span></span>
     </div>
 
   </div>
+
 </div>
 
 
 <!-- =========================
-     APPLICATION
+     DEUXIÈME INTERFACE
 ========================= -->
 
-<div id="app">
+<section id="accountScreen" class="screen active">
 
-  <!-- ACCOUNT CHOICE -->
-  <section id="accountScreen" class="screen active">
+  <div class="account">
 
-    <div class="auth-wrapper">
+    <div class="account-box">
 
-      <div class="auth-card">
+      <img
+        src="assets/images/logo.png"
+        class="logo"
+        alt="Kaye Liguey"
+        onerror="this.style.display='none'"
+      >
 
-        <div class="brand">Kaye <span>Liguey</span></div>
+      <h1>Kaye Liguey</h1>
 
-        <br>
+      <p>
+        Bienvenue sur votre plateforme d'emploi
+      </p>
 
-        <h1 class="auth-title">Bienvenue 👋</h1>
+      <button
+        class="choice"
+        onclick="showScreen('candidateRegisterScreen')"
+      >
+        <strong>
+          🔎 Je cherche un emploi
+        </strong>
 
-        <p class="auth-subtitle">
-          Choisissez votre espace pour commencer.
-        </p>
+        <span>
+          Trouver des offres et postuler facilement.
+        </span>
+      </button>
 
-        <div class="account-grid">
+      <button
+        class="choice"
+        onclick="showScreen('companyRegisterScreen')"
+      >
+        <strong>
+          🏢 Je suis une entreprise
+        </strong>
 
-          <button class="account-choice"
-                  onclick="openRegister('candidate')">
+        <span>
+          Publier vos offres et recevoir des candidatures.
+        </span>
+      </button>
 
-            <div class="icon">🔎</div>
-
-            <strong>Je cherche un emploi</strong>
-
-            <small>
-              Trouver des offres et postuler
-            </small>
-
-          </button>
-
-          <button class="account-choice"
-                  onclick="openRegister('company')">
-
-            <div class="icon">🏢</div>
-
-            <strong>Je suis une entreprise</strong>
-
-            <small>
-              Publier des offres et recevoir des candidatures
-            </small>
-
-          </button>
-
-        </div>
-
-        <div class="auth-footer">
-          Vous avez déjà un compte ?
-          <span class="link" onclick="openLogin()">Se connecter</span>
-        </div>
-
-      </div>
+      <button
+        class="secondary"
+        onclick="showScreen('loginScreen')"
+      >
+        🔐 Se connecter
+      </button>
 
     </div>
 
-  </section>
-
-
-  <!-- REGISTER -->
-  <section id="registerScreen" class="screen">
-
-    <div class="auth-wrapper">
-
-      <div class="auth-card">
-
-        <button class="btn btn-light"
-                onclick="showScreen('accountScreen')">
-          ← Retour
-        </button>
-
-        <br><br>
-
-        <h1 class="auth-title" id="registerTitle">
-          Créer mon compte
-        </h1>
-
-        <p class="auth-subtitle">
-          Remplissez les informations demandées.
-        </p>
-
-        <!-- CANDIDATE FORM -->
-
-        <form id="candidateForm"
-              onsubmit="registerCandidate(event)">
-
-          <div class="form-grid">
-
-            <div class="form-group">
-              <label>Prénom *</label>
-              <input id="cFirstName" required>
-            </div>
-
-            <div class="form-group">
-              <label>Nom *</label>
-              <input id="cLastName" required>
-            </div>
-
-            <div class="form-group">
-              <label>Numéro de téléphone *</label>
-              <input id="cPhone"
-                     type="tel"
-                     required>
-            </div>
-
-            <div class="form-group">
-              <label>Adresse mail ou iCloud *</label>
-              <input id="cEmail"
-                     type="email"
-                     required>
-            </div>
-
-            <div class="form-group full">
-              <label>Adresse de résidence *</label>
-              <input id="cAddress" required>
-            </div>
-
-            <div class="form-group">
-              <label>Date de naissance *</label>
-              <input id="cBirth"
-                     type="date"
-                     required>
-            </div>
-
-            <div class="form-group">
-              <label>CV</label>
-              <input id="cCv"
-                     type="file"
-                     accept=".pdf,.doc,.docx">
-            </div>
-
-            <div class="form-group">
-              <label>Photo</label>
-              <input id="cPhoto"
-                     type="file"
-                     accept="image/*">
-            </div>
-
-            <div class="form-group">
-              <label>Compétences</label>
-              <input id="cSkills"
-                     placeholder="Ex : HTML, marketing, vente">
-            </div>
-
-            <div class="form-group">
-              <label>Niveau d'études</label>
-              <input id="cEducation"
-                     placeholder="Ex : BAC">
-            </div>
-
-            <div class="form-group full">
-              <label>Expérience professionnelle</label>
-              <textarea id="cExperience"></textarea>
-            </div>
-
-            <div class="form-group full">
-              <label>Mot de passe *</label>
-              <input id="cPassword"
-                     type="password"
-                     minlength="4"
-                     required>
-            </div>
-
-          </div>
-
-          <button class="btn btn-primary btn-block"
-                  type="submit">
-            Créer mon compte
-          </button>
-
-        </form>
-
-
-        <!-- COMPANY FORM -->
-
-        <form id="companyForm"
-              class="hidden"
-              onsubmit="registerCompany(event)">
-
-          <div class="form-grid">
+  </div>
 
-            <div class="form-group full">
-              <label>Nom de l'entreprise *</label>
-              <input id="coName" required>
-            </div>
+</section>
 
-            <div class="form-group">
-              <label>Secteur d'activité *</label>
-              <input id="coSector" required>
-            </div>
 
-            <div class="form-group">
-              <label>Téléphone *</label>
-              <input id="coPhone"
-                     type="tel"
-                     required>
-            </div>
+<!-- =========================
+     INSCRIPTION EMPLOI
+========================= -->
 
-            <div class="form-group">
-              <label>Email professionnel *</label>
-              <input id="coEmail"
-                     type="email"
-                     required>
-            </div>
+<section
+  id="candidateRegisterScreen"
+  class="screen"
+>
 
-            <div class="form-group">
-              <label>Ville *</label>
-              <input id="coCity" required>
-            </div>
-
-            <div class="form-group full">
-              <label>Adresse *</label>
-              <input id="coAddress" required>
-            </div>
-
-            <div class="form-group">
-              <label>Registre de commerce</label>
-              <input id="coCommerce">
-            </div>
-
-            <div class="form-group">
-              <label>Site web</label>
-              <input id="coWebsite"
-                     type="url"
-                     placeholder="https://...">
-            </div>
+<div class="container form-page">
 
-            <div class="form-group full">
-              <label>Logo de l'entreprise</label>
-              <input id="coLogo"
-                     type="file"
-                     accept="image/*">
-            </div>
+<button
+  class="back"
+  onclick="showScreen('accountScreen')"
+>
+← Retour
+</button>
 
-            <div class="form-group full">
-              <label>Description</label>
-              <textarea id="coDescription"></textarea>
-            </div>
+<h2>🔎 Je cherche un emploi</h2>
 
-            <div class="form-group full">
-              <label>Mot de passe *</label>
-              <input id="coPassword"
-                     type="password"
-                     minlength="4"
-                     required>
-            </div>
+<p>
+Créez votre profil pour trouver un emploi.
+</p>
 
-          </div>
+<br>
 
-          <button class="btn btn-primary btn-block"
-                  type="submit">
-            Créer mon compte entreprise
-          </button>
+<div class="card">
 
-        </form>
+<label>Prénom</label>
+<input id="firstName" type="text">
 
-        <div class="auth-footer">
-          Déjà inscrit ?
-          <span class="link" onclick="openLogin()">Se connecter</span>
-        </div>
+<label>Nom</label>
+<input id="lastName" type="text">
 
-      </div>
+<label>Numéro de téléphone</label>
+<input id="phone" type="tel">
 
-    </div>
+<label>Adresse mail ou iCloud</label>
+<input id="email" type="email">
 
-  </section>
+<label>Adresse de résidence</label>
+<input id="address" type="text">
 
+<label>Date de naissance</label>
+<input id="birth" type="date">
 
-  <!-- LOGIN -->
-  <section id="loginScreen" class="screen">
+<label>CV</label>
+<input id="cv" type="file" accept=".pdf,.doc,.docx">
 
-    <div class="auth-wrapper">
+<label>Photo</label>
+<input id="photo" type="file" accept="image/*">
 
-      <div class="auth-card">
+<label>Compétences</label>
+<input id="skills" type="text">
 
-        <button class="btn btn-light"
-                onclick="showScreen('accountScreen')">
-          ← Retour
-        </button>
+<label>Niveau d'études</label>
+<input id="education" type="text">
 
-        <br><br>
+<label>Expérience professionnelle</label>
+<textarea id="experience"></textarea>
 
-        <h1 class="auth-title">Connexion</h1>
+<label>Mot de passe</label>
+<input id="password" type="password">
 
-        <p class="auth-subtitle">
-          Connectez-vous à votre espace Kaye Liguey.
-        </p>
+<button
+  class="primary"
+  onclick="registerCandidate()"
+>
+Créer mon compte
+</button>
 
-        <form onsubmit="login(event)">
+</div>
 
-          <div class="form-group">
-            <label>Email</label>
-            <input id="loginEmail"
-                   type="email"
-                   required>
-          </div>
+</div>
 
-          <div class="form-group">
-            <label>Mot de passe</label>
-            <input id="loginPassword"
-                   type="password"
-                   required>
-          </div>
+</section>
 
-          <button class="btn btn-primary btn-block">
-            Se connecter
-          </button>
 
-        </form>
+<!-- =========================
+     INSCRIPTION ENTREPRISE
+========================= -->
 
-        <div class="auth-footer">
-          Pas encore de compte ?
-          <span class="link"
-                onclick="showScreen('accountScreen')">
-            Créer un compte
-          </span>
-        </div>
+<section
+  id="companyRegisterScreen"
+  class="screen"
+>
 
-      </div>
+<div class="container form-page">
 
-    </div>
+<button
+  class="back"
+  onclick="showScreen('accountScreen')"
+>
+← Retour
+</button>
 
-  </section>
+<h2>🏢 Je suis une entreprise</h2>
 
+<p>
+Créez votre espace entreprise.
+</p>
 
-  <!-- CANDIDATE APP -->
-  <section id="candidateApp"
-           class="screen">
+<br>
 
-    <header class="header">
-      <div class="container header-inner">
+<div class="card">
 
-        <div class="brand">
-          Kaye <span>Liguey</span>
-        </div>
+<label>Nom de l'entreprise</label>
+<input id="companyName" type="text">
 
-        <div class="header-user"
-             id="candidateHeaderUser"></div>
+<label>Secteur d'activité</label>
+<input id="companySector" type="text">
 
-      </div>
-    </header>
+<label>Téléphone</label>
+<input id="companyPhone" type="tel">
 
-    <!-- CANDIDATE HOME -->
+<label>Email professionnel</label>
+<input id="companyEmail" type="email">
 
-    <div id="candidateHome"
-         class="candidate-page">
+<label>Adresse</label>
+<input id="companyAddress" type="text">
 
-      <main class="dashboard">
+<label>Ville</label>
+<input id="companyCity" type="text">
 
-        <div class="container">
+<label>Registre de commerce</label>
+<input id="companyRegister" type="text">
 
-          <div class="welcome">
+<label>Logo</label>
+<input id="companyLogo" type="file" accept="image/*">
 
-            <h2 id="candidateWelcome">
-              Bienvenue !
-            </h2>
+<label>Description</label>
+<textarea id="companyDescription"></textarea>
 
-            <p>
-              Découvrez les opportunités disponibles.
-            </p>
+<label>Site web</label>
+<input id="companyWebsite" type="url">
 
-          </div>
+<label>Mot de passe</label>
+<input id="companyPassword" type="password">
 
-          <div class="dashboard-grid">
+<button
+  class="primary"
+  onclick="registerCompany()"
+>
+Créer mon compte entreprise
+</button>
 
-            <div class="stat-card">
-              <div class="number"
-                   id="candidateJobsCount">
-                0
-              </div>
-              <small>Offres disponibles</small>
-            </div>
+</div>
 
-            <div class="stat-card">
-              <div class="number"
-                   id="candidateApplicationsCount">
-                0
-              </div>
-              <small>Mes candidatures</small>
-            </div>
+</div>
 
-            <div class="stat-card">
-              <div class="number">1</div>
-              <small>CV enregistré</small>
-            </div>
+</section>
 
-            <div class="stat-card">
-              <div class="number">💬</div>
-              <small>Messages</small>
-            </div>
 
-          </div>
+<!-- =========================
+     CONNEXION
+========================= -->
 
-          <div class="panel">
+<section
+  id="loginScreen"
+  class="screen"
+>
 
-            <h3>🔎 Rechercher un emploi</h3>
+<div class="container form-page">
 
-            <div class="search-box">
+<button
+  class="back"
+  onclick="showScreen('accountScreen')"
+>
+← Retour
+</button>
 
-              <input id="candidateSearch"
-                     placeh
+<h2>🔐 Connexion</h2>
+
+<br>
+
+<div class="card">
+
+<label>Email</label>
+<input id="loginEmail" type="email">
+
+<label>Mot de passe</label>
+<input id="loginPassword" type="password">
+
+<button
+  class="primary"
+  onclick="login()"
+>
+Se connecter
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     ESPACE CANDIDAT
+========================= -->
+
+<section
+  id="candidateApp"
+  class="screen"
+>
+
+<div class="topbar">
+
+<div class="topbar-inner">
+
+<div class="brand">
+Kaye Liguey
+</div>
+
+<button
+  class="logout"
+  onclick="logout()"
+>
+Déconnexion
+</button>
+
+</div>
+
+</div>
+
+<div class="dashboard">
+
+<div class="container">
+
+<div id="candidateHome">
+
+<div class="welcome">
+
+<h2>
+Bonjour <span id="candidateName"></span> 👋
+</h2>
+
+<p>
+Trouvez votre prochaine opportunité.
+</p>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="jobCount">0</strong>
+<span>Offres</span>
+</div>
+
+<div class="stat">
+<strong id="applicationCount">0</strong>
+<span>Candidatures</span>
+</div>
+
+</div>
+
+<input
+id="search"
+type="text"
+placeholder="🔎 Rechercher un emploi..."
+oninput="searchJobs()"
+>
+
+<br><br>
+
+<div id="jobsList"></div>
+
+</div>
+
+
+<div
+id="candidateApplications"
+style="display:none"
+>
+
+<h2>📄 Mes candidatures</h2>
+
+<br>
+
+<div id="myApplications"></div>
+
+</div>
+
+
+<div
+id="candidateMessages"
+style="display:none"
+>
+
+<h2>💬 Messages</h2>
+
+<br>
+
+<div id="messagesCandidate"></div>
+
+</div>
+
+
+<div
+id="candidateProfile"
+style="display:none"
+>
+
+<h2>👤 Mon profil</h2>
+
+<br>
+
+<div id="profileCandidate"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<nav class="bottom-nav">
+
+<button
+class="nav-btn active"
+onclick="candidatePage('home')"
+>
+<span class="nav-icon">🏠</span>
+Accueil
+</button>
+
+<button
+class="nav-btn"
+onclick="candidatePage('home')"
+>
+<span class="nav-icon">💼</span>
+Jobs
+</button>
+
+<button
+class="nav-btn"
+onclick="candidatePage('applications')"
+>
+<span class="nav-icon">📄</span>
+Candidatures
+</button>
+
+<button
+class="nav-btn"
+onclick="candidatePage('messages')"
+>
+<span class="nav-icon">💬</span>
+Messages
+</button>
+
+<button
+class="nav-btn"
+onclick="candidatePage('profile')"
+>
+<span class="nav-icon">👤</span>
+Profil
+</button>
+
+</nav>
+
+</section>
+
+
+<!-- =========================
+     ESPACE ENTREPRISE
+========================= -->
+
+<section
+id="companyApp"
+class="screen"
+>
+
+<div class="topbar">
+
+<div class="topbar-inner">
+
+<div class="brand">
+Kaye Liguey
+</div>
+
+<button
+class="logout"
+onclick="logout()"
+>
+Déconnexion
+</button>
+
+</div>
+
+</div>
+
+<div class="dashboard">
+
+<div class="container">
+
+<div id="companyHome">
+
+<div class="welcome">
+
+<h2>
+Bienvenue <span id="companyNameDisplay"></span> 👋
+</h2>
+
+<p>
+Gérez vos offres et vos candidatures.
+</p>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="companyJobsCount">0</strong>
+<span>Mes offres</span>
+</div>
+
+<div class="stat">
+<strong id="companyApplicationsCount">0</strong>
+<span>Candidatures</span>
+</div>
+
+</div>
+
+<button
+class="primary"
+onclick="companyPage('publish')"
+>
+📢 Publier une offre
+</button>
+
+</div>
+
+
+<div
+id="companyPublish"
+style="display:none"
+>
+
+<h2>📢 Publier une offre</h2>
+
+<br>
+
+<div class="card">
+
+<label>Titre du poste</label>
+<input id="newJobTitle">
+
+<label>Lieu</label>
+<input id="newJobLocation">
+
+<label>Type</label>
+
+<select id="newJobType">
+
+<option>CDI</option>
+<option>CDD</option>
+<option>Stage</option>
+<option>Alternance</option>
+<option>Freelance</option>
+
+</select>
+
+<label>Salaire</label>
+<input id="newJobSalary">
+
+<label>Description</label>
+<textarea id="newJobDescription"></textarea>
+
+<button
+class="primary"
+onclick="publishJob()"
+>
+📤 Publier l'offre
+</button>
+
+</div>
+
+</div>
+
+
+<div
+id="companyJobs"
+style="display:none"
+>
+
+<h2>📋 Mes offres</h2>
+
+<br>
+
+<div id="companyJobsList"></div>
+
+</div>
+
+
+<div
+id="companyApplications"
+style="display:none"
+>
+
+<h2>👥 Candidatures reçues</h2>
+
+<br>
+
+<div id="companyApplicationsList"></div>
+
+</div>
+
+
+<div
+id="companyMessages"
+style="display:none"
+>
+
+<h2>💬 Messages</h2>
+
+<br>
+
+<div id="companyMessagesList"></div>
+
+</div>
+
+
+<div
+id="companyProfile"
+style="display:none"
+>
+
+<h2>🏢 Mon entreprise</h2>
+
+<br>
+
+<div id="companyProfileContent"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<nav class="bottom-nav">
+
+<button
+class="nav-btn active"
+onclick="companyPage('home')"
+>
+<span class="nav-icon">🏠</span>
+Accueil
+</button>
+
+<button
+class="nav-btn"
+onclick="companyPage('publish')"
+>
+<span class="nav-icon">📢</span>
+Publier
+</button>
+
+<button
+class="nav-btn"
+onclick="companyPage('jobs')"
+>
+<span class="nav-icon">📋</span>
+Mes offres
+</button>
+
+<button
+class="nav-btn"
+onclick="companyPage('applications')"
+>
+<span class="nav-icon">👥</span>
+Candidatures
+</button>
+
+<button
+class="nav-btn"
+onclick="companyPage('messages')"
+>
+<span class="nav-icon">💬</span>
+Messages
+</button>
+
+<button
+class="nav-btn"
+onclick="companyPage('profile')"
+>
+<span class="nav-icon">🏢</span>
+Entreprise
+</button>
+
+</nav>
+
+</section>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+id="jobModal"
+class="modal"
+>
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal()"
+>
+×
+</button>
+
+<div id="jobDetails"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DONNÉES
+========================= */
+
+let users =
+JSON.parse(
+localStorage.getItem("kayeUsers") || "[]"
+);
+
+let jobs =
+JSON.parse(
+localStorage.getItem("kayeJobs") || "[]"
+);
+
+let applications =
+JSON.parse(
+localStorage.getItem("kayeApplications") || "[]"
+);
+
+let messages =
+JSON.parse(
+localStorage.getItem("kayeMessages") || "[]"
+);
+
+let currentUser = null;
+
+
+/* =========================
+   SAUVEGARDE
+========================= */
+
+function save(){
+
+localStorage.setItem(
+"kayeUsers",
+JSON.stringify(users)
+);
+
+localStorage.setItem(
+"kayeJobs",
+JSON.stringify(jobs)
+);
+
+localStorage.setItem(
+"kayeApplications",
+JSON.stringify(applications)
+);
+
+localStorage.setItem(
+"kayeMessages",
+JSON.stringify(messages)
+);
+
+}
+
+
+/* =========================
+   CHANGER D'ÉCRAN
+========================= */
+
+function showScreen(id){
+
+document
+.querySelectorAll(".screen")
+.forEach(function(screen){
+
+screen.classList.remove("active");
+
+});
+
+const target =
+document.getElementById(id);
+
+if(target){
+
+target.classList.add("active");
+
+}
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   INSCRIPTION CANDIDAT
+========================= */
+
+function registerCandidate(){
+
+const firstName =
+document.getElementById("firstName").value.trim();
+
+const lastName =
+document.getElementById("lastName").value.trim();
+
+const phone =
+document.getElementById("phone").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+if(
+!firstName ||
+!lastName ||
+!phone ||
+!email ||
+!password
+){
+
+alert(
+"Veuillez remplir les champs obligatoires."
+);
+
+return;
+
+}
+
+if(
+users.some(
+user => user.email === email
+)
+){
+
+alert(
+"Cette adresse email existe déjà."
+);
+
+return;
+
+}
+
+const cvFile =
+document.getElementById("cv").files[0];
+
+const photoFile =
+document.getElementById("photo").files[0];
+
+const user = {
+
+id:Date.now(),
+
+role:"candidate",
+
+firstName:firstName,
+
+lastName:lastName,
+
+phone:phone,
+
+email:email,
+
+password:password,
+
+address:
+document.getElementById("address").value,
+
+birth:
+document.getElementById("birth").value,
+
+cv:
+cvFile ? cvFile.name : "",
+
+photo:
+photoFile ? photoFile.name : "",
+
+skills:
+document.getElementById("skills").value,
+
+education:
+document.getElementById("education").value,
+
+experience:
+document.getElementById("experience").value
+
+};
+
+users.push(user);
+
+currentUser = user;
+
+save();
+
+alert(
+"Votre compte a été créé !"
+);
+
+openCandidate();
+
+}
+
+
+/* =========================
+   INSCRIPTION ENTREPRISE
+========================= */
+
+function registerCompany(){
+
+const name =
+document.getElementById("companyName").value.trim();
+
+const email =
+document.getElementById("companyEmail").value.trim();
+
+const password =
+document.getElementById("companyPassword").value;
+
+if(
+!name ||
+!email ||
+!password
+){
+
+alert(
+"Veuillez remplir les champs obligatoires."
+);
+
+return;
+
+}
+
+if(
+users.some(
+user => user.email === email
+)
+){
+
+alert(
+"Cette adresse email existe déjà."
+);
+
+return;
+
+}
+
+const logoFile =
+document.getElementById("companyLogo").files[0];
+
+const user = {
+
+id:Date.now(),
+
+role:"company",
+
+name:name,
+
+sector:
+document.getElementById("companySector").value,
+
+phone:
+document.getElementById("companyPhone").value,
+
+email:email,
+
+password:password,
+
+address:
+document.getElementById("companyAddress").value,
+
+city:
+document.getElementById("companyCity").value,
+
+registerNumber:
+document.getElementById("companyRegister").value,
+
+logo:
+logoFile ? logoFile.name : "",
+
+description:
+document.getElementById("companyDescription").value,
+
+website:
+document.getElementById("companyWebsite").value
+
+};
+
+users.push(user);
+
+currentUser = user;
+
+save();
+
+alert(
+"Compte entreprise créé !"
+);
+
+openCompany();
+
+}
+
+
+/* =========================
+   CONNEXION
+========================= */
+
+function login(){
+
+const email =
+document.getElementById("loginEmail").value.trim();
+
+const password =
+document.getElementById("loginPassword").value;
+
+const user =
+users.find(
+u =>
+u.email === email &&
+u.password === 
