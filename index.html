@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Kaye Liguey</title>
 
 <style>
@@ -10,46 +11,61 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,sans-serif;
 }
 
 body{
+  font-family:Arial, sans-serif;
   background:#f4f7fb;
   color:#222;
-  padding-bottom:80px;
 }
 
 header{
-  background:white;
+  background:#0969d8;
+  color:white;
   padding:18px;
   text-align:center;
-  box-shadow:0 2px 8px #0001;
   position:sticky;
   top:0;
   z-index:100;
 }
 
 .logo{
-  font-size:28px;
+  font-size:25px;
   font-weight:bold;
-  color:#0969d8;
 }
 
-.slogan{
-  color:#777;
-  margin-top:5px;
-  font-size:14px;
+main{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
 }
 
 .page{
   display:none;
-  max-width:900px;
-  margin:auto;
-  padding:30px 20px;
+  animation:fade .3s ease;
 }
 
 .page.active{
   display:block;
+}
+
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.card{
+  background:white;
+  padding:20px;
+  margin-bottom:18px;
+  border-radius:15px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
 h1{
@@ -58,113 +74,80 @@ h1{
 }
 
 h2{
-  margin-bottom:12px;
+  margin-bottom:15px;
 }
 
-.card{
-  background:white;
-  padding:20px;
-  margin:15px 0;
-  border-radius:14px;
-  box-shadow:0 3px 12px #0001;
+h3{
+  margin-bottom:10px;
+}
+
+p{
+  line-height:1.6;
+  margin-bottom:10px;
 }
 
 button{
-  border:none;
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:14px;
+  margin:7px 0;
+  background:#0969d8;
+  color:white;
+  font-size:16px;
   cursor:pointer;
 }
 
-.btn{
-  width:100%;
-  padding:14px;
-  border-radius:10px;
-  margin-top:10px;
-  font-size:16px;
-  font-weight:bold;
-}
-
-.blue{
-  background:#0969d8;
-  color:white;
+button:hover{
+  opacity:.9;
 }
 
 .orange{
   background:#f28c28;
-  color:white;
+}
+
+.green{
+  background:#198754;
+}
+
+.red{
+  background:#dc3545;
 }
 
 .gray{
   background:#555;
-  color:white;
 }
 
 .light{
-  background:#eee;
-  color:#333;
-}
-
-.danger{
-  background:#d93025;
-  color:white;
-}
-
-.choice{
-  width:100%;
-  background:white;
-  padding:20px;
-  margin:12px 0;
-  border-radius:14px;
-  text-align:left;
-  box-shadow:0 3px 12px #0001;
-  border-left:5px solid #0969d8;
-}
-
-.choice.orange-border{
-  border-left-color:#f28c28;
-}
-
-.choice.gray-border{
-  border-left-color:#555;
-}
-
-.choice strong{
-  display:block;
-  font-size:18px;
-  margin-bottom:7px;
-}
-
-.choice small{
-  color:#777;
-}
-
-input,
-select,
-textarea{
-  width:100%;
-  padding:13px;
-  margin-top:6px;
-  margin-bottom:15px;
-  border:1px solid #ccc;
-  border-radius:9px;
-  background:white;
-  font-size:15px;
-}
-
-textarea{
-  min-height:120px;
-  resize:vertical;
-}
-
-label{
-  font-weight:bold;
+  background:#e9f2ff;
+  color:#0969d8;
 }
 
 .back{
-  background:#eee;
-  color:#333;
-  padding:10px 15px;
-  border-radius:8px;
-  margin-bottom:15px;
+  background:#555;
+  width:auto;
+  padding:10px 18px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  margin:7px 0 12px;
+  border:1px solid #ccc;
+  border-radius:9px;
+  font-size:16px;
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.job{
+  border:1px solid #ddd;
+  padding:15px;
+  border-radius:12px;
+  margin:12px 0;
 }
 
 .job-title{
@@ -173,95 +156,112 @@ label{
   font-weight:bold;
 }
 
-.company{
-  font-weight:bold;
-  margin-top:7px;
-}
-
-.info{
-  color:#666;
-  margin:6px 0;
-}
-
-.tag{
+.badge{
   display:inline-block;
   padding:5px 9px;
-  border-radius:15px;
-  background:#eee;
-  margin:4px 3px;
-  font-size:12px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin:15px 0;
-}
-
-.stat{
-  background:white;
-  padding:18px;
-  text-align:center;
-  border-radius:12px;
-  box-shadow:0 3px 10px #0001;
-}
-
-.stat-number{
+  border-radius:20px;
+  background:#e9f2ff;
   color:#0969d8;
-  font-size:27px;
-  font-weight:bold;
+  margin:4px 3px;
+  font-size:13px;
 }
 
-.bottom-nav{
-  display:none;
+nav{
   position:fixed;
   bottom:0;
   left:0;
   right:0;
   background:white;
-  border-top:1px solid #ddd;
+  box-shadow:0 -3px 12px rgba(0,0,0,.1);
+  display:flex;
+  justify-content:space-around;
   z-index:200;
-  grid-template-columns:repeat(5,1fr);
 }
 
-.bottom-nav button{
+nav button{
+  margin:0;
+  border-radius:0;
   background:white;
-  padding:10px 3px;
-  font-size:11px;
   color:#333;
+  font-size:12px;
+  padding:10px 3px;
 }
 
-.bottom-nav button:hover{
+nav button.active-nav{
   color:#0969d8;
+  font-weight:bold;
+}
+
+.space-bottom{
+  height:75px;
 }
 
 .empty{
   text-align:center;
-  color:#777;
   padding:30px;
+  color:#777;
 }
 
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
+.stat{
+  text-align:center;
+  padding:18px;
+  background:#f5f8fc;
+  border-radius:12px;
+  margin-bottom:10px;
 }
 
-.notice{
-  background:#fff3cd;
+.stat-number{
+  font-size:28px;
+  font-weight:bold;
+  color:#0969d8;
+}
+
+.success{
+  background:#d1e7dd;
+  color:#0f5132;
   padding:12px;
   border-radius:8px;
-  margin-bottom:15px;
+  margin-bottom:12px;
 }
 
-@media(max-width:500px){
-  .page{
-    padding:22px 15px;
+.message{
+  padding:12px;
+  background:#f1f1f1;
+  border-radius:10px;
+  margin:8px 0;
+}
+
+.hero{
+  text-align:center;
+  padding:25px 10px;
+}
+
+.hero .big-logo{
+  font-size:60px;
+}
+
+.hero h1{
+  font-size:35px;
+}
+
+.small{
+  color:#777;
+  font-size:14px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+@media(min-width:700px){
+  .home-buttons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
   }
 
-  .actions{
-    grid-template-columns:1fr;
+  .home-buttons button{
+    min-height:80px;
   }
 }
 </style>
@@ -271,599 +271,376 @@ label{
 
 <header>
   <div class="logo">🔵 Kaye Liguey</div>
-  <div class="slogan">
-    Trouvez un emploi. Trouvez des talents.
-  </div>
 </header>
 
+<main>
 
-<!-- ================= ACCUEIL ================= -->
-
+<!-- ACCUEIL -->
 <section id="home" class="page active">
 
-  <div class="card" style="text-align:center;margin-top:25px;">
-    <h1>Bienvenue sur Kaye Liguey</h1>
-
-    <p>
-      La plateforme qui met en relation les chercheurs
-      d'emploi et les entreprises.
-    </p>
+  <div class="hero">
+    <div class="big-logo">💼</div>
+    <h1>Kaye Liguey</h1>
+    <p>Trouvez un emploi. Trouvez des talents.</p>
   </div>
 
-  <button class="choice nav-btn" data-page="candidateRegister">
-    <strong>🔎 Je cherche un emploi</strong>
-    <small>Créer un compte et trouver des offres</small>
-  </button>
+  <div class="card">
+    <h2>Bienvenue 👋</h2>
+    <p>Que souhaitez-vous faire ?</p>
 
-  <button class="choice orange-border nav-btn"
-          data-page="companyRegister">
-    <strong>🏢 Je suis une entreprise</strong>
-    <small>Publier des offres et trouver des candidats</small>
-  </button>
+    <div class="home-buttons">
+      <button onclick="showPage('candidateRegister')">
+        🔎 Je cherche un emploi
+      </button>
 
-  <button class="choice gray-border nav-btn"
-          data-page="login">
-    <strong>🔐 Se connecter</strong>
-    <small>Accéder à votre compte</small>
-  </button>
+      <button class="orange" onclick="showPage('companyRegister')">
+        🏢 Je suis une entreprise
+      </button>
+
+      <button class="gray" onclick="showPage('login')">
+        🔐 Se connecter
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>💼 Dernières offres</h2>
+    <div id="homeJobs"></div>
+  </div>
 
 </section>
 
 
-<!-- ================= INSCRIPTION CANDIDAT ================= -->
-
+<!-- INSCRIPTION CANDIDAT -->
 <section id="candidateRegister" class="page">
 
-  <button class="back nav-btn" data-page="home">
-    ← Retour
-  </button>
-
-  <h1>Créer un compte</h1>
+  <button class="back" onclick="showPage('home')">← Retour</button>
 
   <div class="card">
+    <h2>👤 Créer un compte candidat</h2>
 
-    <h2>🔎 Chercheur d'emploi</h2>
+    <label>Prénom</label>
+    <input id="candidateFirstName" type="text" placeholder="Votre prénom">
 
-    <form id="candidateForm">
+    <label>Nom</label>
+    <input id="candidateLastName" type="text" placeholder="Votre nom">
 
-      <label>Nom complet</label>
-      <input id="candidateName"
-             required
-             placeholder="Votre nom complet">
+    <label>Téléphone</label>
+    <input id="candidatePhone" type="tel" placeholder="+221...">
 
-      <label>Téléphone</label>
-      <input id="candidatePhone"
-             type="tel"
-             required
-             placeholder="77 XXX XX XX">
+    <label>Email</label>
+    <input id="candidateEmail" type="email" placeholder="Votre email">
 
-      <label>Email</label>
-      <input id="candidateEmail"
-             type="email"
-             required
-             placeholder="exemple@email.com">
+    <label>Mot de passe</label>
+    <input id="candidatePassword" type="password" placeholder="Mot de passe">
 
-      <label>Mot de passe</label>
-      <input id="candidatePassword"
-             type="password"
-             required
-             minlength="4">
+    <button onclick="createCandidate()">
+      ✅ Créer mon compte
+    </button>
 
-      <label>Métier recherché</label>
-      <input id="candidateJob"
-             placeholder="Ex : Développeur web">
-
-      <label>Ville</label>
-      <input id="candidateCity"
-             placeholder="Ex : Dakar">
-
-      <button class="btn blue" type="submit">
-        Créer mon compte
-      </button>
-
-    </form>
-
+    <button class="gray" onclick="showPage('login')">
+      J'ai déjà un compte
+    </button>
   </div>
 
 </section>
 
 
-<!-- ================= INSCRIPTION ENTREPRISE ================= -->
-
+<!-- INSCRIPTION ENTREPRISE -->
 <section id="companyRegister" class="page">
 
-  <button class="back nav-btn" data-page="home">
-    ← Retour
-  </button>
-
-  <h1>Créer un compte</h1>
+  <button class="back" onclick="showPage('home')">← Retour</button>
 
   <div class="card">
+    <h2>🏢 Créer un compte entreprise</h2>
 
-    <h2>🏢 Entreprise</h2>
+    <label>Nom de l'entreprise</label>
+    <input id="companyName" type="text" placeholder="Nom de votre entreprise">
 
-    <form id="companyForm">
+    <label>Téléphone</label>
+    <input id="companyPhone" type="tel" placeholder="+221...">
 
-      <label>Nom de l'entreprise</label>
-      <input id="companyName"
-             required
-             placeholder="Nom de votre entreprise">
+    <label>Email</label>
+    <input id="companyEmail" type="email" placeholder="Email">
 
-      <label>Téléphone</label>
-      <input id="companyPhone"
-             type="tel"
-             required>
+    <label>Mot de passe</label>
+    <input id="companyPassword" type="password" placeholder="Mot de passe">
 
-      <label>Email</label>
-      <input id="companyEmail"
-             type="email"
-             required>
+    <button class="orange" onclick="createCompany()">
+      🏢 Créer mon entreprise
+    </button>
 
-      <label>Mot de passe</label>
-      <input id="companyPassword"
-             type="password"
-             required
-             minlength="4">
-
-      <label>Ville</label>
-      <input id="companyCity"
-             placeholder="Ex : Dakar">
-
-      <button class="btn orange" type="submit">
-        Créer mon entreprise
-      </button>
-
-    </form>
-
+    <button class="gray" onclick="showPage('login')">
+      J'ai déjà un compte
+    </button>
   </div>
 
 </section>
 
 
-<!-- ================= CONNEXION ================= -->
-
+<!-- CONNEXION -->
 <section id="login" class="page">
 
-  <button class="back nav-btn" data-page="home">
-    ← Retour
-  </button>
-
-  <h1>🔐 Se connecter</h1>
+  <button class="back" onclick="showPage('home')">← Retour</button>
 
   <div class="card">
+    <h2>🔐 Connexion</h2>
 
-    <form id="loginForm">
+    <label>Email</label>
+    <input id="loginEmail" type="email" placeholder="Votre email">
 
-      <label>Email</label>
-      <input id="loginEmail"
-             type="email"
-             required>
+    <label>Mot de passe</label>
+    <input id="loginPassword" type="password" placeholder="Votre mot de passe">
 
-      <label>Mot de passe</label>
-      <input id="loginPassword"
-             type="password"
-             required>
+    <button onclick="loginUser()">
+      🔐 Se connecter
+    </button>
 
-      <button class="btn blue" type="submit">
-        Se connecter
-      </button>
+    <button class="light" onclick="showPage('candidateRegister')">
+      Créer un compte candidat
+    </button>
 
-    </form>
-
+    <button class="orange" onclick="showPage('companyRegister')">
+      Créer un compte entreprise
+    </button>
   </div>
-
-  <button class="btn light nav-btn"
-          data-page="candidateRegister">
-    🔎 Créer un compte chercheur
-  </button>
-
-  <button class="btn orange nav-btn"
-          data-page="companyRegister">
-    🏢 Créer un compte entreprise
-  </button>
 
 </section>
 
 
-<!-- ================= ESPACE CANDIDAT ================= -->
-
-<section id="candidateDashboard" class="page">
-
-  <h1>🏠 Accueil</h1>
+<!-- EMPLOIS -->
+<section id="jobsPage" class="page">
 
   <div class="card">
-    <h2 id="candidateWelcome"></h2>
-    <p>Bienvenue dans votre espace Kaye Liguey.</p>
-  </div>
+    <h2>🔎 Rechercher un emploi</h2>
 
-  <div class="stats">
+    <input id="searchJob"
+           type="text"
+           placeholder="Métier, entreprise..."
+           oninput="displayJobs()">
 
-    <div class="stat">
-      <div class="stat-number" id="jobCount">0</div>
-      Offres
-    </div>
+    <input id="searchCity"
+           type="text"
+           placeholder="Ville..."
+           oninput="displayJobs()">
 
-    <div class="stat">
-      <div class="stat-number" id="applicationCount">0</div>
-      Candidatures
-    </div>
-
-    <div class="stat">
-      <div class="stat-number" id="favoriteCount">0</div>
-      Favoris
-    </div>
-
-    <div class="stat">
-      <div class="stat-number" id="messageCount">0</div>
-      Messages
-    </div>
-
-  </div>
-
-  <button class="btn blue nav-btn"
-          data-page="jobs">
-    💼 Rechercher un emploi
-  </button>
-
-  <button class="btn light nav-btn"
-          data-page="favorites">
-    ❤️ Mes favoris
-  </button>
-
-  <button class="btn light nav-btn"
-          data-page="applications">
-    📋 Mes candidatures
-  </button>
-
-  <button class="btn light nav-btn"
-          data-page="messages">
-    💬 Mes messages
-  </button>
-
-  <button class="btn light nav-btn"
-          data-page="profile">
-    👤 Mon profil
-  </button>
-
-  <button class="btn danger logout-btn">
-    🚪 Déconnexion
-  </button>
-
-</section>
-
-
-<!-- ================= OFFRES ================= -->
-
-<section id="jobs" class="page">
-
-  <button class="back nav-btn"
-          data-page="candidateDashboard">
-    ← Retour
-  </button>
-
-  <h1>💼 Recherche d'emploi</h1>
-
-  <div class="card">
-
-    <label>Rechercher</label>
-    <input id="searchInput"
-           placeholder="Métier ou entreprise">
-
-    <label>Ville</label>
-    <input id="cityInput"
-           placeholder="Ex : Dakar">
-
-    <label>Type de contrat</label>
-
-    <select id="contractInput">
-
+    <select id="searchType" onchange="displayJobs()">
       <option value="">Tous les contrats</option>
       <option value="CDI">CDI</option>
       <option value="CDD">CDD</option>
       <option value="Stage">Stage</option>
       <option value="Freelance">Freelance</option>
-
     </select>
-
   </div>
-
-  <div id="jobsList"></div>
-
-</section>
-
-
-<!-- ================= FAVORIS ================= -->
-
-<section id="favorites" class="page">
-
-  <button class="back nav-btn"
-          data-page="candidateDashboard">
-    ← Retour
-  </button>
-
-  <h1>❤️ Mes favoris</h1>
-
-  <div id="favoritesList"></div>
-
-</section>
-
-
-<!-- ================= CANDIDATURES ================= -->
-
-<section id="applications" class="page">
-
-  <button class="back nav-btn"
-          data-page="candidateDashboard">
-    ← Retour
-  </button>
-
-  <h1>📋 Mes candidatures</h1>
-
-  <div id="applicationsList"></div>
-
-</section>
-
-
-<!-- ================= MESSAGES CANDIDAT ================= -->
-
-<section id="messages" class="page">
-
-  <button class="back nav-btn"
-          data-page="candidateDashboard">
-    ← Retour
-  </button>
-
-  <h1>💬 Messages</h1>
-
-  <div id="messagesList"></div>
-
-</section>
-
-
-<!-- ================= PROFIL ================= -->
-
-<section id="profile" class="page">
-
-  <button class="back nav-btn"
-          data-page="candidateDashboard">
-    ← Retour
-  </button>
-
-  <h1>👤 Mon profil</h1>
 
   <div class="card">
-
-    <h2 id="profileName"></h2>
-
-    <p id="profileEmail"></p>
-    <p id="profilePhone"></p>
-    <p id="profileJob"></p>
-    <p id="profileCity"></p>
-
+    <h2>💼 Offres disponibles</h2>
+    <div id="jobsList"></div>
   </div>
 
 </section>
 
 
-<!-- ================= ENTREPRISE ================= -->
+<!-- FAVORIS -->
+<section id="favoritesPage" class="page">
 
+  <div class="card">
+    <h2>❤️ Mes favoris</h2>
+    <div id="favoritesList"></div>
+  </div>
+
+</section>
+
+
+<!-- CANDIDATURES -->
+<section id="applicationsPage" class="page">
+
+  <div class="card">
+    <h2>📋 Mes candidatures</h2>
+    <div id="applicationsList"></div>
+  </div>
+
+</section>
+
+
+<!-- MESSAGES -->
+<section id="messagesPage" class="page">
+
+  <div class="card">
+    <h2>💬 Mes messages</h2>
+    <div id="messagesList"></div>
+  </div>
+
+</section>
+
+
+<!-- PROFIL CANDIDAT -->
+<section id="candidateProfile" class="page">
+
+  <div class="card">
+    <h2>👤 Mon profil</h2>
+    <div id="candidateProfileContent"></div>
+
+    <button onclick="logout()">
+      🚪 Se déconnecter
+    </button>
+  </div>
+
+</section>
+
+
+<!-- ESPACE ENTREPRISE -->
 <section id="companyDashboard" class="page">
 
-  <h1>🏢 Tableau de bord</h1>
-
   <div class="card">
-    <h2 id="companyWelcome"></h2>
-    <p>Bienvenue dans votre espace entreprise.</p>
-  </div>
+    <h2>🏢 Espace entreprise</h2>
 
-  <div class="stats">
+    <p>Bienvenue <strong id="companyWelcome"></strong></p>
 
     <div class="stat">
-      <div class="stat-number"
-           id="companyJobCount">0</div>
-      Mes offres
+      <div class="stat-number" id="companyJobCount">0</div>
+      Offres publiées
     </div>
 
     <div class="stat">
-      <div class="stat-number"
-           id="companyApplicationCount">0</div>
+      <div class="stat-number" id="companyApplicationCount">0</div>
       Candidatures
     </div>
 
+    <button class="orange" onclick="showPage('publishJob')">
+      📢 Publier une offre
+    </button>
+
+    <button onclick="showPage('companyJobs')">
+      📋 Mes offres
+    </button>
+
+    <button onclick="showPage('companyApplications')">
+      👥 Candidatures reçues
+    </button>
+
+    <button onclick="showPage('messagesPage')">
+      💬 Messages
+    </button>
+
+    <button class="gray" onclick="logout()">
+      🚪 Se déconnecter
+    </button>
   </div>
-
-  <button class="btn orange nav-btn"
-          data-page="publishJob">
-    ➕ Publier une offre
-  </button>
-
-  <button class="btn blue nav-btn"
-          data-page="myJobs">
-    📋 Mes offres
-  </button>
-
-  <button class="btn light nav-btn"
-          data-page="companyApplications">
-    👥 Candidatures reçues
-  </button>
-
-  <button class="btn light nav-btn"
-          data-page="companyMessages">
-    💬 Messages
-  </button>
-
-  <button class="btn danger logout-btn">
-    🚪 Déconnexion
-  </button>
 
 </section>
 
 
-<!-- ================= PUBLIER ================= -->
-
+<!-- PUBLIER UNE OFFRE -->
 <section id="publishJob" class="page">
 
-  <button class="back nav-btn"
-          data-page="companyDashboard">
+  <button class="back" onclick="showPage('companyDashboard')">
     ← Retour
   </button>
 
-  <h1>📢 Publier une offre</h1>
-
   <div class="card">
+    <h2>📢 Publier une offre</h2>
 
-    <form id="jobForm">
+    <label>Titre du poste</label>
+    <input id="jobTitle" type="text" placeholder="Exemple : Développeur Web">
 
-      <label>Poste</label>
-      <input id="jobTitle"
-             required
-             placeholder="Ex : Développeur Web">
+    <label>Ville</label>
+    <input id="jobCity" type="text" placeholder="Exemple : Dakar">
 
-      <label>Ville</label>
-      <input id="jobCity"
-             required
-             placeholder="Ex : Dakar">
+    <label>Type de contrat</label>
+    <select id="jobType">
+      <option value="CDI">CDI</option>
+      <option value="CDD">CDD</option>
+      <option value="Stage">Stage</option>
+      <option value="Freelance">Freelance</option>
+    </select>
 
-      <label>Type de contrat</label>
+    <label>Salaire</label>
+    <input id="jobSalary" type="text" placeholder="Exemple : 150 000 FCFA">
 
-      <select id="jobType" required>
+    <label>Description</label>
+    <textarea id="jobDescription"
+              placeholder="Décrivez le poste..."></textarea>
 
-        <option value="">Choisir</option>
-        <option value="CDI">CDI</option>
-        <option value="CDD">CDD</option>
-        <option value="Stage">Stage</option>
-        <option value="Freelance">Freelance</option>
-
-      </select>
-
-      <label>Salaire</label>
-      <input id="jobSalary"
-             placeholder="Ex : 150 000 FCFA">
-
-      <label>Description</label>
-      <textarea id="jobDescription"
-                required
-                placeholder="Décrivez le poste..."></textarea>
-
-      <button class="btn orange"
-              type="submit">
-        📢 Publier l'offre
-      </button>
-
-    </form>
-
+    <button class="orange" onclick="publishJob()">
+      📢 Publier l'offre
+    </button>
   </div>
 
 </section>
 
 
-<!-- ================= MES OFFRES ================= -->
+<!-- MES OFFRES ENTREPRISE -->
+<section id="companyJobs" class="page">
 
-<section id="myJobs" class="page">
-
-  <button class="back nav-btn"
-          data-page="companyDashboard">
+  <button class="back" onclick="showPage('companyDashboard')">
     ← Retour
   </button>
 
-  <h1>📋 Mes offres</h1>
-
-  <div id="myJobsList"></div>
+  <div class="card">
+    <h2>📋 Mes offres</h2>
+    <div id="companyJobsList"></div>
+  </div>
 
 </section>
 
 
-<!-- ================= CANDIDATURES ENTREPRISE ================= -->
-
+<!-- CANDIDATURES ENTREPRISE -->
 <section id="companyApplications" class="page">
 
-  <button class="back nav-btn"
-          data-page="companyDashboard">
+  <button class="back" onclick="showPage('companyDashboard')">
     ← Retour
   </button>
 
-  <h1>👥 Candidatures reçues</h1>
-
-  <div id="companyApplicationsList"></div>
+  <div class="card">
+    <h2>👥 Candidatures reçues</h2>
+    <div id="companyApplicationsList"></div>
+  </div>
 
 </section>
 
 
-<!-- ================= MESSAGES ENTREPRISE ================= -->
+<!-- DETAIL OFFRE -->
+<section id="jobDetails" class="page">
 
-<section id="companyMessages" class="page">
-
-  <button class="back nav-btn"
-          data-page="companyDashboard">
+  <button class="back" onclick="showPage('jobsPage')">
     ← Retour
   </button>
 
-  <h1>💬 Messages</h1>
-
-  <div id="companyMessagesList"></div>
+  <div class="card" id="jobDetailsContent"></div>
 
 </section>
 
+<div class="space-bottom"></div>
 
-<!-- ================= NAVIGATION CANDIDAT ================= -->
+</main>
 
-<nav id="candidateNav" class="bottom-nav">
 
-  <button class="nav-btn"
-          data-page="candidateDashboard">
+<!-- NAVIGATION -->
+<nav id="bottomNav" class="hidden">
+
+  <button onclick="showPage('home')">
     🏠<br>Accueil
   </button>
 
-  <button class="nav-btn"
-          data-page="jobs">
-    💼<br>Emplois
+  <button onclick="showPage('jobsPage')">
+    🔎<br>Emplois
   </button>
 
-  <button class="nav-btn"
-          data-page="favorites">
+  <button onclick="showPage('favoritesPage')">
     ❤️<br>Favoris
   </button>
 
-  <button class="nav-btn"
-          data-page="applications">
+  <button onclick="showPage('applicationsPage')">
     📋<br>Candidatures
   </button>
 
-  <button class="nav-btn"
-          data-page="messages">
+  <button onclick="showPage('messagesPage')">
     💬<br>Messages
   </button>
 
-</nav>
-
-
-<!-- ================= NAVIGATION ENTREPRISE ================= -->
-
-<nav id="companyNav" class="bottom-nav">
-
-  <button class="nav-btn"
-          data-page="companyDashboard">
-    🏠<br>Accueil
-  </button>
-
-  <button class="nav-btn"
-          data-page="publishJob">
-    ➕<br>Publier
-  </button>
-
-  <button class="nav-btn"
-          data-page="myJobs">
-    📋<br>Mes offres
-  </button>
-
-  <button class="nav-btn"
-          data-page="companyApplications">
-    👥<br>Candidats
-  </button>
-
-  <button class="nav-btn"
-          data-page="companyMessages">
-    💬<br>Messages
+  <button onclick="showProfile()">
+    👤<br>Profil
   </button>
 
 </nav>
@@ -873,85 +650,95 @@ label{
 
 /* =====================================================
    KAYE LIGUEY
-   SYSTÈME CENTRALISÉ
+   JAVASCRIPT COMPLET
    ===================================================== */
 
-"use strict";
 
-
-/* ================= DONNÉES ================= */
-
-let users =
-  JSON.parse(localStorage.getItem("kaye_users") || "[]");
-
-let jobs =
-  JSON.parse(localStorage.getItem("kaye_jobs") || "[]");
-
-let applications =
-  JSON.parse(localStorage.getItem("kaye_applications") || "[]");
-
-let favorites =
-  JSON.parse(localStorage.getItem("kaye_favorites") || "[]");
-
-let messages =
-  JSON.parse(localStorage.getItem("kaye_messages") || "[]");
+/* ---------- DONNÉES ---------- */
 
 let currentUser =
-  JSON.parse(localStorage.getItem("kaye_currentUser") || "null");
+  JSON.parse(localStorage.getItem("kayeCurrentUser")) || null;
+
+let users =
+  JSON.parse(localStorage.getItem("kayeUsers")) || [];
+
+let jobs =
+  JSON.parse(localStorage.getItem("kayeJobs")) || [];
+
+let favorites =
+  JSON.parse(localStorage.getItem("kayeFavorites")) || [];
+
+let applications =
+  JSON.parse(localStorage.getItem("kayeApplications")) || [];
+
+let messages =
+  JSON.parse(localStorage.getItem("kayeMessages")) || [];
 
 
-/* ================= SAUVEGARDE ================= */
+/* ---------- OFFRES DE DÉPART ---------- */
+
+if(jobs.length === 0){
+
+  jobs = [
+    {
+      id: Date.now(),
+      title:"Développeur Web",
+      company:"Kaye Liguey",
+      city:"Dakar",
+      type:"Stage",
+      salary:"100 000 FCFA",
+      description:"Nous recherchons un jeune passionné par le développement web."
+    },
+    {
+      id:Date.now()+1,
+      title:"Assistant commercial",
+      company:"Fall et frère",
+      city:"Dakar",
+      type:"CDD",
+      salary:"150 000 FCFA",
+      description:"Poste d'assistant commercial pour accompagner notre équipe."
+    }
+  ];
+
+  saveData();
+}
+
+
+/* =====================================================
+   SAUVEGARDE
+   ===================================================== */
 
 function saveData(){
 
   localStorage.setItem(
-    "kaye_users",
+    "kayeCurrentUser",
+    JSON.stringify(currentUser)
+  );
+
+  localStorage.setItem(
+    "kayeUsers",
     JSON.stringify(users)
   );
 
   localStorage.setItem(
-    "kaye_jobs",
+    "kayeJobs",
     JSON.stringify(jobs)
   );
 
   localStorage.setItem(
-    "kaye_applications",
-    JSON.stringify(applications)
-  );
-
-  localStorage.setItem(
-    "kaye_favorites",
+    "kayeFavorites",
     JSON.stringify(favorites)
   );
 
   localStorage.setItem(
-    "kaye_messages",
-    JSON.stringify(messages)
+    "kayeApplications",
+    JSON.stringify(applications)
   );
 
-  if(currentUser){
-
-    localStorage.setItem(
-      "kaye_currentUser",
-      JSON.stringify(currentUser)
-    );
-
-  }else{
-
-    localStorage.removeItem("kaye_currentUser");
-
-  }
-
-}
-
-
-/* ================= ID ================= */
-
-function createId(){
-
-  return Date.now().toString() +
-         Math.random().toString(16).slice(2);
-
+  localStorage.setItem(
+    "kayeMessages",
+    JSON.stringify(messages)
+  );
 }
 
 
@@ -961,217 +748,62 @@ function createId(){
 
 function showPage(pageId){
 
+  document.querySelectorAll(".page").forEach(function(page){
+
+    page.classList.remove("active");
+
+  });
+
+
   const page =
     document.getElementById(pageId);
 
-  if(!page){
 
-    console.error(
-      "Page introuvable :",
-      pageId
-    );
+  if(page){
 
-    return;
+    page.classList.add("active");
 
-  }
-
-
-  document
-    .querySelectorAll(".page")
-    .forEach(function(page){
-
-      page.classList.remove("active");
-
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
     });
 
-
-  page.classList.add("active");
+  }
 
 
   updateNavigation();
 
-
   refreshPage(pageId);
+}
 
 
-  window.scrollTo(0,0);
+/* Ancien nom compatible */
+function go(pageId){
+
+  showPage(pageId);
 
 }
 
 
-/* ================= NAVIGATION BOUTONS ================= */
-
-document.addEventListener(
-  "click",
-  function(event){
-
-    const button =
-      event.target.closest(".nav-btn");
-
-
-    if(button){
-
-      event.preventDefault();
-
-      const page =
-        button.getAttribute("data-page");
-
-      if(page){
-
-        showPage(page);
-
-      }
-
-      return;
-
-    }
-
-
-    const logout =
-      event.target.closest(".logout-btn");
-
-
-    if(logout){
-
-      logoutUser();
-
-      return;
-
-    }
-
-
-    const favorite =
-      event.target.closest(".favorite-btn");
-
-
-    if(favorite){
-
-      toggleFavorite(
-        favorite.dataset.id
-      );
-
-      return;
-
-    }
-
-
-    const apply =
-      event.target.closest(".apply-btn");
-
-
-    if(apply){
-
-      applyToJob(
-        apply.dataset.id
-      );
-
-      return;
-
-    }
-
-
-    const deleteMessage =
-      event.target.closest(
-        ".delete-message-btn"
-      );
-
-
-    if(deleteMessage){
-
-      deleteMessageById(
-        deleteMessage.dataset.id
-      );
-
-      return;
-
-    }
-
-
-    const deleteJob =
-      event.target.closest(
-        ".delete-job-btn"
-      );
-
-
-    if(deleteJob){
-
-      deleteJobById(
-        deleteJob.dataset.id
-      );
-
-      return;
-
-    }
-
-
-    const status =
-      event.target.closest(
-        ".status-btn"
-      );
-
-
-    if(status){
-
-      changeApplicationStatus(
-        status.dataset.id,
-        status.dataset.status
-      );
-
-    }
-
-  }
-);
-
-
 /* =====================================================
-   NAVIGATION BASSE
+   NAVIGATION DU BAS
    ===================================================== */
 
 function updateNavigation(){
 
-  const candidateNav =
-    document.getElementById(
-      "candidateNav"
-    );
+  const nav =
+    document.getElementById("bottomNav");
 
-  const companyNav =
-    document.getElementById(
-      "companyNav"
-    );
+  if(!nav) return;
 
 
-  candidateNav.style.display =
-    "none";
+  if(currentUser){
 
-  companyNav.style.display =
-    "none";
+    nav.classList.remove("hidden");
 
+  }else{
 
-  if(!currentUser){
-
-    return;
-
-  }
-
-
-  if(
-    currentUser.role ===
-    "candidate"
-  ){
-
-    candidateNav.style.display =
-      "grid";
-
-  }
-
-
-  if(
-    currentUser.role ===
-    "company"
-  ){
-
-    companyNav.style.display =
-      "grid";
+    nav.classList.add("hidden");
 
   }
 
@@ -1182,47 +814,374 @@ function updateNavigation(){
    INSCRIPTION CANDIDAT
    ===================================================== */
 
-document
-  .getElementById("candidateForm")
-  .addEventListener(
-    "submit",
-    function(event){
+function createCandidate(){
 
-      event.preventDefault();
+  const first =
+    document.getElementById("candidateFirstName").value.trim();
 
+  const last =
+    document.getElementById("candidateLastName").value.trim();
 
-      const email =
-        document
-          .getElementById(
-            "candidateEmail"
-          )
-          .value
-          .trim()
-          .toLowerCase();
+  const phone =
+    document.getElementById("candidatePhone").value.trim();
 
+  const email =
+    document.getElementById("candidateEmail").value.trim();
 
-      if(
-        users.some(
-          user =>
-            user.email === email
-        )
-      ){
-
-        alert(
-          "Cet email est déjà utilisé."
-        );
-
-        return;
-
-      }
+  const password =
+    document.getElementById("candidatePassword").value;
 
 
-      const user = {
+  if(!first || !last || !phone || !email || !password){
 
-        id:createId(),
+    alert("Veuillez remplir tous les champs.");
 
-        role:"candidate",
+    return;
 
-        name:
-          document
-    
+  }
+
+
+  const exists =
+    users.find(function(user){
+
+      return user.email.toLowerCase()
+        === email.toLowerCase();
+
+    });
+
+
+  if(exists){
+
+    alert("Cet email est déjà utilisé.");
+
+    return;
+
+  }
+
+
+  const user = {
+
+    id:Date.now(),
+
+    type:"candidate",
+
+    firstName:first,
+
+    lastName:last,
+
+    phone:phone,
+
+    email:email,
+
+    password:password
+
+  };
+
+
+  users.push(user);
+
+  currentUser = user;
+
+  saveData();
+
+
+  alert("✅ Compte candidat créé avec succès !");
+
+
+  showPage("jobsPage");
+
+}
+
+
+/* =====================================================
+   INSCRIPTION ENTREPRISE
+   ===================================================== */
+
+function createCompany(){
+
+  const name =
+    document.getElementById("companyName").value.trim();
+
+  const phone =
+    document.getElementById("companyPhone").value.trim();
+
+  const email =
+    document.getElementById("companyEmail").value.trim();
+
+  const password =
+    document.getElementById("companyPassword").value;
+
+
+  if(!name || !phone || !email || !password){
+
+    alert("Veuillez remplir tous les champs.");
+
+    return;
+
+  }
+
+
+  const exists =
+    users.find(function(user){
+
+      return user.email.toLowerCase()
+        === email.toLowerCase();
+
+    });
+
+
+  if(exists){
+
+    alert("Cet email est déjà utilisé.");
+
+    return;
+
+  }
+
+
+  const user = {
+
+    id:Date.now(),
+
+    type:"company",
+
+    companyName:name,
+
+    phone:phone,
+
+    email:email,
+
+    password:password
+
+  };
+
+
+  users.push(user);
+
+  currentUser = user;
+
+  saveData();
+
+
+  alert("✅ Entreprise créée avec succès !");
+
+
+  showPage("companyDashboard");
+
+}
+
+
+/* =====================================================
+   CONNEXION
+   ===================================================== */
+
+function loginUser(){
+
+  const email =
+    document.getElementById("loginEmail").value.trim();
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+
+  if(!email || !password){
+
+    alert("Veuillez entrer votre email et votre mot de passe.");
+
+    return;
+
+  }
+
+
+  const user =
+    users.find(function(u){
+
+      return u.email.toLowerCase()
+        === email.toLowerCase()
+        && u.password === password;
+
+    });
+
+
+  if(!user){
+
+    alert("❌ Email ou mot de passe incorrect.");
+
+    return;
+
+  }
+
+
+  currentUser = user;
+
+  saveData();
+
+
+  alert("✅ Connexion réussie !");
+
+
+  if(user.type === "company"){
+
+    showPage("companyDashboard");
+
+  }else{
+
+    showPage("jobsPage");
+
+  }
+
+}
+
+
+/* =====================================================
+   DÉCONNEXION
+   ===================================================== */
+
+function logout(){
+
+  currentUser = null;
+
+  saveData();
+
+  alert("Vous êtes déconnecté.");
+
+  showPage("home");
+
+}
+
+
+/* =====================================================
+   AFFICHER LES OFFRES
+   ===================================================== */
+
+function displayJobs(){
+
+  const container =
+    document.getElementById("jobsList");
+
+  if(!container) return;
+
+
+  const search =
+    (document.getElementById("searchJob")?.value || "")
+      .toLowerCase();
+
+  const city =
+    (document.getElementById("searchCity")?.value || "")
+      .toLowerCase();
+
+  const type =
+    document.getElementById("searchType")?.value || "";
+
+
+  const filtered =
+    jobs.filter(function(job){
+
+      const matchSearch =
+        !search ||
+        job.title.toLowerCase().includes(search) ||
+        job.company.toLowerCase().includes(search);
+
+      const matchCity =
+        !city ||
+        job.city.toLowerCase().includes(city);
+
+      const matchType =
+        !type ||
+        job.type === type;
+
+      return matchSearch && matchCity && matchType;
+
+    });
+
+
+  if(filtered.length === 0){
+
+    container.innerHTML =
+      '<div class="empty">Aucune offre trouvée.</div>';
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    filtered.map(function(job){
+
+      const isFav =
+        favorites.includes(job.id);
+
+
+      return `
+
+        <div class="job">
+
+          <div class="job-title">
+            ${escapeHTML(job.title)}
+          </div>
+
+          <p>
+            🏢 ${escapeHTML(job.company)}
+          </p>
+
+          <span class="badge">
+            📍 ${escapeHTML(job.city)}
+          </span>
+
+          <span class="badge">
+            ${escapeHTML(job.type)}
+          </span>
+
+          <span class="badge">
+            💰 ${escapeHTML(job.salary)}
+          </span>
+
+          <button onclick="viewJob(${job.id})">
+            👁️ Voir l'offre
+          </button>
+
+          <button
+            class="light"
+            onclick="toggleFavorite(${job.id})">
+
+            ${isFav ? "💔 Retirer des favoris" : "❤️ Ajouter aux favoris"}
+
+          </button>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   ACCUEIL
+   ===================================================== */
+
+function displayHomeJobs(){
+
+  const container =
+    document.getElementById("homeJobs");
+
+  if(!container) return;
+
+
+  const latest =
+    jobs.slice(-3).reverse();
+
+
+  container.innerHTML =
+    latest.map(function(job){
+
+      return `
+
+        <div class="job">
+
+          <div class="job-title">
+            ${escapeHTML(job.title)}
+          </div>
+
+          <p>🏢 ${escapeHTML(job.company
