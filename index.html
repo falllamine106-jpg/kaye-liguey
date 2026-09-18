@@ -14,15 +14,12 @@
 }
 
 body{
-  background:#f4f7fb;
+  background:#f5f7fb;
   color:#172033;
 }
 
-button,input,textarea,select{
-  font:inherit;
-}
-
 button{
+  border:0;
   cursor:pointer;
 }
 
@@ -30,1169 +27,1066 @@ button{
   display:none!important;
 }
 
-/* =========================
-   SPLASH
-========================= */
+/* ================= SPLASH ================= */
 
 #splash{
   position:fixed;
   inset:0;
-  background:white;
-  z-index:9999;
+  background:linear-gradient(135deg,#0866ff,#ff8a00);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  color:white;
+  z-index:9999;
 }
 
-.logo{
-  width:115px;
-  height:115px;
-  border-radius:30px;
-  background:linear-gradient(135deg,#0875d1,#ff8a00);
+.logo-circle{
+  width:110px;
+  height:110px;
+  background:white;
+  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:55px;
-  box-shadow:0 15px 35px #0002;
+  font-size:52px;
+  margin-bottom:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
-.logoText{
-  margin-top:18px;
-  font-size:32px;
-  font-weight:bold;
-  color:#0875d1;
+#splash h1{
+  font-size:36px;
+  margin-bottom:8px;
 }
 
-.logoText span{
-  color:#ff8a00;
+#splash p{
+  opacity:.9;
 }
 
-.slogan{
-  margin-top:8px;
-  color:#777;
-  font-size:14px;
-}
-
-/* =========================
-   GENERAL
-========================= */
+/* ================= APP ================= */
 
 #app{
-  max-width:600px;
-  margin:auto;
   min-height:100vh;
-  background:#f4f7fb;
+  padding-bottom:75px;
 }
 
-.screen{
-  min-height:100vh;
-  padding:25px 18px 100px;
+.page{
+  display:none;
+  padding:20px;
+  max-width:700px;
+  margin:auto;
 }
+
+.page.active{
+  display:block;
+}
+
+.header{
+  background:linear-gradient(135deg,#0866ff,#145cff);
+  color:white;
+  padding:25px 20px;
+  border-radius:0 0 25px 25px;
+  margin:-20px -20px 20px;
+}
+
+.header h1{
+  font-size:27px;
+}
+
+.header p{
+  margin-top:7px;
+  opacity:.9;
+}
+
+/* ================= CARDS ================= */
 
 .card{
   background:white;
-  border-radius:22px;
-  padding:20px;
-  margin-bottom:16px;
-  box-shadow:0 5px 20px #0000000d;
-}
-
-h1{
-  font-size:28px;
-  margin-bottom:8px;
-}
-
-h2{
-  font-size:21px;
+  padding:18px;
+  border-radius:18px;
   margin-bottom:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,.07);
 }
 
-h3{
-  font-size:17px;
+.card h3{
   margin-bottom:8px;
 }
 
-.subtitle{
-  color:#777;
-  line-height:1.5;
+.job-card{
+  border-left:5px solid #0866ff;
 }
 
-.primary{
+.job-card .company{
+  color:#687386;
+  margin-bottom:8px;
+}
+
+.job-info{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:10px 0;
+}
+
+.badge{
+  background:#eef4ff;
+  color:#0866ff;
+  padding:6px 9px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
   width:100%;
-  border:0;
-  background:#0875d1;
-  color:white;
-  padding:15px;
-  border-radius:14px;
-  font-weight:bold;
-  margin-top:12px;
-}
-
-.primary:hover{
-  background:#0664b5;
-}
-
-.orange{
-  background:#ff8a00;
-}
-
-.secondary{
-  width:100%;
-  border:1px solid #ddd;
-  background:white;
-  padding:14px;
-  border-radius:14px;
+  padding:13px;
+  border-radius:12px;
+  font-size:15px;
   font-weight:bold;
   margin-top:10px;
 }
 
-.danger{
-  background:#ffe9e9;
-  color:#d22;
-  border:0;
-  padding:10px 14px;
-  border-radius:10px;
+.btn-primary{
+  background:#0866ff;
+  color:white;
 }
 
-/* =========================
-   WELCOME
-========================= */
-
-.welcome{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  min-height:100vh;
+.btn-orange{
+  background:#ff8a00;
+  color:white;
 }
 
-.welcomeLogo{
-  text-align:center;
-  margin-bottom:25px;
+.btn-light{
+  background:#eef4ff;
+  color:#0866ff;
 }
 
-.choice{
-  border:0;
-  width:100%;
-  padding:20px;
-  border-radius:18px;
-  margin-top:14px;
-  text-align:left;
-  display:flex;
-  align-items:center;
-  gap:15px;
+.btn-danger{
+  background:#ffe8e8;
+  color:#d60000;
 }
 
-.choice.blue{
-  background:#e7f3ff;
-  color:#0875d1;
+.btn-success{
+  background:#e7f8ed;
+  color:#16833b;
 }
 
-.choice.orangeChoice{
-  background:#fff0df;
-  color:#e47700;
+.btn-back{
+  background:none;
+  color:#0866ff;
+  font-size:16px;
+  margin-bottom:15px;
 }
 
-.choiceIcon{
-  width:55px;
-  height:55px;
-  border-radius:15px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:28px;
-  background:white;
-}
+/* ================= FORMS ================= */
 
-.choice strong{
-  display:block;
-  font-size:17px;
-  margin-bottom:5px;
-}
-
-.choice small{
-  color:#777;
-}
-
-/* =========================
-   FORMULAIRE
-========================= */
-
-.formGroup{
+.form-group{
   margin-bottom:14px;
 }
 
-.formGroup label{
+.form-group label{
   display:block;
+  margin-bottom:6px;
   font-weight:bold;
   font-size:14px;
-  margin-bottom:7px;
 }
 
-.formGroup input,
-.formGroup textarea,
-.formGroup select{
+input,textarea,select{
   width:100%;
-  border:1px solid #ddd;
   padding:13px;
-  border-radius:12px;
+  border:1px solid #dce1ea;
+  border-radius:11px;
   outline:none;
+  font-size:15px;
   background:white;
 }
 
-.formGroup textarea{
-  min-height:120px;
+textarea{
+  min-height:110px;
   resize:vertical;
 }
 
-.formGroup input:focus,
-.formGroup textarea:focus,
-.formGroup select:focus{
-  border-color:#0875d1;
+input:focus,textarea:focus,select:focus{
+  border-color:#0866ff;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* ================= ACCOUNT CHOICE ================= */
 
-.topbar{
+.choice-container{
+  min-height:100vh;
+  padding:30px 20px;
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:22px;
-}
-
-.brand{
-  font-size:22px;
-  font-weight:bold;
-  color:#0875d1;
-}
-
-.brand span{
-  color:#ff8a00;
-}
-
-.userCircle{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:#0875d1;
-  color:white;
-  display:flex;
-  align-items:center;
+  flex-direction:column;
   justify-content:center;
-  font-weight:bold;
+  max-width:600px;
+  margin:auto;
 }
 
-/* =========================
-   SEARCH
-========================= */
-
-.search{
-  display:flex;
-  gap:8px;
-  margin:15px 0;
-}
-
-.search input{
-  flex:1;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:13px;
-}
-
-.search button{
-  border:0;
-  background:#0875d1;
-  color:white;
-  padding:0 17px;
-  border-radius:13px;
-}
-
-/* =========================
-   JOB
-========================= */
-
-.job{
-  background:white;
-  border-radius:18px;
-  padding:17px;
-  margin-bottom:14px;
-  box-shadow:0 4px 15px #0000000b;
-}
-
-.jobTop{
-  display:flex;
-  gap:12px;
-}
-
-.companyLogo{
-  width:48px;
-  height:48px;
-  border-radius:13px;
-  background:#e9f3ff;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:23px;
-  flex-shrink:0;
-}
-
-.job h3{
-  margin-bottom:4px;
-}
-
-.companyName{
-  color:#777;
-  font-size:14px;
-}
-
-.jobInfo{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin:12px 0;
-}
-
-.tag{
-  background:#eef4f9;
-  color:#52606d;
-  padding:7px 9px;
-  border-radius:8px;
-  font-size:12px;
-}
-
-.job button{
-  width:100%;
-  border:0;
-  background:#0875d1;
-  color:white;
-  padding:12px;
-  border-radius:11px;
-  font-weight:bold;
-}
-
-/* =========================
-   DASHBOARD
-========================= */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin:18px 0;
-}
-
-.stat{
-  background:white;
-  padding:18px;
-  border-radius:17px;
+.choice-logo{
   text-align:center;
+  margin-bottom:35px;
 }
 
-.statNumber{
-  display:block;
-  font-size:26px;
-  font-weight:bold;
-  color:#0875d1;
+.choice-logo .icon{
+  font-size:65px;
+}
+
+.choice-logo h1{
+  color:#0866ff;
+  font-size:34px;
+  margin-top:10px;
+}
+
+.choice-logo p{
+  color:#687386;
+  margin-top:8px;
+}
+
+.choice{
+  background:white;
+  border-radius:20px;
+  padding:22px;
+  margin-bottom:15px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+  transition:.2s;
+}
+
+.choice:hover{
+  transform:translateY(-2px);
+}
+
+.choice-icon{
+  width:55px;
+  height:55px;
+  border-radius:15px;
+  background:#eef4ff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+}
+
+.choice h3{
   margin-bottom:5px;
 }
 
-.statLabel{
-  color:#777;
+.choice p{
+  color:#687386;
   font-size:13px;
 }
 
-/* =========================
-   PROFILE
-========================= */
+/* ================= SEARCH ================= */
 
-.profileHead{
-  text-align:center;
+.search-box{
+  position:relative;
+  margin-bottom:18px;
 }
 
-.profilePhoto{
-  width:95px;
-  height:95px;
+.search-box input{
+  padding-left:42px;
+}
+
+.search-icon{
+  position:absolute;
+  left:14px;
+  top:13px;
+  font-size:18px;
+}
+
+/* ================= BOTTOM NAV ================= */
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:70px;
+  background:white;
+  box-shadow:0 -3px 15px rgba(0,0,0,.1);
+  display:none;
+  justify-content:space-around;
+  align-items:center;
+  z-index:1000;
+}
+
+.bottom-nav.show{
+  display:flex;
+}
+
+.nav-btn{
+  background:none;
+  color:#8b95a7;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:11px;
+  gap:4px;
+}
+
+.nav-btn span{
+  font-size:22px;
+}
+
+.nav-btn.active{
+  color:#0866ff;
+  font-weight:bold;
+}
+
+/* ================= TOP USER ================= */
+
+.top-user{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.avatar{
+  width:55px;
+  height:55px;
   border-radius:50%;
-  background:#e7f3ff;
+  background:#eef4ff;
   display:flex;
   justify-content:center;
   align-items:center;
-  margin:0 auto 12px;
-  font-size:40px;
+  font-size:25px;
   overflow:hidden;
 }
 
-.profilePhoto img{
+.avatar img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.infoLine{
-  padding:13px 0;
-  border-bottom:1px solid #eee;
+/* ================= EMPTY ================= */
+
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:#687386;
 }
 
-.infoLine:last-child{
-  border-bottom:0;
+.empty-icon{
+  font-size:45px;
+  margin-bottom:10px;
 }
 
-.infoLabel{
-  color:#888;
-  font-size:12px;
-  margin-bottom:4px;
-}
-
-/* =========================
-   APPLICATION
-========================= */
-
-.application{
-  background:white;
-  padding:16px;
-  border-radius:17px;
-  margin-bottom:12px;
-  box-shadow:0 3px 12px #0001;
-}
+/* ================= STATUS ================= */
 
 .status{
   display:inline-block;
   padding:6px 10px;
-  border-radius:8px;
+  border-radius:20px;
   font-size:12px;
-  margin-top:8px;
-  background:#fff3d9;
-  color:#996400;
+  font-weight:bold;
+}
+
+.status.pending{
+  background:#fff4d6;
+  color:#9a6a00;
 }
 
 .status.accepted{
-  background:#e4f8e9;
-  color:#197132;
+  background:#e5f8eb;
+  color:#16833b;
 }
 
 .status.rejected{
-  background:#ffe5e5;
-  color:#a90000;
+  background:#ffe8e8;
+  color:#c60000;
 }
 
-/* =========================
-   MESSAGE
-========================= */
+/* ================= MESSAGE ================= */
 
 .message{
-  padding:14px;
-  background:white;
+  background:#eef4ff;
+  padding:13px;
   border-radius:15px;
   margin-bottom:10px;
 }
 
 .message small{
-  color:#888;
+  color:#687386;
 }
 
-/* =========================
-   BOTTOM NAV
-========================= */
-
-.bottomNav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:600px;
-  background:white;
-  border-top:1px solid #eee;
-  display:flex;
-  justify-content:space-around;
-  padding:8px 4px;
-  z-index:100;
-}
-
-.navBtn{
-  border:0;
-  background:none;
-  color:#888;
-  font-size:11px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:3px;
-}
-
-.navBtn span{
-  font-size:21px;
-}
-
-.navBtn.active{
-  color:#0875d1;
-  font-weight:bold;
-}
-
-/* =========================
-   EMPTY
-========================= */
-
-.empty{
-  text-align:center;
-  padding:35px 15px;
-  color:#888;
-}
-
-.emptyIcon{
-  font-size:45px;
-  margin-bottom:10px;
-}
-
-/* =========================
-   MODAL
-========================= */
+/* ================= MODAL ================= */
 
 .modal{
   position:fixed;
   inset:0;
-  background:#0008;
-  z-index:500;
-  display:flex;
-  justify-content:center;
+  background:rgba(0,0,0,.55);
+  display:none;
   align-items:flex-end;
+  justify-content:center;
+  z-index:2000;
 }
 
-.modalContent{
+.modal.show{
+  display:flex;
+}
+
+.modal-content{
+  background:white;
   width:100%;
-  max-width:600px;
+  max-width:700px;
   max-height:90vh;
   overflow:auto;
-  background:white;
   border-radius:25px 25px 0 0;
   padding:22px;
 }
 
 .close{
   float:right;
-  border:0;
-  background:#eee;
-  border-radius:50%;
+  background:#f1f3f7;
   width:35px;
   height:35px;
+  border-radius:50%;
+  font-size:20px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(min-width:700px){
+  .page{
+    padding-top:30px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     SPLASH
-========================= -->
+<!-- ================= SPLASH ================= -->
 
 <div id="splash">
-
-  <div class="logo">🤝</div>
-
-  <div class="logoText">
-    Kaye <span>Liguey</span>
-  </div>
-
-  <div class="slogan">
-    Trouvez un emploi. Trouvez les bons talents.
-  </div>
-
+  <div class="logo-circle">🤝</div>
+  <h1>Kaye Liguey</h1>
+  <p>Trouvez votre opportunité</p>
 </div>
 
 
-<div id="app">
+<!-- ================= CHOIX COMPTE ================= -->
 
-<!-- =========================
-     ACCUEIL / CHOIX COMPTE
-========================= -->
+<div id="accountChoice" class="hidden">
 
-<section id="welcomeScreen" class="screen welcome">
+  <div class="choice-container">
 
-  <div class="welcomeLogo">
-
-    <div class="logo" style="margin:auto;">
-      🤝
+    <div class="choice-logo">
+      <div class="icon">🤝</div>
+      <h1>Kaye Liguey</h1>
+      <p>La plateforme pour connecter talents et entreprises.</p>
     </div>
 
-    <h1 style="margin-top:18px;">
-      Kaye <span style="color:#ff8a00;">Liguey</span>
-    </h1>
-
-    <p class="subtitle">
-      Une plateforme sénégalaise pour connecter
-      les chercheurs d'emploi et les entreprises.
-    </p>
-
-  </div>
-
-  <div class="card">
-
-    <h2>
-      Comment souhaitez-vous utiliser Kaye Liguey ?
-    </h2>
-
-    <button class="choice blue"
-      onclick="showRegister('emploi')">
-
-      <div class="choiceIcon">🔎</div>
-
+    <div class="choice" onclick="showRegister('candidate')">
+      <div class="choice-icon">🔎</div>
       <div>
-        <strong>Je cherche un emploi</strong>
-        <small>
-          Trouver des offres et postuler facilement
-        </small>
+        <h3>Je cherche un emploi</h3>
+        <p>Créez votre profil et trouvez des opportunités.</p>
       </div>
+    </div>
 
-    </button>
-
-    <button class="choice orangeChoice"
-      onclick="showRegister('entreprise')">
-
-      <div class="choiceIcon">🏢</div>
-
+    <div class="choice" onclick="showRegister('company')">
+      <div class="choice-icon">🏢</div>
       <div>
-        <strong>Je suis une entreprise</strong>
-        <small>
-          Publier des offres et trouver des candidats
-        </small>
+        <h3>Je suis une entreprise</h3>
+        <p>Publiez vos offres et trouvez des candidats.</p>
       </div>
+    </div>
 
-    </button>
-
-    <button class="secondary" onclick="showLogin()">
+    <button class="btn btn-light" onclick="showLogin()">
       🔐 J'ai déjà un compte
     </button>
 
   </div>
 
-</section>
+</div>
 
 
-<!-- =========================
-     INSCRIPTION
-========================= -->
+<!-- ================= APPLICATION ================= -->
 
-<section id="registerScreen" class="screen hidden">
+<div id="app" class="hidden">
 
-  <button class="secondary" onclick="showWelcome()">
-    ← Retour
-  </button>
 
-  <div class="card" style="margin-top:15px;">
+<!-- ================= CANDIDATE HOME ================= -->
 
-    <h1 id="registerTitle">
-      Créer un compte
-    </h1>
+<section id="candidateHome" class="page">
 
-    <p class="subtitle" id="registerSubtitle"></p>
-
-    <!-- FORMULAIRE EMPLOI -->
-
-    <div id="jobSeekerForm">
-
-      <div class="formGroup">
-        <label>Prénom</label>
-        <input id="rFirstName" type="text" placeholder="Votre prénom">
-      </div>
-
-      <div class="formGroup">
-        <label>Nom</label>
-        <input id="rLastName" type="text" placeholder="Votre nom">
-      </div>
-
-      <div class="formGroup">
-        <label>Numéro de téléphone</label>
-        <input id="rPhone" type="tel" placeholder="+221 ...">
-      </div>
-
-      <div class="formGroup">
-        <label>Adresse mail ou iCloud</label>
-        <input id="rEmail" type="email" placeholder="exemple@email.com">
-      </div>
-
-      <div class="formGroup">
-        <label>Adresse de résidence</label>
-        <input id="rAddress" type="text" placeholder="Votre adresse">
-      </div>
-
-      <div class="formGroup">
-        <label>Date de naissance</label>
-        <input id="rBirth" type="date">
-      </div>
-
-      <div class="formGroup">
-        <label>Photo</label>
-        <input id="rPhoto" type="file" accept="image/*">
-      </div>
-
-      <div class="formGroup">
-        <label>CV</label>
-        <input id="rCv" type="file" accept=".pdf,.doc,.docx">
-      </div>
-
-      <div class="formGroup">
-        <label>Compétences</label>
-        <textarea id="rSkills"
-          placeholder="Exemple : informatique, marketing, communication..."></textarea>
-      </div>
-
-      <div class="formGroup">
-        <label>Niveau d'études</label>
-
-        <select id="rEducation">
-
-          <option value="">
-            Sélectionner
-          </option>
-
-          <option>
-            BFEM
-          </option>
-
-          <option>
-            BAC
-          </option>
-
-          <option>
-            Licence
-          </option>
-
-          <option>
-            Master
-          </option>
-
-          <option>
-            Autre
-          </option>
-
-        </select>
-
-      </div>
-
-    </div>
-
-
-    <!-- FORMULAIRE ENTREPRISE -->
-
-    <div id="companyForm" class="hidden">
-
-      <div class="formGroup">
-        <label>Nom de l'entreprise</label>
-        <input id="cName" type="text"
-          placeholder="Nom de votre entreprise">
-      </div>
-
-      <div class="formGroup">
-        <label>Secteur d'activité</label>
-        <input id="cSector" type="text"
-          placeholder="Exemple : Informatique">
-      </div>
-
-      <div class="formGroup">
-        <label>Téléphone</label>
-        <input id="cPhone" type="tel"
-          placeholder="+221 ...">
-      </div>
-
-      <div class="formGroup">
-        <label>Email professionnel</label>
-        <input id="cEmail" type="email"
-          placeholder="entreprise@email.com">
-      </div>
-
-      <div class="formGroup">
-        <label>Adresse</label>
-        <input id="cAddress" type="text"
-          placeholder="Adresse de l'entreprise">
-      </div>
-
-      <div class="formGroup">
-        <label>Ville</label>
-        <input id="cCity" type="text"
-          placeholder="Dakar, Thiès...">
-      </div>
-
-      <div class="formGroup">
-        <label>Registre de commerce</label>
-        <input id="cRegister" type="text"
-          placeholder="Optionnel">
-      </div>
-
-      <div class="formGroup">
-        <label>Logo de l'entreprise</label>
-        <input id="cLogo" type="file" accept="image/*">
-      </div>
-
-      <div class="formGroup">
-        <label>Description</label>
-        <textarea id="cDescription"
-          placeholder="Présentez votre entreprise"></textarea>
-      </div>
-
-      <div class="formGroup">
-        <label>Site web</label>
-        <input id="cWebsite" type="url"
-          placeholder="https://...">
-      </div>
-
-    </div>
-
-
-    <button class="primary" onclick="createAccount()">
-      ✅ Créer mon compte
-    </button>
-
-    <button class="secondary" onclick="showLogin()">
-      J'ai déjà un compte
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     CONNEXION
-========================= -->
-
-<section id="loginScreen" class="screen hidden">
-
-  <button class="secondary" onclick="showWelcome()">
-    ← Retour
-  </button>
-
-  <div class="card" style="margin-top:15px;">
-
-    <h1>Connexion</h1>
-
-    <p class="subtitle">
-      Connectez-vous à votre espace Kaye Liguey.
-    </p>
-
-    <div class="formGroup" style="margin-top:20px;">
-      <label>Email ou téléphone</label>
-      <input id="loginContact" type="text"
-        placeholder="Email ou téléphone">
-    </div>
-
-    <button class="primary" onclick="login()">
-      🔐 Se connecter
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     ESPACE UTILISATEUR
-========================= -->
-
-<section id="mainScreen" class="screen hidden">
-
-  <div class="topbar">
-
-    <div class="brand">
-      Kaye <span>Liguey</span>
-    </div>
-
-    <div class="userCircle" id="userCircle">
-      U
-    </div>
-
-  </div>
-
-
-  <!-- ======================
-       CANDIDAT ACCUEIL
-  ======================= -->
-
-  <div id="candidateHome">
-
+  <div class="header">
     <h1>Bonjour 👋</h1>
-
-    <p class="subtitle">
-      Trouvez votre prochaine opportunité.
-    </p>
-
-    <div class="stats">
-
-      <div class="stat">
-        <span class="statNumber" id="statJobs">0</span>
-        <span class="statLabel">Offres</span>
-      </div>
-
-      <div class="stat">
-        <span class="statNumber" id="statApplications">0</span>
-        <span class="statLabel">Candidatures</span>
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <h2>
-        🚀 Commencez votre recherche
-      </h2>
-
-      <p class="subtitle">
-        Consultez les offres et postulez en un clic
-        avec votre CV.
-      </p>
-
-      <button class="primary"
-        onclick="openPage('jobs')">
-        💼 Voir les offres
-      </button>
-
-    </div>
-
+    <p>Bienvenue sur Kaye Liguey</p>
   </div>
 
+  <div id="candidateWelcome"></div>
 
-  <!-- ======================
-       ENTREPRISE ACCUEIL
-  ======================= -->
-
-  <div id="companyHome" class="hidden">
-
-    <h1>Bonjour 👋</h1>
-
-    <p class="subtitle">
-      Gérez vos recrutements facilement.
+  <div class="card">
+    <h3>🔎 Trouver un emploi</h3>
+    <p style="color:#687386;margin-top:5px;">
+      Découvrez les dernières offres disponibles.
     </p>
 
-    <div class="stats">
-
-      <div class="stat">
-        <span class="statNumber" id="statMyJobs">0</span>
-        <span class="statLabel">Mes offres</span>
-      </div>
-
-      <div class="stat">
-        <span class="statNumber" id="statReceived">0</span>
-        <span class="statLabel">Candidatures</span>
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <h2>📢 Recruter</h2>
-
-      <p class="subtitle">
-        Publiez une nouvelle offre d'emploi.
-      </p>
-
-      <button class="primary orange"
-        onclick="openPage('publish')">
-        ➕ Publier une offre
-      </button>
-
-    </div>
-
+    <button class="btn btn-primary" onclick="showPage('jobs')">
+      Voir les offres
+    </button>
   </div>
 
+  <div class="card">
+    <h3>📄 Mes candidatures</h3>
+    <p id="applicationCount" style="margin-top:7px;color:#687386;"></p>
 
-  <!-- ======================
-       JOBS
-  ======================= -->
+    <button class="btn btn-light" onclick="showPage('applications')">
+      Voir mes candidatures
+    </button>
+  </div>
 
-  <div id="jobsPage" class="hidden">
+</section>
 
+
+<!-- ================= JOBS ================= -->
+
+<section id="jobs" class="page">
+
+  <div class="header">
     <h1>💼 Offres d'emploi</h1>
-
-    <div class="search">
-
-      <input id="searchInput"
-        placeholder="Rechercher un emploi..."
-        oninput="renderJobs()">
-
-      <button>🔎</button>
-
-    </div>
-
-    <div id="jobsList"></div>
-
+    <p>Trouvez l'opportunité qui vous correspond.</p>
   </div>
 
-
-  <!-- ======================
-       MES CANDIDATURES
-  ======================= -->
-
-  <div id="applicationsPage" class="hidden">
-
-    <h1>📄 Mes candidatures</h1>
-
-    <div id="applicationsList"></div>
-
+  <div class="search-box">
+    <span class="search-icon">🔎</span>
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Rechercher un métier, une ville..."
+      oninput="searchJobs()"
+    >
   </div>
 
-
-  <!-- ======================
-       PUBLIER
-  ====================== -->
-
-  <div id="publishPage" class="hidden">
-
-    <h1>📢 Publier une offre</h1>
-
-    <div class="card">
-
-      <div class="formGroup">
-        <label>Titre du poste</label>
-        <input id="jobTitle"
-          placeholder="Exemple : Développeur Web">
-      </div>
-
-      <div class="formGroup">
-        <label>Lieu</label>
-        <input id="jobLocation"
-          placeholder="Exemple : Dakar">
-      </div>
-
-      <div class="formGroup">
-        <label>Type de contrat</label>
-
-        <select id="jobType">
-
-          <option>CDI</option>
-          <option>CDD</option>
-          <option>Stage</option>
-          <option>Freelance</option>
-          <option>Temps partiel</option>
-
-        </select>
-
-      </div>
-
-      <div class="formGroup">
-        <label>Salaire</label>
-        <input id="jobSalary"
-          placeholder="Exemple : 150 000 FCFA">
-      </div>
-
-      <div class="formGroup">
-        <label>Description</label>
-
-        <textarea id="jobDescription"
-          placeholder="Décrivez le poste, les missions et les compétences recherchées"></textarea>
-
-      </div>
-
-      <button class="primary orange"
-        onclick="publishJob()">
-        📤 Publier l'offre
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- ======================
-       MES OFFRES
-  ======================= -->
-
-  <div id="myJobsPage" class="hidden">
-
-    <h1>📋 Mes offres</h1>
-
-    <div id="myJobsList"></div>
-
-  </div>
-
-
-  <!-- ======================
-       CANDIDATURES REÇUES
-  ======================= -->
-
-  <div id="receivedPage" class="hidden">
-
-    <h1>👥 Candidatures reçues</h1>
-
-    <div id="receivedList"></div>
-
-  </div>
-
-
-  <!-- ======================
-       MESSAGES
-  ======================= -->
-
-  <div id="messagesPage" class="hidden">
-
-    <h1>💬 Messages</h1>
-
-    <div id="messagesList"></div>
-
-  </div>
-
-
-  <!-- ======================
-       PROFIL
-  ======================= -->
-
-  <div id="profilePage" class="hidden">
-
-    <div class="card profileHead">
-
-      <div class="profilePhoto" id="profilePhoto">
-        👤
-      </div>
-
-      <h2 id="profileName">
-        Mon profil
-      </h2>
-
-      <p class="subtitle" id="profileType"></p>
-
-    </div>
-
-    <div class="card" id="profileDetails"></div>
-
-    <button class="primary"
-      onclick="editProfile()">
-      ✏️ Modifier mon profil
-    </button>
-
-    <button class="secondary"
-      onclick="logout()">
-      🚪 Se déconnecter
-    </button>
-
-  </div>
-
+  <div id="jobsList"></div>
 
 </section>
 
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- ================= APPLICATIONS ================= -->
 
-<div id="bottomNav" class="bottomNav hidden">
+<section id="applications" class="page">
 
-  <button class="navBtn active"
-    id="nav-home"
-    onclick="openPage('home')">
+  <div class="header">
+    <h1>📄 Mes candidatures</h1>
+    <p>Suivez l'évolution de vos candidatures.</p>
+  </div>
+
+  <div id="applicationsList"></div>
+
+</section>
+
+
+<!-- ================= CANDIDATE PROFILE ================= -->
+
+<section id="profile" class="page">
+
+  <div class="header">
+    <h1>👤 Mon profil</h1>
+    <p>Gérez vos informations personnelles.</p>
+  </div>
+
+  <div id="profileContent"></div>
+
+</section>
+
+
+<!-- ================= COMPANY HOME ================= -->
+
+<section id="companyHome" class="page">
+
+  <div class="header">
+    <h1>🏢 Espace entreprise</h1>
+    <p>Gérez vos offres et vos candidatures.</p>
+  </div>
+
+  <div id="companyWelcome"></div>
+
+  <div class="card">
+    <h3>📢 Publier une offre</h3>
+    <p style="color:#687386;margin-top:5px;">
+      Publiez une nouvelle opportunité.
+    </p>
+
+    <button class="btn btn-primary" onclick="showPage('publish')">
+      Publier une offre
+    </button>
+  </div>
+
+  <div class="card">
+    <h3>👥 Candidatures reçues</h3>
+    <p id="receivedCount" style="margin-top:7px;color:#687386;"></p>
+
+    <button class="btn btn-light" onclick="showPage('received')">
+      Voir les candidatures
+    </button>
+  </div>
+
+</section>
+
+
+<!-- ================= PUBLISH ================= -->
+
+<section id="publish" class="page">
+
+  <div class="header">
+    <h1>📢 Publier une offre</h1>
+    <p>Trouvez rapidement votre prochain talent.</p>
+  </div>
+
+  <div class="card">
+
+    <div class="form-group">
+      <label>Titre du poste</label>
+      <input id="jobTitle" placeholder="Ex : Développeur Web">
+    </div>
+
+    <div class="form-group">
+      <label>Lieu</label>
+      <input id="jobLocation" placeholder="Ex : Dakar">
+    </div>
+
+    <div class="form-group">
+      <label>Type de contrat</label>
+      <select id="jobType">
+        <option>CDI</option>
+        <option>CDD</option>
+        <option>Stage</option>
+        <option>Freelance</option>
+        <option>Temps partiel</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Salaire</label>
+      <input id="jobSalary" placeholder="Ex : 150 000 FCFA">
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea id="jobDescription"
+        placeholder="Décrivez le poste, les missions et les compétences recherchées..."></textarea>
+    </div>
+
+    <button class="btn btn-primary" onclick="publishJob()">
+      📤 Publier l'offre
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= COMPANY JOBS ================= -->
+
+<section id="companyJobs" class="page">
+
+  <div class="header">
+    <h1>📋 Mes offres</h1>
+    <p>Gérez les offres publiées par votre entreprise.</p>
+  </div>
+
+  <div id="companyJobsList"></div>
+
+</section>
+
+
+<!-- ================= RECEIVED ================= -->
+
+<section id="received" class="page">
+
+  <div class="header">
+    <h1>👥 Candidatures reçues</h1>
+    <p>Découvrez les personnes ayant postulé.</p>
+  </div>
+
+  <div id="receivedList"></div>
+
+</section>
+
+
+<!-- ================= COMPANY PROFILE ================= -->
+
+<section id="companyProfile" class="page">
+
+  <div class="header">
+    <h1>🏢 Mon entreprise</h1>
+    <p>Gérez les informations de votre entreprise.</p>
+  </div>
+
+  <div id="companyProfileContent"></div>
+
+</section>
+
+
+<!-- ================= MESSAGES ================= -->
+
+<section id="messages" class="page">
+
+  <div class="header">
+    <h1>💬 Messages</h1>
+    <p>Communiquez avec les autres utilisateurs.</p>
+  </div>
+
+  <div id="messagesList"></div>
+
+  <div class="card">
+
+    <div class="form-group">
+      <label>Destinataire</label>
+      <input id="messageReceiver" placeholder="Nom ou entreprise">
+    </div>
+
+    <div class="form-group">
+      <label>Message</label>
+      <textarea id="messageText"
+        placeholder="Écrivez votre message..."></textarea>
+    </div>
+
+    <button class="btn btn-primary" onclick="sendMessage()">
+      📤 Envoyer
+    </button>
+
+  </div>
+
+</section>
+
+
+</div>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav id="bottomNav" class="bottom-nav">
+
+  <button id="navHome" class="nav-btn" onclick="goHome()">
     <span>🏠</span>
     Accueil
   </button>
 
-  <button class="navBtn"
-    id="nav-jobs"
-    onclick="openPage('jobs')">
+  <button id="navJobs" class="nav-btn" onclick="showPage('jobs')">
     <span>💼</span>
     Offres
   </button>
 
-  <button class="navBtn"
-    id="nav-applications"
-    onclick="openPage('applications')">
+  <button id="navPublish" class="nav-btn" onclick="showPage('publish')">
+    <span>➕</span>
+    Publier
+  </button>
+
+  <button id="navApplications" class="nav-btn" onclick="candidateApplications()">
     <span>📄</span>
     Candidatures
-  </butto
+  </button>
+
+  <button id="navMessages" class="nav-btn" onclick="showPage('messages')">
+    <span>💬</span>
+    Messages
+  </button>
+
+  <button id="navProfile" class="nav-btn" onclick="openProfile()">
+    <span>👤</span>
+    Profil
+  </button>
+
+</nav>
+
+
+<!-- ================= MODAL DETAILS ================= -->
+
+<div id="jobModal" class="modal">
+
+  <div class="modal-content">
+
+    <button class="close" onclick="closeModal()">×</button>
+
+    <div id="jobDetails"></div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   KAYE LIGUEY
+   JAVASCRIPT COMPLET
+===================================================== */
+
+
+/* ================= DONNÉES ================= */
+
+let currentUser = JSON.parse(localStorage.getItem("kayeCurrentUser")) || null;
+
+let jobs = JSON.parse(localStorage.getItem("kayeJobs")) || [];
+
+let applications =
+  JSON.parse(localStorage.getItem("kayeApplications")) || [];
+
+let messages =
+  JSON.parse(localStorage.getItem("kayeMessages")) || [];
+
+
+/* ================= OFFRES DE DÉMONSTRATION ================= */
+
+if(jobs.length === 0){
+
+  jobs = [
+
+    {
+      id:1,
+      company:"Fall et Frère",
+      title:"Développeur Web",
+      location:"Dakar",
+      type:"Stage",
+      salary:"100 000 FCFA",
+      description:
+      "Nous recherchons un jeune développeur web motivé pour rejoindre notre équipe."
+    },
+
+    {
+      id:2,
+      company:"Kaye Business",
+      title:"Assistant Marketing Digital",
+      location:"Thiès",
+      type:"CDD",
+      salary:"150 000 FCFA",
+      description:
+      "Participation à la communication digitale, création de contenu et gestion des réseaux sociaux."
+    },
+
+    {
+      id:3,
+      company:"Sénégal Services",
+      title:"Assistant administratif",
+      location:"Dakar",
+      type:"CDI",
+      salary:"200 000 FCFA",
+      description:
+      "Gestion des dossiers, accueil des clients et soutien administratif."
+    }
+
+  ];
+
+  saveData();
+}
+
+
+/* ================= SPLASH ================= */
+
+setTimeout(function(){
+
+  document.getElementById("splash").classList.add("hidden");
+
+  if(currentUser){
+
+    openApplication();
+
+  }else{
+
+    document.getElementById("accountChoice")
+      .classList.remove("hidden");
+
+  }
+
+},1800);
+
+
+/* ================= SAUVEGARDE ================= */
+
+function saveData(){
+
+  localStorage.setItem(
+    "kayeJobs",
+    JSON.stringify(jobs)
+  );
+
+  localStorage.setItem(
+    "kayeApplications",
+    JSON.stringify(applications)
+  );
+
+  localStorage.setItem(
+    "kayeMessages",
+    JSON.stringify(messages)
+  );
+
+  if(currentUser){
+
+    localStorage.setItem(
+      "kayeCurrentUser",
+      JSON.stringify(currentUser)
+    );
+
+  }
+
+}
+
+
+/* ================= INSCRIPTION ================= */
+
+function showRegister(type){
+
+  document.getElementById("accountChoice")
+    .classList.add("hidden");
+
+  document.getElementById("app")
+    .classList.remove("hidden");
+
+  let html="";
+
+  if(type==="candidate"){
+
+    html=`
+
+      <section class="page active">
+
+        <button class="btn-back" onclick="backToChoice()">
+          ← Retour
+        </button>
+
+        <div class="header">
+          <h1>🔎 Créer mon profil</h1>
+          <p>Je cherche un emploi</p>
+        </div>
+
+        <div class="card">
+
+          <div class="form-group">
+            <label>Prénom</label>
+            <input id="regFirstName">
+          </div>
+
+          <div class="form-group">
+            <label>Nom</label>
+            <input id="regLastName">
+          </div>
+
+          <div class="form-group">
+            <label>Numéro de téléphone</label>
+            <input id="regPhone" type="tel">
+          </div>
+
+          <div class="form-group">
+            <label>Adresse mail ou iCloud</label>
+            <input id="regEmail" type="email">
+          </div>
+
+          <div class="form-group">
+            <label>Adresse de résidence</label>
+            <input id="regAddress">
+          </div>
+
+          <div class="form-group">
+            <label>Date de naissance</label>
+            <input id="regBirth" type="date">
+          </div>
+
+          <div class="form-group">
+            <label>CV</label>
+            <input id="regCV" type="file">
+          </div>
+
+          <div class="form-group">
+            <label>Photo</label>
+            <input id="regPhoto" type="file" accept="image/*">
+          </div>
+
+          <div class="form-group">
+            <label>Compétences</label>
+            <input id="regSkills"
+              placeholder="Ex : HTML, marketing, comptabilité">
+          </div>
+
+          <div class="form-group">
+            <label>Niveau d'études</label>
+            <input id="regEducation"
+              placeholder="Ex : BAC">
+          </div>
+
+          <div class="form-group">
+            <label>Mot de passe</label>
+            <input id="regPassword" type="password">
+          </div>
+
+          <button class="btn btn-primary"
+            onclick="registerCandidate()">
+            Créer mon compte
+          </button>
+
+        </div>
+
+      </section>
+    `;
+
+  }else{
+
+    html=`
+
+      <section class="page active">
+
+        <button class="btn-back" onclick="backToChoice()">
+          ← Retour
+        </button>
+
+        <div class="header">
+          <h1>🏢 Créer mon entreprise</h1>
+          <p>Je suis une entreprise</p>
+        </div>
+
+        <div class="card">
+
+          <div class="form-group">
+            <label>Nom de l'entreprise</label>
+            <input id="companyName">
+          </div>
+
+          <div class="form-group">
+            <label>Secteur d'activité</label>
+            <input id="companySector">
+          </div>
+
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input id="companyPhone" type="tel">
+          </div>
+
+          <div class="form-group">
+            <label>Email professionnel</label>
+            <input id="companyEmail" type="email">
+          </div>
+
+          <div class="form-group">
+            <label>Adresse</label>
+            <input id="companyAddress">
+          </div>
+
+          <div class="form-group">
+            <label>Ville</label>
+            <input id="companyCity">
+          </div>
+
+          <div class="form-group">
+            <label>Registre de commerce</label>
+            <input id="companyRegister">
+          </div>
+
+          <div class="form-group">
+            <label>Logo de l'entreprise</label>
+            <input id="companyLogo" type="file">
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="companyDescription"></textarea>
+          </div>
+
+          <div c
