@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Kaye Liguey</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -21,6 +23,13 @@ body{
 button{
   border:0;
   cursor:pointer;
+  font-family:inherit;
+}
+
+input,
+textarea,
+select{
+  font-family:inherit;
 }
 
 .screen{
@@ -33,13 +42,12 @@ button{
 }
 
 /* =========================
-   ANIMATION DE DÉMARRAGE
+   SPLASH SCREEN
 ========================= */
 
 #splashScreen{
   position:fixed;
-  top:0;
-  left:0;
+  inset:0;
   width:100%;
   height:100%;
   background:#fff;
@@ -48,23 +56,25 @@ button{
   align-items:center;
   justify-content:center;
   text-align:center;
-  transition:opacity .7s ease;
+  opacity:1;
+  transition:opacity .7s ease, visibility .7s ease;
 }
 
 #splashScreen.hide{
   opacity:0;
+  visibility:hidden;
 }
 
 .splash-content{
-  animation:apparition 1.2s ease;
+  animation:splashAppear 1s ease;
 }
 
 .splash-logo{
-  width:120px;
-  height:120px;
+  width:125px;
+  height:125px;
   object-fit:contain;
   border-radius:25px;
-  animation:logo 1.4s ease-in-out infinite alternate;
+  animation:logoMove 1.5s ease-in-out infinite alternate;
 }
 
 .splash-title{
@@ -72,27 +82,28 @@ button{
   font-size:32px;
   font-weight:bold;
   color:#0866d6;
-  animation:title 1.5s ease;
+  animation:titleAppear 1.2s ease;
 }
 
 .splash-text{
   margin-top:8px;
   color:#777;
+  font-size:14px;
 }
 
 .loader{
-  margin-top:20px;
+  margin-top:22px;
   display:flex;
   justify-content:center;
-  gap:6px;
+  gap:7px;
 }
 
 .loader span{
-  width:8px;
-  height:8px;
+  width:9px;
+  height:9px;
   border-radius:50%;
   background:#0866d6;
-  animation:points 1s infinite;
+  animation:loader 1s infinite;
 }
 
 .loader span:nth-child(2){
@@ -103,42 +114,46 @@ button{
   animation-delay:.4s;
 }
 
-@keyframes apparition{
+@keyframes splashAppear{
   from{
     opacity:0;
-    transform:scale(.8);
+    transform:scale(.75);
   }
+
   to{
     opacity:1;
     transform:scale(1);
   }
 }
 
-@keyframes logo{
+@keyframes logoMove{
   from{
-    transform:translateY(8px) scale(.9);
+    transform:translateY(8px) scale(.92);
   }
+
   to{
     transform:translateY(0) scale(1);
   }
 }
 
-@keyframes title{
+@keyframes titleAppear{
   from{
     opacity:0;
     transform:translateY(15px);
   }
+
   to{
     opacity:1;
     transform:translateY(0);
   }
 }
 
-@keyframes points{
+@keyframes loader{
   0%,100%{
     transform:scale(.5);
     opacity:.4;
   }
+
   50%{
     transform:scale(1);
     opacity:1;
@@ -146,7 +161,89 @@ button{
 }
 
 /* =========================
-   CHOIX DU COMPTE
+   GENERAL
+========================= */
+
+.container{
+  width:92%;
+  max-width:850px;
+  margin:auto;
+}
+
+.form-page{
+  padding:30px 0 60px;
+}
+
+.card{
+  background:#fff;
+  padding:20px;
+  border-radius:18px;
+  margin-bottom:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+h2{
+  margin-bottom:8px;
+}
+
+p{
+  line-height:1.5;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-top:13px;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  margin-top:7px;
+  margin-bottom:8px;
+  font-size:15px;
+  background:#fff;
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.primary{
+  width:100%;
+  padding:14px;
+  background:#0866d6;
+  color:white;
+  border-radius:11px;
+  font-weight:bold;
+  font-size:15px;
+  margin-top:12px;
+}
+
+.secondary{
+  width:100%;
+  padding:14px;
+  background:#eaf2ff;
+  color:#0866d6;
+  border-radius:11px;
+  font-weight:bold;
+  font-size:15px;
+}
+
+.back{
+  background:none;
+  color:#0866d6;
+  font-size:16px;
+  margin-bottom:20px;
+}
+
+/* =========================
+   ACCOUNT CHOICE
 ========================= */
 
 .account{
@@ -164,8 +261,8 @@ button{
 }
 
 .logo{
-  width:100px;
-  height:100px;
+  width:105px;
+  height:105px;
   object-fit:contain;
   margin-bottom:15px;
 }
@@ -196,6 +293,10 @@ button{
   transform:translateY(-3px);
 }
 
+.choice:active{
+  transform:scale(.98);
+}
+
 .choice strong{
   display:block;
   font-size:18px;
@@ -206,79 +307,8 @@ button{
   color:#777;
 }
 
-.container{
-  width:92%;
-  max-width:800px;
-  margin:auto;
-}
-
-.form-page{
-  padding:30px 0 50px;
-}
-
-.back{
-  background:none;
-  color:#0866d6;
-  font-size:16px;
-  margin-bottom:20px;
-}
-
-.card{
-  background:#fff;
-  padding:20px;
-  border-radius:18px;
-  margin-bottom:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,.06);
-}
-
-h2{
-  margin-bottom:8px;
-}
-
-label{
-  display:block;
-  font-weight:bold;
-  margin-top:12px;
-}
-
-input,
-textarea,
-select{
-  width:100%;
-  padding:13px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  margin-top:7px;
-  margin-bottom:8px;
-  font-size:15px;
-}
-
-textarea{
-  min-height:110px;
-}
-
-.primary{
-  width:100%;
-  padding:14px;
-  background:#0866d6;
-  color:#fff;
-  border-radius:11px;
-  font-weight:bold;
-  font-size:15px;
-  margin-top:10px;
-}
-
-.secondary{
-  width:100%;
-  padding:14px;
-  background:#eaf2ff;
-  color:#0866d6;
-  border-radius:11px;
-  font-weight:bold;
-}
-
 /* =========================
-   BARRE
+   TOP BAR
 ========================= */
 
 .topbar{
@@ -310,6 +340,10 @@ textarea{
   padding:9px 12px;
   border-radius:8px;
 }
+
+/* =========================
+   DASHBOARD
+========================= */
 
 .dashboard{
   padding:25px 0 100px;
@@ -345,8 +379,16 @@ textarea{
 }
 
 /* =========================
-   OFFRES
+   JOB
 ========================= */
+
+.job-card{
+  background:#fff;
+  padding:18px;
+  border-radius:16px;
+  margin-bottom:14px;
+  box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
 
 .job-title{
   font-size:19px;
@@ -355,7 +397,13 @@ textarea{
 
 .job-company{
   color:#0866d6;
-  margin-top:8px;
+  margin-top:7px;
+}
+
+.job-description{
+  color:#555;
+  margin-top:10px;
+  line-height:1.5;
 }
 
 .tags{
@@ -383,6 +431,22 @@ textarea{
   flex:1;
 }
 
+.small-btn{
+  padding:11px;
+  border-radius:10px;
+  background:#eaf2ff;
+  color:#0866d6;
+  font-weight:bold;
+}
+
+.apply-btn{
+  padding:11px;
+  border-radius:10px;
+  background:#0866d6;
+  color:#fff;
+  font-weight:bold;
+}
+
 .status{
   display:inline-block;
   padding:7px 10px;
@@ -390,6 +454,16 @@ textarea{
   font-size:12px;
   background:#fff3d4;
   color:#966400;
+}
+
+.status.accepted{
+  background:#e5f8ec;
+  color:#16833b;
+}
+
+.status.rejected{
+  background:#ffe8e8;
+  color:#c62828;
 }
 
 /* =========================
@@ -446,7 +520,7 @@ textarea{
 }
 
 .modal-box{
-  background:white;
+  background:#fff;
   width:100%;
   max-width:600px;
   max-height:90vh;
@@ -464,7 +538,36 @@ textarea{
   font-size:20px;
 }
 
+/* =========================
+   MESSAGE
+========================= */
+
+.message-card{
+  background:#fff;
+  padding:15px;
+  border-radius:14px;
+  margin-bottom:10px;
+  box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
+
+.message-card strong{
+  color:#0866d6;
+}
+
+.empty{
+  background:#fff;
+  padding:25px;
+  text-align:center;
+  border-radius:15px;
+  color:#777;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media(max-width:600px){
+
   .job-buttons{
     flex-direction:column;
   }
@@ -477,15 +580,17 @@ textarea{
   .splash-title{
     font-size:28px;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     PREMIÈRE INTERFACE
-========================= -->
+<!-- ==================================================
+     SPLASH
+================================================== -->
 
 <div id="splashScreen">
 
@@ -517,9 +622,9 @@ textarea{
 </div>
 
 
-<!-- =========================
-     DEUXIÈME INTERFACE
-========================= -->
+<!-- ==================================================
+     CHOIX DU COMPTE
+================================================== -->
 
 <section id="accountScreen" class="screen active">
 
@@ -544,6 +649,7 @@ textarea{
         class="choice"
         onclick="showScreen('candidateRegisterScreen')"
       >
+
         <strong>
           🔎 Je cherche un emploi
         </strong>
@@ -551,12 +657,15 @@ textarea{
         <span>
           Trouver des offres et postuler facilement.
         </span>
+
       </button>
+
 
       <button
         class="choice"
         onclick="showScreen('companyRegisterScreen')"
       >
+
         <strong>
           🏢 Je suis une entreprise
         </strong>
@@ -564,7 +673,9 @@ textarea{
         <span>
           Publier vos offres et recevoir des candidatures.
         </span>
+
       </button>
+
 
       <button
         class="secondary"
@@ -580,937 +691,609 @@ textarea{
 </section>
 
 
-<!-- =========================
-     INSCRIPTION EMPLOI
-========================= -->
+<!-- ==================================================
+     INSCRIPTION CANDIDAT
+================================================== -->
 
 <section
   id="candidateRegisterScreen"
   class="screen"
 >
 
-<div class="container form-page">
+  <div class="container form-page">
 
-<button
-  class="back"
-  onclick="showScreen('accountScreen')"
->
-← Retour
-</button>
+    <button
+      class="back"
+      onclick="showScreen('accountScreen')"
+    >
+      ← Retour
+    </button>
 
-<h2>🔎 Je cherche un emploi</h2>
+    <h2>🔎 Je cherche un emploi</h2>
 
-<p>
-Créez votre profil pour trouver un emploi.
-</p>
+    <p>
+      Créez votre profil pour trouver un emploi.
+    </p>
 
-<br>
+    <br>
 
-<div class="card">
+    <div class="card">
 
-<label>Prénom</label>
-<input id="firstName" type="text">
+      <label>Prénom *</label>
+      <input id="firstName" type="text">
 
-<label>Nom</label>
-<input id="lastName" type="text">
+      <label>Nom *</label>
+      <input id="lastName" type="text">
 
-<label>Numéro de téléphone</label>
-<input id="phone" type="tel">
+      <label>Numéro de téléphone *</label>
+      <input id="phone" type="tel">
 
-<label>Adresse mail ou iCloud</label>
-<input id="email" type="email">
+      <label>Adresse mail ou iCloud *</label>
+      <input id="email" type="email">
 
-<label>Adresse de résidence</label>
-<input id="address" type="text">
+      <label>Adresse de résidence</label>
+      <input id="address" type="text">
 
-<label>Date de naissance</label>
-<input id="birth" type="date">
+      <label>Date de naissance</label>
+      <input id="birth" type="date">
 
-<label>CV</label>
-<input id="cv" type="file" accept=".pdf,.doc,.docx">
+      <label>CV</label>
+      <input
+        id="cv"
+        type="file"
+        accept=".pdf,.doc,.docx"
+      >
 
-<label>Photo</label>
-<input id="photo" type="file" accept="image/*">
+      <label>Photo</label>
+      <input
+        id="photo"
+        type="file"
+        accept="image/*"
+      >
 
-<label>Compétences</label>
-<input id="skills" type="text">
+      <label>Compétences</label>
+      <input id="skills" type="text">
 
-<label>Niveau d'études</label>
-<input id="education" type="text">
+      <label>Niveau d'études</label>
+      <input id="education" type="text">
 
-<label>Expérience professionnelle</label>
-<textarea id="experience"></textarea>
+      <label>Expérience professionnelle</label>
+      <textarea id="experience"></textarea>
 
-<label>Mot de passe</label>
-<input id="password" type="password">
+      <label>Mot de passe *</label>
+      <input id="password" type="password">
 
-<button
-  class="primary"
-  onclick="registerCandidate()"
->
-Créer mon compte
-</button>
+      <button
+        class="primary"
+        onclick="registerCandidate()"
+      >
+        Créer mon compte
+      </button>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      INSCRIPTION ENTREPRISE
-========================= -->
+================================================== -->
 
 <section
   id="companyRegisterScreen"
   class="screen"
 >
 
-<div class="container form-page">
+  <div class="container form-page">
 
-<button
-  class="back"
-  onclick="showScreen('accountScreen')"
->
-← Retour
-</button>
+    <button
+      class="back"
+      onclick="showScreen('accountScreen')"
+    >
+      ← Retour
+    </button>
 
-<h2>🏢 Je suis une entreprise</h2>
+    <h2>🏢 Je suis une entreprise</h2>
 
-<p>
-Créez votre espace entreprise.
-</p>
+    <p>
+      Créez votre espace entreprise.
+    </p>
 
-<br>
+    <br>
 
-<div class="card">
+    <div class="card">
 
-<label>Nom de l'entreprise</label>
-<input id="companyName" type="text">
+      <label>Nom de l'entreprise *</label>
+      <input id="companyName" type="text">
 
-<label>Secteur d'activité</label>
-<input id="companySector" type="text">
+      <label>Secteur d'activité</label>
+      <input id="companySector" type="text">
 
-<label>Téléphone</label>
-<input id="companyPhone" type="tel">
+      <label>Téléphone</label>
+      <input id="companyPhone" type="tel">
 
-<label>Email professionnel</label>
-<input id="companyEmail" type="email">
+      <label>Email professionnel *</label>
+      <input id="companyEmail" type="email">
 
-<label>Adresse</label>
-<input id="companyAddress" type="text">
+      <label>Adresse</label>
+      <input id="companyAddress" type="text">
 
-<label>Ville</label>
-<input id="companyCity" type="text">
+      <label>Ville</label>
+      <input id="companyCity" type="text">
 
-<label>Registre de commerce</label>
-<input id="companyRegister" type="text">
+      <label>Registre de commerce</label>
+      <input id="companyRegister" type="text">
 
-<label>Logo</label>
-<input id="companyLogo" type="file" accept="image/*">
+      <label>Logo</label>
+      <input
+        id="companyLogo"
+        type="file"
+        accept="image/*"
+      >
 
-<label>Description</label>
-<textarea id="companyDescription"></textarea>
+      <label>Description</label>
+      <textarea id="companyDescription"></textarea>
 
-<label>Site web</label>
-<input id="companyWebsite" type="url">
+      <label>Site web</label>
+      <input id="companyWebsite" type="url">
 
-<label>Mot de passe</label>
-<input id="companyPassword" type="password">
+      <label>Mot de passe *</label>
+      <input id="companyPassword" type="password">
 
-<button
-  class="primary"
-  onclick="registerCompany()"
->
-Créer mon compte entreprise
-</button>
+      <button
+        class="primary"
+        onclick="registerCompany()"
+      >
+        Créer mon compte entreprise
+      </button>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      CONNEXION
-========================= -->
+================================================== -->
 
 <section
   id="loginScreen"
   class="screen"
 >
 
-<div class="container form-page">
+  <div class="container form-page">
 
-<button
-  class="back"
-  onclick="showScreen('accountScreen')"
->
-← Retour
-</button>
+    <button
+      class="back"
+      onclick="showScreen('accountScreen')"
+    >
+      ← Retour
+    </button>
 
-<h2>🔐 Connexion</h2>
+    <h2>🔐 Connexion</h2>
 
-<br>
+    <br>
 
-<div class="card">
+    <div class="card">
 
-<label>Email</label>
-<input id="loginEmail" type="email">
+      <label>Email</label>
+      <input id="loginEmail" type="email">
 
-<label>Mot de passe</label>
-<input id="loginPassword" type="password">
+      <label>Mot de passe</label>
+      <input id="loginPassword" type="password">
 
-<button
-  class="primary"
-  onclick="login()"
->
-Se connecter
-</button>
+      <button
+        class="primary"
+        onclick="login()"
+      >
+        Se connecter
+      </button>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      ESPACE CANDIDAT
-========================= -->
+================================================== -->
 
 <section
   id="candidateApp"
   class="screen"
 >
 
-<div class="topbar">
+  <div class="topbar">
 
-<div class="topbar-inner">
+    <div class="topbar-inner">
 
-<div class="brand">
-Kaye Liguey
-</div>
+      <div class="brand">
+        Kaye Liguey
+      </div>
 
-<button
-  class="logout"
-  onclick="logout()"
->
-Déconnexion
-</button>
+      <button
+        class="logout"
+        onclick="logout()"
+      >
+        Déconnexion
+      </button>
 
-</div>
+    </div>
 
-</div>
-
-<div class="dashboard">
-
-<div class="container">
-
-<div id="candidateHome">
-
-<div class="welcome">
-
-<h2>
-Bonjour <span id="candidateName"></span> 👋
-</h2>
-
-<p>
-Trouvez votre prochaine opportunité.
-</p>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<strong id="jobCount">0</strong>
-<span>Offres</span>
-</div>
-
-<div class="stat">
-<strong id="applicationCount">0</strong>
-<span>Candidatures</span>
-</div>
-
-</div>
-
-<input
-id="search"
-type="text"
-placeholder="🔎 Rechercher un emploi..."
-oninput="searchJobs()"
->
-
-<br><br>
-
-<div id="jobsList"></div>
-
-</div>
+  </div>
 
 
-<div
-id="candidateApplications"
-style="display:none"
->
+  <div class="dashboard">
 
-<h2>📄 Mes candidatures</h2>
+    <div class="container">
 
-<br>
+      <!-- ACCUEIL -->
 
-<div id="myApplications"></div>
+      <div id="candidateHome">
 
-</div>
+        <div class="welcome">
 
+          <h2>
+            Bonjour
+            <span id="candidateName"></span>
+            👋
+          </h2>
 
-<div
-id="candidateMessages"
-style="display:none"
->
+          <p>
+            Trouvez votre prochaine opportunité.
+          </p>
 
-<h2>💬 Messages</h2>
-
-<br>
-
-<div id="messagesCandidate"></div>
-
-</div>
+        </div>
 
 
-<div
-id="candidateProfile"
-style="display:none"
->
+        <div class="stats">
 
-<h2>👤 Mon profil</h2>
+          <div class="stat">
+            <strong id="jobCount">0</strong>
+            <span>Offres</span>
+          </div>
 
-<br>
+          <div class="stat">
+            <strong id="applicationCount">0</strong>
+            <span>Candidatures</span>
+          </div>
 
-<div id="profileCandidate"></div>
-
-</div>
-
-</div>
-
-</div>
+        </div>
 
 
-<nav class="bottom-nav">
+        <input
+          id="search"
+          type="text"
+          placeholder="🔎 Rechercher un emploi..."
+          oninput="searchJobs()"
+        >
 
-<button
-class="nav-btn active"
-onclick="candidatePage('home')"
->
-<span class="nav-icon">🏠</span>
-Accueil
-</button>
+        <br><br>
 
-<button
-class="nav-btn"
-onclick="candidatePage('home')"
->
-<span class="nav-icon">💼</span>
-Jobs
-</button>
+        <div id="jobsList"></div>
 
-<button
-class="nav-btn"
-onclick="candidatePage('applications')"
->
-<span class="nav-icon">📄</span>
-Candidatures
-</button>
+      </div>
 
-<button
-class="nav-btn"
-onclick="candidatePage('messages')"
->
-<span class="nav-icon">💬</span>
-Messages
-</button>
 
-<button
-class="nav-btn"
-onclick="candidatePage('profile')"
->
-<span class="nav-icon">👤</span>
-Profil
-</button>
+      <!-- CANDIDATURES -->
 
-</nav>
+      <div
+        id="candidateApplications"
+        style="display:none"
+      >
+
+        <h2>📄 Mes candidatures</h2>
+
+        <br>
+
+        <div id="myApplications"></div>
+
+      </div>
+
+
+      <!-- MESSAGES -->
+
+      <div
+        id="candidateMessages"
+        style="display:none"
+      >
+
+        <h2>💬 Messages</h2>
+
+        <br>
+
+        <div id="messagesCandidate"></div>
+
+        <div class="card">
+
+          <h3>Envoyer un message</h3>
+
+          <input
+            id="candidateMessageReceiver"
+            placeholder="Email de l'entreprise"
+          >
+
+          <textarea
+            id="candidateMessageText"
+            placeholder="Votre message..."
+          ></textarea>
+
+          <button
+            class="primary"
+            onclick="sendCandidateMessage()"
+          >
+            📤 Envoyer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- PROFIL -->
+
+      <div
+        id="candidateProfile"
+        style="display:none"
+      >
+
+        <h2>👤 Mon profil</h2>
+
+        <br>
+
+        <div id="profileCandidate"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- NAVIGATION CANDIDAT -->
+
+  <nav class="bottom-nav">
+
+    <button
+      id="candidateNavHome"
+      class="nav-btn active"
+      onclick="candidatePage('home')"
+    >
+      <span class="nav-icon">🏠</span>
+      Accueil
+    </button>
+
+
+    <button
+      id="candidateNavJobs"
+      class="nav-btn"
+      onclick="candidatePage('home')"
+    >
+      <span class="nav-icon">💼</span>
+      Offres
+    </button>
+
+
+    <button
+      id="candidateNavApplications"
+      class="nav-btn"
+      onclick="candidatePage('applications')"
+    >
+      <span class="nav-icon">📄</span>
+      Candidatures
+    </button>
+
+
+    <button
+      id="candidateNavMessages"
+      class="nav-btn"
+      onclick="candidatePage('messages')"
+    >
+      <span class="nav-icon">💬</span>
+      Messages
+    </button>
+
+
+    <button
+      id="candidateNavProfile"
+      class="nav-btn"
+      onclick="candidatePage('profile')"
+    >
+      <span class="nav-icon">👤</span>
+      Profil
+    </button>
+
+  </nav>
 
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      ESPACE ENTREPRISE
-========================= -->
+================================================== -->
 
 <section
-id="companyApp"
-class="screen"
+  id="companyApp"
+  class="screen"
 >
 
-<div class="topbar">
+  <div class="topbar">
 
-<div class="topbar-inner">
+    <div class="topbar-inner">
 
-<div class="brand">
-Kaye Liguey
-</div>
+      <div class="brand">
+        Kaye Liguey
+      </div>
 
-<button
-class="logout"
-onclick="logout()"
->
-Déconnexion
-</button>
+      <button
+        class="logout"
+        onclick="logout()"
+      >
+        Déconnexion
+      </button>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
-<div class="dashboard">
 
-<div class="container">
+  <div class="dashboard">
 
-<div id="companyHome">
+    <div class="container">
 
-<div class="welcome">
+      <!-- ACCUEIL ENTREPRISE -->
 
-<h2>
-Bienvenue <span id="companyNameDisplay"></span> 👋
-</h2>
+      <div id="companyHome">
 
-<p>
-Gérez vos offres et vos candidatures.
-</p>
+        <div class="welcome">
 
-</div>
+          <h2>
+            Bienvenue
+            <span id="companyNameDisplay"></span>
+            👋
+          </h2>
 
-<div class="stats">
+          <p>
+            Gérez vos offres et vos candidatures.
+          </p>
 
-<div class="stat">
-<strong id="companyJobsCount">0</strong>
-<span>Mes offres</span>
-</div>
+        </div>
 
-<div class="stat">
-<strong id="companyApplicationsCount">0</strong>
-<span>Candidatures</span>
-</div>
 
-</div>
+        <div class="stats">
 
-<button
-class="primary"
-onclick="companyPage('publish')"
->
-📢 Publier une offre
-</button>
+          <div class="stat">
+            <strong id="companyJobsCount">0</strong>
+            <span>Mes offres</span>
+          </div>
 
-</div>
+          <div class="stat">
+            <strong id="companyApplicationsCount">0</strong>
+            <span>Candidatures</span>
+          </div>
 
+        </div>
 
-<div
-id="companyPublish"
-style="display:none"
->
 
-<h2>📢 Publier une offre</h2>
+        <button
+          class="primary"
+          onclick="companyPage('publish')"
+        >
+          📢 Publier une offre
+        </button>
 
-<br>
+      </div>
 
-<div class="card">
 
-<label>Titre du poste</label>
-<input id="newJobTitle">
+      <!-- PUBLIER -->
 
-<label>Lieu</label>
-<input id="newJobLocation">
+      <div
+        id="companyPublish"
+        style="display:none"
+      >
 
-<label>Type</label>
+        <h2>📢 Publier une offre</h2>
 
-<select id="newJobType">
+        <br>
 
-<option>CDI</option>
-<option>CDD</option>
-<option>Stage</option>
-<option>Alternance</option>
-<option>Freelance</option>
+        <div class="card">
 
-</select>
+          <label>Titre du poste *</label>
+          <input id="newJobTitle">
 
-<label>Salaire</label>
-<input id="newJobSalary">
+          <label>Lieu *</label>
+          <input id="newJobLocation">
 
-<label>Description</label>
-<textarea id="newJobDescription"></textarea>
+          <label>Type</label>
 
-<button
-class="primary"
-onclick="publishJob()"
->
-📤 Publier l'offre
-</button>
+          <select id="newJobType">
 
-</div>
+            <option>CDI</option>
+            <option>CDD</option>
+            <option>Stage</option>
+            <option>Alternance</option>
+            <option>Freelance</option>
 
-</div>
+          </select>
 
+          <label>Salaire</label>
+          <input id="newJobSalary">
 
-<div
-id="companyJobs"
-style="display:none"
->
+          <label>Description</label>
+          <textarea id="newJobDescription"></textarea>
 
-<h2>📋 Mes offres</h2>
+          <button
+            class="primary"
+            onclick="publishJob()"
+          >
+            📤 Publier l'offre
+          </button>
 
-<br>
+        </div>
 
-<div id="companyJobsList"></div>
+      </div>
 
-</div>
 
+      <!-- MES OFFRES -->
 
-<div
-id="companyApplications"
-style="display:none"
->
+      <div
+        id="companyJobs"
+        style="display:none"
+      >
 
-<h2>👥 Candidatures reçues</h2>
+        <h2>📋 Mes offres</h2>
 
-<br>
+        <br>
 
-<div id="companyApplicationsList"></div>
+        <div id="companyJobsList"></div>
 
-</div>
+      </div>
 
 
-<div
-id="companyMessages"
-style="display:none"
->
+      <!-- CANDIDATURES -->
 
-<h2>💬 Messages</h2>
+      <div
+        id="companyApplications"
+        style="display:none"
+      >
 
-<br>
+        <h2>👥 Candidatures reçues</h2>
 
-<div id="companyMessagesList"></div>
+        <br>
 
-</div>
+        <div id="companyApplicationsList"></div>
 
+      </div>
 
-<div
-id="companyProfile"
-style="display:none"
->
 
-<h2>🏢 Mon entreprise</h2>
+      <!-- MESSAGES -->
 
-<br>
+      <div
+        id="companyMessages"
+        style="display:none"
+      >
 
-<div id="companyProfileContent"></div>
+        <h2>💬 Messages</h2>
 
-</div>
+        <br>
 
-</div>
+        <div id="companyMessagesList"></div>
 
-</div>
+        <div class="card">
 
+          <h3>Envoyer un message</h3>
 
-<nav class="bottom-nav">
+          <input
+            id="companyMessageReceiver"
+            placeholder="Email du candidat"
+          >
 
-<button
-class="nav-btn active"
-onclick="companyPage('home')"
->
-<span class="nav-icon">🏠</span>
-Accueil
-</button>
-
-<button
-class="nav-btn"
-onclick="companyPage('publish')"
->
-<span class="nav-icon">📢</span>
-Publier
-</button>
-
-<button
-class="nav-btn"
-onclick="companyPage('jobs')"
->
-<span class="nav-icon">📋</span>
-Mes offres
-</button>
-
-<button
-class="nav-btn"
-onclick="companyPage('applications')"
->
-<span class="nav-icon">👥</span>
-Candidatures
-</button>
-
-<button
-class="nav-btn"
-onclick="companyPage('messages')"
->
-<span class="nav-icon">💬</span>
-Messages
-</button>
-
-<button
-class="nav-btn"
-onclick="companyPage('profile')"
->
-<span class="nav-icon">🏢</span>
-Entreprise
-</button>
-
-</nav>
-
-</section>
-
-
-<!-- =========================
-     MODAL
-========================= -->
-
-<div
-id="jobModal"
-class="modal"
->
-
-<div class="modal-box">
-
-<button
-class="close"
-onclick="closeModal()"
->
-×
-</button>
-
-<div id="jobDetails"></div>
-
-</div>
-
-</div>
-
-
-<script>
-
-/* =========================
-   DONNÉES
-========================= */
-
-let users =
-JSON.parse(
-localStorage.getItem("kayeUsers") || "[]"
-);
-
-let jobs =
-JSON.parse(
-localStorage.getItem("kayeJobs") || "[]"
-);
-
-let applications =
-JSON.parse(
-localStorage.getItem("kayeApplications") || "[]"
-);
-
-let messages =
-JSON.parse(
-localStorage.getItem("kayeMessages") || "[]"
-);
-
-let currentUser = null;
-
-
-/* =========================
-   SAUVEGARDE
-========================= */
-
-function save(){
-
-localStorage.setItem(
-"kayeUsers",
-JSON.stringify(users)
-);
-
-localStorage.setItem(
-"kayeJobs",
-JSON.stringify(jobs)
-);
-
-localStorage.setItem(
-"kayeApplications",
-JSON.stringify(applications)
-);
-
-localStorage.setItem(
-"kayeMessages",
-JSON.stringify(messages)
-);
-
-}
-
-
-/* =========================
-   CHANGER D'ÉCRAN
-========================= */
-
-function showScreen(id){
-
-document
-.querySelectorAll(".screen")
-.forEach(function(screen){
-
-screen.classList.remove("active");
-
-});
-
-const target =
-document.getElementById(id);
-
-if(target){
-
-target.classList.add("active");
-
-}
-
-window.scrollTo(0,0);
-
-}
-
-
-/* =========================
-   INSCRIPTION CANDIDAT
-========================= */
-
-function registerCandidate(){
-
-const firstName =
-document.getElementById("firstName").value.trim();
-
-const lastName =
-document.getElementById("lastName").value.trim();
-
-const phone =
-document.getElementById("phone").value.trim();
-
-const email =
-document.getElementById("email").value.trim();
-
-const password =
-document.getElementById("password").value;
-
-if(
-!firstName ||
-!lastName ||
-!phone ||
-!email ||
-!password
-){
-
-alert(
-"Veuillez remplir les champs obligatoires."
-);
-
-return;
-
-}
-
-if(
-users.some(
-user => user.email === email
-)
-){
-
-alert(
-"Cette adresse email existe déjà."
-);
-
-return;
-
-}
-
-const cvFile =
-document.getElementById("cv").files[0];
-
-const photoFile =
-document.getElementById("photo").files[0];
-
-const user = {
-
-id:Date.now(),
-
-role:"candidate",
-
-firstName:firstName,
-
-lastName:lastName,
-
-phone:phone,
-
-email:email,
-
-password:password,
-
-address:
-document.getElementById("address").value,
-
-birth:
-document.getElementById("birth").value,
-
-cv:
-cvFile ? cvFile.name : "",
-
-photo:
-photoFile ? photoFile.name : "",
-
-skills:
-document.getElementById("skills").value,
-
-education:
-document.getElementById("education").value,
-
-experience:
-document.getElementById("experience").value
-
-};
-
-users.push(user);
-
-currentUser = user;
-
-save();
-
-alert(
-"Votre compte a été créé !"
-);
-
-openCandidate();
-
-}
-
-
-/* =========================
-   INSCRIPTION ENTREPRISE
-========================= */
-
-function registerCompany(){
-
-const name =
-document.getElementById("companyName").value.trim();
-
-const email =
-document.getElementById("companyEmail").value.trim();
-
-const password =
-document.getElementById("companyPassword").value;
-
-if(
-!name ||
-!email ||
-!password
-){
-
-alert(
-"Veuillez remplir les champs obligatoires."
-);
-
-return;
-
-}
-
-if(
-users.some(
-user => user.email === email
-)
-){
-
-alert(
-"Cette adresse email existe déjà."
-);
-
-return;
-
-}
-
-const logoFile =
-document.getElementById("companyLogo").files[0];
-
-const user = {
-
-id:Date.now(),
-
-role:"company",
-
-name:name,
-
-sector:
-document.getElementById("companySector").value,
-
-phone:
-document.getElementById("companyPhone").value,
-
-email:email,
-
-password:password,
-
-address:
-document.getElementById("companyAddress").value,
-
-city:
-document.getElementById("companyCity").value,
-
-registerNumber:
-document.getElementById("companyRegister").value,
-
-logo:
-logoFile ? logoFile.name : "",
-
-description:
-document.getElementById("companyDescription").value,
-
-website:
-document.getElementById("companyWebsite").value
-
-};
-
-users.push(user);
-
-currentUser = user;
-
-save();
-
-alert(
-"Compte entreprise créé !"
-);
-
-openCompany();
-
-}
-
-
-/* =========================
-   CONNEXION
-========================= */
-
-function login(){
-
-const email =
-document.getElementById("loginEmail").value.trim();
-
-const password =
-document.getElementById("loginPassword").value;
-
-const user =
-users.find(
-u =>
-u.email === email &&
-u.password === 
+          <textarea
+            id="companyMessageText"
+        
