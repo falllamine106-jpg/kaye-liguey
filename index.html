@@ -1,412 +1,1174 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Kaye Liguey</title>
 
 <style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f4f7fb;
-}
-
-.page{
-display:none;
-padding:30px 20px;
-}
-
-.page.active{
-display:block;
-}
-
-.box{
-max-width:500px;
-margin:auto;
-background:white;
-padding:25px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 4px 20px #0002;
-}
-
-h1{
-color:#0969d8;
+    font-family:Arial, sans-serif;
+    background:#f5f7fb;
+    color:#172033;
 }
 
 button{
-width:100%;
-padding:17px;
-margin:10px 0;
-border:0;
-border-radius:12px;
-font-size:17px;
-font-weight:bold;
-color:white;
-background:#0969d8;
+    border:0;
+    cursor:pointer;
+    font-size:16px;
 }
 
-.orange{
-background:#f28c28;
+.app{
+    min-height:100vh;
 }
 
-.gray{
-background:#555;
+/* ================= HEADER ================= */
+
+.header{
+    background:white;
+    padding:22px 18px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
-.back{
-background:#eee;
-color:#222;
+.logo{
+    font-size:30px;
+    font-weight:800;
+    color:#1769e0;
 }
 
-input{
-width:100%;
-padding:14px;
-margin:8px 0;
-border:1px solid #ddd;
-border-radius:10px;
-box-sizing:border-box;
+.logo span{
+    color:#16a05d;
 }
 
+.slogan{
+    margin-top:6px;
+    color:#667085;
+    font-size:14px;
+}
+
+/* ================= PAGES ================= */
+
+.page{
+    display:none;
+    min-height:calc(100vh - 100px);
+    padding:25px 18px 100px;
+}
+
+.page.active{
+    display:block;
+}
+
+/* ================= HOME ================= */
+
+.home{
+    max-width:600px;
+    margin:auto;
+}
+
+.welcome{
+    text-align:center;
+    margin:30px 0;
+}
+
+.welcome h1{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.welcome p{
+    color:#667085;
+    line-height:1.5;
+}
+
+.choice{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    margin:16px 0;
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+    text-align:left;
+    transition:.2s;
+}
+
+.choice:hover{
+    transform:translateY(-2px);
+}
+
+.choice-icon{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.choice h2{
+    font-size:20px;
+    margin-bottom:7px;
+}
+
+.choice p{
+    color:#667085;
+    margin-bottom:17px;
+}
+
+.primary{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    background:#1769e0;
+    color:white;
+    font-weight:bold;
+}
+
+.company{
+    background:#16a05d;
+}
+
+.secondary{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    background:#eef2f7;
+    color:#172033;
+    font-weight:bold;
+}
+
+/* ================= FORM ================= */
+
+.form-container{
+    max-width:500px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.form-container h1{
+    margin-bottom:8px;
+}
+
+.form-container .description{
+    color:#667085;
+    margin-bottom:22px;
+}
+
+.field{
+    margin-bottom:16px;
+}
+
+.field label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #d8dee9;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+}
+
+.field textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:#1769e0;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.actions button{
+    flex:1;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+    max-width:700px;
+    margin:auto;
+}
+
+.dashboard h1{
+    margin-bottom:8px;
+}
+
+.dashboard-subtitle{
+    color:#667085;
+    margin-bottom:20px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 3px 14px rgba(0,0,0,.07);
+}
+
+.card-icon{
+    font-size:28px;
+}
+
+.card strong{
+    display:block;
+    font-size:25px;
+    margin-top:8px;
+}
+
+.card span{
+    color:#667085;
+    font-size:13px;
+}
+
+.job{
+    background:white;
+    padding:18px;
+    border-radius:15px;
+    margin-bottom:14px;
+    box-shadow:0 3px 14px rgba(0,0,0,.07);
+}
+
+.job h3{
+    margin-bottom:8px;
+}
+
+.job p{
+    color:#667085;
+    margin:5px 0;
+}
+
+.tag{
+    display:inline-block;
+    margin-top:10px;
+    padding:6px 10px;
+    background:#e8f1ff;
+    color:#1769e0;
+    border-radius:20px;
+    font-size:12px;
+}
+
+/* ================= NAVIGATION ================= */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:68px;
+    background:white;
+    box-shadow:0 -2px 12px rgba(0,0,0,.1);
+    display:none;
+    justify-content:space-around;
+    align-items:center;
+    z-index:20;
+}
+
+.bottom-nav button{
+    background:none;
+    color:#667085;
+    font-size:12px;
+}
+
+.bottom-nav button.active{
+    color:#1769e0;
+    font-weight:bold;
+}
+
+.nav-icon{
+    display:block;
+    font-size:22px;
+    margin-bottom:3px;
+}
+
+/* ================= MESSAGE ================= */
+
+.message{
+    background:#eef5ff;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.message button{
+    margin-top:8px;
+    background:#e74c3c;
+    color:white;
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:13px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:480px){
+
+    .welcome h1{
+        font-size:25px;
+    }
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+}
 </style>
-
 </head>
-
 
 <body>
 
+<div class="app">
 
-<!-- ACCUEIL -->
+<!-- ================= HEADER ================= -->
 
-<div id="home" class="page active">
-
-<div class="box">
-
-<h1>🔵 Kaye Liguey</h1>
-
-<p>
-Trouvez un emploi.<br>
-Trouvez des talents.
-</p>
+<header class="header">
+    <div class="logo">Kaye <span>Liguey</span></div>
+    <div class="slogan">Trouvez un emploi. Trouvez des talents.</div>
+</header>
 
 
-<button
-onclick="go('candidate')">
+<!-- ================= ACCUEIL ================= -->
 
-🔎 Je cherche un emploi
+<section id="home" class="page active">
 
-</button>
+<div class="home">
 
+    <div class="welcome">
+        <h1>Bienvenue sur Kaye Liguey 👋</h1>
+        <p>
+            La plateforme qui rapproche les chercheurs d'emploi
+            et les entreprises.
+        </p>
+    </div>
 
-<button
-onclick="go('company')"
-class="orange">
+    <!-- CANDIDAT -->
 
-🏢 Je suis une entreprise
+    <div class="choice">
 
-</button>
+        <div class="choice-icon">🔎</div>
 
+        <h2>Je cherche un emploi</h2>
 
-<button
-onclick="go('login')"
-class="gray">
+        <p>
+            Trouvez des offres d'emploi, stages et opportunités.
+        </p>
 
-🔐 Se connecter
+        <button
+            class="primary"
+            onclick="showPage('candidate')">
+            Créer mon compte candidat
+        </button>
 
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- CANDIDAT -->
-
-<div id="candidate" class="page">
-
-<div class="box">
-
-<button
-onclick="go('home')"
-class="back">
-
-← Retour
-
-</button>
-
-<h1>🔎 Candidat</h1>
-
-<p>
-Créer mon compte
-</p>
+    </div>
 
 
-<input
-id="first"
-placeholder="Prénom">
+    <!-- ENTREPRISE -->
+
+    <div class="choice">
+
+        <div class="choice-icon">🏢</div>
+
+        <h2>Je suis une entreprise</h2>
+
+        <p>
+            Publiez vos offres et trouvez des candidats.
+        </p>
+
+        <button
+            class="primary company"
+            onclick="showPage('company')">
+            Créer mon compte entreprise
+        </button>
+
+    </div>
 
 
-<input
-id="last"
-placeholder="Nom">
+    <!-- CONNEXION -->
 
+    <div class="choice">
 
-<input
-id="phone"
-placeholder="Téléphone">
+        <div class="choice-icon">🔐</div>
 
+        <h2>J'ai déjà un compte</h2>
 
-<input
-id="email"
-placeholder="Email">
+        <p>
+            Connectez-vous à votre espace personnel.
+        </p>
 
+        <button
+            class="secondary"
+            onclick="showPage('login')">
+            Se connecter
+        </button>
 
-<button
-onclick="createCandidate()">
-
-Créer mon compte
-
-</button>
+    </div>
 
 </div>
 
+</section>
+
+
+<!-- ================= CANDIDAT ================= -->
+
+<section id="candidate" class="page">
+
+<div class="form-container">
+
+    <h1>🔎 Compte candidat</h1>
+
+    <p class="description">
+        Créez votre profil pour rechercher un emploi.
+    </p>
+
+    <div class="field">
+        <label>Nom complet</label>
+        <input
+            id="candidateName"
+            type="text"
+            placeholder="Votre nom">
+    </div>
+
+    <div class="field">
+        <label>Téléphone</label>
+        <input
+            id="candidatePhone"
+            type="tel"
+            placeholder="+221 XX XXX XX XX">
+    </div>
+
+    <div class="field">
+        <label>Email</label>
+        <input
+            id="candidateEmail"
+            type="email"
+            placeholder="exemple@email.com">
+    </div>
+
+    <div class="field">
+        <label>Ville</label>
+
+        <select id="candidateCity">
+
+            <option value="">Choisir une ville</option>
+
+            <option>Dakar</option>
+            <option>Thiès</option>
+            <option>Diourbel</option>
+            <option>Saint-Louis</option>
+            <option>Kaolack</option>
+            <option>Louga</option>
+            <option>Mbour</option>
+            <option>Touba</option>
+            <option>Ziguinchor</option>
+
+        </select>
+
+    </div>
+
+    <div class="field">
+        <label>Métier recherché</label>
+
+        <input
+            id="candidateJob"
+            type="text"
+            placeholder="Ex : Développeur web">
+    </div>
+
+    <div class="field">
+
+        <label>Mot de passe</label>
+
+        <input
+            id="candidatePassword"
+            type="password"
+            placeholder="Créer un mot de passe">
+
+    </div>
+
+    <div class="actions">
+
+        <button
+            class="secondary"
+            onclick="showPage('home')">
+            ← Retour
+        </button>
+
+        <button
+            class="primary"
+            onclick="createCandidate()">
+            Créer mon compte
+        </button>
+
+    </div>
+
 </div>
 
+</section>
 
 
-<!-- ENTREPRISE -->
+<!-- ================= ENTREPRISE ================= -->
 
-<div id="company" class="page">
+<section id="company" class="page">
 
-<div class="box">
+<div class="form-container">
 
-<button
-onclick="go('home')"
-class="back">
+    <h1>🏢 Compte entreprise</h1>
 
-← Retour
+    <p class="description">
+        Créez votre espace pour publier vos offres.
+    </p>
 
-</button>
+    <div class="field">
+        <label>Nom de l'entreprise</label>
 
-<h1>🏢 Entreprise</h1>
+        <input
+            id="companyName"
+            type="text"
+            placeholder="Nom de votre entreprise">
+    </div>
 
-<p>
-Créer mon compte entreprise
-</p>
+    <div class="field">
 
+        <label>Téléphone</label>
 
-<input
-id="companyName"
-placeholder="Nom de l'entreprise">
+        <input
+            id="companyPhone"
+            type="tel"
+            placeholder="+221 XX XXX XX XX">
 
+    </div>
 
-<input
-id="companyPhone"
-placeholder="Téléphone">
+    <div class="field">
 
+        <label>Email</label>
 
-<input
-id="companyEmail"
-placeholder="Email">
+        <input
+            id="companyEmail"
+            type="email"
+            placeholder="entreprise@email.com">
 
+    </div>
 
-<button
-onclick="createCompany()"
-class="orange">
+    <div class="field">
 
-Créer mon entreprise
+        <label>Ville</label>
 
-</button>
+        <select id="companyCity">
+
+            <option value="">Choisir une ville</option>
+
+            <option>Dakar</option>
+            <option>Thiès</option>
+            <option>Diourbel</option>
+            <option>Saint-Louis</option>
+            <option>Kaolack</option>
+            <option>Louga</option>
+            <option>Mbour</option>
+            <option>Touba</option>
+            <option>Ziguinchor</option>
+
+        </select>
+
+    </div>
+
+    <div class="field">
+
+        <label>Mot de passe</label>
+
+        <input
+            id="companyPassword"
+            type="password"
+            placeholder="Créer un mot de passe">
+
+    </div>
+
+    <div class="actions">
+
+        <button
+            class="secondary"
+            onclick="showPage('home')">
+            ← Retour
+        </button>
+
+        <button
+            class="primary company"
+            onclick="createCompany()">
+            Créer mon compte
+        </button>
+
+    </div>
 
 </div>
 
+</section>
+
+
+<!-- ================= CONNEXION ================= -->
+
+<section id="login" class="page">
+
+<div class="form-container">
+
+    <h1>🔐 Connexion</h1>
+
+    <p class="description">
+        Connectez-vous à votre compte Kaye Liguey.
+    </p>
+
+    <div class="field">
+
+        <label>Email</label>
+
+        <input
+            id="loginEmail"
+            type="email"
+            placeholder="Votre email">
+
+    </div>
+
+    <div class="field">
+
+        <label>Mot de passe</label>
+
+        <input
+            id="loginPassword"
+            type="password"
+            placeholder="Votre mot de passe">
+
+    </div>
+
+    <div class="actions">
+
+        <button
+            class="secondary"
+            onclick="showPage('home')">
+            ← Retour
+        </button>
+
+        <button
+            class="primary"
+            onclick="loginUser()">
+            Se connecter
+        </button>
+
+    </div>
+
 </div>
 
+</section>
 
 
-<!-- CONNEXION -->
+<!-- ================= ESPACE CANDIDAT ================= -->
 
-<div id="login" class="page">
+<section id="candidateDashboard" class="page">
 
-<div class="box">
+<div class="dashboard">
 
-<button
-onclick="go('home')"
-class="back">
+    <h1>Bonjour 👋</h1>
 
-← Retour
+    <p class="dashboard-subtitle">
+        Bienvenue dans votre espace candidat.
+    </p>
 
-</button>
+    <div class="cards">
 
-<h1>🔐 Connexion</h1>
+        <div class="card">
+            <div class="card-icon">💼</div>
+            <strong>12</strong>
+            <span>Offres disponibles</span>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">❤️</div>
+            <strong>0</strong>
+            <span>Favoris</span>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📋</div>
+            <strong>0</strong>
+            <span>Candidatures</span>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">💬</div>
+            <strong>0</strong>
+            <span>Messages</span>
+        </div>
+
+    </div>
 
 
-<input
-id="loginEmail"
-placeholder="Email">
+    <h2 style="margin-bottom:15px;">
+        Dernières offres
+    </h2>
 
 
-<input
-id="loginPassword"
-type="password"
-placeholder="Mot de passe">
+    <div class="job">
+
+        <h3>Développeur Web</h3>
+
+        <p>🏢 Fall et frère</p>
+
+        <p>📍 Dakar</p>
+
+        <span class="tag">Stage</span>
+
+    </div>
 
 
-<button
-onclick="login()">
+    <div class="job">
 
-Se connecter
+        <h3>Assistant administratif</h3>
 
-</button>
+        <p>🏢 Entreprise partenaire</p>
+
+        <p>📍 Thiès</p>
+
+        <span class="tag">CDD</span>
+
+    </div>
 
 </div>
 
+</section>
+
+
+<!-- ================= ESPACE ENTREPRISE ================= -->
+
+<section id="companyDashboard" class="page">
+
+<div class="dashboard">
+
+    <h1>Tableau de bord 🏢</h1>
+
+    <p class="dashboard-subtitle">
+        Gérez vos offres et vos candidatures.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-icon">📢</div>
+            <strong>0</strong>
+            <span>Offres publiées</span>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">👥</div>
+            <strong>0</strong>
+            <span>Candidatures</span>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">💬</div>
+            <strong>0</strong>
+            <span>Messages</span>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">⭐</div>
+            <strong>0</strong>
+            <span>Avis</span>
+        </div>
+
+    </div>
+
+
+    <button
+        class="primary"
+        onclick="showPage('publish')">
+        ➕ Publier une offre
+    </button>
+
 </div>
 
+</section>
 
 
-<!-- JAVASCRIPT -->
+<!-- ================= PUBLICATION ================= -->
+
+<section id="publish" class="page">
+
+<div class="form-container">
+
+    <h1>📢 Publier une offre</h1>
+
+    <p class="description">
+        Ajoutez une nouvelle offre d'emploi.
+    </p>
+
+    <div class="field">
+
+        <label>Titre du poste</label>
+
+        <input
+            id="jobTitle"
+            type="text"
+            placeholder="Ex : Développeur web">
+
+    </div>
+
+    <div class="field">
+
+        <label>Ville</label>
+
+        <input
+            id="jobCity"
+            type="text"
+            placeholder="Ex : Dakar">
+
+    </div>
+
+    <div class="field">
+
+        <label>Type de contrat</label>
+
+        <select id="jobType">
+
+            <option>CDI</option>
+            <option>CDD</option>
+            <option>Stage</option>
+            <option>Freelance</option>
+
+        </select>
+
+    </div>
+
+    <div class="field">
+
+        <label>Salaire</label>
+
+        <input
+            id="jobSalary"
+            type="text"
+            placeholder="Ex : 150 000 FCFA">
+
+    </div>
+
+    <div class="field">
+
+        <label>Description</label>
+
+        <textarea
+            id="jobDescription"
+            placeholder="Décrivez le poste..."></textarea>
+
+    </div>
+
+    <div class="actions">
+
+        <button
+            class="secondary"
+            onclick="showPage('companyDashboard')">
+            ← Retour
+        </button>
+
+        <button
+            class="primary company"
+            onclick="publishJob()">
+            Publier
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= MESSAGES ================= -->
+
+<section id="messages" class="page">
+
+<div class="dashboard">
+
+    <h1>💬 Messages</h1>
+
+    <p class="dashboard-subtitle">
+        Vos conversations.
+    </p>
+
+    <div id="messagesList">
+
+        <div class="message">
+
+            <strong>Aucune conversation</strong>
+
+            <p style="margin-top:5px;color:#667085;">
+                Vos messages apparaîtront ici.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav id="bottomNav" class="bottom-nav">
+
+    <button onclick="showPage('candidateDashboard')">
+        <span class="nav-icon">🏠</span>
+        Accueil
+    </button>
+
+    <button onclick="showPage('messages')">
+        <span class="nav-icon">💬</span>
+        Messages
+    </button>
+
+    <button onclick="showPage('home')">
+        <span class="nav-icon">🚪</span>
+        Quitter
+    </button>
+
+</nav>
+
+
+</div>
+
 
 <script>
 
-function go(page){
+/* ==================================================
+   NAVIGATION
+================================================== */
 
-document
-.querySelectorAll(".page")
-.forEach(function(element){
+function showPage(pageId){
 
-element.classList.remove("active");
+    var pages = document.querySelectorAll(".page");
 
-});
+    pages.forEach(function(page){
 
+        page.classList.remove("active");
 
-var destination=
-document.getElementById(page);
+    });
 
 
-if(destination){
+    var selectedPage = document.getElementById(pageId);
 
-destination.classList.add("active");
+    if(selectedPage){
 
-window.scrollTo(0,0);
+        selectedPage.classList.add("active");
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+
+    var nav = document.getElementById("bottomNav");
+
+    if(
+        pageId === "candidateDashboard" ||
+        pageId === "companyDashboard" ||
+        pageId === "messages"
+    ){
+
+        nav.style.display = "flex";
+
+    }else{
+
+        nav.style.display = "none";
+
+    }
 
 }
 
-}
 
+/* ==================================================
+   CANDIDAT
+================================================== */
 
 function createCandidate(){
 
-var first=
-document.getElementById("first").value;
+    var name =
+        document.getElementById("candidateName").value.trim();
 
-var last=
-document.getElementById("last").value;
+    var phone =
+        document.getElementById("candidatePhone").value.trim();
 
-var phone=
-document.getElementById("phone").value;
+    var email =
+        document.getElementById("candidateEmail").value.trim();
 
-var email=
-document.getElementById("email").value;
+    var city =
+        document.getElementById("candidateCity").value;
+
+    var job =
+        document.getElementById("candidateJob").value.trim();
+
+    var password =
+        document.getElementById("candidatePassword").value;
 
 
-if(
-first==="" ||
-last==="" ||
-phone==="" ||
-email===""
-){
+    if(
+        !name ||
+        !phone ||
+        !email ||
+        !city ||
+        !job ||
+        !password
+    ){
 
-alert("Veuillez remplir tous les champs.");
+        alert("Veuillez remplir tous les champs.");
 
-return;
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "kaye_candidate_name",
+        name
+    );
+
+
+    alert(
+        "Compte candidat créé avec succès !"
+    );
+
+
+    showPage("candidateDashboard");
 
 }
 
 
-alert(
-"✅ Compte candidat créé avec succès !"
-);
-
-go("home");
-
-}
-
+/* ==================================================
+   ENTREPRISE
+================================================== */
 
 function createCompany(){
 
-var name=
-document.getElementById("companyName").value;
+    var name =
+        document.getElementById("companyName").value.trim();
 
-var phone=
-document.getElementById("companyPhone").value;
+    var phone =
+        document.getElementById("companyPhone").value.trim();
 
-var email=
-document.getElementById("companyEmail").value;
+    var email =
+        document.getElementById("companyEmail").value.trim();
 
+    var city =
+        document.getElementById("companyCity").value;
 
-if(
-name==="" ||
-phone==="" ||
-email===""
-){
-
-alert("Veuillez remplir tous les champs.");
-
-return;
-
-}
+    var password =
+        document.getElementById("companyPassword").value;
 
 
-alert(
-"✅ Compte entreprise créé avec succès !"
-);
+    if(
+        !name ||
+        !phone ||
+        !email ||
+        !city ||
+        !password
+    ){
 
-go("home");
+        alert("Veuillez remplir tous les champs.");
 
-}
+        return;
 
-
-function login(){
-
-var email=
-document.getElementById("loginEmail").value;
-
-var password=
-document.getElementById("loginPassword").value;
+    }
 
 
-if(
-email==="" ||
-password===""
-){
+    localStorage.setItem(
+        "kaye_company_name",
+        name
+    );
 
-alert(
-"Veuillez entrer votre email et votre mot de passe."
-);
 
-return;
+    alert(
+        "Compte entreprise créé avec succès !"
+    );
+
+
+    showPage("companyDashboard");
 
 }
 
 
-alert(
-"✅ JavaScript fonctionne correctement !"
-);
+/* ==================================================
+   CONNEXION
+================================================== */
+
+function loginUser(){
+
+    var email =
+        document.getElementById("loginEmail").value.trim();
+
+    var password =
+        document.getElementById("loginPassword").value;
+
+
+    if(!email || !password){
+
+        alert(
+            "Veuillez saisir votre email et votre mot de passe."
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "Connexion de démonstration réussie !"
+    );
+
+
+    showPage("candidateDashboard");
 
 }
 
-</script>
 
+/* ==================================================
+   PUBLICATION D'OFFRE
+================================================== */
 
-</body>
+function publishJob(){
 
-</html>
+    var title =
+        document.getElementById("jobTitle").value.trim();
+
+    var city =
+        document.getElementById("jobCity").value.trim();
+
+    var type =
+        document.getElementById("jobType").value;
+
+    var salary =
+        document.getElementById("jobSalary").value
