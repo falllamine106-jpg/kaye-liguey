@@ -1,0 +1,2914 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kaye Liguey</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+color:#172033
+}
+
+header{
+background:#fff;
+padding:18px 16px;
+position:sticky;
+top:0;
+z-index:5;
+box-shadow:0 2px 10px #0001
+}
+
+.logo{
+font-size:25px;
+font-weight:800;
+color:#1264e8
+}
+
+.wrap{
+max-width:900px;
+margin:auto;
+padding:18px
+}
+
+.page{display:none}
+.page.active{display:block}
+
+.card{
+background:#fff;
+border-radius:16px;
+padding:18px;
+margin:12px 0;
+box-shadow:0 3px 15px #0000000d
+}
+
+.hero{
+text-align:center;
+padding:30px 10px
+}
+
+.hero h1{
+font-size:34px;
+margin:10px
+}
+
+.btn{
+border:0;
+border-radius:12px;
+padding:13px 16px;
+margin:5px;
+cursor:pointer;
+font-weight:700
+}
+
+.blue{
+background:#1264e8;
+color:#fff
+}
+
+.green{
+background:#16a34a;
+color:#fff
+}
+
+.light{
+background:#eef3fb
+}
+
+.danger{
+background:#dc2626;
+color:#fff
+}
+
+.btn:disabled{
+opacity:.55;
+cursor:not-allowed
+}
+
+input,select,textarea{
+width:100%;
+padding:13px;
+margin:7px 0;
+border:1px solid #d7deea;
+border-radius:10px;
+font-size:15px
+}
+
+textarea{
+min-height:120px
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:12px
+}
+
+.actions{
+display:flex;
+flex-wrap:wrap;
+gap:5px
+}
+
+.job-title{
+font-size:21px;
+font-weight:800
+}
+
+.muted{
+color:#667085
+}
+
+.tag{
+display:inline-block;
+padding:6px 10px;
+border-radius:20px;
+background:#eaf2ff;
+color:#1264e8;
+margin:5px 0
+}
+
+.nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:#fff;
+display:none;
+grid-template-columns:repeat(5,1fr);
+padding:7px;
+box-shadow:0 -2px 12px #0002;
+z-index:10
+}
+
+.nav button{
+border:0;
+background:none;
+padding:8px;
+font-size:12px
+}
+
+.nav .active{
+color:#1264e8;
+font-weight:800
+}
+
+.spacer{
+height:70px
+}
+
+.top-actions{
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.hidden{
+display:none!important
+}
+
+.success{
+color:#16803a
+}
+
+.error{
+color:#c62828
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="wrap top-actions">
+
+<div class="logo">
+🔵 Kaye Liguey
+</div>
+
+<button
+class="btn light"
+onclick="logout()"
+id="logoutBtn"
+style="display:none">
+Déconnexion
+</button>
+
+</div>
+</header>
+
+<main class="wrap">
+
+<!-- ACCUEIL -->
+
+<section id="home" class="page active">
+
+<div class="hero">
+
+<h1>Kaye Liguey</h1>
+
+<p>
+Trouvez un emploi. Trouvez des talents.
+</p>
+
+<div class="grid">
+
+<button
+class="btn blue"
+onclick="showPage('candidateRegister')">
+🔎 Je cherche un emploi
+</button>
+
+<button
+class="btn green"
+onclick="showPage('companyRegister')">
+🏢 Je suis une entreprise
+</button>
+
+</div>
+
+<button
+class="btn light"
+onclick="showPage('login')">
+🔐 Se connecter
+</button>
+
+</div>
+
+</section>
+
+
+<!-- INSCRIPTION CANDIDAT -->
+
+<section id="candidateRegister" class="page">
+
+<div class="card">
+
+<h2>Créer un compte candidat</h2>
+
+<form id="candidateForm">
+
+<input
+id="cName"
+placeholder="Nom complet"
+required>
+
+<input
+id="cPhone"
+placeholder="Téléphone"
+required>
+
+<input
+id="cEmail"
+type="email"
+placeholder="Email"
+required>
+
+<input
+id="cPass"
+type="password"
+placeholder="Mot de passe"
+required>
+
+<input
+id="cJob"
+placeholder="Métier recherché">
+
+<input
+id="cCity"
+placeholder="Ville">
+
+<textarea
+id="cSkills"
+placeholder="Compétences">
+</textarea>
+
+<button class="btn blue">
+Créer mon compte
+</button>
+
+</form>
+
+<button
+class="btn light"
+onclick="showPage('home')">
+← Retour
+</button>
+
+</div>
+
+</section>
+
+
+<!-- INSCRIPTION ENTREPRISE -->
+
+<section id="companyRegister" class="page">
+
+<div class="card">
+
+<h2>Créer un compte entreprise</h2>
+
+<form id="companyForm">
+
+<input
+id="eName"
+placeholder="Nom de l'entreprise"
+required>
+
+<input
+id="ePhone"
+placeholder="Téléphone"
+required>
+
+<input
+id="eEmail"
+type="email"
+placeholder="Email"
+required>
+
+<input
+id="ePass"
+type="password"
+placeholder="Mot de passe"
+required>
+
+<input
+id="eCity"
+placeholder="Ville">
+
+<textarea
+id="eDesc"
+placeholder="Présentation de l'entreprise">
+</textarea>
+
+<button class="btn green">
+Créer mon compte
+</button>
+
+</form>
+
+<button
+class="btn light"
+onclick="showPage('home')">
+← Retour
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CONNEXION -->
+
+<section id="login" class="page">
+
+<div class="card">
+
+<h2>Connexion</h2>
+
+<form id="loginForm">
+
+<input
+id="lEmail"
+type="email"
+placeholder="Email"
+required>
+
+<input
+id="lPass"
+type="password"
+placeholder="Mot de passe"
+required>
+
+<button class="btn blue">
+Se connecter
+</button>
+
+</form>
+
+<button
+class="btn light"
+onclick="showPage('home')">
+← Retour
+</button>
+
+</div>
+
+</section>
+
+
+<!-- DASHBOARD CANDIDAT -->
+
+<section id="candidateDashboard" class="page">
+
+<div class="card">
+
+<h2 id="cWelcome">
+Bonjour 👋
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<b id="statJobs">0</b>
+<br>
+Offres
+</div>
+
+<div class="card">
+<b id="statApps">0</b>
+<br>
+Candidatures
+</div>
+
+<div class="card">
+<b id="statFav">0</b>
+<br>
+Favoris
+</div>
+
+<div class="card">
+<b id="statMsg">0</b>
+<br>
+Messages
+</div>
+
+</div>
+
+<button
+class="btn blue"
+onclick="showPage('jobs')">
+🔎 Chercher un emploi
+</button>
+
+<button
+class="btn light"
+onclick="showPage('profile')">
+👤 Mon profil
+</button>
+
+</div>
+
+</section>
+
+
+<!-- OFFRES -->
+
+<section id="jobs" class="page">
+
+<h2>
+💼 Offres d'emploi
+</h2>
+
+<div class="card">
+
+<input
+id="search"
+placeholder="Métier, entreprise, mot-clé">
+
+<input
+id="city"
+placeholder="Ville">
+
+<select id="type">
+
+<option value="">
+Tous les contrats
+</option>
+
+<option>
+CDI
+</option>
+
+<option>
+CDD
+</option>
+
+<option>
+Stage
+</option>
+
+<option>
+Freelance
+</option>
+
+</select>
+
+</div>
+
+<div id="jobsList"></div>
+
+</section>
+
+
+<!-- FAVORIS -->
+
+<section id="favorites" class="page">
+
+<h2>
+❤️ Mes favoris
+</h2>
+
+<div id="favList"></div>
+
+</section>
+
+
+<!-- CANDIDATURES -->
+
+<section id="applications" class="page">
+
+<h2>
+📋 Mes candidatures
+</h2>
+
+<div id="appList"></div>
+
+</section>
+
+
+<!-- MESSAGES CANDIDAT -->
+
+<section id="messages" class="page">
+
+<h2>
+💬 Messages
+</h2>
+
+<div id="msgList"></div>
+
+</section>
+
+
+<!-- PROFIL CANDIDAT -->
+
+<section id="profile" class="page">
+
+<h2>
+👤 Mon profil
+</h2>
+
+<div
+id="profileBox"
+class="card">
+</div>
+
+</section>
+
+
+<!-- DASHBOARD ENTREPRISE -->
+
+<section id="companyDashboard" class="page">
+
+<div class="card">
+
+<h2 id="eWelcome">
+Bonjour 👋
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<b id="statEJobs">
+0
+</b>
+
+<br>
+
+Offres
+
+</div>
+
+<div class="card">
+
+<b id="statEApps">
+0
+</b>
+
+<br>
+
+Candidatures
+
+</div>
+
+</div>
+
+<button
+class="btn green"
+onclick="showPage('publishJob')">
+📢 Publier une offre
+</button>
+
+<button
+class="btn light"
+onclick="showPage('companyProfile')">
+🏢 Mon profil
+</button>
+
+</div>
+
+</section>
+
+
+<!-- PUBLIER UNE OFFRE -->
+
+<section id="publishJob" class="page">
+
+<div class="card">
+
+<h2>
+📢 Publier une offre
+</h2>
+
+<form id="jobForm">
+
+<input
+id="jTitle"
+placeholder="Titre du poste"
+required>
+
+<input
+id="jCity"
+placeholder="Ville"
+required>
+
+<select
+id="jType"
+required>
+
+<option value="">
+Type de contrat
+</option>
+
+<option>
+CDI
+</option>
+
+<option>
+CDD
+</option>
+
+<option>
+Stage
+</option>
+
+<option>
+Freelance
+</option>
+
+</select>
+
+<input
+id="jSalary"
+placeholder="Salaire">
+
+<textarea
+id="jDesc"
+placeholder="Description de l'offre"
+required>
+</textarea>
+
+<button class="btn green">
+Publier
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+<!-- MES OFFRES -->
+
+<section id="myJobs" class="page">
+
+<h2>
+📋 Mes offres
+</h2>
+
+<div id="myJobsList"></div>
+
+</section>
+
+
+<!-- CANDIDATURES ENTREPRISE -->
+
+<section id="companyApplications" class="page">
+
+<h2>
+👥 Candidatures reçues
+</h2>
+
+<div id="companyAppList"></div>
+
+</section>
+
+
+<!-- MESSAGES ENTREPRISE -->
+
+<section id="companyMessages" class="page">
+
+<h2>
+💬 Messages
+</h2>
+
+<div id="companyMsgList"></div>
+
+</section>
+
+
+<!-- PROFIL ENTREPRISE -->
+
+<section id="companyProfile" class="page">
+
+<h2>
+🏢 Profil entreprise
+</h2>
+
+<div
+id="companyProfileBox"
+class="card">
+</div>
+
+</section>
+
+</main>
+
+<div class="spacer"></div>
+
+
+<!-- NAVIGATION CANDIDAT -->
+
+<nav
+id="candidateNav"
+class="nav">
+
+<button onclick="showPage('candidateDashboard')">
+🏠
+<br>
+Accueil
+</button>
+
+<button onclick="showPage('jobs')">
+🔎
+<br>
+Emplois
+</button>
+
+<button onclick="showPage('favorites')">
+❤️
+<br>
+Favoris
+</button>
+
+<button onclick="showPage('applications')">
+📋
+<br>
+Candidatures
+</button>
+
+<button onclick="showPage('messages')">
+💬
+<br>
+Messages
+</button>
+
+</nav>
+
+
+<!-- NAVIGATION ENTREPRISE -->
+
+<nav
+id="companyNav"
+class="nav">
+
+<button onclick="showPage('companyDashboard')">
+📊
+<br>
+Dashboard
+</button>
+
+<button onclick="showPage('publishJob')">
+📢
+<br>
+Publier
+</button>
+
+<button onclick="showPage('myJobs')">
+📋
+<br>
+Mes offres
+</button>
+
+<button onclick="showPage('companyApplications')">
+👥
+<br>
+Candidatures
+</button>
+
+<button onclick="showPage('companyMessages')">
+💬
+<br>
+Messages
+</button>
+
+</nav>
+
+
+<script>
+
+'use strict';
+
+/* ==========================
+   KAYE LIGUEY
+   JAVASCRIPT CORRIGÉ
+========================== */
+
+const $ = (id) => document.getElementById(id);
+
+
+/* ==========================
+   ID
+========================== */
+
+function uid(){
+
+return Date.now().toString(36)
++
+Math.random()
+.toString(36)
+.slice(2,8);
+
+}
+
+
+/* ==========================
+   LECTURE LOCALSTORAGE
+========================== */
+
+function read(key, fallback){
+
+try{
+
+return JSON.parse(
+localStorage.getItem(key)
+||
+JSON.stringify(fallback)
+);
+
+}catch(error){
+
+return fallback;
+
+}
+
+}
+
+
+/* ==========================
+   PROTECTION HTML
+========================== */
+
+function esc(value){
+
+return String(value ?? '')
+.replace(/[&<>"']/g,function(c){
+
+return {
+
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+
+}[c];
+
+});
+
+}
+
+
+/* ==========================
+   DONNÉES
+========================== */
+
+let users = read(
+'kl_users',
+[]
+);
+
+let jobs = read(
+'kl_jobs',
+[]
+);
+
+let apps = read(
+'kl_apps',
+[]
+);
+
+let favs = read(
+'kl_favs',
+[]
+);
+
+let msgs = read(
+'kl_msgs',
+[]
+);
+
+let me = read(
+'kl_me',
+null
+);
+
+
+/* ==========================
+   SAUVEGARDE
+========================== */
+
+function save(){
+
+localStorage.setItem(
+'kl_users',
+JSON.stringify(users)
+);
+
+localStorage.setItem(
+'kl_jobs',
+JSON.stringify(jobs)
+);
+
+localStorage.setItem(
+'kl_apps',
+JSON.stringify(apps)
+);
+
+localStorage.setItem(
+'kl_favs',
+JSON.stringify(favs)
+);
+
+localStorage.setItem(
+'kl_msgs',
+JSON.stringify(msgs)
+);
+
+if(me){
+
+localStorage.setItem(
+'kl_me',
+JSON.stringify(me)
+);
+
+}else{
+
+localStorage.removeItem(
+'kl_me'
+);
+
+}
+
+}
+
+
+/* ==========================
+   OFFRES DE DÉMONSTRATION
+========================== */
+
+function seedJobs(){
+
+if(jobs.length > 0){
+return;
+}
+
+jobs = [
+
+{
+
+id:uid(),
+
+companyId:'demo-company-1',
+
+company:'Kaye Liguey',
+
+phone:'',
+
+title:'Développeur Web',
+
+city:'Dakar',
+
+type:'Stage',
+
+salary:'À discuter',
+
+desc:'Stage en développement web pour débutant motivé.',
+
+date:new Date().toISOString()
+
+},
+
+{
+
+id:uid(),
+
+companyId:'demo-company-2',
+
+company:'Fall et Frère',
+
+phone:'',
+
+title:'Assistant commercial',
+
+city:'Dakar',
+
+type:'CDD',
+
+salary:'100000 FCFA',
+
+desc:'Recherche d’un assistant commercial sérieux et motivé.',
+
+date:new Date().toISOString()
+
+}
+
+];
+
+save();
+
+}
+
+
+/* ==========================
+   CHANGER DE PAGE
+========================== */
+
+function showPage(pageId){
+
+const target = $(pageId);
+
+if(!target){
+
+console.error(
+'Page introuvable :',
+pageId
+);
+
+return;
+
+}
+
+document
+.querySelectorAll('.page')
+.forEach(function(page){
+
+page.classList.remove('active');
+
+});
+
+target.classList.add('active');
+
+updateNav();
+
+refreshPage(pageId);
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
+
+}
+
+
+/* ==========================
+   NAVIGATION
+========================== */
+
+function updateNav(){
+
+const candidateNav =
+$('candidateNav');
+
+const companyNav =
+$('companyNav');
+
+const logoutBtn =
+$('logoutBtn');
+
+
+if(candidateNav){
+
+candidateNav.style.display =
+me &&
+me.role === 'candidate'
+? 'grid'
+: 'none';
+
+}
+
+
+if(companyNav){
+
+companyNav.style.display =
+me &&
+me.role === 'company'
+? 'grid'
+: 'none';
+
+}
+
+
+if(logoutBtn){
+
+logoutBtn.style.display =
+me
+? 'block'
+: 'none';
+
+}
+
+}
+
+
+/* ==========================
+   CONNEXION
+========================== */
+
+function login(user){
+
+me = user;
+
+save();
+
+updateNav();
+
+showPage(
+user.role === 'candidate'
+? 'candidateDashboard'
+: 'companyDashboard'
+);
+
+}
+
+
+/* ==========================
+   INSCRIPTION CANDIDAT
+========================== */
+
+function registerCandidate(event){
+
+event.preventDefault();
+
+const name =
+$('cName').value.trim();
+
+const phone =
+$('cPhone').value.trim();
+
+const email =
+$('cEmail').value
+.trim()
+.toLowerCase();
+
+const password =
+$('cPass').value;
+
+const job =
+$('cJob').value.trim();
+
+const city =
+$('cCity').value.trim();
+
+const skills =
+$('cSkills').value.trim();
+
+
+if(!name ||
+!phone ||
+!email ||
+!password){
+
+alert(
+'Veuillez remplir tous les champs obligatoires.'
+);
+
+return;
+
+}
+
+
+if(
+users.some(function(user){
+
+return user.email === email;
+
+})
+){
+
+alert(
+'Cet email est déjà utilisé.'
+);
+
+return;
+
+}
+
+
+const user = {
+
+id:uid(),
+
+role:'candidate',
+
+name:name,
+
+phone:phone,
+
+email:email,
+
+password:password,
+
+job:job,
+
+city:city,
+
+skills:skills
+
+};
+
+
+users.push(user);
+
+save();
+
+$('candidateForm').reset();
+
+alert(
+'Compte candidat créé avec succès !'
+);
+
+login(user);
+
+}
+
+
+/* ==========================
+   INSCRIPTION ENTREPRISE
+========================== */
+
+function registerCompany(event){
+
+event.preventDefault();
+
+const name =
+$('eName').value.trim();
+
+const phone =
+$('ePhone').value.trim();
+
+const email =
+$('eEmail').value
+.trim()
+.toLowerCase();
+
+const password =
+$('ePass').value;
+
+const city =
+$('eCity').value.trim();
+
+const desc =
+$('eDesc').value.trim();
+
+
+if(!name ||
+!phone ||
+!email ||
+!password){
+
+alert(
+'Veuillez remplir tous les champs obligatoires.'
+);
+
+return;
+
+}
+
+
+if(
+users.some(function(user){
+
+return user.email === email;
+
+})
+){
+
+alert(
+'Cet email est déjà utilisé.'
+);
+
+return;
+
+}
+
+
+const user = {
+
+id:uid(),
+
+role:'company',
+
+name:name,
+
+phone:phone,
+
+email:email,
+
+password:password,
+
+city:city,
+
+desc:desc
+
+};
+
+
+users.push(user);
+
+save();
+
+$('companyForm').reset();
+
+alert(
+'Compte entreprise créé avec succès !'
+);
+
+login(user);
+
+}
+
+
+/* ==========================
+   CONNEXION UTILISATEUR
+========================== */
+
+function loginUser(event){
+
+event.preventDefault();
+
+const email =
+$('lEmail').value
+.trim()
+.toLowerCase();
+
+const password =
+$('lPass').value;
+
+
+const user =
+users.find(function(u){
+
+return (
+u.email === email &&
+u.password === password
+);
+
+});
+
+
+if(!user){
+
+alert(
+'Email ou mot de passe incorrect.'
+);
+
+return;
+
+}
+
+
+$('loginForm').reset();
+
+login(user);
+
+}
+
+
+/* ==========================
+   DÉCONNEXION
+========================== */
+
+function logout(){
+
+me = null;
+
+save();
+
+updateNav();
+
+showPage('home');
+
+}
+
+
+/* ==========================
+   DASHBOARD CANDIDAT
+========================== */
+
+function dashC(){
+
+if(!me){
+return;
+}
+
+$('cWelcome').textContent =
+'Bonjour ' +
+me.name +
+' 👋';
+
+
+$('statJobs').textContent =
+jobs.length;
+
+
+$('statApps').textContent =
+apps.filter(function(a){
+
+return a.candidateId === me.id;
+
+}).length;
+
+
+$('statFav').textContent =
+favs.filter(function(f){
+
+return f.userId === me.id;
+
+}).length;
+
+
+$('statMsg').textContent =
+msgs.filter(function(m){
+
+return m.receiverId === me.id;
+
+}).length;
+
+}
+
+
+/* ==========================
+   AFFICHER LES OFFRES
+========================== */
+
+function renderJobs(){
+
+const list =
+$('jobsList');
+
+if(!list){
+return;
+}
+
+
+const q =
+($('search')?.value || '')
+.trim()
+.toLowerCase();
+
+
+const city =
+($('city')?.value || '')
+.trim()
+.toLowerCase();
+
+
+const type =
+$('type')?.value || '';
+
+
+const filtered =
+jobs.filter(function(j){
+
+const text = [
+
+j.title || '',
+
+j.company || '',
+
+j.desc || '',
+
+j.city || ''
+
+].join(' ')
+.toLowerCase();
+
+
+return (
+
+(!q || text.includes(q))
+
+&&
+
+(
+!city ||
+String(j.city || '')
+.toLowerCase()
+.includes(city)
+)
+
+&&
+
+(
+!type ||
+j.type === type
+)
+
+);
+
+});
+
+
+list.innerHTML =
+filtered.length
+
+?
+
+filtered
+.map(jobCard)
+.join('')
+
+:
+
+'<div class="card">Aucune offre trouvée.</div>';
+
+}
+
+
+/* ==========================
+   CARTE OFFRE
+========================== */
+
+function jobCard(j){
+
+const isFav =
+!!me &&
+favs.some(function(f){
+
+return (
+f.userId === me.id &&
+f.jobId === j.id
+);
+
+});
+
+
+const applied =
+!!me &&
+apps.some(function(a){
+
+return (
+a.candidateId === me.id &&
+a.jobId === j.id
+);
+
+});
+
+
+return `
+
+<div class="card">
+
+<div class="job-title">
+${esc(j.title || 'Offre')}
+</div>
+
+<p>
+
+🏢 ${esc(j.company || 'Entreprise')}
+
+<br>
+
+📍 ${esc(j.city || 'Ville non renseignée')}
+
+<br>
+
+💼 ${esc(j.type || 'Non précisé')}
+
+<br>
+
+💰 ${esc(j.salary || 'Non précisé')}
+
+</p>
+
+<p>
+${esc(j.desc || '')}
+</p>
+
+<div class="actions">
+
+<button
+type="button"
+class="btn light"
+onclick="toggleFav('${j.id}')">
+
+${isFav ? '❤️ Retirer' : '♡ Favori'}
+
+</button>
+
+
+<button
+type="button"
+class="btn blue"
+onclick="applyJob('${j.id}')"
+${applied ? 'disabled' : ''}>
+
+${applied
+? '✅ Déjà candidaté'
+: '📨 Postuler'}
+
+</button>
+
+
+<button
+type="button"
+class="btn light"
+onclick="shareJob('${j.id}')">
+
+📱 WhatsApp
+
+</button>
+
+
+${
+j.phone
+
+?
+
+`
+
+<button
+type="button"
+class="btn light"
+onclick="callCompany('${encodeURIComponent(j.phone)}')">
+
+📞 Appeler
+
+</button>
+
+`
+
+:
+
+''
+
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* ==========================
+   FAVORI
+========================== */
+
+function toggleFav(jobId){
+
+if(!me){
+
+showPage('login');
+
+return;
+
+}
+
+
+if(me.role !== 'candidate'){
+
+alert(
+'Les favoris sont disponibles pour les candidats.'
+);
+
+return;
+
+}
+
+
+const index =
+favs.findIndex(function(f){
+
+return (
+f.userId === me.id &&
+f.jobId === jobId
+);
+
+});
+
+
+if(index >= 0){
+
+favs.splice(index,1);
+
+}else{
+
+favs.push({
+
+id:uid(),
+
+userId:me.id,
+
+jobId:jobId
+
+});
+
+}
+
+
+save();
+
+renderJobs();
+
+renderFavs();
+
+dashC();
+
+}
+
+
+/* ==========================
+   POSTULER
+========================== */
+
+function applyJob(jobId){
+
+if(!me){
+
+showPage('login');
+
+return;
+
+}
+
+
+if(me.role !== 'candidate'){
+
+alert(
+'Connectez-vous avec un compte candidat.'
+);
+
+return;
+
+}
+
+
+const job =
+jobs.find(function(j){
+
+return j.id === jobId;
+
+});
+
+
+if(!job){
+
+alert(
+'Offre introuvable.'
+);
+
+return;
+
+}
+
+
+if(
+apps.some(function(a){
+
+return (
+a.candidateId === me.id &&
+a.jobId === jobId
+);
+
+})
+){
+
+alert(
+'Vous avez déjà postulé à cette offre.'
+);
+
+return;
+
+}
+
+
+apps.push({
+
+id:uid(),
+
+jobId:jobId,
+
+candidateId:me.id,
+
+companyId:job.companyId,
+
+status:'En attente',
+
+date:new Date().toISOString()
+
+});
+
+
+if(job.companyId){
+
+msgs.push({
+
+id:uid(),
+
+senderId:me.id,
+
+receiverId:job.companyId,
+
+text:
+me.name +
+' a postulé à « ' +
+job.title +
+' »',
+
+date:new Date().toISOString()
+
+});
+
+}
+
+
+save();
+
+alert(
+'Votre candidature a été envoyée !'
+);
+
+renderJobs();
+
+renderApps();
+
+dashC();
+
+}
+
+
+/* ==========================
+   FAVORIS
+========================== */
+
+function renderFavs(){
+
+const box =
+$('favList');
+
+if(!box || !me){
+return;
+}
+
+
+const list =
+favs
+
+.filter(function(f){
+
+return f.userId === me.id;
+
+})
+
+.map(function(f){
+
+return jobs.find(function(j){
+
+return j.id === f.jobId;
+
+});
+
+})
+
+.filter(Boolean);
+
+
+box.innerHTML =
+list.length
+
+?
+
+list.map(jobCard).join('')
+
+:
+
+'<div class="card">Aucun favori.</div>';
+
+}
+
+
+/* ==========================
+   CANDIDATURES CANDIDAT
+========================== */
+
+function renderApps(){
+
+const box =
+$('appList');
+
+if(!box || !me){
+return;
+}
+
+
+const list =
+apps.filter(function(a){
+
+return a.candidateId === me.id;
+
+});
+
+
+box.innerHTML =
+list.length
+
+?
+
+list.map(function(a){
+
+const j =
+jobs.find(function(x){
+
+return x.id === a.jobId;
+
+});
+
+
+return `
+
+<div class="card">
+
+<h3>
+${esc(j?.title || 'Offre supprimée')}
+</h3>
+
+<p>
+
+🏢 ${esc(j?.company || '')}
+
+<br>
+
+📍 ${esc(j?.city || '')}
+
+</p>
+
+<span class="tag">
+${esc(a.status || 'En attente')}
+</span>
+
+</div>
+
+`;
+
+}).join('')
+
+:
+
+'<div class="card">Aucune candidature.</div>';
+
+}
+
+
+/* ==========================
+   MESSAGES
+========================== */
+
+function renderMsgs(boxId){
+
+const box =
+$(boxId);
+
+if(!box || !me){
+return;
+}
+
+
+const list =
+msgs.filter(function(m){
+
+return (
+m.senderId === me.id ||
+m.receiverId === me.id
+);
+
+});
+
+
+box.innerHTML =
+list.length
+
+?
+
+list.map(function(m){
+
+return `
+
+<div class="card">
+
+<p>
+${esc(m.text)}
+</p>
+
+<small>
+
+${
+m.date
+?
+
+new Date(m.date)
+.toLocaleString('fr-FR')
+
+:
+
+''
+
+}
+
+</small>
+
+<br>
+
+<button
+type="button"
+class="btn danger"
+onclick="deleteMessage('${m.id}')">
+
+🗑️ Supprimer
+
+</button>
+
+</div>
+
+`;
+
+}).join('')
+
+:
+
+'<div class="card">Aucun message.</div>';
+
+}
+
+
+/* ==========================
+   SUPPRIMER MESSAGE
+========================== */
+
+function deleteMessage(messageId){
+
+msgs =
+msgs.filter(function(m){
+
+return m.id !== messageId;
+
+});
+
+
+save();
+
+renderMsgs(
+me?.role === 'company'
+? 'companyMsgList'
+: 'msgList'
+);
+
+dashC();
+
+}
+
+
+/* ==========================
+   PROFIL CANDIDAT
+========================== */
+
+function renderProfile(){
+
+const box =
+$('profileBox');
+
+if(!box || !me){
+return;
+}
+
+
+box.innerHTML = `
+
+<h3>
+${esc(me.name)}
+</h3>
+
+<p>
+
+📧 ${esc(me.email)}
+
+<br>
+
+📞 ${esc(me.phone)}
+
+<br>
+
+📍 ${esc(me.city || 'Non renseignée')}
+
+<br>
+
+💼 ${esc(me.job || 'Non renseigné')}
+
+<br>
+
+🛠️ ${esc(me.skills || 'Non renseignées')}
+
+</p>
+
+`;
+
+}
+
+
+/* ==========================
+   DASHBOARD ENTREPRISE
+========================== */
+
+function dashE(){
+
+if(!me){
+return;
+}
+
+
+$('eWelcome').textContent =
+'Bonjour ' +
+me.name +
+' 👋';
+
+
+$('statEJobs').textContent =
+jobs.filter(function(j){
+
+return j.companyId === me.id;
+
+}).length;
+
+
+$('statEApps').textContent =
+apps.filter(function(a){
+
+return a.companyId === me.id;
+
+}).length;
+
+}
+
+
+/* ==========================
+   PUBLIER OFFRE
+========================== */
+
+function publishJob(event){
+
+event.preventDefault();
+
+
+if(
+!me ||
+me.role !== 'company'
+){
+
+alert(
+'Vous devez être connecté comme entreprise.'
+);
+
+return;
+
+}
+
+
+const title =
+$('jTitle').value.trim();
+
+const city =
+$('jCity').value.trim();
+
+const type =
+$('jType').value;
+
+const salary =
+$('jSalary').value.trim();
+
+const desc =
+$('jDesc').value.trim();
+
+
+if(!title ||
+!city ||
+!type ||
+!desc){
+
+alert(
+'Veuillez remplir tous les champs obligatoires.'
+);
+
+return;
+
+}
+
+
+jobs.unshift({
+
+id:uid(),
+
+companyId:me.id,
+
+company:me.name,
+
+phone:me.phone,
+
+title:title,
+
+city:city,
+
+type:type,
+
+salary:salary,
+
+desc:desc,
+
+date:new Date().toISOString()
+
+});
+
+
+save();
+
+$('jobForm').reset();
+
+alert(
+'Offre publiée avec succès !'
+);
+
+showPage('myJobs');
+
+}
+
+
+/* ==========================
+   MES OFFRES
+========================== */
+
+function renderMyJobs(){
+
+const box =
+$('myJobsList');
+
+if(!box || !me){
+return;
+}
+
+
+const list =
+jobs.filter(function(j){
+
+return j.companyId === me.id;
+
+});
+
+
+box.innerHTML =
+list.length
+
+?
+
+list.map(function(j){
+
+return `
+
+<div class="card">
+
+<h3>
+${esc(j.title)}
+</h3>
+
+<p>
+
+📍 ${esc(j.city)}
+
+—
+
+${esc(j.type)}
+
+<br>
+
+💰 ${esc(j.salary || 'Non précisé')}
+
+</p>
+
+<p>
+${esc(j.desc)}
+</p>
+
+<button
+type="button"
+class="btn danger"
+onclick="deleteJob('${j.id}')">
+
+🗑️ Supprimer
+
+</button>
+
+</div>
+
+`;
+
+}).join('')
+
+:
+
+'<div class="card">Aucune offre.</div>';
+
+}
+
+
+/* ==========================
+   SUPPRIMER OFFRE
+========================== */
+
+function deleteJob(jobId){
+
+if(
+!confirm(
+'Voulez-vous supprimer cette offre ?'
+)
+){
+
+return;
+
+}
+
+
+jobs =
+jobs.filter(function(j){
+
+return j.id !== jobId;
+
+});
+
+
+apps =
+apps.filter(function(a){
+
+return a.jobId !== jobId;
+
+});
+
+
+favs =
+favs.filter(function(f){
+
+return f.jobId !== jobId;
+
+});
+
+
+save();
+
+renderMyJobs();
+
+dashE();
+
+renderJobs();
+
+}
+
+
+/* ==========================
+   CANDIDATURES ENTREPRISE
+========================== */
+
+function renderCompanyApps(){
+
+const box =
+$('companyAppList');
+
+if(!box || !me){
+return;
+}
+
+
+const list =
+apps.filter(function(a){
+
+return a.companyId === me.id;
+
+});
+
+
+box.innerHTML =
+list.length
+
+?
+
+list.map(function(a){
+
+const candidate =
+users.find(function(u){
+
+return u.id === a.candidateId;
+
+});
+
+
+const job =
+jobs.find(function(j){
+
+return j.id === a.jobId;
+
+});
+
+
+return `
+
+<div class="card">
+
+<h3>
+
+${esc(
+candidate?.name ||
+'Candidat'
+)}
+
+</h3>
+
+<p>
+
+📧 ${esc(candidate?.email || '')}
+
+<br>
+
+📞 ${esc(candidate?.phone || '')}
+
+<br>
+
+💼 ${esc(job?.title || 'Offre')}
+
+</p>
+
+<span class="tag">
+
+${esc(a.status || 'En attente')}
+
+</span>
+
+<br>
+
+<button
+type="button"
+class="btn green"
+onclick="setStatus('${a.id}','Retenu')">
+
+✅ Retenir
+
+</button>
+
+<button
+type="button"
+class="btn danger"
+onclick="setStatus('${a.id}','Non retenu')">
+
+❌ Refuser
+
+</button>
+
+</div>
+
+`;
+
+}).join('')
+
+:
+
+'<div class="card">Aucune candidature.</div>';
+
+}
+
+
+/* ==========================
+   STATUT CANDIDATURE
+========================== */
+
+function setStatus(
+appId,
+status
+){
+
+const app =
+apps.find(function(a){
+
+return a.id === appId;
+
+});
+
+
+if(!app){
+return;
+}
+
+
+app.status =
+status;
+
+
+msgs.push({
+
+id:uid(),
+
+senderId:me.id,
+
+receiverId:app.candidateId,
+
+text:
+'Votre candidature est : ' +
+status,
+
+date:new Date().toISOString()
+
+});
+
+
+save();
+
+renderCompanyApps();
+
+dashE();
+
+alert(
+'Statut mis à jour.'
+);
+
+}
+
+
+/* ==========================
+   PROFIL ENTREPRISE
+========================== */
+
+function renderCompanyProfile(){
+
+const box =
+$('companyProfileBox');
+
+if(!box || !me){
+return;
+}
+
+
+box.innerHTML = `
+
+<h3>
+${esc(me.name)}
+</h3>
+
+<p>
+
+📧 ${esc(me.email)}
+
+<br>
+
+📞 ${esc(me.phone)}
+
+<br>
+
+📍 ${esc(me.city || 'Non renseignée')}
+
+<br>
+
+${esc(me.desc || '')}
+
+</p>
+
+`;
+
+}
+
+
+/* ==========================
+   WHATSAPP
+========================== */
+
+function shareJob(jobId){
+
+const job =
+jobs.find(function(j){
+
+return j.id === jobId;
+
+});
+
+
+if(!job){
+return;
+}
+
+
+const text =
+
+'📢 Kaye Liguey\n' +
+
+(job.title || '') +
+
+'\n🏢 ' +
+
+(job.company || '') +
+
+'\n📍 ' +
+
+(job.city || '') +
+
+'\n💼 ' +
+
+(job.type || '');
+
+
+window.open(
+
+'https://wa.me/?text=' +
+encodeURIComponent(text),
+
+'_blank',
+
+'noopener'
+
+);
+
+}
+
+
+/* ==========================
+   APPEL
+========================== */
+
+function callCompany(phone){
+
+const number =
+decodeURIComponent(phone || '');
+
+
+if(number){
+
+window.location.href =
+'tel:' + number;
+
+}
+
+}
+
+
+/* ==========================
+   RAFRAÎCHIR LES PAGES
+========================== */
+
+function refreshPage(pageId){
+
+const actions = {
+
+candidateDashboard:dashC,
+
+jobs:renderJobs,
+
+favorites:renderFavs,
+
+applications:renderApps,
+
+messages:function(){
+
+renderMsgs('msgList');
+
+},
+
+profile:renderProfile,
+
+companyDashboard:dashE,
+
+publishJob:function(){},
+
+myJobs:renderMyJobs,
+
+companyApplications:renderCompanyApps,
+
+companyMessages:function(){
+
+renderMsgs('companyMsgList');
+
+},
+
+companyProfile:
+renderCompanyProfile
+
+};
+
+
+if(actions[pageId]){
+
+actions[pageId]();
+
+}
+
+}
+
+
+/* ==========================
+   INITIALISATION
+========================== */
+
+function init(){
+
+seedJobs();
+
+
+const candidateForm =
+$('candidateForm');
+
+const companyForm =
+$('companyForm');
+
+const loginForm =
+$('loginForm');
+
+const jobForm =
+$('jobForm');
+
+
+if(candidateForm){
+
+candidateForm.addEventListener(
+'submit',
+registerCandidate
+);
+
+}
+
+
+if(companyForm){
+
+companyForm.addEventListener(
+'submit',
+registerCompany
+);
+
+}
+
+
+if(loginForm){
+
+loginForm.addEventListener(
+'submit',
+loginUser
+);
+
+}
+
+
+if(jobForm){
+
+jobForm.addEventListener(
+'submit',
+publishJob
+);
+
+}
+
+
+['search','city'].forEach(
+function(id){
+
+const element = $(id);
+
+if(element){
+
+element.addEventListener(
+'input',
+renderJobs
+);
+
+}
+
+});
+
+
+const type =
+$('type');
+
+if(type){
+
+type.addEventListener(
+'change',
+renderJobs
+);
+
+}
+
+
+updateNav();
+
+
+if(me){
+
+showPage(
+
+me.role === 'candidate'
+
+?
+
+'candidateDashboard'
+
+:
+
+'companyDashboard'
+
+);
+
+}else{
+
+showPage('home');
+
+}
+
+}
+
+
+/* ==========================
+   RENDRE LES FONCTIONS
+   ACCESSIBLES AUX BOUTONS
+========================== */
+
+window.showPage =
+showPage;
+
+window.logout =
+logout;
+
+window.toggleFav =
+toggleFav;
+
+window.applyJob =
+applyJob;
+
+window.deleteMessage =
+deleteMessage;
+
+window.deleteJob =
+deleteJob;
+
+window.setStatus =
+setStatus;
+
+window.shareJob =
+shareJob;
+
+window.callCompany =
+callCompany;
+
+
+/* ==========================
+   LANCEMENT
+========================== */
+
+if(
+document.readyState === 'loading'
+){
+
+document.addEventListener(
+'DOMContentLoaded',
+init,
+{once:true}
+);
+
+}else{
+
+init();
+
+}
+
+</script>
+
+</body>
+</html>
