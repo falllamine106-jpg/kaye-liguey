@@ -3,1744 +3,1523 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="theme-color" content="#0f766e">
 <title>KAYE LIGUEY</title>
 
 <style>
-*{
-  box-sizing:border-box;
+*{box-sizing:border-box}
+:root{
+  --primary:#0f766e;
+  --primary2:#115e59;
+  --bg:#f5f7f9;
+  --card:#fff;
+  --text:#17202a;
+  --muted:#667085;
+  --border:#e5e7eb;
+  --danger:#dc2626;
+  --success:#15803d;
 }
-
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  background:#f4f6f8;
-  color:#172033;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
-
-header{
-  background:#0f172a;
-  color:white;
-  padding:15px;
+button,input,select,textarea{
+  font:inherit;
 }
-
-.header{
-  max-width:1100px;
+button{
+  cursor:pointer;
+}
+.hidden{display:none!important}
+.container{
+  width:min(1100px,94%);
   margin:auto;
+}
+header{
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+.header-inner{
+  min-height:68px;
   display:flex;
+  align-items:center;
   justify-content:space-between;
+  gap:12px;
+}
+.brand{
+  display:flex;
   align-items:center;
   gap:10px;
-}
-
-.logo{
-  font-size:22px;
-  font-weight:bold;
-}
-
-.slogan{
-  font-size:12px;
-  color:#cbd5e1;
-  margin-top:4px;
-}
-
-button{
-  border:none;
-  padding:12px 16px;
-  border-radius:8px;
   cursor:pointer;
-  font-size:15px;
-  font-weight:bold;
 }
-
-button:active{
-  transform:scale(.97);
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  background:var(--primary);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-weight:800;
+  font-size:18px;
 }
-
-.btn-blue{
-  background:#2563eb;
-  color:white;
+.brand strong{
+  display:block;
+  font-size:20px;
 }
-
-.btn-green{
-  background:#16a34a;
-  color:white;
+.brand small{
+  color:var(--muted);
 }
-
-.btn-red{
-  background:#dc2626;
-  color:white;
-}
-
-.btn-gray{
-  background:#e2e8f0;
-  color:#172033;
-}
-
-nav{
-  background:white;
-  border-bottom:1px solid #ddd;
-}
-
-.nav{
-  max-width:1100px;
-  margin:auto;
+.header-actions{
   display:flex;
-  gap:5px;
-  overflow-x:auto;
-  padding:8px;
+  gap:8px;
 }
-
-.nav button{
-  background:white;
-  white-space:nowrap;
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:11px 15px;
+  font-weight:700;
 }
-
-.nav button:hover{
-  background:#eef2ff;
+.btn-primary{
+  background:var(--primary);
+  color:#fff;
 }
-
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px 15px;
+.btn-primary:hover{background:var(--primary2)}
+.btn-light{
+  background:#eef2f3;
+  color:var(--text);
 }
-
+.btn-danger{
+  background:#fee2e2;
+  color:#991b1b;
+}
+.btn-success{
+  background:#dcfce7;
+  color:#166534;
+}
+main{
+  padding:24px 0 100px;
+}
 .page{
   display:none;
 }
-
 .page.active{
   display:block;
 }
-
 .hero{
-  background:linear-gradient(135deg,#0f172a,#2563eb);
+  background:linear-gradient(135deg,#0f766e,#134e4a);
   color:white;
-  text-align:center;
-  padding:50px 20px;
-  border-radius:18px;
+  border-radius:20px;
+  padding:38px 25px;
+  margin-bottom:20px;
 }
-
 .hero h1{
-  font-size:38px;
-  margin:0 0 10px;
+  font-size:clamp(28px,5vw,46px);
+  margin:0 0 12px;
 }
-
 .hero p{
-  font-size:17px;
+  font-size:18px;
+  line-height:1.5;
+  max-width:700px;
 }
-
-.actions{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
+.search-box{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr auto;
   gap:10px;
-  margin-top:25px;
+  background:#fff;
+  padding:12px;
+  border-radius:14px;
+  margin-top:22px;
 }
-
+input,select,textarea{
+  width:100%;
+  border:1px solid #d8dde3;
+  border-radius:9px;
+  padding:11px 12px;
+  background:#fff;
+  outline:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--primary);
+}
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:24px 0 14px;
+}
+.section-title h2{
+  margin:0;
+}
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-  margin-top:20px;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
 }
-
 .card{
-  background:white;
-  padding:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+}
+.card h3{
+  margin-top:0;
+}
+.muted{
+  color:var(--muted);
+}
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  background:#e6fffb;
+  color:#0f766e;
+}
+.job-card{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.job-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+.job-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.stat{
+  background:#fff;
+  border:1px solid var(--border);
   border-radius:14px;
-  box-shadow:0 3px 12px rgba(0,0,0,.06);
-  margin-bottom:15px;
+  padding:18px;
 }
-
-input,
-select,
-textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #cbd5e1;
-  border-radius:8px;
-  margin-top:6px;
-  margin-bottom:14px;
-  font-size:16px;
+.stat strong{
+  font-size:28px;
+  display:block;
 }
-
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.field.full{
+  grid-column:1/-1;
+}
 label{
-  font-weight:bold;
-  font-size:14px;
+  display:block;
+  font-weight:700;
+  margin-bottom:6px;
 }
-
+.form-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+.empty{
+  padding:30px;
+  text-align:center;
+  color:var(--muted);
+  background:#fff;
+  border:1px dashed #cfd5db;
+  border-radius:14px;
+}
+.profile-head{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.avatar{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#dbe4e7;
+  display:grid;
+  place-items:center;
+  font-size:28px;
+  font-weight:800;
+}
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.list-item{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:15px;
+}
+nav.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#fff;
+  border-top:1px solid var(--border);
+  z-index:30;
+}
+.nav-inner{
+  width:min(900px,100%);
+  margin:auto;
+  display:flex;
+  justify-content:space-around;
+  overflow-x:auto;
+}
+.nav-btn{
+  border:0;
+  background:none;
+  padding:10px 12px;
+  color:#667085;
+  min-width:70px;
+  font-size:12px;
+}
+.nav-btn.active{
+  color:var(--primary);
+  font-weight:800;
+}
 .modal{
-  display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.65);
+  background:rgba(0,0,0,.55);
+  display:none;
   align-items:center;
   justify-content:center;
+  z-index:100;
   padding:15px;
-  z-index:1000;
 }
-
 .modal.show{
   display:flex;
 }
-
 .modal-box{
-  width:min(450px,100%);
-  background:white;
-  border-radius:16px;
-  padding:22px;
+  background:#fff;
+  border-radius:18px;
+  width:min(500px,100%);
   max-height:90vh;
   overflow:auto;
+  padding:22px;
 }
-
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+}
 .close{
-  float:right;
+  border:0;
+  background:#f1f3f5;
   width:40px;
   height:40px;
   border-radius:50%;
-  background:#e2e8f0;
 }
-
-.message{
-  padding:12px;
+.tabs{
+  display:flex;
+  gap:5px;
+  background:#f1f5f5;
+  padding:4px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+.tab{
+  flex:1;
+  border:0;
+  padding:10px;
   border-radius:8px;
-  margin-bottom:12px;
-  background:#eff6ff;
+  background:transparent;
 }
-
-footer{
-  margin-top:40px;
-  background:#0f172a;
+.tab.active{
+  background:#fff;
+  font-weight:800;
+}
+.alert{
+  padding:11px 13px;
+  border-radius:9px;
+  margin:10px 0;
+  font-size:14px;
+}
+.alert.error{
+  background:#fee2e2;
+  color:#991b1b;
+}
+.alert.success{
+  background:#dcfce7;
+  color:#166534;
+}
+.toast{
+  position:fixed;
+  right:15px;
+  bottom:85px;
+  background:#17202a;
   color:white;
-  text-align:center;
-  padding:25px;
+  padding:12px 15px;
+  border-radius:10px;
+  display:none;
+  z-index:200;
+  max-width:330px;
 }
-
-#status{
-  text-align:center;
-  margin:15px 0;
-  font-weight:bold;
+.toast.show{display:block}
+.small{
+  font-size:13px;
 }
-
-@media(max-width:600px){
-
-  .header{
-    flex-direction:column;
-  }
-
-  .hero h1{
-    font-size:30px;
-  }
+.center{text-align:center}
+hr{
+  border:0;
+  border-top:1px solid var(--border);
+  margin:18px 0;
+}
+@media(max-width:800px){
+  .grid{grid-template-columns:1fr 1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .search-box{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .brand small{display:none}
+  .header-inner{min-height:60px}
+  .header-actions .btn-light{display:none}
+  .grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .hero{padding:28px 18px}
+  .profile-head{align-items:flex-start}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ========================= -->
-<!-- HEADER -->
-<!-- ========================= -->
-
 <header>
+  <div class="container header-inner">
+    <div class="brand" id="brandHome">
+      <div class="logo">KL</div>
+      <div>
+        <strong>KAYE LIGUEY</strong>
+        <small>Trouvez votre emploi, construisez votre avenir.</small>
+      </div>
+    </div>
 
-<div class="header">
-
-<div>
-<div class="logo">KAYE LIGUEY</div>
-<div class="slogan">Seul le travail qui paye</div>
-</div>
-
-<div id="authArea">
-
-<button
-class="btn-blue"
-type="button"
-id="loginButton">
-Se connecter
-</button>
-
-<button
-class="btn-green"
-type="button"
-id="registerButton">
-Inscription
-</button>
-
-</div>
-
-<div
-id="loggedArea"
-style="display:none">
-
-<button
-class="btn-gray"
-type="button"
-id="profileButton">
-👤 Profil
-</button>
-
-<button
-class="btn-red"
-type="button"
-id="logoutButton">
-Déconnexion
-</button>
-
-</div>
-
-</div>
-
+    <div class="header-actions">
+      <button class="btn btn-light" id="headerProfileBtn">👤 Profil</button>
+      <button class="btn btn-primary" id="headerAuthBtn">Connexion</button>
+    </div>
+  </div>
 </header>
-
-
-<!-- ========================= -->
-<!-- NAVIGATION -->
-<!-- ========================= -->
-
-<nav>
-
-<div class="nav">
-
-<button type="button" data-page="home">
-🏠 Accueil
-</button>
-
-<button type="button" data-page="jobs">
-💼 Jobs
-</button>
-
-<button type="button" data-page="publish">
-➕ Publier
-</button>
-
-<button type="button" data-page="applications">
-📄 Candidatures
-</button>
-
-<button type="button" data-page="favorites">
-⭐ Favoris
-</button>
-
-<button type="button" data-page="messages">
-💬 Messages
-</button>
-
-<button type="button" data-page="notifications">
-🔔 Notifications
-</button>
-
-<button type="button" data-page="profile">
-👤 Profil
-</button>
-
-</div>
-
-</nav>
-
-
-<!-- ========================= -->
-<!-- CONTENU -->
-<!-- ========================= -->
 
 <main class="container">
 
-<div id="status"></div>
-
-
-<!-- ACCUEIL -->
-
-<section
-id="home"
-class="page active">
-
-<div class="hero">
-
-<h1>KAYE LIGUEY</h1>
-
-<p>
-Seul le travail qui paye
-</p>
-
-<p>
-Trouvez des offres d'emploi et développez votre avenir professionnel.
-</p>
-
-<div class="actions">
-
-<button
-class="btn-blue"
-type="button"
-id="viewJobsButton">
-Voir les offres
-</button>
-
-<button
-class="btn-green"
-type="button"
-id="heroRegisterButton">
-Créer mon compte
-</button>
-
-</div>
-
-</div>
-
-
-<div class="grid">
-
-<div class="card">
-
-<h3>👤 Candidat</h3>
-
-<p>
-Créez votre profil et recherchez des opportunités.
-</p>
-
-<button
-class="btn-blue"
-type="button"
-data-page="jobs">
-Chercher un emploi
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h3>🏢 Entreprise</h3>
-
-<p>
-Publiez vos offres et trouvez des candidats.
-</p>
-
-<button
-class="btn-green"
-type="button"
-id="companyButton">
-Publier une offre
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h3>🔐 Compte</h3>
-
-<p>
-Connectez-vous pour accéder à votre espace personnel.
-</p>
-
-<button
-class="btn-blue"
-type="button"
-id="accountButton">
-Mon compte
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- JOBS -->
-
-<section
-id="jobs"
-class="page">
-
-<h2>💼 Offres d'emploi</h2>
-
-<div class="card">
-
-<input
-id="searchInput"
-type="text"
-placeholder="Rechercher une offre...">
-
-</div>
-
-<div id="jobsContainer">
-
-<div class="card">
-
-<h3>Développeur Web</h3>
-
-<p>
-Recherche d'un développeur web.
-</p>
-
-<p>
-📍 Dakar
-</p>
-
-<button
-class="btn-blue jobButton"
-type="button">
-Voir l'offre
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h3>Assistant commercial</h3>
-
-<p>
-Poste d'assistant commercial.
-</p>
-
-<p>
-📍 Thiès
-</p>
-
-<button
-class="btn-blue jobButton"
-type="button">
-Voir l'offre
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PUBLICATION -->
-
-<section
-id="publish"
-class="page">
-
-<h2>➕ Publier une offre</h2>
-
-<div class="card">
-
-<div id="publishMessage"
-class="message">
-
-Connectez-vous pour publier une offre.
-
-</div>
-
-<form
-id="publishForm"
-style="display:none">
-
-<label>
-Titre du poste
-</label>
-
-<input
-id="jobTitle"
-required>
-
-<label>
-Description
-</label>
-
-<textarea
-id="jobDescription"
-rows="5"
-required></textarea>
-
-<label>
-Ville
-</label>
-
-<input
-id="jobCity"
-required>
-
-<label>
-Contrat
-</label>
-
-<select id="jobContract">
-
-<option>CDI</option>
-<option>CDD</option>
-<option>Stage</option>
-<option>Freelance</option>
-
-</select>
-
-<button
-class="btn-green"
-type="submit">
-
-Publier l'offre
-
-</button>
-
-</form>
-
-</div>
-
-</section>
-
-
-<!-- CANDIDATURES -->
-
-<section
-id="applications"
-class="page">
-
-<h2>📄 Mes candidatures</h2>
-
-<div class="card">
-
-<p>
-Aucune candidature pour le moment.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- FAVORIS -->
-
-<section
-id="favorites"
-class="page">
-
-<h2>⭐ Mes favoris</h2>
-
-<div class="card">
-
-<p>
-Aucun favori pour le moment.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- MESSAGES -->
-
-<section
-id="messages"
-class="page">
-
-<h2>💬 Messages</h2>
-
-<div class="card">
-
-<p>
-Votre messagerie apparaîtra ici.
-</p>
-
-<button
-class="btn-blue"
-type="button"
-id="newMessageButton">
-
-Nouveau message
-
-</button>
-
-</div>
-
-</section>
-
-
-<!-- NOTIFICATIONS -->
-
-<section
-id="notifications"
-class="page">
-
-<h2>🔔 Notifications</h2>
-
-<div class="card">
-
-<p>
-Aucune notification.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- PROFIL -->
-
-<section
-id="profile"
-class="page">
-
-<h2>👤 Mon profil</h2>
-
-<div class="card">
-
-<div id="profileNotLogged">
-
-<p>
-Vous n'êtes pas connecté.
-</p>
-
-<button
-class="btn-blue"
-type="button"
-id="profileLoginButton">
-
-Se connecter
-
-</button>
-
-</div>
-
-
-<div
-id="profileLogged"
-style="display:none">
-
-<h3 id="profileName">
-Utilisateur
-</h3>
-
-<p id="profileEmail">
-Email
-</p>
-
-<p id="profileRole">
-Candidat
-</p>
-
-<button
-class="btn-gray"
-type="button"
-id="editProfileButton">
-
-Modifier mon profil
-
-</button>
-
-</div>
-
-</div>
-
-</section>
+  <!-- ACCUEIL -->
+  <section id="page-home" class="page active">
+    <div class="hero">
+      <h1>Trouvez votre emploi.</h1>
+      <p>
+        <strong>KAYE LIGUEY</strong> met en relation les candidats et les entreprises.
+        Trouvez des opportunités, publiez vos offres et construisez votre avenir.
+      </p>
+
+      <div class="search-box">
+        <input id="homeKeyword" placeholder="Métier, compétence...">
+        <input id="homeCity" placeholder="Ville">
+        <select id="homeContract">
+          <option value="">Tous les contrats</option>
+          <option>CDI</option>
+          <option>CDD</option>
+          <option>Stage</option>
+          <option>Freelance</option>
+          <option>Temps partiel</option>
+        </select>
+        <button class="btn btn-primary" id="homeSearch">Rechercher</button>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <h2>Dernières offres</h2>
+      <button class="btn btn-light" id="homeAllJobs">Voir tout</button>
+    </div>
+    <div id="homeJobs" class="grid"></div>
+  </section>
+
+  <!-- JOBS -->
+  <section id="page-jobs" class="page">
+    <div class="section-title">
+      <h2>💼 Offres d'emploi</h2>
+    </div>
+
+    <div class="card">
+      <div class="form-grid">
+        <div>
+          <label>Recherche</label>
+          <input id="jobSearch" placeholder="Titre, compétence...">
+        </div>
+        <div>
+          <label>Ville</label>
+          <input id="jobCity" placeholder="Dakar, Thiès...">
+        </div>
+        <div>
+          <label>Catégorie</label>
+          <input id="jobCategory" placeholder="Informatique...">
+        </div>
+        <div>
+          <label>Contrat</label>
+          <select id="jobContract">
+            <option value="">Tous</option>
+            <option>CDI</option>
+            <option>CDD</option>
+            <option>Stage</option>
+            <option>Freelance</option>
+            <option>Temps partiel</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" id="filterJobs">Rechercher</button>
+        <button class="btn btn-light" id="resetJobs">Réinitialiser</button>
+      </div>
+    </div>
+
+    <div id="jobsList" class="grid" style="margin-top:18px"></div>
+  </section>
+
+  <!-- PUBLIER -->
+  <section id="page-publish" class="page">
+    <div class="section-title">
+      <h2>➕ Publier une offre</h2>
+    </div>
+
+    <div class="card">
+      <div id="publishMessage"></div>
+
+      <div class="form-grid">
+        <div class="field full">
+          <label>Titre de l'offre *</label>
+          <input id="offerTitle" placeholder="Exemple : Développeur web">
+        </div>
+
+        <div>
+          <label>Catégorie</label>
+          <input id="offerCategory" placeholder="Informatique">
+        </div>
+
+        <div>
+          <label>Contrat</label>
+          <select id="offerContract">
+            <option>CDI</option>
+            <option>CDD</option>
+            <option>Stage</option>
+            <option>Freelance</option>
+            <option>Temps partiel</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Ville</label>
+          <input id="offerCity" placeholder="Dakar">
+        </div>
+
+        <div>
+          <label>Région</label>
+          <input id="offerRegion" placeholder="Dakar">
+        </div>
+
+        <div>
+          <label>Salaire minimum</label>
+          <input id="offerSalaryMin" type="number" min="0" placeholder="0">
+        </div>
+
+        <div>
+          <label>Salaire maximum</label>
+          <input id="offerSalaryMax" type="number" min="0" placeholder="0">
+        </div>
+
+        <div>
+          <label>Date limite</label>
+          <input id="offerDeadline" type="date">
+        </div>
+
+        <div class="field full">
+          <label>Compétences recherchées</label>
+          <input id="offerSkills" placeholder="HTML, Excel, communication...">
+        </div>
+
+        <div class="field full">
+          <label>Description *</label>
+          <textarea id="offerDescription" placeholder="Décrivez le poste..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" id="publishOfferBtn">Publier l'offre</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CANDIDATURES -->
+  <section id="page-applications" class="page">
+    <div class="section-title">
+      <h2>📝 Mes candidatures</h2>
+    </div>
+    <div id="applicationsList" class="list"></div>
+  </section>
+
+  <!-- FAVORIS -->
+  <section id="page-favorites" class="page">
+    <div class="section-title">
+      <h2>❤️ Mes favoris</h2>
+    </div>
+    <div id="favoritesList" class="grid"></div>
+  </section>
+
+  <!-- MESSAGES -->
+  <section id="page-messages" class="page">
+    <div class="section-title">
+      <h2>💬 Messages</h2>
+    </div>
+
+    <div class="card">
+      <div class="form-grid">
+        <div>
+          <label>Destinataire UID</label>
+          <input id="messageTo" placeholder="UID de l'utilisateur">
+        </div>
+        <div>
+          <label>Sujet</label>
+          <input id="messageSubject" placeholder="Sujet">
+        </div>
+        <div class="field full">
+          <label>Message</label>
+          <textarea id="messageText" placeholder="Votre message..."></textarea>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="sendMessageBtn">Envoyer</button>
+    </div>
+
+    <div id="messagesList" class="list" style="margin-top:18px"></div>
+  </section>
+
+  <!-- NOTIFICATIONS -->
+  <section id="page-notifications" class="page">
+    <div class="section-title">
+      <h2>🔔 Notifications</h2>
+    </div>
+    <div id="notificationsList" class="list"></div>
+  </section>
+
+  <!-- PROFIL -->
+  <section id="page-profile" class="page">
+    <div class="section-title">
+      <h2>👤 Mon profil</h2>
+    </div>
+
+    <div id="profileContent"></div>
+  </section>
+
+  <!-- ADMIN -->
+  <section id="page-admin" class="page">
+    <div class="section-title">
+      <h2>👑 Administration</h2>
+    </div>
+
+    <div class="stat-grid" id="adminStats"></div>
+
+    <div class="section-title">
+      <h2>Utilisateurs</h2>
+    </div>
+    <div id="adminUsers" class="list"></div>
+
+    <div class="section-title">
+      <h2>Offres</h2>
+    </div>
+    <div id="adminOffers" class="list"></div>
+  </section>
 
 </main>
 
+<nav class="bottom-nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" data-page="home">🏠<br>Accueil</button>
+    <button class="nav-btn" data-page="jobs">💼<br>Jobs</button>
+    <button class="nav-btn" data-page="publish">➕<br>Publier</button>
+    <button class="nav-btn" data-page="applications">📝<br>Candidatures</button>
+    <button class="nav-btn" data-page="favorites">❤️<br>Favoris</button>
+    <button class="nav-btn" data-page="messages">💬<br>Messages</button>
+    <button class="nav-btn" data-page="notifications">🔔<br>Alertes</button>
+    <button class="nav-btn" data-page="profile">👤<br>Profil</button>
+  </div>
+</nav>
 
-<!-- ========================= -->
-<!-- MODALE CONNEXION -->
-<!-- ========================= -->
+<!-- AUTH MODAL -->
+<div class="modal" id="authModal">
+  <div class="modal-box">
 
-<div
-id="loginModal"
-class="modal">
+    <div class="modal-head">
+      <h2 id="authTitle">Connexion</h2>
+      <button class="close" id="closeAuth">×</button>
+    </div>
 
-<div class="modal-box">
+    <div class="tabs">
+      <button class="tab active" id="loginTab">Connexion</button>
+      <button class="tab" id="registerTab">Inscription</button>
+    </div>
 
-<button
-class="close"
-type="button"
-data-close="loginModal">
+    <div id="authMessage"></div>
 
-×
-</button>
+    <!-- LOGIN -->
+    <div id="loginForm">
+      <label>Email</label>
+      <input id="loginEmail" type="email" placeholder="email@example.com">
 
-<h2>🔐 Se connecter</h2>
+      <label style="margin-top:12px">Mot de passe</label>
+      <input id="loginPassword" type="password" placeholder="Mot de passe">
 
-<div
-id="loginMessage"
-class="message"
-style="display:none">
+      <button class="btn btn-primary" id="loginBtn" style="width:100%;margin-top:15px">
+        Se connecter
+      </button>
+
+      <button class="btn btn-light" id="forgotBtn" style="width:100%;margin-top:8px">
+        Mot de passe oublié
+      </button>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="registerForm" class="hidden">
+
+      <label>Type de compte</label>
+      <select id="registerRole">
+        <option value="candidate">👤 Candidat</option>
+        <option value="company">🏢 Entreprise</option>
+      </select>
+
+      <label style="margin-top:12px">Prénom / Nom ou nom de l'entreprise</label>
+      <input id="registerName" placeholder="Votre nom">
+
+      <label style="margin-top:12px">Email</label>
+      <input id="registerEmail" type="email" placeholder="email@example.com">
+
+      <label style="margin-top:12px">Téléphone</label>
+      <input id="registerPhone" type="tel" placeholder="+221XXXXXXXXX">
+
+      <label style="margin-top:12px">Mot de passe</label>
+      <input id="registerPassword" type="password" placeholder="Au moins 6 caractères">
+
+      <button class="btn btn-primary" id="registerBtn" style="width:100%;margin-top:15px">
+        Créer mon compte
+      </button>
+    </div>
+
+    <!-- PHONE OTP -->
+    <div id="otpForm" class="hidden">
+
+      <div class="alert success">
+        Un code de validation a été envoyé par SMS.
+      </div>
+
+      <label>Code reçu par SMS</label>
+      <input id="otpCode" inputmode="numeric" maxlength="6" placeholder="123456">
+
+      <button class="btn btn-primary" id="verifyOtpBtn" style="width:100%;margin-top:15px">
+        Vérifier le code
+      </button>
+
+      <button class="btn btn-light" id="resendOtpBtn" style="width:100%;margin-top:8px">
+        Renvoyer le code
+      </button>
+    </div>
+
+    <div id="recaptcha-container"></div>
+
+  </div>
 </div>
 
-<form id="loginForm">
-
-<label>Email</label>
-
-<input
-id="loginEmail"
-type="email"
-required>
-
-<label>Mot de passe</label>
-
-<input
-id="loginPassword"
-type="password"
-required>
-
-<button
-class="btn-blue"
-type="submit"
-style="width:100%">
-
-Se connecter
-
-</button>
-
-</form>
-
-<br>
-
-<button
-class="btn-gray"
-type="button"
-id="goRegisterButton"
-style="width:100%">
-
-Créer un compte
-
-</button>
-
-<br><br>
-
-<button
-class="btn-gray"
-type="button"
-id="forgotButton"
-style="width:100%">
-
-Mot de passe oublié ?
-
-</button>
-
+<!-- JOB DETAIL -->
+<div class="modal" id="jobModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="jobModalTitle">Offre</h2>
+      <button class="close" id="closeJob">×</button>
+    </div>
+    <div id="jobModalContent"></div>
+  </div>
 </div>
 
-</div>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+  onAuthStateChanged,
+  RecaptchaVerifier,
+  PhoneAuthProvider,
+  linkWithCredential,
+  updateProfile
+}
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  addDoc,
+  query,
+  where,
+  orderBy,
+  limit,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+}
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
 
-<!-- ========================= -->
-<!-- MODALE INSCRIPTION -->
-<!-- ========================= -->
+const firebaseConfig = {
+  apiKey: "AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvtl0",
+  authDomain: "kaye-liguey.firebaseapp.com",
+  projectId: "kaye-liguey",
+  storageBucket: "kaye-liguey.firebasestorage.app",
+  messagingSenderId: "6308207019",
+  appId: "1:6308207019:web:6dca2b99992ef11dcb1aee",
+  measurementId: "G-C7244S0ZLM"
+};
 
-<div
-id="registerModal"
-class="modal">
-
-<div class="modal-box">
-
-<button
-class="close"
-type="button"
-data-close="registerModal">
-
-×
-</button>
-
-<h2>📝 Créer mon compte</h2>
-
-<div
-id="registerMessage"
-class="message"
-style="display:none">
-</div>
-
-<form id="registerForm">
-
-<label>Nom complet</label>
-
-<input
-id="registerName"
-required>
-
-<label>Email</label>
-
-<input
-id="registerEmail"
-type="email"
-required>
-
-<label>Mot de passe</label>
-
-<input
-id="registerPassword"
-type="password"
-minlength="6"
-required>
-
-<label>Téléphone</label>
-
-<input
-id="registerPhone"
-type="tel"
-placeholder="+221XXXXXXXXX">
-
-<label>Type de compte</label>
-
-<select id="registerRole">
-
-<option value="candidate">
-👤 Candidat
-</option>
-
-<option value="company">
-🏢 Entreprise
-</option>
-
-</select>
-
-<button
-class="btn-green"
-type="submit"
-style="width:100%">
-
-Créer mon compte
-
-</button>
-
-</form>
-
-<br>
-
-<button
-class="btn-gray"
-type="button"
-id="goLoginButton"
-style="width:100%">
-
-J'ai déjà un compte
-
-</button>
-
-</div>
-
-</div>
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
 
-<!-- ========================= -->
-<!-- JAVASCRIPT -->
-<!-- ========================= -->
-
-<script>
-
-"use strict";
-
-
-/* =========================
-   VARIABLES
-========================= */
-
-let loggedIn = false;
+/* =========================================================
+   ÉTAT
+========================================================= */
 
 let currentUser = null;
+let currentProfile = null;
+let confirmationResult = null;
+let pendingPhone = "";
+let pendingRegistration = null;
+let recaptchaVerifier = null;
+let currentJob = null;
 
 
-/* =========================
-   MESSAGE
-========================= */
+/* =========================================================
+   OUTILS
+========================================================= */
 
-function showStatus(message){
+const $ = id => document.getElementById(id);
 
-const status =
-document.getElementById("status");
+function toast(message){
+  const el = $("toast");
+  el.textContent = message;
+  el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"),3500);
+}
 
-status.textContent = message;
+function escapeHtml(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
 
-setTimeout(function(){
+function showMessage(id,message,type="error"){
+  $(id).innerHTML =
+    `<div class="alert ${type}">${escapeHtml(message)}</div>`;
+}
 
-status.textContent = "";
+function clearMessage(id){
+  $(id).innerHTML="";
+}
 
-},3000);
+function requireAuth(){
+  if(!currentUser){
+    openAuth("login");
+    toast("Connectez-vous d'abord.");
+    return false;
+  }
+  return true;
+}
 
+function formatDate(value){
+  if(!value) return "";
+  try{
+    const d = value.toDate ? value.toDate() : new Date(value);
+    return d.toLocaleDateString("fr-FR");
+  }catch{
+    return "";
+  }
+}
+
+function money(min,max){
+  if(!min && !max) return "Salaire non précisé";
+  if(min && max) return `${Number(min).toLocaleString()} – ${Number(max).toLocaleString()} FCFA`;
+  if(min) return `À partir de ${Number(min).toLocaleString()} FCFA`;
+  return `Jusqu'à ${Number(max).toLocaleString()} FCFA`;
 }
 
 
-/* =========================
+/* =========================================================
    NAVIGATION
-========================= */
+========================================================= */
 
-function showPage(pageName){
+function showPage(name){
 
-const pages =
-document.querySelectorAll(".page");
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
 
-pages.forEach(function(page){
+  const page = $("page-"+name);
 
-page.classList.remove("active");
+  if(!page) return;
 
-});
+  page.classList.add("active");
 
+  document.querySelectorAll(".nav-btn")
+    .forEach(btn=>{
+      btn.classList.toggle(
+        "active",
+        btn.dataset.page===name
+      );
+    });
 
-const page =
-document.getElementById(pageName);
-
-if(page){
-
-page.classList.add("active");
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
+  if(name==="home") loadHomeJobs();
+  if(name==="jobs") loadJobs();
+  if(name==="applications") loadApplications();
+  if(name==="favorites") loadFavorites();
+  if(name==="messages") loadMessages();
+  if(name==="notifications") loadNotifications();
+  if(name==="profile") loadProfile();
+  if(name==="admin") loadAdmin();
 }
 
+document.querySelectorAll(".nav-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+
+    const page = btn.dataset.page;
+
+    if(
+      ["publish","applications","favorites","messages",
+       "notifications","profile"].includes(page)
+      && !currentUser
+    ){
+      openAuth("login");
+      toast("Connectez-vous pour accéder à cette page.");
+      return;
+    }
+
+    showPage(page);
+  });
+});
+
+$("brandHome").addEventListener("click",()=>showPage("home"));
+$("headerProfileBtn").addEventListener("click",()=>{
+  if(currentUser) showPage("profile");
+  else openAuth("login");
+});
+
+$("headerAuthBtn").addEventListener("click",()=>{
+  if(currentUser){
+    logout();
+  }else{
+    openAuth("login");
+  }
+});
+
+
+/* =========================================================
+   AUTH MODAL
+========================================================= */
+
+function openAuth(mode="login"){
+  $("authModal").classList.add("show");
+  clearMessage("authMessage");
+  showAuthMode(mode);
 }
 
-
-/* =========================
-   BOUTONS NAVIGATION
-========================= */
-
-document
-.querySelectorAll("[data-page]")
-.forEach(function(button){
-
-button.addEventListener(
-"click",
-function(){
-
-const page =
-button.getAttribute(
-"data-page"
-);
-
-showPage(page);
-
-});
-
-});
-
-
-/* =========================
-   OUVRIR MODALE
-========================= */
-
-function openModal(id){
-
-const modal =
-document.getElementById(id);
-
-if(modal){
-
-modal.classList.add("show");
-
+function closeAuth(){
+  $("authModal").classList.remove("show");
 }
 
+function showAuthMode(mode){
+
+  $("loginForm").classList.toggle("hidden",mode!=="login");
+  $("registerForm").classList.toggle("hidden",mode!=="register");
+  $("otpForm").classList.toggle("hidden",mode!=="otp");
+
+  $("loginTab").classList.toggle("active",mode==="login");
+  $("registerTab").classList.toggle("active",mode==="register");
+
+  $("authTitle").textContent =
+    mode==="login" ? "Connexion" :
+    mode==="register" ? "Créer un compte" :
+    "Validation par SMS";
 }
 
+$("closeAuth").addEventListener("click",closeAuth);
 
-/* =========================
-   FERMER MODALE
-========================= */
-
-function closeModal(id){
-
-const modal =
-document.getElementById(id);
-
-if(modal){
-
-modal.classList.remove("show");
-
-}
-
-}
+$("loginTab").addEventListener("click",()=>showAuthMode("login"));
+$("registerTab").addEventListener("click",()=>showAuthMode("register"));
 
 
-/* =========================
-   BOUTONS FERMETURE
-========================= */
+/* =========================================================
+   LOGIN
+========================================================= */
 
-document
-.querySelectorAll("[data-close]")
-.forEach(function(button){
+$("loginBtn").addEventListener("click",async()=>{
 
-button.addEventListener(
-"click",
-function(){
+  const email = $("loginEmail").value.trim();
+  const password = $("loginPassword").value;
 
-const id =
-button.getAttribute(
-"data-close"
-);
+  if(!email || !password){
+    showMessage("authMessage","Remplissez tous les champs.");
+    return;
+  }
 
-closeModal(id);
+  try{
 
-});
+    $("loginBtn").disabled=true;
+    $("loginBtn").textContent="Connexion...";
 
-});
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
+    closeAuth();
+    toast("Connexion réussie.");
 
-/* =========================
-   INSCRIPTION
-========================= */
+  }catch(error){
 
-document
-.getElementById("registerButton")
-.addEventListener(
-"click",
-function(){
+    console.error(error);
 
-openModal("registerModal");
+    let message="Connexion impossible.";
 
-});
+    if(error.code==="auth/invalid-credential")
+      message="Email ou mot de passe incorrect.";
 
+    if(error.code==="auth/user-not-found")
+      message="Ce compte n'existe pas.";
 
-document
-.getElementById("heroRegisterButton")
-.addEventListener(
-"click",
-function(){
+    if(error.code==="auth/wrong-password")
+      message="Mot de passe incorrect.";
 
-openModal("registerModal");
+    showMessage("authMessage",message);
 
+  }finally{
+    $("loginBtn").disabled=false;
+    $("loginBtn").textContent="Se connecter";
+  }
 });
 
 
-/* =========================
-   CONNEXION
-========================= */
-
-document
-.getElementById("loginButton")
-.addEventListener(
-"click",
-function(){
-
-openModal("loginModal");
-
-});
-
-
-document
-.getElementById("accountButton")
-.addEventListener(
-"click",
-function(){
-
-if(loggedIn){
-
-showPage("profile");
-
-}else{
-
-openModal("loginModal");
-
-}
-
-});
-
-
-document
-.getElementById("profileLoginButton")
-.addEventListener(
-"click",
-function(){
-
-openModal("loginModal");
-
-});
-
-
-/* =========================
-   PASSER INSCRIPTION
-========================= */
-
-document
-.getElementById("goRegisterButton")
-.addEventListener(
-"click",
-function(){
-
-closeModal("loginModal");
-
-openModal("registerModal");
-
-});
-
-
-/* =========================
-   PASSER CONNEXION
-========================= */
-
-document
-.getElementById("goLoginButton")
-.addEventListener(
-"click",
-function(){
-
-closeModal("registerModal");
-
-openModal("loginModal");
-
-});
-
-
-/* =========================
-   VOIR JOBS
-========================= */
-
-document
-.getElementById("viewJobsButton")
-.addEventListener(
-"click",
-function(){
-
-showPage("jobs");
-
-});
-
-
-/* =========================
-   ENTREPRISE
-========================= */
-
-document
-.getElementById("companyButton")
-.addEventListener(
-"click",
-function(){
-
-if(!loggedIn){
-
-openModal("loginModal");
-
-showStatus(
-"Connectez-vous d'abord."
-);
-
-return;
-
-}
-
-showPage("publish");
-
-});
-
-
-/* =========================
-   FORMULAIRE INSCRIPTION
-========================= */
-
-document
-.getElementById("registerForm")
-.addEventListener(
-"submit",
-function(event){
-
-event.preventDefault();
-
-const name =
-document
-.getElementById("registerName")
-.value
-.trim();
-
-const email =
-document
-.getElementById("registerEmail")
-.value
-.trim();
-
-const password =
-document
-.getElementById("registerPassword")
-.value;
-
-const phone =
-document
-.getElementById("registerPhone")
-.value
-.trim();
-
-const role =
-document
-.getElementById("registerRole")
-.value;
-
-
-if(password.length < 6){
-
-showRegisterMessage(
-"Le mot de passe doit contenir au moins 6 caractères."
-);
-
-return;
-
-}
-
-
-/*
-   TEST LOCAL UNIQUEMENT.
-
-   Firebase sera branché après
-   validation du fonctionnement
-   des boutons.
-*/
-
-currentUser = {
-
-name:name,
-
-email:email,
-
-phone:phone,
-
-role:role
-
-};
-
-loggedIn = true;
-
-
-closeModal("registerModal");
-
-updateInterface();
-
-showStatus(
-"Compte créé avec succès (mode test)."
-);
-
-showPage("profile");
-
-});
-
-
-/* =========================
-   FORMULAIRE CONNEXION
-========================= */
-
-document
-.getElementById("loginForm")
-.addEventListener(
-"submit",
-function(event){
-
-event.preventDefault();
-
-const email =
-document
-.getElementById("loginEmail")
-.value
-.trim();
-
-const password =
-document
-.getElementById("loginPassword")
-.value;
-
-
-if(!email || !password){
-
-showLoginMessage(
-"Veuillez remplir tous les champs."
-);
-
-return;
-
-}
-
-
-/*
-   TEST LOCAL.
-*/
-
-currentUser = {
-
-name:"Utilisateur",
-
-email:email,
-
-role:"candidate"
-
-};
-
-loggedIn = true;
-
-
-closeModal("loginModal");
-
-updateInterface();
-
-showStatus(
-"Connexion réussie (mode test)."
-);
-
-showPage("profile");
-
-});
-
-
-/* =========================
-   INTERFACE CONNECTÉE
-========================= */
-
-function updateInterface(){
-
-const authArea =
-document.getElementById(
-"authArea"
-);
-
-const loggedArea =
-document.getElementById(
-"loggedArea"
-);
-
-const profileNotLogged =
-document.getElementById(
-"profileNotLogged"
-);
-
-const profileLogged =
-document.getElementById(
-"profileLogged"
-);
-
-const publishForm =
-document.getElementById(
-"publishForm"
-);
-
-const publishMessage =
-document.getElementById(
-"publishMessage"
-);
-
-
-if(loggedIn){
-
-authArea.style.display =
-"none";
-
-loggedArea.style.display =
-"block";
-
-profileNotLogged.style.display =
-"none";
-
-profileLogged.style.display =
-"block";
-
-publishForm.style.display =
-"block";
-
-publishMessage.style.display =
-"none";
-
-
-document.getElementById(
-"profileName"
-).textContent =
-currentUser.name ||
-"Utilisateur";
-
-
-document.getElementById(
-"profileEmail"
-).textContent =
-"Email : " +
-currentUser.email;
-
-
-document.getElementById(
-"profileRole"
-).textContent =
-currentUser.role === "company"
-? "🏢 Entreprise"
-: "👤 Candidat";
-
-
-}else{
-
-authArea.style.display =
-"block";
-
-loggedArea.style.display =
-"none";
-
-profileNotLogged.style.display =
-"block";
-
-profileLogged.style.display =
-"none";
-
-publishForm.style.display =
-"none";
-
-publishMessage.style.display =
-"block";
-
-}
-
-}
-
-
-/* =========================
-   DÉCONNEXION
-========================= */
-
-document
-.getElementById("logoutButton")
-.addEventListener(
-"click",
-function(){
-
-const answer =
-window.confirm(
-"Voulez-vous vraiment vous déconnecter ?"
-);
-
-
-if(!answer){
-
-return;
-
-}
-
-
-loggedIn = false;
-
-currentUser = null;
-
-updateInterface();
-
-showPage("home");
-
-showStatus(
-"Vous êtes maintenant déconnecté."
-);
-
-});
-
-
-/* =========================
+/* =========================================================
    MOT DE PASSE OUBLIÉ
-========================= */
+========================================================= */
 
-document
-.getElementById("forgotButton")
-.addEventListener(
-"click",
-function(){
+$("forgotBtn").addEventListener("click",async()=>{
 
-const email =
-document
-.getElementById("loginEmail")
-.value
-.trim();
+  const email = $("loginEmail").value.trim();
+
+  if(!email){
+    showMessage(
+      "authMessage",
+      "Écrivez d'abord votre adresse e-mail."
+    );
+    return;
+  }
+
+  try{
+
+    await sendPasswordResetEmail(auth,email);
+
+    showMessage(
+      "authMessage",
+      "Un e-mail de réinitialisation a été envoyé. Vérifiez votre boîte mail.",
+      "success"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    let message="Impossible d'envoyer l'e-mail.";
+
+    if(error.code==="auth/user-not-found")
+      message="Aucun compte avec cette adresse e-mail.";
+
+    if(error.code==="auth/invalid-email")
+      message="Adresse e-mail invalide.";
+
+    showMessage("authMessage",message);
+  }
+});
 
 
-if(!email){
+/* =========================================================
+   RECAPTCHA
+========================================================= */
 
-showLoginMessage(
-"Entrez votre email avant de demander la réinitialisation."
-);
+function setupRecaptcha(){
 
-return;
+  if(recaptchaVerifier) return;
 
+  recaptchaVerifier = new RecaptchaVerifier(
+    auth,
+    "recaptcha-container",
+    {
+      size:"normal"
+    }
+  );
+
+  recaptchaVerifier.render();
 }
 
 
-showLoginMessage(
-"Mode test : la réinitialisation Firebase sera ajoutée ensuite."
-);
+/* =========================================================
+   INSCRIPTION
+========================================================= */
 
+$("registerBtn").addEventListener("click",async()=>{
+
+  const role = $("registerRole").value;
+  const name = $("registerName").value.trim();
+  const email = $("registerEmail").value.trim();
+  const phone = $("registerPhone").value.trim();
+  const password = $("registerPassword").value;
+
+  if(!name || !email || !phone || !password){
+    showMessage(
+      "authMessage",
+      "Remplissez tous les champs."
+    );
+    return;
+  }
+
+  if(password.length < 6){
+    showMessage(
+      "authMessage",
+      "Le mot de passe doit contenir au moins 6 caractères."
+    );
+    return;
+  }
+
+  if(!phone.startsWith("+")){
+    showMessage(
+      "authMessage",
+      "Le numéro doit être au format international, par exemple +221XXXXXXXXX."
+    );
+    return;
+  }
+
+  try{
+
+    $("registerBtn").disabled=true;
+    $("registerBtn").textContent="Création...";
+
+    const result =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    const user = result.user;
+
+    await updateProfile(user,{
+      displayName:name
+    });
+
+    pendingRegistration = {
+      uid:user.uid,
+      role,
+      name,
+      email,
+      phone
+    };
+
+    pendingPhone = phone;
+
+    setupRecaptcha();
+
+    const provider = new PhoneAuthProvider(auth);
+
+    const verificationId =
+      await provider.verifyPhoneNumber(
+        {
+          phoneNumber:phone,
+          session:user
+        },
+        recaptchaVerifier
+      );
+
+    confirmationResult = verificationId;
+
+    showAuthMode("otp");
+
+    toast("Code SMS envoyé.");
+
+  }catch(error){
+
+    console.error(error);
+
+    let message="Impossible de créer le compte.";
+
+    if(error.code==="auth/email-already-in-use")
+      message="Cette adresse e-mail est déjà utilisée.";
+
+    if(error.code==="auth/invalid-phone-number")
+      message="Numéro de téléphone invalide.";
+
+    if(error.code==="auth/quota-exceeded")
+      message="La limite de SMS Firebase a été atteinte.";
+
+    if(error.code==="auth/operation-not-allowed")
+      message="L'authentification par téléphone n'est pas activée.";
+
+    showMessage("authMessage",message);
+
+  }finally{
+
+    $("registerBtn").disabled=false;
+    $("registerBtn").textContent="Créer mon compte";
+
+  }
 });
 
 
-/* =========================
-   MESSAGES
-========================= */
+/* =========================================================
+   VÉRIFICATION SMS
+========================================================= */
 
-document
-.getElementById("newMessageButton")
-.addEventListener(
-"click",
-function(){
+$("verifyOtpBtn").addEventListener("click",async()=>{
 
-if(!loggedIn){
+  const code = $("otpCode").value.trim();
 
-openModal("loginModal");
+  if(!/^\d{6}$/.test(code)){
+    showMessage(
+      "authMessage",
+      "Entrez le code à 6 chiffres reçu par SMS."
+    );
+    return;
+  }
 
-showStatus(
-"Connectez-vous pour envoyer un message."
-);
+  if(!confirmationResult){
+    showMessage(
+      "authMessage",
+      "Aucun code actif. Demandez un nouveau code."
+    );
+    return;
+  }
 
-return;
+  try{
 
+    $("verifyOtpBtn").disabled=true;
+    $("verifyOtpBtn").textContent="Vérification...";
+
+    const credential =
+      PhoneAuthProvider.credential(
+        confirmationResult,
+        code
+      );
+
+    await linkWithCredential(
+      auth.currentUser,
+      credential
+    );
+
+    const data = {
+      uid:auth.currentUser.uid,
+      role:pendingRegistration.role,
+      name:pendingRegistration.name,
+      email:pendingRegistration.email,
+      phone:pendingRegistration.phone,
+      createdAt:serverTimestamp(),
+      updatedAt:serverTimestamp(),
+      verifiedPhone:true
+    };
+
+    await setDoc(
+      doc(db,"users",auth.currentUser.uid),
+      data,
+      {merge:true}
+    );
+
+    currentProfile=data;
+
+    closeAuth();
+
+    toast("Compte créé et numéro vérifié.");
+
+    showPage("profile");
+
+  }catch(error){
+
+    console.error(error);
+
+    let message="Code incorrect.";
+
+    if(error.code==="auth/invalid-verification-code")
+      message="Le code SMS est incorrect.";
+
+    if(error.code==="auth/code-expired")
+      message="Le code a expiré. Demandez un nouveau code.";
+
+    if(error.code==="auth/credential-already-in-use")
+      message="Ce numéro est déjà associé à un autre compte.";
+
+    showMessage("authMessage",message);
+
+  }finally{
+
+    $("verifyOtpBtn").disabled=false;
+    $("verifyOtpBtn").textContent="Vérifier le code";
+
+  }
+});
+
+
+/* =========================================================
+   RENVOYER SMS
+========================================================= */
+
+$("resendOtpBtn").addEventListener("click",async()=>{
+
+  if(!pendingPhone){
+    showMessage(
+      "authMessage",
+      "Numéro introuvable."
+    );
+    return;
+  }
+
+  try{
+
+    setupRecaptcha();
+
+    const provider = new PhoneAuthProvider(auth);
+
+    confirmationResult =
+      await provider.verifyPhoneNumber(
+        {
+          phoneNumber:pendingPhone,
+          session:auth.currentUser
+        },
+        recaptchaVerifier
+      );
+
+    toast("Nouveau code SMS envoyé.");
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "authMessage",
+      "Impossible de renvoyer le code."
+    );
+  }
+});
+
+
+/* =========================================================
+   DÉCONNEXION
+========================================================= */
+
+async function logout(){
+
+  const ok = confirm(
+    "Voulez-vous vraiment vous déconnecter ?"
+  );
+
+  if(!ok) return;
+
+  try{
+
+    await signOut(auth);
+
+    toast("Vous êtes déconnecté.");
+
+    showPage("home");
+
+  }catch(error){
+
+    toast("Erreur pendant la déconnexion.");
+  }
 }
 
-showStatus(
-"Fonction de messagerie prête pour la prochaine étape."
-);
 
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+onAuthStateChanged(auth,async(user)=>{
+
+  currentUser=user;
+
+  if(user){
+
+    $("headerAuthBtn").textContent="Déconnexion";
+    $("headerProfileBtn").textContent="👤 Profil";
+
+    await loadCurrentProfile();
+
+  }else{
+
+    currentProfile=null;
+
+    $("headerAuthBtn").textContent="Connexion";
+
+    $("headerProfileBtn").textContent="👤 Profil";
+  }
+
+  loadHomeJobs();
 });
 
 
-/* =========================
-   MODIFICATION PROFIL
-========================= */
+/* =========================================================
+   PROFIL UTILISATEUR
+========================================================= */
 
-document
-.getElementById("editProfileButton")
-.addEventListener(
-"click",
-function(){
+async function loadCurrentProfile(){
 
-showStatus(
-"Modification du profil : prochaine étape."
-);
+  if(!currentUser) return;
 
-});
+  try{
 
+    const snap =
+      await getDoc(
+        doc(db,"users",currentUser.uid)
+      );
 
-/* =========================
-   JOBS
-========================= */
+    if(snap.exists()){
 
-document
-.querySelectorAll(".jobButton")
-.forEach(function(button){
+      currentProfile={
+        uid:currentUser.uid,
+        ...snap.data()
+      };
 
-button.addEventListener(
-"click",
-function(){
+    }else{
 
-showStatus(
-"Vous avez sélectionné cette offre."
-);
+      currentProfile={
+        uid:currentUser.uid,
+        role:"candidate",
+        name:currentUser.displayName || "",
+        email:currentUser.email || ""
+      };
 
-});
+      await setDoc(
+        doc(db,"users",currentUser.uid),
+        {
+          ...currentProfile,
+          createdAt:serverTimestamp()
+        },
+        {merge:true}
+      );
+    }
 
-});
+  }catch(error){
 
-
-/* =========================
-   RECHERCHE JOBS
-========================= */
-
-document
-.getElementById("searchInput")
-.addEventListener(
-"input",
-function(){
-
-const search =
-this.value
-.toLowerCase()
-.trim();
-
-document
-.querySelectorAll(
-"#jobsContainer .card"
-)
-.forEach(function(card){
-
-const text =
-card.textContent
-.toLowerCase();
-
-card.style.display =
-text.includes(search)
-? "block"
-: "none";
-
-});
-
-});
-
-
-/* =========================
-   PUBLICATION
-========================= */
-
-document
-.getElementById("publishForm")
-.addEventListener(
-"submit",
-function(event){
-
-event.preventDefault();
-
-showStatus(
-"Offre publiée en mode test."
-);
-
-this.reset();
-
-showPage("jobs");
-
-});
-
-
-/* =========================
-   MESSAGES D'ERREUR
-========================= */
-
-function showLoginMessage(message){
-
-const element =
-document.getElementById(
-"loginMessage"
-);
-
-element.textContent =
-message;
-
-element.style.display =
-"block";
-
+    console.error("Profil:",error);
+  }
 }
 
 
-function showRegisterMessage(message){
+/* =========================================================
+   CHARGER OFFRES
+========================================================= */
 
-const element =
-document.getElementById(
-"registerMessage"
-);
+async function getAllJobs(){
 
-element.textContent =
-message;
+  try{
 
-element.style.display =
-"block";
+    const snap =
+      await getDocs(
+        query(
+          collection(db,"offers"),
+          limit(100)
+        )
+      );
 
+    return snap.docs.map(d=>({
+      id:d.id,
+      ...d.data()
+    }));
+
+  }catch(error){
+
+    console.error("Offres:",error);
+    return [];
+  }
 }
 
 
-/* =========================
-   FERMER MODALE EN CLIQUANT
-   À L'EXTÉRIEUR
-========================= */
+function jobCard(job){
 
-document
-.querySelectorAll(".modal")
-.forEach(function(modal){
+  const favorite =
+    currentProfile?.favorites?.includes(job.id);
 
-modal.addEventListener(
-"click",
-function(event){
+  return `
+    <div class="card job-card">
 
-if(event.target === modal){
+      <div class="job-top">
+        <div>
+          <span class="badge">${escapeHtml(job.contract || "Emploi")}</span>
+          <h3>${escapeHtml(job.title || "Offre")}</h3>
+        </div>
 
-modal.classList.remove(
-"show"
-);
+        <button
+          class="btn btn-light favorite-btn"
+          data-id="${escapeHtml(job.id)}"
+          title="Favori">
+          ${favorite ? "❤️" : "🤍"}
+        </button>
+      </div>
 
-}
+      <div class="muted">
+        🏢 ${escapeHtml(job.companyName || "Entreprise")}
+      </div>
 
-});
-
-});
-
-
-/* =========================
-   INITIALISATION
-========================= */
-
-updateInterface();
-
-</script>
-
-</body>
-  </html>
+      <div class="muted">
+        📍 ${escapeHtml(job.city || "")}
+        ${job.region ? " · "+escape
