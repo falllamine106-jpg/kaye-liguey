@@ -886,4 +886,1165 @@ window.switchAuth=function(mode){
 
 /* ======================================================
    RECAPTCHA TELEPHONE
-=================================================
+====================================================== */
+
+function setupRecaptcha(){
+
+  if(recaptchaVerifier)return;
+
+  try{
+    recaptchaVerifier = new RecaptchaVerifier(
+      auth,
+      "recaptcha-container",
+      {
+        size:"normal"
+      }
+    );
+
+    recaptchaVerifier.render();
+
+  }catch(error){
+    console.error(error);
+  }
+}
+
+
+/* ======================================================
+   INSCRIPTION
+====================================================== */
+
+window.register=async function(event){
+
+  event.preventDefault();
+
+  const role=document.getElementById("registerRole").value;
+  const name=document.getElementById("registerName").value.trim();
+  const email=document.getElementById("registerEmail").value.trim();
+  const password=document.getElementById("registerPassword").value;
+  const phone=document.getElementById("registerPhone").value.trim();
+
+  if(!name || !email || !password || !phone){
+    toast("Veuillez remplir tous les champs.");
+    return;
+  }
+
+  try{
+
+    /*
+      Création du compte e-mail/mot de passe.
+    */
+
+    const credential =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    const user=credential.user;
+
+    /*
+      Création du profil Firestore.
+    */
+
+    await setDoc(
+      doc(db,"users",user.uid),
+      {
+        uid:user.uid,
+        name:name,
+        email:email,
+        phone:phone,
+        role:role,
+        verified:false,
+        createdAt:serverTimestamp()
+      }
+    );
+
+    /*
+      Ensuite on envoie réellement le code SMS.
+    */
+
+    await sendPhoneCode(phone);
+
+  }catch(error){
+
+    console.error(error);
+
+    let message="Impossible de créer le compte.";
+
+    if(error.code==="auth/email-already-in-use"){
+      message="Cet e-mail est déjà utilisé.";
+    }
+
+    if(error.code==="auth/invalid-email"){
+      message="Adresse e-mail invalide.";
+    }
+
+    if(error.code==="auth/weak-password"){
+      message="Le mot de passe doit contenir au moins 6 caractères.";
+    }
+
+    toast(message);
+  }
+};
+
+
+/* ======================================================
+   ENVOI DU CODE SMS
+====================================================== */
+
+async function sendPhoneCode(phone){
+
+  try{
+
+    if(!recaptchaVerifier){
+      setupRecaptcha();
+    }
+
+    confirmationResult =
+      await signInWithPhoneNumber(
+        auth,
+        phone,
+        recaptchaVerifier
+      );
+
+    closeAuth();
+
+    document.getElementById("otpModal").classList.add("show");
+
+    document.getElementById("otpCode").value="";
+
+    toast("Le code SMS a été envoyé.");
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Impossible d'envoyer le SMS. Vérifie le numéro et reCAPTCHA."
+    );
+  }
+}
+
+
+/* ======================================================
+   VERIFICATION DU CODE
+====================================================== */
+
+window.verifySmsCode=async function(){
+
+  const code=
+    document.getElementById("otpCode").value.trim();
+
+  if(!/^\d{6}$/.test(code)){
+    toast("Entre un code numérique de 6 chiffres.");
+    return;
+  }
+
+  if(!confirmationResult){
+    toast("Aucun code de validation en attente.");
+    return;
+  }
+
+  try{
+
+    /*
+      C'est ici que Firebase vérifie réellement le code.
+    */
+
+    await confirmationResult.confirm(code);
+
+    if(auth.currentUser){
+
+      await setDoc(
+        doc(db,"users",auth.currentUser.uid),
+        {
+          verified:true,
+          phoneVerified:true
+        },
+        {merge:true}
+      );
+    }
+
+    document.getElementById("otpModal")
+      .classList.remove("show");
+
+    confirmationResult=null;
+
+    toast("Compte vérifié avec succès.");
+
+    await loadCurrentProfile();
+
+    updateAuthUI();
+
+    showPage("profile");
+
+  }catch(error){
+
+    console.error(error);
+
+    toast("Code incorrect ou expiré.");
+  }
+};
+
+
+window.closeOtp=function(){
+  document.getElementById("otpModal")
+    .classList.remove("show");
+};
+
+
+/* ======================================================
+   CONNEXION
+====================================================== */
+
+window.login=async function(event){
+
+  event.preventDefault();
+
+  const email=
+    document.getElementById("loginEmail").value.trim();
+
+  const password=
+    document.getElementById("loginPassword").value;
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    closeAuth();
+
+    toast("Connexion réussie.");
+
+    await loadCurrentProfile();
+
+    updateAuthUI();
+
+  }catch(error){
+
+    console.error(error);
+
+    if(error.code==="auth/invalid-credential"){
+      toast("E-mail ou mot de passe incorrect.");
+    }else{
+      toast("Connexion impossible.");
+    }
+  }
+};
+
+
+/* ======================================================
+   MOT DE PASSE OUBLIE
+====================================================== */
+
+window.forgotPassword=async function(){
+
+  const email=
+    document.getElementById("loginEmail").value.trim();
+
+  if(!email){
+    toast("Entre d'abord ton adresse e-mail.");
+    return;
+  }
+
+  try{
+
+    await sendPasswordResetEmail(auth,email);
+
+    toast(
+      "Un e-mail de réinitialisation a été envoyé."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Impossible d'envoyer l'e-mail de réinitialisation."
+    );
+  }
+};
+
+
+/* ======================================================
+   DECONNEXION — CORRECTION DEMANDEE
+====================================================== */
+
+window.confirmLogout=function(){
+
+  /*
+    IMPORTANT :
+    window.confirm affiche bien les deux choix :
+    OK et Annuler.
+
+    OK     = true
+    Annuler = false
+  */
+
+  const answer =
+    window.confirm(
+      "Voulez-vous vraiment vous déconnecter ?"
+    );
+
+  if(!answer){
+    /*
+      Annuler :
+      on ne fait absolument rien.
+    */
+    return;
+  }
+
+  /*
+    OK :
+    vraie déconnexion Firebase.
+  */
+
+  performLogout();
+};
+
+
+async function performLogout(){
+
+  try{
+
+    await signOut(auth);
+
+    currentUser=null;
+    currentProfile=null;
+
+    updateAuthUI();
+
+    showPage("home");
+
+    toast("Vous êtes maintenant déconnecté.");
+
+  }catch(error){
+
+    console.error(error);
+
+    toast("Erreur lors de la déconnexion.");
+  }
+}
+
+
+/* ======================================================
+   ETAT FIREBASE
+====================================================== */
+
+onAuthStateChanged(auth,async user=>{
+
+  currentUser=user;
+
+  if(user){
+    await loadCurrentProfile();
+  }else{
+    currentProfile=null;
+  }
+
+  updateAuthUI();
+});
+
+
+/* ======================================================
+   PROFIL FIRESTORE
+====================================================== */
+
+async function loadCurrentProfile(){
+
+  if(!auth.currentUser)return;
+
+  try{
+
+    const snap=
+      await getDoc(
+        doc(db,"users",auth.currentUser.uid)
+      );
+
+    if(snap.exists()){
+      currentProfile=snap.data();
+    }else{
+      currentProfile={
+        uid:auth.currentUser.uid,
+        email:auth.currentUser.email,
+        role:"candidate"
+      };
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    currentProfile={
+      uid:auth.currentUser.uid,
+      email:auth.currentUser.email,
+      role:"candidate"
+    };
+  }
+}
+
+
+/* ======================================================
+   INTERFACE AUTH
+====================================================== */
+
+function updateAuthUI(){
+
+  const logged=!!currentUser;
+
+  document.getElementById("authNav").style.display=
+    logged ? "none" : "block";
+
+  document.getElementById("logoutNav").style.display=
+    logged ? "block" : "none";
+
+  document.getElementById("adminNav").style.display=
+    currentProfile?.role==="admin" ? "block" : "none";
+}
+
+
+/* ======================================================
+   JOBS
+====================================================== */
+
+function renderJobs(){
+
+  const container=
+    document.getElementById("jobsList");
+
+  const search=
+    document.getElementById("searchJob")
+    ?.value.toLowerCase() || "";
+
+  const city=
+    document.getElementById("filterCity")
+    ?.value.toLowerCase() || "";
+
+  const filtered=jobs.filter(job=>{
+
+    const text=
+      `${job.title} ${job.description} ${job.category}`
+      .toLowerCase();
+
+    return (
+      job.status!=="closed" &&
+      text.includes(search) &&
+      String(job.city||"")
+        .toLowerCase()
+        .includes(city)
+    );
+  });
+
+  if(!filtered.length){
+
+    container.innerHTML=
+      `<div class="empty">Aucune offre trouvée.</div>`;
+
+    return;
+  }
+
+  container.innerHTML=filtered.map(job=>{
+
+    const salary=
+      job.salaryMin || job.salaryMax
+      ? `${Number(job.salaryMin||0).toLocaleString()} - ${Number(job.salaryMax||0).toLocaleString()} FCFA`
+      : "Salaire à négocier";
+
+    const favorite=
+      getFavorites().includes(job.id);
+
+    return `
+      <article class="job">
+
+        <h3>${escapeHTML(job.title)}</h3>
+
+        <p>
+          <strong>${escapeHTML(job.companyName||"Entreprise")}</strong>
+          ${job.verified ? " ✓" : ""}
+        </p>
+
+        <div class="job-meta">
+          <span class="tag">${escapeHTML(job.category)}</span>
+          <span class="tag">${escapeHTML(job.contract)}</span>
+          <span class="tag">📍 ${escapeHTML(job.city)}</span>
+          <span class="tag">💰 ${salary}</span>
+        </div>
+
+        <p style="margin:10px 0">
+          ${escapeHTML(job.description)}
+        </p>
+
+        <div class="job-actions">
+
+          <button class="btn btn-primary btn-small"
+                  onclick="applyToJob('${job.id}')">
+            Postuler
+          </button>
+
+          <button class="btn btn-secondary btn-small"
+                  onclick="toggleFavorite('${job.id}')">
+            ${favorite ? "★ Retirer" : "☆ Favori"}
+          </button>
+
+          <button class="btn btn-secondary btn-small"
+                  onclick="viewJob('${job.id}')">
+            Voir détails
+          </button>
+
+        </div>
+      </article>
+    `;
+
+  }).join("");
+}
+
+
+window.viewJob=function(id){
+
+  const job=jobs.find(j=>j.id===id);
+
+  if(!job)return;
+
+  alert(
+`${job.title}
+
+Entreprise : ${job.companyName}
+Catégorie : ${job.category}
+Contrat : ${job.contract}
+Ville : ${job.city}
+Région : ${job.region}
+
+${job.description}`
+  );
+};
+
+
+/* ======================================================
+   FAVORIS
+====================================================== */
+
+function getFavorites(){
+
+  if(!currentUser)return [];
+
+  return getData(
+    "favorites_"+currentUser.uid,
+    []
+  );
+}
+
+window.toggleFavorite=function(id){
+
+  if(!currentUser){
+    openAuth();
+    return;
+  }
+
+  let favorites=getFavorites();
+
+  if(favorites.includes(id)){
+    favorites=favorites.filter(x=>x!==id);
+    toast("Offre retirée des favoris.");
+  }else{
+    favorites.push(id);
+    toast("Offre ajoutée aux favoris.");
+  }
+
+  saveData(
+    "favorites_"+currentUser.uid,
+    favorites
+  );
+
+  renderJobs();
+};
+
+
+function renderFavorites(){
+
+  const container=
+    document.getElementById("favoritesList");
+
+  if(!currentUser){
+    container.innerHTML=
+      `<div class="empty">Connecte-toi pour voir tes favoris.</div>`;
+    return;
+  }
+
+  const favorites=getFavorites();
+
+  const list=
+    jobs.filter(job=>favorites.includes(job.id));
+
+  if(!list.length){
+    container.innerHTML=
+      `<div class="empty">Aucun favori.</div>`;
+    return;
+  }
+
+  container.innerHTML=
+    list.map(job=>`
+      <div class="job">
+        <h3>${escapeHTML(job.title)}</h3>
+        <p>${escapeHTML(job.companyName)}</p>
+        <br>
+        <button class="btn btn-primary btn-small"
+                onclick="applyToJob('${job.id}')">
+          Postuler
+        </button>
+        <button class="btn btn-danger btn-small"
+                onclick="toggleFavorite('${job.id}')">
+          Retirer
+        </button>
+      </div>
+    `).join("");
+}
+
+
+/* ======================================================
+   CANDIDATURE
+====================================================== */
+
+window.applyToJob=function(jobId){
+
+  if(!currentUser){
+    openAuth();
+    return;
+  }
+
+  if(currentProfile?.role!=="candidate"){
+    toast("Seuls les candidats peuvent postuler.");
+    return;
+  }
+
+  const applications=
+    getData(
+      "applications_"+currentUser.uid,
+      []
+    );
+
+  if(applications.some(a=>a.jobId===jobId)){
+    toast("Tu as déjà postulé à cette offre.");
+    return;
+  }
+
+  const job=jobs.find(j=>j.id===jobId);
+
+  if(!job)return;
+
+  const application={
+    id:"app_"+Date.now(),
+    jobId:job.id,
+    jobTitle:job.title,
+    companyId:job.companyId,
+    companyName:job.companyName,
+    candidateId:currentUser.uid,
+    status:"En attente",
+    date:new Date().toISOString()
+  };
+
+  applications.push(application);
+
+  saveData(
+    "applications_"+currentUser.uid,
+    applications
+  );
+
+  /*
+    On conserve aussi l'application dans l'offre
+    pour permettre à l'entreprise de retrouver
+    uniquement ses candidats.
+  */
+
+  job.applications=job.applications||[];
+
+  job.applications.push({
+    applicationId:application.id,
+    candidateId:currentUser.uid,
+    candidateEmail:currentUser.email,
+    status:"En attente"
+  });
+
+  saveData("kaye_jobs",jobs);
+
+  toast("Candidature envoyée.");
+};
+
+
+function renderApplications(){
+
+  const container=
+    document.getElementById("applicationsList");
+
+  if(!currentUser){
+    container.innerHTML=
+      `<div class="empty">Connecte-toi pour voir tes candidatures.</div>`;
+    return;
+  }
+
+  const applications=
+    getData(
+      "applications_"+currentUser.uid,
+      []
+    );
+
+  if(!applications.length){
+    container.innerHTML=
+      `<div class="empty">Tu n'as encore envoyé aucune candidature.</div>`;
+    return;
+  }
+
+  container.innerHTML=
+    applications.map(a=>`
+      <div class="job">
+        <h3>${escapeHTML(a.jobTitle)}</h3>
+        <p>Entreprise : ${escapeHTML(a.companyName)}</p>
+        <p>Statut : <strong>${escapeHTML(a.status)}</strong></p>
+        <small>${new Date(a.date).toLocaleString("fr-FR")}</small>
+      </div>
+    `).join("");
+}
+
+
+/* ======================================================
+   ENTREPRISE — PUBLICATION
+====================================================== */
+
+function updatePublishAccess(){
+
+  const form=document.getElementById("jobForm");
+  const message=document.getElementById("publishLoginMessage");
+
+  const allowed=
+    currentUser &&
+    currentProfile?.role==="company";
+
+  form.style.display=allowed ? "block" : "none";
+  message.style.display=allowed ? "none" : "block";
+}
+
+
+window.publishJob=function(event){
+
+  event.preventDefault();
+
+  if(!currentUser ||
+     currentProfile?.role!=="company"){
+
+    toast("Connecte-toi comme entreprise.");
+    return;
+  }
+
+  const job={
+    id:"job_"+Date.now(),
+    title:document.getElementById("jobTitle").value.trim(),
+    description:document.getElementById("jobDescription").value.trim(),
+    category:document.getElementById("jobCategory").value,
+    contract:document.getElementById("jobContract").value,
+    city:document.getElementById("jobCity").value.trim(),
+    region:document.getElementById("jobRegion").value.trim(),
+    salaryMin:Number(document.getElementById("salaryMin").value)||0,
+    salaryMax:Number(document.getElementById("salaryMax").value)||0,
+    deadline:document.getElementById("jobDeadline").value,
+    companyId:currentUser.uid,
+    companyName:currentProfile.name||"Entreprise",
+    verified:currentProfile.verified===true,
+    status:"open",
+    applications:[],
+    createdAt:new Date().toISOString()
+  };
+
+  jobs.unshift(job);
+
+  saveData("kaye_jobs",jobs);
+
+  document.getElementById("jobForm").reset();
+
+  toast("Offre publiée avec succès.");
+
+  showPage("jobs");
+};
+
+
+/* ======================================================
+   MESSAGES
+====================================================== */
+
+function getMessages(){
+
+  if(!currentUser)return [];
+
+  return getData(
+    "messages_"+currentUser.uid,
+    []
+  );
+}
+
+function renderMessages(){
+
+  const container=
+    document.getElementById("messagesList");
+
+  if(!currentUser){
+    container.innerHTML=
+      `<div class="empty">Connecte-toi pour accéder aux messages.</div>`;
+    return;
+  }
+
+  const messages=getMessages();
+
+  if(!messages.length){
+    container.innerHTML=
+      `<div class="empty">Aucun message.</div>`;
+    return;
+  }
+
+  container.innerHTML=
+    messages.map(m=>`
+      <div class="notification">
+        <strong>${escapeHTML(m.to)}</strong>
+        <p>${escapeHTML(m.text)}</p>
+        <small>${new Date(m.date).toLocaleString("fr-FR")}</small>
+      </div>
+    `).join("");
+}
+
+
+window.sendMessage=function(){
+
+  if(!currentUser){
+    openAuth();
+    return;
+  }
+
+  const to=
+    document.getElementById("messageTo").value.trim();
+
+  const text=
+    document.getElementById("messageText").value.trim();
+
+  if(!to||!text){
+    toast("Remplis tous les champs.");
+    return;
+  }
+
+  const messages=getMessages();
+
+  messages.push({
+    to,
+    text,
+    date:new Date().toISOString()
+  });
+
+  saveData(
+    "messages_"+currentUser.uid,
+    messages
+  );
+
+  document.getElementById("messageTo").value="";
+  document.getElementById("messageText").value="";
+
+  renderMessages();
+
+  toast("Message envoyé.");
+};
+
+
+/* ======================================================
+   NOTIFICATIONS
+====================================================== */
+
+function renderNotifications(){
+
+  const container=
+    document.getElementById("notificationsList");
+
+  if(!currentUser){
+    container.innerHTML=
+      `<div class="empty">Connecte-toi pour voir tes notifications.</div>`;
+    return;
+  }
+
+  const applications=
+    getData(
+      "applications_"+currentUser.uid,
+      []
+    );
+
+  if(!applications.length){
+    container.innerHTML=
+      `<div class="empty">Aucune notification.</div>`;
+    return;
+  }
+
+  container.innerHTML=
+    applications.map(a=>`
+      <div class="notification">
+        📄 Ta candidature pour
+        <strong>${escapeHTML(a.jobTitle)}</strong>
+        est actuellement :
+        <strong>${escapeHTML(a.status)}</strong>.
+      </div>
+    `).join("");
+}
+
+
+/* ======================================================
+   PROFIL
+====================================================== */
+
+function renderProfile(){
+
+  const container=
+    document.getElementById("profileContent");
+
+  if(!currentUser){
+
+    container.innerHTML=`
+      <div class="empty">
+        <p>Tu dois être connecté pour voir ton profil.</p>
+        <br>
+        <button class="btn btn-primary"
+                onclick="openAuth()">
+          Connexion
+        </button>
+      </div>
+    `;
+
+    return;
+  }
+
+  const p=currentProfile||{};
+
+  container.innerHTML=`
+    <div class="form">
+
+      <div class="profile-box">
+
+        <div>
+          <div class="avatar">
+            👤
+          </div>
+        </div>
+
+        <div>
+          <h2>${escapeHTML(p.name||"Mon profil")}</h2>
+
+          <p style="margin-top:8px">
+            ${p.role==="company" ? "🏢 Entreprise" : "👤 Candidat"}
+          </p>
+
+          <p style="margin-top:8px">
+            📧 ${escapeHTML(currentUser.email||"")}
+          </p>
+
+          <p style="margin-top:8px">
+            📱 ${escapeHTML(p.phone||"Non renseigné")}
+          </p>
+
+          <p style="margin-top:8px">
+            ${p.verified
+              ? "✅ Compte vérifié"
+              : "⚠️ Compte non vérifié"}
+          </p>
+        </div>
+
+      </div>
+
+      <hr style="margin:25px 0">
+
+      <h3>Informations du profil</h3>
+
+      <br>
+
+      <div class="form-group">
+        <label>Nom</label>
+        <input id="profileName"
+               value="${escapeHTML(p.name||"")}">
+      </div>
+
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input id="profilePhone"
+               value="${escapeHTML(p.phone||"")}">
+      </div>
+
+      ${
+        p.role==="candidate"
+        ? `
+          <div class="form-group">
+            <label>Présentation</label>
+            <textarea id="profileBio">${escapeHTML(p.bio||"")}</textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Compétences</label>
+            <textarea id="profileSkills">${escapeHTML(p.skills||"")}</textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Formation</label>
+            <textarea id="profileEducation">${escapeHTML(p.education||"")}</textarea>
+          </div>
+
+          <div class="form-group">
+            <label>CV PDF</label>
+            <input type="file"
+                   id="profileCV"
+                   accept="application/pdf">
+          </div>
+        `
+        : `
+          <div class="form-group">
+            <label>Description de l'entreprise</label>
+            <textarea id="companyDescription">${escapeHTML(p.description||"")}</textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Secteur</label>
+            <input id="companySector"
+                   value="${escapeHTML(p.sector||"")}">
+          </div>
+        `
+      }
+
+      <button class="btn btn-primary"
+              onclick="saveProfile()">
+        Enregistrer
+      </button>
+
+    </div>
+  `;
+}
+
+
+window.saveProfile=async function(){
+
+  if(!currentUser)return;
+
+  const data={
+    name:document.getElementById("profileName")?.value.trim()||"",
+    phone:document.getElementById("profilePhone")?.value.trim()||""
+  };
+
+  if(currentProfile?.role==="candidate"){
+
+    data.bio=
+      document.getElementById("profileBio")?.value||"";
+
+    data.skills=
+      document.getElementById("profileSkills")?.value||"";
+
+    data.education=
+      document.getElementById("profileEducation")?.value||"";
+
+  }else{
+
+    data.description=
+      document.getElementById("companyDescription")?.value||"";
+
+    data.sector=
+      document.getElementById("companySector")?.value||"";
+  }
+
+  try{
+
+    await setDoc(
+      doc(db,"users",currentUser.uid),
+      data,
+      {merge:true}
+    );
+
+    await loadCurrentProfile();
+
+    toast("Profil enregistré.");
+
+    renderProfile();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast("Impossible d'enregistrer le profil.");
+  }
+};
+
+
+/* ======================================================
+   ADMINISTRATION
+====================================================== */
+
+function renderAdmin(){
+
+  if(currentProfile?.role!=="admin"){
+
+    document.getElementById("adminContent").innerHTML=
+      `<div class="empty">Accès administrateur refusé.</div>`;
+
+    return;
+  }
+
+  const allUsers=getData("kaye_users",[]);
+
+  const candidates=
+    allUsers.filter(u=>u.role==="candidate");
+
+  const companies=
+    allUsers.filter(u=>u.role==="company");
+
+  const allApplications=
+    allUsers.reduce(
+      (total,u)=>
+        total+getData("applications_"+u.uid,[]).length,
+      0
+    );
+
+  document.getElementById("statCandidates")
+    .textContent=candidates.length;
+
+  document.getElementById("statCompanies")
+    .textContent=companies.length;
+
+  document.getElementById("statJobs")
+    .textContent=jobs.length;
+
+  document.getElementById("statApplications")
+    .textContent=allApplications;
+
+  document.getElementById("adminContent").innerHTML=`
+    <div class="cards">
+
+      <div class="card">
+        <h3>👤 Candidats</h3>
+        <p>${candidates.length} compte(s)</p>
+      </div>
+
+      <div class="card">
+        <h3>🏢 Entreprises</h3>
+        <p>${companies.length} compte(s)</p>
+      </div>
+
+      <div class="card">
+        <h3>💼 Offres</h3>
+        <p>${jobs.length} offre(s)</p>
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* ======================================================
+   INITIALISATION
+====================================================== */
+
+renderJobs();
+updatePublishAccess();
+updateAuthUI();
+
+</script>
+
+</body>
+</html>
