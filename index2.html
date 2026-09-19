@@ -3,67 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KAYE LIGUEY — Seul le travail qui paye</title>
+
+<title>KAYE LIGUEY</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f7fb;
+  font-family:Arial,sans-serif;
+  background:#f4f6f8;
   color:#172033;
 }
+
 header{
   background:#0f172a;
   color:white;
-  padding:15px 20px;
-  position:sticky;
-  top:0;
-  z-index:100;
+  padding:15px;
 }
-.header-inner{
+
+.header{
   max-width:1100px;
   margin:auto;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:15px;
+  align-items:center;
+  gap:10px;
 }
+
 .logo{
-  font-size:21px;
+  font-size:22px;
   font-weight:bold;
 }
-.logo small{
-  display:block;
-  font-size:11px;
+
+.slogan{
+  font-size:12px;
   color:#cbd5e1;
-  margin-top:3px;
+  margin-top:4px;
 }
+
 button{
-  border:0;
-  border-radius:9px;
-  padding:11px 15px;
+  border:none;
+  padding:12px 16px;
+  border-radius:8px;
   cursor:pointer;
+  font-size:15px;
   font-weight:bold;
 }
-.btn-primary{background:#2563eb;color:white}
-.btn-success{background:#16a34a;color:white}
-.btn-danger{background:#dc2626;color:white}
-.btn-light{background:#e2e8f0;color:#172033}
+
+button:active{
+  transform:scale(.97);
+}
+
+.btn-blue{
+  background:#2563eb;
+  color:white;
+}
+
+.btn-green{
+  background:#16a34a;
+  color:white;
+}
+
+.btn-red{
+  background:#dc2626;
+  color:white;
+}
+
+.btn-gray{
+  background:#e2e8f0;
+  color:#172033;
+}
+
+nav{
+  background:white;
+  border-bottom:1px solid #ddd;
+}
+
+.nav{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  gap:5px;
+  overflow-x:auto;
+  padding:8px;
+}
+
+.nav button{
+  background:white;
+  white-space:nowrap;
+}
+
+.nav button:hover{
+  background:#eef2ff;
+}
+
 .container{
   max-width:1100px;
   margin:auto;
-  padding:25px 15px;
+  padding:20px 15px;
 }
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
 .hero{
-  background:linear-gradient(135deg,#0f172a,#1d4ed8);
+  background:linear-gradient(135deg,#0f172a,#2563eb);
   color:white;
-  padding:55px 25px;
-  border-radius:18px;
   text-align:center;
+  padding:50px 20px;
+  border-radius:18px;
 }
-.hero h1{font-size:38px;margin:0 0 10px}
-.hero p{font-size:18px}
+
+.hero h1{
+  font-size:38px;
+  margin:0 0 10px;
+}
+
+.hero p{
+  font-size:17px;
+}
+
 .actions{
   display:flex;
   justify-content:center;
@@ -71,1023 +138,1609 @@ button{
   gap:10px;
   margin-top:25px;
 }
-nav{
-  background:white;
-  border-bottom:1px solid #e5e7eb;
-}
-.nav-inner{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  gap:6px;
-  overflow:auto;
-  padding:8px 10px;
-}
-.nav-inner button{
-  white-space:nowrap;
-  background:white;
-}
-.nav-inner button:hover{
-  background:#eff6ff;
-}
-.page{display:none}
-.page.active{display:block}
-.card{
-  background:white;
-  border-radius:14px;
-  padding:20px;
-  margin-bottom:15px;
-  box-shadow:0 4px 16px rgba(15,23,42,.06);
-}
+
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:15px;
+  margin-top:20px;
 }
-input,select,textarea{
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
+  margin-bottom:15px;
+}
+
+input,
+select,
+textarea{
   width:100%;
   padding:12px;
-  margin-top:6px;
-  margin-bottom:13px;
   border:1px solid #cbd5e1;
   border-radius:8px;
-  font-size:15px;
+  margin-top:6px;
+  margin-bottom:14px;
+  font-size:16px;
 }
+
 label{
   font-weight:bold;
   font-size:14px;
 }
+
 .modal{
   display:none;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.65);
-  z-index:1000;
   align-items:center;
   justify-content:center;
   padding:15px;
+  z-index:1000;
 }
-.modal.show{display:flex}
+
+.modal.show{
+  display:flex;
+}
+
 .modal-box{
-  width:min(480px,100%);
+  width:min(450px,100%);
   background:white;
   border-radius:16px;
   padding:22px;
   max-height:90vh;
   overflow:auto;
 }
+
 .close{
   float:right;
-  background:#e2e8f0;
-  width:38px;
-  height:38px;
+  width:40px;
+  height:40px;
   border-radius:50%;
+  background:#e2e8f0;
 }
-#recaptcha-container{
-  margin:10px 0;
-}
-.toast{
-  position:fixed;
-  right:15px;
-  bottom:15px;
-  background:#0f172a;
-  color:white;
-  padding:13px 17px;
-  border-radius:10px;
-  display:none;
-  z-index:2000;
-  max-width:330px;
-}
-.toast.show{display:block}
-.badge{
-  display:inline-block;
-  padding:4px 8px;
-  border-radius:20px;
-  font-size:12px;
-  background:#dcfce7;
-  color:#166534;
-}
-.job{
-  border:1px solid #e2e8f0;
-  border-radius:12px;
-  padding:17px;
+
+.message{
+  padding:12px;
+  border-radius:8px;
   margin-bottom:12px;
+  background:#eff6ff;
 }
-.empty{
-  text-align:center;
-  color:#64748b;
-  padding:30px 10px;
-}
+
 footer{
   margin-top:40px;
   background:#0f172a;
-  color:#cbd5e1;
+  color:white;
   text-align:center;
   padding:25px;
 }
+
+#status{
+  text-align:center;
+  margin:15px 0;
+  font-weight:bold;
+}
+
 @media(max-width:600px){
-  .hero h1{font-size:29px}
-  .header-inner{flex-direction:column}
+
+  .header{
+    flex-direction:column;
+  }
+
+  .hero h1{
+    font-size:30px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
+
 <header>
-  <div class="header-inner">
-    <div class="logo">
-      KAYE LIGUEY
-      <small>Seul le travail qui paye</small>
-    </div>
 
-    <div id="authButtons">
-      <button class="btn-primary" onclick="openAuth('login')">
-        Se connecter
-      </button>
-      <button class="btn-success" onclick="openAuth('register')">
-        Inscription
-      </button>
-    </div>
+<div class="header">
 
-    <div id="userButtons" style="display:none">
-      <button class="btn-light" onclick="showPage('profile')">
-        👤 Profil
-      </button>
-      <button class="btn-danger" onclick="confirmLogout()">
-        Déconnexion
-      </button>
-    </div>
-  </div>
+<div>
+<div class="logo">KAYE LIGUEY</div>
+<div class="slogan">Seul le travail qui paye</div>
+</div>
+
+<div id="authArea">
+
+<button
+class="btn-blue"
+type="button"
+id="loginButton">
+Se connecter
+</button>
+
+<button
+class="btn-green"
+type="button"
+id="registerButton">
+Inscription
+</button>
+
+</div>
+
+<div
+id="loggedArea"
+style="display:none">
+
+<button
+class="btn-gray"
+type="button"
+id="profileButton">
+👤 Profil
+</button>
+
+<button
+class="btn-red"
+type="button"
+id="logoutButton">
+Déconnexion
+</button>
+
+</div>
+
+</div>
+
 </header>
 
+
+<!-- ========================= -->
+<!-- NAVIGATION -->
+<!-- ========================= -->
+
 <nav>
-  <div class="nav-inner">
-    <button onclick="showPage('home')">🏠 Accueil</button>
-    <button onclick="showPage('jobs')">💼 Jobs</button>
-    <button onclick="showPage('publish')">➕ Publier</button>
-    <button onclick="showPage('applications')">📄 Candidatures</button>
-    <button onclick="showPage('favorites')">⭐ Favoris</button>
-    <button onclick="showPage('messages')">💬 Messages</button>
-    <button onclick="showPage('notifications')">🔔 Notifications</button>
-    <button onclick="showPage('profile')">👤 Profil</button>
-  </div>
+
+<div class="nav">
+
+<button type="button" data-page="home">
+🏠 Accueil
+</button>
+
+<button type="button" data-page="jobs">
+💼 Jobs
+</button>
+
+<button type="button" data-page="publish">
+➕ Publier
+</button>
+
+<button type="button" data-page="applications">
+📄 Candidatures
+</button>
+
+<button type="button" data-page="favorites">
+⭐ Favoris
+</button>
+
+<button type="button" data-page="messages">
+💬 Messages
+</button>
+
+<button type="button" data-page="notifications">
+🔔 Notifications
+</button>
+
+<button type="button" data-page="profile">
+👤 Profil
+</button>
+
+</div>
+
 </nav>
+
+
+<!-- ========================= -->
+<!-- CONTENU -->
+<!-- ========================= -->
 
 <main class="container">
 
-<section id="home" class="page active">
-  <div class="hero">
-    <h1>KAYE LIGUEY</h1>
-    <p>Seul le travail qui paye</p>
-    <p>Trouvez des opportunités et développez votre avenir professionnel.</p>
+<div id="status"></div>
 
-    <div class="actions">
-      <button class="btn-primary" onclick="showPage('jobs')">
-        Voir les offres
-      </button>
-      <button class="btn-success" onclick="openAuth('register')">
-        Créer mon compte
-      </button>
-    </div>
-  </div>
 
-  <div class="grid" style="margin-top:20px">
-    <div class="card">
-      <h3>👤 Candidats</h3>
-      <p>Créez votre profil et trouvez des offres adaptées.</p>
-    </div>
+<!-- ACCUEIL -->
 
-    <div class="card">
-      <h3>🏢 Entreprises</h3>
-      <p>Publiez vos offres et recevez des candidatures.</p>
-    </div>
+<section
+id="home"
+class="page active">
 
-    <div class="card">
-      <h3>🔐 Sécurité</h3>
-      <p>Les comptes sont gérés avec Firebase Authentication.</p>
-    </div>
-  </div>
+<div class="hero">
+
+<h1>KAYE LIGUEY</h1>
+
+<p>
+Seul le travail qui paye
+</p>
+
+<p>
+Trouvez des offres d'emploi et développez votre avenir professionnel.
+</p>
+
+<div class="actions">
+
+<button
+class="btn-blue"
+type="button"
+id="viewJobsButton">
+Voir les offres
+</button>
+
+<button
+class="btn-green"
+type="button"
+id="heroRegisterButton">
+Créer mon compte
+</button>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+
+<h3>👤 Candidat</h3>
+
+<p>
+Créez votre profil et recherchez des opportunités.
+</p>
+
+<button
+class="btn-blue"
+type="button"
+data-page="jobs">
+Chercher un emploi
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>🏢 Entreprise</h3>
+
+<p>
+Publiez vos offres et trouvez des candidats.
+</p>
+
+<button
+class="btn-green"
+type="button"
+id="companyButton">
+Publier une offre
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>🔐 Compte</h3>
+
+<p>
+Connectez-vous pour accéder à votre espace personnel.
+</p>
+
+<button
+class="btn-blue"
+type="button"
+id="accountButton">
+Mon compte
+</button>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="jobs" class="page">
-  <h2>💼 Offres d'emploi</h2>
 
-  <div class="card">
-    <input id="searchJobs"
-           placeholder="Rechercher une offre..."
-           oninput="renderJobs()">
-  </div>
+<!-- JOBS -->
 
-  <div id="jobsList"></div>
+<section
+id="jobs"
+class="page">
+
+<h2>💼 Offres d'emploi</h2>
+
+<div class="card">
+
+<input
+id="searchInput"
+type="text"
+placeholder="Rechercher une offre...">
+
+</div>
+
+<div id="jobsContainer">
+
+<div class="card">
+
+<h3>Développeur Web</h3>
+
+<p>
+Recherche d'un développeur web.
+</p>
+
+<p>
+📍 Dakar
+</p>
+
+<button
+class="btn-blue jobButton"
+type="button">
+Voir l'offre
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>Assistant commercial</h3>
+
+<p>
+Poste d'assistant commercial.
+</p>
+
+<p>
+📍 Thiès
+</p>
+
+<button
+class="btn-blue jobButton"
+type="button">
+Voir l'offre
+</button>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="publish" class="page">
-  <h2>➕ Publier une offre</h2>
 
-  <div class="card">
-    <div id="publishLoginMessage">
-      Connectez-vous pour publier une offre.
-    </div>
+<!-- PUBLICATION -->
 
-    <form id="jobForm" style="display:none">
-      <label>Titre du poste</label>
-      <input id="jobTitle" required>
+<section
+id="publish"
+class="page">
 
-      <label>Description</label>
-      <textarea id="jobDescription" rows="5" required></textarea>
+<h2>➕ Publier une offre</h2>
 
-      <label>Catégorie</label>
-      <input id="jobCategory" required>
+<div class="card">
 
-      <label>Ville</label>
-      <input id="jobCity">
+<div id="publishMessage"
+class="message">
 
-      <label>Type de contrat</label>
-      <select id="jobContract">
-        <option>CDI</option>
-        <option>CDD</option>
-        <option>Stage</option>
-        <option>Freelance</option>
-        <option>Temps partiel</option>
-      </select>
+Connectez-vous pour publier une offre.
 
-      <button class="btn-success" type="submit">
-        Publier l'offre
-      </button>
-    </form>
-  </div>
+</div>
+
+<form
+id="publishForm"
+style="display:none">
+
+<label>
+Titre du poste
+</label>
+
+<input
+id="jobTitle"
+required>
+
+<label>
+Description
+</label>
+
+<textarea
+id="jobDescription"
+rows="5"
+required></textarea>
+
+<label>
+Ville
+</label>
+
+<input
+id="jobCity"
+required>
+
+<label>
+Contrat
+</label>
+
+<select id="jobContract">
+
+<option>CDI</option>
+<option>CDD</option>
+<option>Stage</option>
+<option>Freelance</option>
+
+</select>
+
+<button
+class="btn-green"
+type="submit">
+
+Publier l'offre
+
+</button>
+
+</form>
+
+</div>
+
 </section>
 
-<section id="applications" class="page">
-  <h2>📄 Mes candidatures</h2>
-  <div id="applicationsList" class="card">
-    <div class="empty">Connectez-vous pour voir vos candidatures.</div>
-  </div>
+
+<!-- CANDIDATURES -->
+
+<section
+id="applications"
+class="page">
+
+<h2>📄 Mes candidatures</h2>
+
+<div class="card">
+
+<p>
+Aucune candidature pour le moment.
+</p>
+
+</div>
+
 </section>
 
-<section id="favorites" class="page">
-  <h2>⭐ Mes favoris</h2>
-  <div id="favoritesList"></div>
+
+<!-- FAVORIS -->
+
+<section
+id="favorites"
+class="page">
+
+<h2>⭐ Mes favoris</h2>
+
+<div class="card">
+
+<p>
+Aucun favori pour le moment.
+</p>
+
+</div>
+
 </section>
 
-<section id="messages" class="page">
-  <h2>💬 Messages</h2>
-  <div class="card">
-    <div class="empty">
-      Votre messagerie sera disponible ici.
-    </div>
-  </div>
+
+<!-- MESSAGES -->
+
+<section
+id="messages"
+class="page">
+
+<h2>💬 Messages</h2>
+
+<div class="card">
+
+<p>
+Votre messagerie apparaîtra ici.
+</p>
+
+<button
+class="btn-blue"
+type="button"
+id="newMessageButton">
+
+Nouveau message
+
+</button>
+
+</div>
+
 </section>
 
-<section id="notifications" class="page">
-  <h2>🔔 Notifications</h2>
-  <div class="card">
-    <div class="empty">
-      Aucune notification pour le moment.
-    </div>
-  </div>
+
+<!-- NOTIFICATIONS -->
+
+<section
+id="notifications"
+class="page">
+
+<h2>🔔 Notifications</h2>
+
+<div class="card">
+
+<p>
+Aucune notification.
+</p>
+
+</div>
+
 </section>
 
-<section id="profile" class="page">
-  <h2>👤 Mon profil</h2>
 
-  <div class="card" id="profileContent">
-    <div class="empty">
-      Connectez-vous pour voir votre profil.
-    </div>
-  </div>
+<!-- PROFIL -->
+
+<section
+id="profile"
+class="page">
+
+<h2>👤 Mon profil</h2>
+
+<div class="card">
+
+<div id="profileNotLogged">
+
+<p>
+Vous n'êtes pas connecté.
+</p>
+
+<button
+class="btn-blue"
+type="button"
+id="profileLoginButton">
+
+Se connecter
+
+</button>
+
+</div>
+
+
+<div
+id="profileLogged"
+style="display:none">
+
+<h3 id="profileName">
+Utilisateur
+</h3>
+
+<p id="profileEmail">
+Email
+</p>
+
+<p id="profileRole">
+Candidat
+</p>
+
+<button
+class="btn-gray"
+type="button"
+id="editProfileButton">
+
+Modifier mon profil
+
+</button>
+
+</div>
+
+</div>
+
 </section>
 
 </main>
 
-<footer>
-  <strong>KAYE LIGUEY</strong><br>
-  Seul le travail qui paye
-</footer>
 
-<!-- ============================= -->
-<!-- MODALE AUTHENTIFICATION -->
-<!-- ============================= -->
+<!-- ========================= -->
+<!-- MODALE CONNEXION -->
+<!-- ========================= -->
 
-<div class="modal" id="authModal">
-  <div class="modal-box">
-
-    <button class="close" onclick="closeAuth()">×</button>
-
-    <h2 id="authTitle">Connexion</h2>
-
-    <form id="authForm">
-
-      <label>Email</label>
-      <input
-        type="email"
-        id="authEmail"
-        required
-        autocomplete="email"
-      >
-
-      <label>Mot de passe</label>
-      <input
-        type="password"
-        id="authPassword"
-        required
-        minlength="6"
-        autocomplete="current-password"
-      >
-
-      <div id="registerFields" style="display:none">
-
-        <label>Nom</label>
-        <input id="registerName">
-
-        <label>Téléphone</label>
-        <input
-          id="registerPhone"
-          type="tel"
-          placeholder="+221XXXXXXXXX"
-        >
-
-        <label>Type de compte</label>
-        <select id="registerRole">
-          <option value="candidate">Candidat</option>
-          <option value="company">Entreprise</option>
-        </select>
-
-      </div>
-
-      <button
-        id="authSubmit"
-        class="btn-primary"
-        type="submit"
-        style="width:100%"
-      >
-        Se connecter
-      </button>
-
-    </form>
-
-    <div style="margin-top:15px;text-align:center">
-
-      <button
-        class="btn-light"
-        onclick="switchAuthMode()"
-        id="switchAuthButton"
-      >
-        Créer un compte
-      </button>
-
-      <br><br>
-
-      <button
-        class="btn-light"
-        onclick="forgotPassword()"
-      >
-        Mot de passe oublié ?
-      </button>
-
-    </div>
-
-  </div>
-</div>
-
-<!-- ============================= -->
-<!-- MODALE CODE SMS -->
-<!-- ============================= -->
-
-<div class="modal" id="otpModal">
-  <div class="modal-box">
-
-    <h2>📱 Validation du téléphone</h2>
-
-    <p>
-      Un code de validation a été envoyé par SMS.
-    </p>
-
-    <input
-      id="otpCode"
-      inputmode="numeric"
-      maxlength="6"
-      placeholder="Code à 6 chiffres"
-    >
-
-    <button
-      class="btn-success"
-      onclick="verifySmsCode()"
-      style="width:100%"
-    >
-      Vérifier le code
-    </button>
-
-    <br><br>
-
-    <button
-      class="btn-light"
-      onclick="closeOtp()"
-      style="width:100%"
-    >
-      Annuler
-    </button>
-
-  </div>
-</div>
-
-<!-- reCAPTCHA -->
 <div
-  id="recaptcha-container"
-  style="display:none"
-></div>
+id="loginModal"
+class="modal">
 
-<div id="toast" class="toast"></div>
+<div class="modal-box">
 
-<!-- ============================= -->
-<!-- FIREBASE -->
-<!-- ============================= -->
+<button
+class="close"
+type="button"
+data-close="loginModal">
 
-<script type="module">
+×
+</button>
 
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+<h2>🔐 Se connecter</h2>
 
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  sendPasswordResetEmail,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
-  onAuthStateChanged,
-  updateProfile
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+<div
+id="loginMessage"
+class="message"
+style="display:none">
+</div>
 
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc,
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  where,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+<form id="loginForm">
+
+<label>Email</label>
+
+<input
+id="loginEmail"
+type="email"
+required>
+
+<label>Mot de passe</label>
+
+<input
+id="loginPassword"
+type="password"
+required>
+
+<button
+class="btn-blue"
+type="submit"
+style="width:100%">
+
+Se connecter
+
+</button>
+
+</form>
+
+<br>
+
+<button
+class="btn-gray"
+type="button"
+id="goRegisterButton"
+style="width:100%">
+
+Créer un compte
+
+</button>
+
+<br><br>
+
+<button
+class="btn-gray"
+type="button"
+id="forgotButton"
+style="width:100%">
+
+Mot de passe oublié ?
+
+</button>
+
+</div>
+
+</div>
 
 
-/* =====================================================
-   IMPORTANT :
-   REMPLACE UNIQUEMENT CE BLOC PAR TON VRAI firebaseConfig
-   ===================================================== */
+<!-- ========================= -->
+<!-- MODALE INSCRIPTION -->
+<!-- ========================= -->
 
-const firebaseConfig = {
-  apiKey: "TON_API_KEY",
-  authDomain: "TON_PROJET.firebaseapp.com",
-  projectId: "TON_PROJECT_ID",
-  storageBucket: "TON_STORAGE_BUCKET",
-  messagingSenderId: "TON_SENDER_ID",
-  appId: "TON_APP_ID"
-};
+<div
+id="registerModal"
+class="modal">
+
+<div class="modal-box">
+
+<button
+class="close"
+type="button"
+data-close="registerModal">
+
+×
+</button>
+
+<h2>📝 Créer mon compte</h2>
+
+<div
+id="registerMessage"
+class="message"
+style="display:none">
+</div>
+
+<form id="registerForm">
+
+<label>Nom complet</label>
+
+<input
+id="registerName"
+required>
+
+<label>Email</label>
+
+<input
+id="registerEmail"
+type="email"
+required>
+
+<label>Mot de passe</label>
+
+<input
+id="registerPassword"
+type="password"
+minlength="6"
+required>
+
+<label>Téléphone</label>
+
+<input
+id="registerPhone"
+type="tel"
+placeholder="+221XXXXXXXXX">
+
+<label>Type de compte</label>
+
+<select id="registerRole">
+
+<option value="candidate">
+👤 Candidat
+</option>
+
+<option value="company">
+🏢 Entreprise
+</option>
+
+</select>
+
+<button
+class="btn-green"
+type="submit"
+style="width:100%">
+
+Créer mon compte
+
+</button>
+
+</form>
+
+<br>
+
+<button
+class="btn-gray"
+type="button"
+id="goLoginButton"
+style="width:100%">
+
+J'ai déjà un compte
+
+</button>
+
+</div>
+
+</div>
 
 
-/* =========================
-   INITIALISATION FIREBASE
-   ========================= */
+<!-- ========================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================= -->
 
-const app = initializeApp(firebaseConfig);
+<script>
 
-const auth = getAuth(app);
-
-const db = getFirestore(app);
+"use strict";
 
 
 /* =========================
    VARIABLES
-   ========================= */
+========================= */
+
+let loggedIn = false;
 
 let currentUser = null;
-let authMode = "login";
-let confirmationResult = null;
-let recaptchaVerifier = null;
 
 
 /* =========================
-   OUTILS
-   ========================= */
+   MESSAGE
+========================= */
 
-function toast(message){
+function showStatus(message){
 
-  const element =
-    document.getElementById("toast");
+const status =
+document.getElementById("status");
 
-  element.textContent = message;
-  element.classList.add("show");
+status.textContent = message;
 
-  setTimeout(()=>{
-    element.classList.remove("show");
-  },3500);
-}
+setTimeout(function(){
 
+status.textContent = "";
 
-function firebaseError(error){
+},3000);
 
-  console.error("Firebase:", error);
-
-  const code = error?.code || "";
-
-  switch(code){
-
-    case "auth/email-already-in-use":
-      return "Cette adresse email est déjà utilisée.";
-
-    case "auth/invalid-email":
-      return "Adresse email invalide.";
-
-    case "auth/weak-password":
-      return "Le mot de passe doit contenir au moins 6 caractères.";
-
-    case "auth/invalid-credential":
-    case "auth/wrong-password":
-    case "auth/user-not-found":
-      return "Email ou mot de passe incorrect.";
-
-    case "auth/too-many-requests":
-      return "Trop de tentatives. Réessayez plus tard.";
-
-    case "auth/operation-not-allowed":
-      return "La méthode de connexion n'est pas activée dans Firebase.";
-
-    case "auth/invalid-api-key":
-      return "La configuration Firebase est incorrecte.";
-
-    case "auth/app-not-authorized":
-      return "Ce domaine n'est pas autorisé dans Firebase.";
-
-    case "auth/quota-exceeded":
-      return "La limite Firebase a été atteinte.";
-
-    default:
-      return "Une erreur Firebase est survenue.";
-  }
 }
 
 
 /* =========================
    NAVIGATION
-   ========================= */
+========================= */
 
-window.showPage = function(page){
+function showPage(pageName){
 
-  document
-    .querySelectorAll(".page")
-    .forEach(element=>{
-      element.classList.remove("active");
-    });
+const pages =
+document.querySelectorAll(".page");
 
-  const target =
-    document.getElementById(page);
+pages.forEach(function(page){
 
-  if(target){
-    target.classList.add("active");
-  }
+page.classList.remove("active");
 
-  if(page === "jobs"){
-    renderJobs();
-  }
-
-  if(page === "profile"){
-    renderProfile();
-  }
-
-  if(page === "applications"){
-    renderApplications();
-  }
-};
+});
 
 
-/* =========================
-   AUTH MODALE
-   ========================= */
+const page =
+document.getElementById(pageName);
 
-window.openAuth = function(mode){
+if(page){
 
-  authMode = mode;
+page.classList.add("active");
 
-  document
-    .getElementById("authModal")
-    .classList.add("show");
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
-  updateAuthForm();
-};
+}
 
-
-window.closeAuth = function(){
-
-  document
-    .getElementById("authModal")
-    .classList.remove("show");
-};
-
-
-window.switchAuthMode = function(){
-
-  authMode =
-    authMode === "login"
-      ? "register"
-      : "login";
-
-  updateAuthForm();
-};
-
-
-function updateAuthForm(){
-
-  const registerFields =
-    document.getElementById("registerFields");
-
-  const title =
-    document.getElementById("authTitle");
-
-  const submit =
-    document.getElementById("authSubmit");
-
-  const switchButton =
-    document.getElementById("switchAuthButton");
-
-  if(authMode === "register"){
-
-    title.textContent = "Créer mon compte";
-
-    submit.textContent = "Créer mon compte";
-
-    switchButton.textContent =
-      "J'ai déjà un compte";
-
-    registerFields.style.display = "block";
-
-  }else{
-
-    title.textContent = "Connexion";
-
-    submit.textContent = "Se connecter";
-
-    switchButton.textContent =
-      "Créer un compte";
-
-    registerFields.style.display = "none";
-  }
 }
 
 
 /* =========================
-   INSCRIPTION / CONNEXION
-   ========================= */
+   BOUTONS NAVIGATION
+========================= */
 
 document
-  .getElementById("authForm")
-  .addEventListener("submit", async event=>{
+.querySelectorAll("[data-page]")
+.forEach(function(button){
 
-    event.preventDefault();
+button.addEventListener(
+"click",
+function(){
 
-    const email =
-      document
-        .getElementById("authEmail")
-        .value
-        .trim();
+const page =
+button.getAttribute(
+"data-page"
+);
 
-    const password =
-      document
-        .getElementById("authPassword")
-        .value;
+showPage(page);
 
-    if(!email || !password){
+});
 
-      toast("Remplissez tous les champs.");
-      return;
-    }
-
-    const button =
-      document.getElementById("authSubmit");
-
-    button.disabled = true;
-    button.textContent = "Veuillez patienter...";
-
-
-    try{
-
-      /* =====================
-         INSCRIPTION
-         ===================== */
-
-      if(authMode === "register"){
-
-        const name =
-          document
-            .getElementById("registerName")
-            .value
-            .trim();
-
-        const phone =
-          document
-            .getElementById("registerPhone")
-            .value
-            .trim();
-
-        const role =
-          document
-            .getElementById("registerRole")
-            .value;
-
-
-        const credential =
-          await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-
-        const user =
-          credential.user;
-
-
-        if(name){
-
-          await updateProfile(user,{
-            displayName:name
-          });
-
-        }
-
-
-        await setDoc(
-          doc(db,"users",user.uid),
-          {
-            uid:user.uid,
-            email:user.email,
-            name:name,
-            phone:phone,
-            role:role,
-            createdAt:serverTimestamp(),
-            verified:false
-          }
-        );
-
-
-        /*
-          Si un téléphone est fourni,
-          on envoie maintenant le SMS.
-        */
-
-        if(phone){
-
-          await sendVerificationSMS(
-            user,
-            phone
-          );
-
-        }else{
-
-          toast(
-            "Compte créé avec succès."
-          );
-
-          closeAuth();
-        }
-
-
-      }else{
-
-        /* =====================
-           CONNEXION
-           ===================== */
-
-        await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-        toast("Connexion réussie.");
-
-        closeAuth();
-
-        showPage("profile");
-      }
-
-
-    }catch(error){
-
-      toast(
-        authMode === "register"
-          ? "Inscription impossible : " + firebaseError(error)
-          : "Connexion impossible : " + firebaseError(error)
-      );
-
-    }finally{
-
-      button.disabled = false;
-
-      button.textContent =
-        authMode === "register"
-          ? "Créer mon compte"
-          : "Se connecter";
-    }
-
-  });
+});
 
 
 /* =========================
-   RECAPTCHA
-   ========================= */
+   OUVRIR MODALE
+========================= */
 
-function createRecaptcha(){
+function openModal(id){
 
-  if(recaptchaVerifier){
+const modal =
+document.getElementById(id);
 
-    try{
-      recaptchaVerifier.clear();
-    }catch(e){}
+if(modal){
 
-    recaptchaVerifier = null;
-  }
+modal.classList.add("show");
 
-  const container =
-    document.getElementById(
-      "recaptcha-container"
-    );
+}
 
-  container.style.display = "block";
-
-  recaptchaVerifier =
-    new RecaptchaVerifier(
-      auth,
-      "recaptcha-container",
-      {
-        size:"normal",
-
-        callback:()=>{
-          console.log(
-            "reCAPTCHA validé"
-          );
-        },
-
-        "expired-callback":()=>{
-          toast(
-            "Le reCAPTCHA a expiré. Réessayez."
-          );
-        }
-      }
-    );
-
-  return recaptchaVerifier;
 }
 
 
 /* =========================
-   SMS
-   ========================= */
+   FERMER MODALE
+========================= */
 
-async function sendVerificationSMS(
-  user,
-  phone
-){
+function closeModal(id){
 
-  if(!phone.startsWith("+")){
+const modal =
+document.getElementById(id);
 
-    toast(
-      "Utilisez le format international, par exemple +221XXXXXXXXX."
-    );
+if(modal){
 
-    return;
-  }
+modal.classList.remove("show");
 
+}
 
-  try{
-
-    const verifier =
-      createRecaptcha();
-
-
-    /*
-      Cette méthode permet d'envoyer
-      le code SMS avec Firebase.
-    */
-
-    confirmationResult =
-      await signInWithPhoneNumber(
-        auth,
-        phone,
-        verifier
-      );
-
-
-    document
-      .getElementById("recaptcha-container")
-      .style.display = "none";
-
-
-    document
-      .getElementById("otpModal")
-      .classList.add("show");
-
-
-    document
-      .getElementById("otpCode")
-      .value = "";
-
-
-    toast(
-      "Le code SMS a été envoyé."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    toast(
-      "Impossible d'envoyer le SMS : " +
-      firebaseError(error)
-    );
-
-  }
 }
 
 
 /* =========================
-   VÉRIFICATION SMS
-   ========================= */
+   BOUTONS FERMETURE
+========================= */
 
-window.verifySmsCode =
-async function(){
+document
+.querySelectorAll("[data-close]")
+.forEach(function(button){
 
-  const code =
-    document
-      .getElementById("otpCode")
-      .value
-      .trim();
+button.addEventListener(
+"click",
+function(){
 
+const id =
+button.getAttribute(
+"data-close"
+);
 
-  if(!/^\d{6}$/.test(code)){
+closeModal(id);
 
-    toast(
-      "Entrez un code à 6 chiffres."
-    );
+});
 
-    return;
-  }
-
-
-  if(!confirmationResult){
-
-    toast(
-      "Aucun code de validation en attente."
-    );
-
-    return;
-  }
+});
 
 
-  try{
+/* =========================
+   INSCRIPTION
+========================= */
 
-    await confirmationResult.confirm(code);
+document
+.getElementById("registerButton")
+.addEventListener(
+"click",
+function(){
 
+openModal("registerModal");
 
-    if(auth.currentUser){
-
-      await setDoc(
-        doc(
-          db,
-          "users",
-          auth.currentUser.uid
-        ),
-        {
-          phoneVerified:true,
-          verified:true
-        },
-        {
-          merge:true
-        }
-      );
-
-    }
+});
 
 
-    confirmationResult = null;
+document
+.getElementById("heroRegisterButton")
+.addEventListener(
+"click",
+function(){
+
+openModal("registerModal");
+
+});
 
 
-    closeOtp();
+/* =========================
+   CONNEXION
+========================= */
+
+document
+.getElementById("loginButton")
+.addEventListener(
+"click",
+function(){
+
+openModal("loginModal");
+
+});
 
 
-    toast(
-      "Téléphone vérifié avec succès."
-    );
+document
+.getElementById("accountButton")
+.addEventListener(
+"click",
+function(){
+
+if(loggedIn){
+
+showPage("profile");
+
+}else{
+
+openModal("loginModal");
+
+}
+
+});
 
 
-    showPage("profile");
+document
+.getElementById("profileLoginButton")
+.addEventListener(
+"click",
+function(){
+
+openModal("loginModal");
+
+});
 
 
-  }catch(error){
+/* =========================
+   PASSER INSCRIPTION
+========================= */
 
-    console.error(err
+document
+.getElementById("goRegisterButton")
+.addEventListener(
+"click",
+function(){
+
+closeModal("loginModal");
+
+openModal("registerModal");
+
+});
+
+
+/* =========================
+   PASSER CONNEXION
+========================= */
+
+document
+.getElementById("goLoginButton")
+.addEventListener(
+"click",
+function(){
+
+closeModal("registerModal");
+
+openModal("loginModal");
+
+});
+
+
+/* =========================
+   VOIR JOBS
+========================= */
+
+document
+.getElementById("viewJobsButton")
+.addEventListener(
+"click",
+function(){
+
+showPage("jobs");
+
+});
+
+
+/* =========================
+   ENTREPRISE
+========================= */
+
+document
+.getElementById("companyButton")
+.addEventListener(
+"click",
+function(){
+
+if(!loggedIn){
+
+openModal("loginModal");
+
+showStatus(
+"Connectez-vous d'abord."
+);
+
+return;
+
+}
+
+showPage("publish");
+
+});
+
+
+/* =========================
+   FORMULAIRE INSCRIPTION
+========================= */
+
+document
+.getElementById("registerForm")
+.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+const name =
+document
+.getElementById("registerName")
+.value
+.trim();
+
+const email =
+document
+.getElementById("registerEmail")
+.value
+.trim();
+
+const password =
+document
+.getElementById("registerPassword")
+.value;
+
+const phone =
+document
+.getElementById("registerPhone")
+.value
+.trim();
+
+const role =
+document
+.getElementById("registerRole")
+.value;
+
+
+if(password.length < 6){
+
+showRegisterMessage(
+"Le mot de passe doit contenir au moins 6 caractères."
+);
+
+return;
+
+}
+
+
+/*
+   TEST LOCAL UNIQUEMENT.
+
+   Firebase sera branché après
+   validation du fonctionnement
+   des boutons.
+*/
+
+currentUser = {
+
+name:name,
+
+email:email,
+
+phone:phone,
+
+role:role
+
+};
+
+loggedIn = true;
+
+
+closeModal("registerModal");
+
+updateInterface();
+
+showStatus(
+"Compte créé avec succès (mode test)."
+);
+
+showPage("profile");
+
+});
+
+
+/* =========================
+   FORMULAIRE CONNEXION
+========================= */
+
+document
+.getElementById("loginForm")
+.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+const email =
+document
+.getElementById("loginEmail")
+.value
+.trim();
+
+const password =
+document
+.getElementById("loginPassword")
+.value;
+
+
+if(!email || !password){
+
+showLoginMessage(
+"Veuillez remplir tous les champs."
+);
+
+return;
+
+}
+
+
+/*
+   TEST LOCAL.
+*/
+
+currentUser = {
+
+name:"Utilisateur",
+
+email:email,
+
+role:"candidate"
+
+};
+
+loggedIn = true;
+
+
+closeModal("loginModal");
+
+updateInterface();
+
+showStatus(
+"Connexion réussie (mode test)."
+);
+
+showPage("profile");
+
+});
+
+
+/* =========================
+   INTERFACE CONNECTÉE
+========================= */
+
+function updateInterface(){
+
+const authArea =
+document.getElementById(
+"authArea"
+);
+
+const loggedArea =
+document.getElementById(
+"loggedArea"
+);
+
+const profileNotLogged =
+document.getElementById(
+"profileNotLogged"
+);
+
+const profileLogged =
+document.getElementById(
+"profileLogged"
+);
+
+const publishForm =
+document.getElementById(
+"publishForm"
+);
+
+const publishMessage =
+document.getElementById(
+"publishMessage"
+);
+
+
+if(loggedIn){
+
+authArea.style.display =
+"none";
+
+loggedArea.style.display =
+"block";
+
+profileNotLogged.style.display =
+"none";
+
+profileLogged.style.display =
+"block";
+
+publishForm.style.display =
+"block";
+
+publishMessage.style.display =
+"none";
+
+
+document.getElementById(
+"profileName"
+).textContent =
+currentUser.name ||
+"Utilisateur";
+
+
+document.getElementById(
+"profileEmail"
+).textContent =
+"Email : " +
+currentUser.email;
+
+
+document.getElementById(
+"profileRole"
+).textContent =
+currentUser.role === "company"
+? "🏢 Entreprise"
+: "👤 Candidat";
+
+
+}else{
+
+authArea.style.display =
+"block";
+
+loggedArea.style.display =
+"none";
+
+profileNotLogged.style.display =
+"block";
+
+profileLogged.style.display =
+"none";
+
+publishForm.style.display =
+"none";
+
+publishMessage.style.display =
+"block";
+
+}
+
+}
+
+
+/* =========================
+   DÉCONNEXION
+========================= */
+
+document
+.getElementById("logoutButton")
+.addEventListener(
+"click",
+function(){
+
+const answer =
+window.confirm(
+"Voulez-vous vraiment vous déconnecter ?"
+);
+
+
+if(!answer){
+
+return;
+
+}
+
+
+loggedIn = false;
+
+currentUser = null;
+
+updateInterface();
+
+showPage("home");
+
+showStatus(
+"Vous êtes maintenant déconnecté."
+);
+
+});
+
+
+/* =========================
+   MOT DE PASSE OUBLIÉ
+========================= */
+
+document
+.getElementById("forgotButton")
+.addEventListener(
+"click",
+function(){
+
+const email =
+document
+.getElementById("loginEmail")
+.value
+.trim();
+
+
+if(!email){
+
+showLoginMessage(
+"Entrez votre email avant de demander la réinitialisation."
+);
+
+return;
+
+}
+
+
+showLoginMessage(
+"Mode test : la réinitialisation Firebase sera ajoutée ensuite."
+);
+
+});
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+document
+.getElementById("newMessageButton")
+.addEventListener(
+"click",
+function(){
+
+if(!loggedIn){
+
+openModal("loginModal");
+
+showStatus(
+"Connectez-vous pour envoyer un message."
+);
+
+return;
+
+}
+
+showStatus(
+"Fonction de messagerie prête pour la prochaine étape."
+);
+
+});
+
+
+/* =========================
+   MODIFICATION PROFIL
+========================= */
+
+document
+.getElementById("editProfileButton")
+.addEventListener(
+"click",
+function(){
+
+showStatus(
+"Modification du profil : prochaine étape."
+);
+
+});
+
+
+/* =========================
+   JOBS
+========================= */
+
+document
+.querySelectorAll(".jobButton")
+.forEach(function(button){
+
+button.addEventListener(
+"click",
+function(){
+
+showStatus(
+"Vous avez sélectionné cette offre."
+);
+
+});
+
+});
+
+
+/* =========================
+   RECHERCHE JOBS
+========================= */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"input",
+function(){
+
+const search =
+this.value
+.toLowerCase()
+.trim();
+
+document
+.querySelectorAll(
+"#jobsContainer .card"
+)
+.forEach(function(card){
+
+const text =
+card.textContent
+.toLowerCase();
+
+card.style.display =
+text.includes(search)
+? "block"
+: "none";
+
+});
+
+});
+
+
+/* =========================
+   PUBLICATION
+========================= */
+
+document
+.getElementById("publishForm")
+.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+showStatus(
+"Offre publiée en mode test."
+);
+
+this.reset();
+
+showPage("jobs");
+
+});
+
+
+/* =========================
+   MESSAGES D'ERREUR
+========================= */
+
+function showLoginMessage(message){
+
+const element =
+document.getElementById(
+"loginMessage"
+);
+
+element.textContent =
+message;
+
+element.style.display =
+"block";
+
+}
+
+
+function showRegisterMessage(message){
+
+const element =
+document.getElementById(
+"registerMessage"
+);
+
+element.textContent =
+message;
+
+element.style.display =
+"block";
+
+}
+
+
+/* =========================
+   FERMER MODALE EN CLIQUANT
+   À L'EXTÉRIEUR
+========================= */
+
+document
+.querySelectorAll(".modal")
+.forEach(function(modal){
+
+modal.addEventListener(
+"click",
+function(event){
+
+if(event.target === modal){
+
+modal.classList.remove(
+"show"
+);
+
+}
+
+});
+
+});
+
+
+/* =========================
+   INITIALISATION
+========================= */
+
+updateInterface();
+
+</script>
+
+</body>
+  </html>
