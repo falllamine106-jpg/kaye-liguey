@@ -2,31 +2,27 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#0f766e">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KAYE LIGUEY — Seul le travail qui paye</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 body{
+  margin:0;
   font-family:Arial,Helvetica,sans-serif;
-  background:#f4f7f7;
-  color:#172121;
+  background:#f5f7fb;
+  color:#172033;
 }
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
-
 header{
-  background:#0f766e;
+  background:#0f172a;
   color:white;
   padding:15px 20px;
   position:sticky;
   top:0;
-  z-index:50;
+  z-index:100;
 }
 .header-inner{
-  max-width:1200px;
+  max-width:1100px;
   margin:auto;
   display:flex;
   align-items:center;
@@ -34,289 +30,164 @@ header{
   gap:15px;
 }
 .logo{
-  font-size:24px;
-  font-weight:800;
+  font-size:21px;
+  font-weight:bold;
 }
-.slogan{
-  font-size:12px;
-  opacity:.9;
+.logo small{
+  display:block;
+  font-size:11px;
+  color:#cbd5e1;
+  margin-top:3px;
 }
-.menu-btn{
-  background:white;
-  color:#0f766e;
-  border:0;
-  border-radius:8px;
-  padding:10px 14px;
-}
-nav{
-  display:none;
-  background:#095c56;
-  margin-top:12px;
-  padding:10px;
-  border-radius:10px;
-}
-nav.open{display:block}
-nav button{
-  width:100%;
-  text-align:left;
-  border:0;
-  background:transparent;
-  color:white;
-  padding:12px;
-  border-radius:7px;
-}
-nav button:hover{background:#0f766e}
-
-main{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-}
-
-.page{display:none}
-.page.active{display:block}
-
-.hero{
-  background:white;
-  border-radius:18px;
-  padding:35px 25px;
-  margin-bottom:20px;
-  text-align:center;
-  box-shadow:0 3px 15px #0000000d;
-}
-.hero h1{
-  color:#0f766e;
-  margin-bottom:10px;
-  font-size:34px;
-}
-.hero p{margin-bottom:20px}
-
-.btn{
+button{
   border:0;
   border-radius:9px;
-  padding:11px 16px;
-  font-weight:700;
+  padding:11px 15px;
+  cursor:pointer;
+  font-weight:bold;
 }
-.btn-primary{background:#0f766e;color:white}
-.btn-secondary{background:#e7eeee;color:#14534d}
+.btn-primary{background:#2563eb;color:white}
+.btn-success{background:#16a34a;color:white}
 .btn-danger{background:#dc2626;color:white}
-.btn-warning{background:#d97706;color:white}
-.btn-small{padding:7px 10px;font-size:13px}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
+.btn-light{background:#e2e8f0;color:#172033}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:25px 15px;
 }
+.hero{
+  background:linear-gradient(135deg,#0f172a,#1d4ed8);
+  color:white;
+  padding:55px 25px;
+  border-radius:18px;
+  text-align:center;
+}
+.hero h1{font-size:38px;margin:0 0 10px}
+.hero p{font-size:18px}
+.actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:25px;
+}
+nav{
+  background:white;
+  border-bottom:1px solid #e5e7eb;
+}
+.nav-inner{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  gap:6px;
+  overflow:auto;
+  padding:8px 10px;
+}
+.nav-inner button{
+  white-space:nowrap;
+  background:white;
+}
+.nav-inner button:hover{
+  background:#eff6ff;
+}
+.page{display:none}
+.page.active{display:block}
 .card{
   background:white;
-  padding:20px;
   border-radius:14px;
-  box-shadow:0 2px 12px #0000000c;
+  padding:20px;
+  margin-bottom:15px;
+  box-shadow:0 4px 16px rgba(15,23,42,.06);
 }
-.card h3{margin-bottom:8px;color:#0f766e}
-
-.section-title{
-  margin:10px 0 18px;
-  font-size:25px;
-}
-
-.form{
-  background:white;
-  padding:22px;
-  border-radius:15px;
-  box-shadow:0 2px 12px #0000000d;
-  max-width:850px;
-  margin:auto;
-}
-.form-group{margin-bottom:15px}
-label{
-  display:block;
-  font-weight:700;
-  margin-bottom:6px;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:15px;
 }
 input,select,textarea{
   width:100%;
-  padding:11px;
-  border:1px solid #ccd7d7;
+  padding:12px;
+  margin-top:6px;
+  margin-bottom:13px;
+  border:1px solid #cbd5e1;
   border-radius:8px;
-  background:white;
+  font-size:15px;
 }
-textarea{min-height:120px;resize:vertical}
-
-.grid-2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
+label{
+  font-weight:bold;
+  font-size:14px;
 }
-
-.job{
-  background:white;
-  border-radius:14px;
-  padding:18px;
-  margin-bottom:14px;
-  box-shadow:0 2px 12px #0000000c;
-}
-.job h3{color:#0f766e;margin-bottom:8px}
-.job-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin:10px 0;
-}
-.tag{
-  background:#e7f5f3;
-  color:#0f766e;
-  padding:5px 8px;
-  border-radius:20px;
-  font-size:12px;
-}
-.job-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-
-.profile-box{
-  display:grid;
-  grid-template-columns:150px 1fr;
-  gap:20px;
-}
-.avatar{
-  width:130px;
-  height:130px;
-  border-radius:50%;
-  background:#dcebea;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:45px;
-  overflow:hidden;
-}
-.avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:#0008;
-  z-index:100;
-  padding:20px;
-  overflow:auto;
-}
-.modal.show{
-  display:flex;
+  background:rgba(0,0,0,.65);
+  z-index:1000;
   align-items:center;
   justify-content:center;
+  padding:15px;
 }
+.modal.show{display:flex}
 .modal-box{
+  width:min(480px,100%);
   background:white;
-  width:min(520px,100%);
-  border-radius:17px;
-  padding:25px;
-  position:relative;
+  border-radius:16px;
+  padding:22px;
+  max-height:90vh;
+  overflow:auto;
 }
 .close{
-  position:absolute;
-  right:15px;
-  top:12px;
-  border:0;
-  background:transparent;
-  font-size:25px;
+  float:right;
+  background:#e2e8f0;
+  width:38px;
+  height:38px;
+  border-radius:50%;
 }
-.auth-tabs{
-  display:flex;
-  gap:8px;
-  margin-bottom:18px;
+#recaptcha-container{
+  margin:10px 0;
 }
-.auth-tabs button{
-  flex:1;
-  border:0;
-  padding:10px;
-  border-radius:8px;
-}
-.auth-tabs button.active{
-  background:#0f766e;
-  color:white;
-}
-
-.otp-box{
-  text-align:center;
-}
-.otp-input{
-  text-align:center;
-  font-size:28px;
-  letter-spacing:8px;
-  font-weight:bold;
-}
-.otp-info{
-  background:#eef8f6;
-  color:#14534d;
-  padding:12px;
-  border-radius:8px;
-  margin:15px 0;
-}
-
 .toast{
   position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#172121;
+  right:15px;
+  bottom:15px;
+  background:#0f172a;
   color:white;
   padding:13px 17px;
-  border-radius:9px;
+  border-radius:10px;
   display:none;
-  z-index:200;
+  z-index:2000;
   max-width:330px;
 }
 .toast.show{display:block}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:12px;
-  margin-bottom:20px;
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:20px;
+  font-size:12px;
+  background:#dcfce7;
+  color:#166534;
 }
-.stat{
-  background:white;
+.job{
+  border:1px solid #e2e8f0;
   border-radius:12px;
-  padding:18px;
+  padding:17px;
+  margin-bottom:12px;
 }
-.stat strong{
-  display:block;
-  font-size:28px;
-  color:#0f766e;
-}
-
 .empty{
-  background:white;
-  padding:30px;
   text-align:center;
-  border-radius:14px;
+  color:#64748b;
+  padding:30px 10px;
 }
-
-.notification{
-  border-left:4px solid #0f766e;
-  background:white;
-  padding:14px;
-  margin-bottom:10px;
-  border-radius:8px;
-}
-
 footer{
+  margin-top:40px;
+  background:#0f172a;
+  color:#cbd5e1;
   text-align:center;
-  padding:30px 20px;
-  color:#657070;
+  padding:25px;
 }
-
-@media(max-width:650px){
-  .grid-2{grid-template-columns:1fr}
-  .profile-box{grid-template-columns:1fr}
-  .hero h1{font-size:27px}
+@media(max-width:600px){
+  .hero h1{font-size:29px}
+  .header-inner{flex-direction:column}
 }
 </style>
 </head>
@@ -325,356 +196,315 @@ footer{
 
 <header>
   <div class="header-inner">
-    <div>
-      <div class="logo">KAYE LIGUEY</div>
-      <div class="slogan">Seul le travail qui paye</div>
+    <div class="logo">
+      KAYE LIGUEY
+      <small>Seul le travail qui paye</small>
     </div>
-    <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
-  </div>
 
-  <nav id="navigation">
+    <div id="authButtons">
+      <button class="btn-primary" onclick="openAuth('login')">
+        Se connecter
+      </button>
+      <button class="btn-success" onclick="openAuth('register')">
+        Inscription
+      </button>
+    </div>
+
+    <div id="userButtons" style="display:none">
+      <button class="btn-light" onclick="showPage('profile')">
+        👤 Profil
+      </button>
+      <button class="btn-danger" onclick="confirmLogout()">
+        Déconnexion
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
     <button onclick="showPage('home')">🏠 Accueil</button>
     <button onclick="showPage('jobs')">💼 Jobs</button>
-    <button onclick="showPage('publish')">➕ Publier une offre</button>
+    <button onclick="showPage('publish')">➕ Publier</button>
     <button onclick="showPage('applications')">📄 Candidatures</button>
     <button onclick="showPage('favorites')">⭐ Favoris</button>
     <button onclick="showPage('messages')">💬 Messages</button>
     <button onclick="showPage('notifications')">🔔 Notifications</button>
     <button onclick="showPage('profile')">👤 Profil</button>
-    <button id="adminNav" onclick="showPage('admin')" style="display:none">👑 Administration</button>
-    <button id="authNav" onclick="openAuth()">🔐 Connexion</button>
-    <button id="logoutNav" onclick="confirmLogout()" style="display:none">🚪 Déconnecter</button>
-  </nav>
-</header>
+  </div>
+</nav>
 
-<main>
+<main class="container">
 
-<!-- ACCUEIL -->
 <section id="home" class="page active">
   <div class="hero">
-    <h1>Trouve ton opportunité</h1>
-    <p>KAYE LIGUEY met en relation les candidats et les entreprises.</p>
-    <button class="btn btn-primary" onclick="showPage('jobs')">Voir les offres</button>
-    <button class="btn btn-secondary" onclick="openAuth()">Créer mon compte</button>
+    <h1>KAYE LIGUEY</h1>
+    <p>Seul le travail qui paye</p>
+    <p>Trouvez des opportunités et développez votre avenir professionnel.</p>
+
+    <div class="actions">
+      <button class="btn-primary" onclick="showPage('jobs')">
+        Voir les offres
+      </button>
+      <button class="btn-success" onclick="openAuth('register')">
+        Créer mon compte
+      </button>
+    </div>
   </div>
 
-  <div class="cards">
+  <div class="grid" style="margin-top:20px">
     <div class="card">
-      <h3>👤 Candidat</h3>
-      <p>Crée ton profil, ajoute ton CV et postule aux offres.</p>
+      <h3>👤 Candidats</h3>
+      <p>Créez votre profil et trouvez des offres adaptées.</p>
     </div>
+
     <div class="card">
-      <h3>🏢 Entreprise</h3>
-      <p>Publie tes offres et trouve des candidats.</p>
+      <h3>🏢 Entreprises</h3>
+      <p>Publiez vos offres et recevez des candidatures.</p>
     </div>
+
     <div class="card">
       <h3>🔐 Sécurité</h3>
-      <p>Les accès sont séparés selon le rôle de chaque utilisateur.</p>
+      <p>Les comptes sont gérés avec Firebase Authentication.</p>
     </div>
   </div>
 </section>
 
-<!-- JOBS -->
 <section id="jobs" class="page">
-  <h2 class="section-title">💼 Offres d'emploi</h2>
+  <h2>💼 Offres d'emploi</h2>
 
-  <div class="card" style="margin-bottom:15px">
-    <div class="grid-2">
-      <div>
-        <label>Recherche</label>
-        <input id="searchJob" oninput="renderJobs()" placeholder="Ex : développeur">
-      </div>
-      <div>
-        <label>Ville</label>
-        <input id="filterCity" oninput="renderJobs()" placeholder="Dakar">
-      </div>
-    </div>
+  <div class="card">
+    <input id="searchJobs"
+           placeholder="Rechercher une offre..."
+           oninput="renderJobs()">
   </div>
 
   <div id="jobsList"></div>
 </section>
 
-<!-- PUBLICATION -->
 <section id="publish" class="page">
-  <h2 class="section-title">➕ Publier une offre</h2>
+  <h2>➕ Publier une offre</h2>
 
-  <div id="publishLoginMessage" class="empty" style="display:none">
-    <p>Vous devez être connecté en tant qu'entreprise.</p>
-    <br>
-    <button class="btn btn-primary" onclick="openAuth()">Se connecter</button>
-  </div>
+  <div class="card">
+    <div id="publishLoginMessage">
+      Connectez-vous pour publier une offre.
+    </div>
 
-  <form id="jobForm" class="form" onsubmit="publishJob(event)">
-    <div class="form-group">
+    <form id="jobForm" style="display:none">
       <label>Titre du poste</label>
       <input id="jobTitle" required>
-    </div>
 
-    <div class="form-group">
       <label>Description</label>
-      <textarea id="jobDescription" required></textarea>
-    </div>
+      <textarea id="jobDescription" rows="5" required></textarea>
 
-    <div class="grid-2">
-      <div class="form-group">
-        <label>Catégorie</label>
-        <select id="jobCategory">
-          <option>Informatique</option>
-          <option>Commerce</option>
-          <option>Marketing</option>
-          <option>Administration</option>
-          <option>Finance</option>
-          <option>Transport</option>
-          <option>Logistique</option>
-          <option>Autre</option>
-        </select>
-      </div>
+      <label>Catégorie</label>
+      <input id="jobCategory" required>
 
-      <div class="form-group">
-        <label>Type de contrat</label>
-        <select id="jobContract">
-          <option>CDI</option>
-          <option>CDD</option>
-          <option>Stage</option>
-          <option>Freelance</option>
-          <option>Temps partiel</option>
-        </select>
-      </div>
+      <label>Ville</label>
+      <input id="jobCity">
 
-      <div class="form-group">
-        <label>Ville</label>
-        <input id="jobCity" required>
-      </div>
+      <label>Type de contrat</label>
+      <select id="jobContract">
+        <option>CDI</option>
+        <option>CDD</option>
+        <option>Stage</option>
+        <option>Freelance</option>
+        <option>Temps partiel</option>
+      </select>
 
-      <div class="form-group">
-        <label>Région</label>
-        <input id="jobRegion" required>
-      </div>
-
-      <div class="form-group">
-        <label>Salaire minimum</label>
-        <input id="salaryMin" type="number" min="0">
-      </div>
-
-      <div class="form-group">
-        <label>Salaire maximum</label>
-        <input id="salaryMax" type="number" min="0">
-      </div>
-
-      <div class="form-group">
-        <label>Date limite</label>
-        <input id="jobDeadline" type="date">
-      </div>
-    </div>
-
-    <button class="btn btn-primary" type="submit">Publier l'offre</button>
-  </form>
+      <button class="btn-success" type="submit">
+        Publier l'offre
+      </button>
+    </form>
+  </div>
 </section>
 
-<!-- CANDIDATURES -->
 <section id="applications" class="page">
-  <h2 class="section-title">📄 Candidatures</h2>
-  <div id="applicationsList"></div>
+  <h2>📄 Mes candidatures</h2>
+  <div id="applicationsList" class="card">
+    <div class="empty">Connectez-vous pour voir vos candidatures.</div>
+  </div>
 </section>
 
-<!-- FAVORIS -->
 <section id="favorites" class="page">
-  <h2 class="section-title">⭐ Mes favoris</h2>
+  <h2>⭐ Mes favoris</h2>
   <div id="favoritesList"></div>
 </section>
 
-<!-- MESSAGES -->
 <section id="messages" class="page">
-  <h2 class="section-title">💬 Messages</h2>
-  <div id="messagesList"></div>
-
-  <div class="form" style="margin-top:20px">
-    <div class="form-group">
-      <label>Destinataire</label>
-      <input id="messageTo" placeholder="Entreprise ou candidat">
+  <h2>💬 Messages</h2>
+  <div class="card">
+    <div class="empty">
+      Votre messagerie sera disponible ici.
     </div>
-    <div class="form-group">
-      <label>Message</label>
-      <textarea id="messageText"></textarea>
-    </div>
-    <button class="btn btn-primary" onclick="sendMessage()">Envoyer</button>
   </div>
 </section>
 
-<!-- NOTIFICATIONS -->
 <section id="notifications" class="page">
-  <h2 class="section-title">🔔 Notifications</h2>
-  <div id="notificationsList"></div>
-</section>
-
-<!-- PROFIL -->
-<section id="profile" class="page">
-  <h2 class="section-title">👤 Mon profil</h2>
-  <div id="profileContent"></div>
-</section>
-
-<!-- ADMIN -->
-<section id="admin" class="page">
-  <h2 class="section-title">👑 Administration</h2>
-
-  <div class="stats">
-    <div class="stat">
-      <span>Candidats</span>
-      <strong id="statCandidates">0</strong>
-    </div>
-    <div class="stat">
-      <span>Entreprises</span>
-      <strong id="statCompanies">0</strong>
-    </div>
-    <div class="stat">
-      <span>Offres</span>
-      <strong id="statJobs">0</strong>
-    </div>
-    <div class="stat">
-      <span>Candidatures</span>
-      <strong id="statApplications">0</strong>
+  <h2>🔔 Notifications</h2>
+  <div class="card">
+    <div class="empty">
+      Aucune notification pour le moment.
     </div>
   </div>
+</section>
 
-  <div id="adminContent"></div>
+<section id="profile" class="page">
+  <h2>👤 Mon profil</h2>
+
+  <div class="card" id="profileContent">
+    <div class="empty">
+      Connectez-vous pour voir votre profil.
+    </div>
+  </div>
 </section>
 
 </main>
 
 <footer>
-  <p>© 2026 KAYE LIGUEY — Seul le travail qui paye</p>
+  <strong>KAYE LIGUEY</strong><br>
+  Seul le travail qui paye
 </footer>
 
-<!-- AUTHENTIFICATION -->
-<div id="authModal" class="modal">
+<!-- ============================= -->
+<!-- MODALE AUTHENTIFICATION -->
+<!-- ============================= -->
+
+<div class="modal" id="authModal">
   <div class="modal-box">
+
     <button class="close" onclick="closeAuth()">×</button>
 
-    <h2 style="margin-bottom:18px">🔐 KAYE LIGUEY</h2>
+    <h2 id="authTitle">Connexion</h2>
 
-    <div class="auth-tabs">
-      <button id="loginTab" class="active" onclick="switchAuth('login')">Connexion</button>
-      <button id="registerTab" onclick="switchAuth('register')">Inscription</button>
-    </div>
+    <form id="authForm">
 
-    <!-- LOGIN -->
-    <form id="loginForm" onsubmit="login(event)">
-      <div class="form-group">
-        <label>E-mail</label>
-        <input id="loginEmail" type="email" required>
-      </div>
+      <label>Email</label>
+      <input
+        type="email"
+        id="authEmail"
+        required
+        autocomplete="email"
+      >
 
-      <div class="form-group">
-        <label>Mot de passe</label>
-        <input id="loginPassword" type="password" required>
-      </div>
+      <label>Mot de passe</label>
+      <input
+        type="password"
+        id="authPassword"
+        required
+        minlength="6"
+        autocomplete="current-password"
+      >
 
-      <button class="btn btn-primary" style="width:100%">Se connecter</button>
+      <div id="registerFields" style="display:none">
 
-      <button type="button"
-              class="btn btn-secondary"
-              style="width:100%;margin-top:10px"
-              onclick="forgotPassword()">
-        Mot de passe oublié ?
-      </button>
-    </form>
+        <label>Nom</label>
+        <input id="registerName">
 
-    <!-- REGISTER -->
-    <form id="registerForm" onsubmit="register(event)" style="display:none">
+        <label>Téléphone</label>
+        <input
+          id="registerPhone"
+          type="tel"
+          placeholder="+221XXXXXXXXX"
+        >
 
-      <div class="form-group">
         <label>Type de compte</label>
         <select id="registerRole">
-          <option value="candidate">👤 Candidat</option>
-          <option value="company">🏢 Entreprise</option>
+          <option value="candidate">Candidat</option>
+          <option value="company">Entreprise</option>
         </select>
+
       </div>
 
-      <div class="form-group">
-        <label>Nom / Nom de l'entreprise</label>
-        <input id="registerName" required>
-      </div>
-
-      <div class="form-group">
-        <label>E-mail</label>
-        <input id="registerEmail" type="email" required>
-      </div>
-
-      <div class="form-group">
-        <label>Mot de passe</label>
-        <input id="registerPassword" type="password" minlength="6" required>
-      </div>
-
-      <div class="form-group">
-        <label>Téléphone</label>
-        <input id="registerPhone" placeholder="+221..." required>
-      </div>
-
-      <button class="btn btn-primary" style="width:100%">
-        Créer mon compte
+      <button
+        id="authSubmit"
+        class="btn-primary"
+        type="submit"
+        style="width:100%"
+      >
+        Se connecter
       </button>
 
-      <div id="recaptcha-container"></div>
     </form>
+
+    <div style="margin-top:15px;text-align:center">
+
+      <button
+        class="btn-light"
+        onclick="switchAuthMode()"
+        id="switchAuthButton"
+      >
+        Créer un compte
+      </button>
+
+      <br><br>
+
+      <button
+        class="btn-light"
+        onclick="forgotPassword()"
+      >
+        Mot de passe oublié ?
+      </button>
+
+    </div>
 
   </div>
 </div>
 
-<!-- VERIFICATION SMS -->
-<div id="otpModal" class="modal">
-  <div class="modal-box otp-box">
-    <button class="close" onclick="closeOtp()">×</button>
+<!-- ============================= -->
+<!-- MODALE CODE SMS -->
+<!-- ============================= -->
 
-    <h2>🔐 Vérification</h2>
+<div class="modal" id="otpModal">
+  <div class="modal-box">
 
-    <div class="otp-info">
-      Un code de validation a été envoyé par SMS à votre numéro.
-    </div>
+    <h2>📱 Validation du téléphone</h2>
 
-    <div class="form-group">
-      <label>Code de validation</label>
-      <input
-        id="otpCode"
-        class="otp-input"
-        inputmode="numeric"
-        maxlength="6"
-        autocomplete="one-time-code"
-        placeholder="000000"
-      >
-    </div>
+    <p>
+      Un code de validation a été envoyé par SMS.
+    </p>
 
-    <button class="btn btn-primary"
-            style="width:100%"
-            onclick="verifySmsCode()">
+    <input
+      id="otpCode"
+      inputmode="numeric"
+      maxlength="6"
+      placeholder="Code à 6 chiffres"
+    >
+
+    <button
+      class="btn-success"
+      onclick="verifySmsCode()"
+      style="width:100%"
+    >
       Vérifier le code
     </button>
 
-    <button class="btn btn-secondary"
-            style="width:100%;margin-top:10px"
-            onclick="closeOtp()">
+    <br><br>
+
+    <button
+      class="btn-light"
+      onclick="closeOtp()"
+      style="width:100%"
+    >
       Annuler
     </button>
+
   </div>
 </div>
 
-<!-- TOAST -->
+<!-- reCAPTCHA -->
+<div
+  id="recaptcha-container"
+  style="display:none"
+></div>
+
 <div id="toast" class="toast"></div>
 
+<!-- ============================= -->
 <!-- FIREBASE -->
+<!-- ============================= -->
+
 <script type="module">
-
-/*
-=========================================================
-  IMPORTANT
-=========================================================
-
-REMPLACE UNIQUEMENT LES VALEURS CI-DESSOUS PAR TON
-firebaseConfig QUE TU AS DANS FIREBASE.
-
-Ne publie jamais une clé secrète de serveur ici.
-La configuration Web Firebase peut être présente dans
-le frontend.
-*/
 
 import {
   initializeApp
@@ -688,7 +518,8 @@ import {
   sendPasswordResetEmail,
   RecaptchaVerifier,
   signInWithPhoneNumber,
-  onAuthStateChanged
+  onAuthStateChanged,
+  updateProfile
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 
 import {
@@ -705,1346 +536,558 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
 
+/* =====================================================
+   IMPORTANT :
+   REMPLACE UNIQUEMENT CE BLOC PAR TON VRAI firebaseConfig
+   ===================================================== */
+
 const firebaseConfig = {
   apiKey: "TON_API_KEY",
   authDomain: "TON_PROJET.firebaseapp.com",
   projectId: "TON_PROJECT_ID",
-  storageBucket: "TON_PROJECT_ID.firebasestorage.app",
+  storageBucket: "TON_STORAGE_BUCKET",
   messagingSenderId: "TON_SENDER_ID",
   appId: "TON_APP_ID"
 };
 
 
+/* =========================
+   INITIALISATION FIREBASE
+   ========================= */
+
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
+
 const db = getFirestore(app);
 
 
-/* ======================================================
+/* =========================
    VARIABLES
-====================================================== */
+   ========================= */
 
 let currentUser = null;
-let currentProfile = null;
+let authMode = "login";
 let confirmationResult = null;
 let recaptchaVerifier = null;
 
 
-/* ======================================================
-   LOCAL DATA
-   Les offres/favoris/messages sont conservés pour
-   permettre au site de fonctionner même pendant la
-   construction progressive de Firestore.
-====================================================== */
-
-function getData(key, fallback=[]){
-  try{
-    return JSON.parse(localStorage.getItem(key)) ?? fallback;
-  }catch{
-    return fallback;
-  }
-}
-
-function saveData(key,value){
-  localStorage.setItem(key,JSON.stringify(value));
-}
-
-let jobs = getData("kaye_jobs",[
-  {
-    id:"demo1",
-    title:"Développeur web",
-    description:"Recherche d'un développeur web pour rejoindre notre équipe.",
-    category:"Informatique",
-    contract:"CDI",
-    city:"Dakar",
-    region:"Dakar",
-    salaryMin:150000,
-    salaryMax:300000,
-    companyId:"demo-company",
-    companyName:"Entreprise KAYE",
-    verified:true,
-    status:"open",
-    applications:[]
-  },
-  {
-    id:"demo2",
-    title:"Assistant administratif",
-    description:"Poste d'assistant administratif.",
-    category:"Administration",
-    contract:"CDD",
-    city:"Thiès",
-    region:"Thiès",
-    salaryMin:100000,
-    salaryMax:180000,
-    companyId:"demo-company2",
-    companyName:"Société Sénégal",
-    verified:false,
-    status:"open",
-    applications:[]
-  }
-]);
-
-saveData("kaye_jobs",jobs);
-
-
-/* ======================================================
-   UTILITAIRES
-====================================================== */
+/* =========================
+   OUTILS
+   ========================= */
 
 function toast(message){
-  const el=document.getElementById("toast");
-  el.textContent=message;
-  el.classList.add("show");
+
+  const element =
+    document.getElementById("toast");
+
+  element.textContent = message;
+  element.classList.add("show");
 
   setTimeout(()=>{
-    el.classList.remove("show");
+    element.classList.remove("show");
   },3500);
 }
 
-window.toast=toast;
 
+function firebaseError(error){
 
-function escapeHTML(value){
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+  console.error("Firebase:", error);
+
+  const code = error?.code || "";
+
+  switch(code){
+
+    case "auth/email-already-in-use":
+      return "Cette adresse email est déjà utilisée.";
+
+    case "auth/invalid-email":
+      return "Adresse email invalide.";
+
+    case "auth/weak-password":
+      return "Le mot de passe doit contenir au moins 6 caractères.";
+
+    case "auth/invalid-credential":
+    case "auth/wrong-password":
+    case "auth/user-not-found":
+      return "Email ou mot de passe incorrect.";
+
+    case "auth/too-many-requests":
+      return "Trop de tentatives. Réessayez plus tard.";
+
+    case "auth/operation-not-allowed":
+      return "La méthode de connexion n'est pas activée dans Firebase.";
+
+    case "auth/invalid-api-key":
+      return "La configuration Firebase est incorrecte.";
+
+    case "auth/app-not-authorized":
+      return "Ce domaine n'est pas autorisé dans Firebase.";
+
+    case "auth/quota-exceeded":
+      return "La limite Firebase a été atteinte.";
+
+    default:
+      return "Une erreur Firebase est survenue.";
+  }
 }
 
 
-/* ======================================================
+/* =========================
    NAVIGATION
-====================================================== */
+   ========================= */
 
-window.toggleMenu=function(){
-  document.getElementById("navigation").classList.toggle("open");
-};
+window.showPage = function(page){
 
-window.showPage=function(page){
+  document
+    .querySelectorAll(".page")
+    .forEach(element=>{
+      element.classList.remove("active");
+    });
 
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
-  });
+  const target =
+    document.getElementById(page);
 
-  const target=document.getElementById(page);
+  if(target){
+    target.classList.add("active");
+  }
 
-  if(!target)return;
+  if(page === "jobs"){
+    renderJobs();
+  }
 
-  target.classList.add("active");
+  if(page === "profile"){
+    renderProfile();
+  }
 
-  document.getElementById("navigation").classList.remove("open");
-
-  if(page==="jobs")renderJobs();
-  if(page==="applications")renderApplications();
-  if(page==="favorites")renderFavorites();
-  if(page==="messages")renderMessages();
-  if(page==="notifications")renderNotifications();
-  if(page==="profile")renderProfile();
-  if(page==="publish")updatePublishAccess();
-  if(page==="admin")renderAdmin();
-};
-
-
-/* ======================================================
-   AUTH MODAL
-====================================================== */
-
-window.openAuth=function(){
-  document.getElementById("authModal").classList.add("show");
-  switchAuth("login");
-};
-
-window.closeAuth=function(){
-  document.getElementById("authModal").classList.remove("show");
-};
-
-window.switchAuth=function(mode){
-
-  const login=document.getElementById("loginForm");
-  const register=document.getElementById("registerForm");
-
-  const loginTab=document.getElementById("loginTab");
-  const registerTab=document.getElementById("registerTab");
-
-  if(mode==="login"){
-    login.style.display="block";
-    register.style.display="none";
-    loginTab.classList.add("active");
-    registerTab.classList.remove("active");
-  }else{
-    login.style.display="none";
-    register.style.display="block";
-    loginTab.classList.remove("active");
-    registerTab.classList.add("active");
-
-    setTimeout(setupRecaptcha,300);
+  if(page === "applications"){
+    renderApplications();
   }
 };
 
 
-/* ======================================================
-   RECAPTCHA TELEPHONE
-====================================================== */
+/* =========================
+   AUTH MODALE
+   ========================= */
 
-function setupRecaptcha(){
+window.openAuth = function(mode){
 
-  if(recaptchaVerifier)return;
+  authMode = mode;
 
-  try{
-    recaptchaVerifier = new RecaptchaVerifier(
+  document
+    .getElementById("authModal")
+    .classList.add("show");
+
+  updateAuthForm();
+};
+
+
+window.closeAuth = function(){
+
+  document
+    .getElementById("authModal")
+    .classList.remove("show");
+};
+
+
+window.switchAuthMode = function(){
+
+  authMode =
+    authMode === "login"
+      ? "register"
+      : "login";
+
+  updateAuthForm();
+};
+
+
+function updateAuthForm(){
+
+  const registerFields =
+    document.getElementById("registerFields");
+
+  const title =
+    document.getElementById("authTitle");
+
+  const submit =
+    document.getElementById("authSubmit");
+
+  const switchButton =
+    document.getElementById("switchAuthButton");
+
+  if(authMode === "register"){
+
+    title.textContent = "Créer mon compte";
+
+    submit.textContent = "Créer mon compte";
+
+    switchButton.textContent =
+      "J'ai déjà un compte";
+
+    registerFields.style.display = "block";
+
+  }else{
+
+    title.textContent = "Connexion";
+
+    submit.textContent = "Se connecter";
+
+    switchButton.textContent =
+      "Créer un compte";
+
+    registerFields.style.display = "none";
+  }
+}
+
+
+/* =========================
+   INSCRIPTION / CONNEXION
+   ========================= */
+
+document
+  .getElementById("authForm")
+  .addEventListener("submit", async event=>{
+
+    event.preventDefault();
+
+    const email =
+      document
+        .getElementById("authEmail")
+        .value
+        .trim();
+
+    const password =
+      document
+        .getElementById("authPassword")
+        .value;
+
+    if(!email || !password){
+
+      toast("Remplissez tous les champs.");
+      return;
+    }
+
+    const button =
+      document.getElementById("authSubmit");
+
+    button.disabled = true;
+    button.textContent = "Veuillez patienter...";
+
+
+    try{
+
+      /* =====================
+         INSCRIPTION
+         ===================== */
+
+      if(authMode === "register"){
+
+        const name =
+          document
+            .getElementById("registerName")
+            .value
+            .trim();
+
+        const phone =
+          document
+            .getElementById("registerPhone")
+            .value
+            .trim();
+
+        const role =
+          document
+            .getElementById("registerRole")
+            .value;
+
+
+        const credential =
+          await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
+        const user =
+          credential.user;
+
+
+        if(name){
+
+          await updateProfile(user,{
+            displayName:name
+          });
+
+        }
+
+
+        await setDoc(
+          doc(db,"users",user.uid),
+          {
+            uid:user.uid,
+            email:user.email,
+            name:name,
+            phone:phone,
+            role:role,
+            createdAt:serverTimestamp(),
+            verified:false
+          }
+        );
+
+
+        /*
+          Si un téléphone est fourni,
+          on envoie maintenant le SMS.
+        */
+
+        if(phone){
+
+          await sendVerificationSMS(
+            user,
+            phone
+          );
+
+        }else{
+
+          toast(
+            "Compte créé avec succès."
+          );
+
+          closeAuth();
+        }
+
+
+      }else{
+
+        /* =====================
+           CONNEXION
+           ===================== */
+
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        toast("Connexion réussie.");
+
+        closeAuth();
+
+        showPage("profile");
+      }
+
+
+    }catch(error){
+
+      toast(
+        authMode === "register"
+          ? "Inscription impossible : " + firebaseError(error)
+          : "Connexion impossible : " + firebaseError(error)
+      );
+
+    }finally{
+
+      button.disabled = false;
+
+      button.textContent =
+        authMode === "register"
+          ? "Créer mon compte"
+          : "Se connecter";
+    }
+
+  });
+
+
+/* =========================
+   RECAPTCHA
+   ========================= */
+
+function createRecaptcha(){
+
+  if(recaptchaVerifier){
+
+    try{
+      recaptchaVerifier.clear();
+    }catch(e){}
+
+    recaptchaVerifier = null;
+  }
+
+  const container =
+    document.getElementById(
+      "recaptcha-container"
+    );
+
+  container.style.display = "block";
+
+  recaptchaVerifier =
+    new RecaptchaVerifier(
       auth,
       "recaptcha-container",
       {
-        size:"normal"
+        size:"normal",
+
+        callback:()=>{
+          console.log(
+            "reCAPTCHA validé"
+          );
+        },
+
+        "expired-callback":()=>{
+          toast(
+            "Le reCAPTCHA a expiré. Réessayez."
+          );
+        }
       }
     );
 
-    recaptchaVerifier.render();
-
-  }catch(error){
-    console.error(error);
-  }
+  return recaptchaVerifier;
 }
 
 
-/* ======================================================
-   INSCRIPTION
-====================================================== */
+/* =========================
+   SMS
+   ========================= */
 
-window.register=async function(event){
+async function sendVerificationSMS(
+  user,
+  phone
+){
 
-  event.preventDefault();
+  if(!phone.startsWith("+")){
 
-  const role=document.getElementById("registerRole").value;
-  const name=document.getElementById("registerName").value.trim();
-  const email=document.getElementById("registerEmail").value.trim();
-  const password=document.getElementById("registerPassword").value;
-  const phone=document.getElementById("registerPhone").value.trim();
+    toast(
+      "Utilisez le format international, par exemple +221XXXXXXXXX."
+    );
 
-  if(!name || !email || !password || !phone){
-    toast("Veuillez remplir tous les champs.");
     return;
   }
 
-  try{
-
-    /*
-      Création du compte e-mail/mot de passe.
-    */
-
-    const credential =
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-    const user=credential.user;
-
-    /*
-      Création du profil Firestore.
-    */
-
-    await setDoc(
-      doc(db,"users",user.uid),
-      {
-        uid:user.uid,
-        name:name,
-        email:email,
-        phone:phone,
-        role:role,
-        verified:false,
-        createdAt:serverTimestamp()
-      }
-    );
-
-    /*
-      Ensuite on envoie réellement le code SMS.
-    */
-
-    await sendPhoneCode(phone);
-
-  }catch(error){
-
-    console.error(error);
-
-    let message="Impossible de créer le compte.";
-
-    if(error.code==="auth/email-already-in-use"){
-      message="Cet e-mail est déjà utilisé.";
-    }
-
-    if(error.code==="auth/invalid-email"){
-      message="Adresse e-mail invalide.";
-    }
-
-    if(error.code==="auth/weak-password"){
-      message="Le mot de passe doit contenir au moins 6 caractères.";
-    }
-
-    toast(message);
-  }
-};
-
-
-/* ======================================================
-   ENVOI DU CODE SMS
-====================================================== */
-
-async function sendPhoneCode(phone){
 
   try{
 
-    if(!recaptchaVerifier){
-      setupRecaptcha();
-    }
+    const verifier =
+      createRecaptcha();
+
+
+    /*
+      Cette méthode permet d'envoyer
+      le code SMS avec Firebase.
+    */
 
     confirmationResult =
       await signInWithPhoneNumber(
         auth,
         phone,
-        recaptchaVerifier
+        verifier
       );
 
-    closeAuth();
 
-    document.getElementById("otpModal").classList.add("show");
+    document
+      .getElementById("recaptcha-container")
+      .style.display = "none";
 
-    document.getElementById("otpCode").value="";
 
-    toast("Le code SMS a été envoyé.");
+    document
+      .getElementById("otpModal")
+      .classList.add("show");
+
+
+    document
+      .getElementById("otpCode")
+      .value = "";
+
+
+    toast(
+      "Le code SMS a été envoyé."
+    );
+
 
   }catch(error){
 
     console.error(error);
 
     toast(
-      "Impossible d'envoyer le SMS. Vérifie le numéro et reCAPTCHA."
+      "Impossible d'envoyer le SMS : " +
+      firebaseError(error)
     );
+
   }
 }
 
 
-/* ======================================================
-   VERIFICATION DU CODE
-====================================================== */
+/* =========================
+   VÉRIFICATION SMS
+   ========================= */
 
-window.verifySmsCode=async function(){
+window.verifySmsCode =
+async function(){
 
-  const code=
-    document.getElementById("otpCode").value.trim();
+  const code =
+    document
+      .getElementById("otpCode")
+      .value
+      .trim();
+
 
   if(!/^\d{6}$/.test(code)){
-    toast("Entre un code numérique de 6 chiffres.");
+
+    toast(
+      "Entrez un code à 6 chiffres."
+    );
+
     return;
   }
 
+
   if(!confirmationResult){
-    toast("Aucun code de validation en attente.");
+
+    toast(
+      "Aucun code de validation en attente."
+    );
+
     return;
   }
+
 
   try{
 
-    /*
-      C'est ici que Firebase vérifie réellement le code.
-    */
-
     await confirmationResult.confirm(code);
+
 
     if(auth.currentUser){
 
       await setDoc(
-        doc(db,"users",auth.currentUser.uid),
+        doc(
+          db,
+          "users",
+          auth.currentUser.uid
+        ),
         {
-          verified:true,
-          phoneVerified:true
+          phoneVerified:true,
+          verified:true
         },
-        {merge:true}
+        {
+          merge:true
+        }
       );
+
     }
 
-    document.getElementById("otpModal")
-      .classList.remove("show");
 
-    confirmationResult=null;
+    confirmationResult = null;
 
-    toast("Compte vérifié avec succès.");
 
-    await loadCurrentProfile();
+    closeOtp();
 
-    updateAuthUI();
+
+    toast(
+      "Téléphone vérifié avec succès."
+    );
+
 
     showPage("profile");
 
-  }catch(error){
-
-    console.error(error);
-
-    toast("Code incorrect ou expiré.");
-  }
-};
-
-
-window.closeOtp=function(){
-  document.getElementById("otpModal")
-    .classList.remove("show");
-};
-
-
-/* ======================================================
-   CONNEXION
-====================================================== */
-
-window.login=async function(event){
-
-  event.preventDefault();
-
-  const email=
-    document.getElementById("loginEmail").value.trim();
-
-  const password=
-    document.getElementById("loginPassword").value;
-
-  try{
-
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    closeAuth();
-
-    toast("Connexion réussie.");
-
-    await loadCurrentProfile();
-
-    updateAuthUI();
 
   }catch(error){
 
-    console.error(error);
-
-    if(error.code==="auth/invalid-credential"){
-      toast("E-mail ou mot de passe incorrect.");
-    }else{
-      toast("Connexion impossible.");
-    }
-  }
-};
-
-
-/* ======================================================
-   MOT DE PASSE OUBLIE
-====================================================== */
-
-window.forgotPassword=async function(){
-
-  const email=
-    document.getElementById("loginEmail").value.trim();
-
-  if(!email){
-    toast("Entre d'abord ton adresse e-mail.");
-    return;
-  }
-
-  try{
-
-    await sendPasswordResetEmail(auth,email);
-
-    toast(
-      "Un e-mail de réinitialisation a été envoyé."
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    toast(
-      "Impossible d'envoyer l'e-mail de réinitialisation."
-    );
-  }
-};
-
-
-/* ======================================================
-   DECONNEXION — CORRECTION DEMANDEE
-====================================================== */
-
-window.confirmLogout=function(){
-
-  /*
-    IMPORTANT :
-    window.confirm affiche bien les deux choix :
-    OK et Annuler.
-
-    OK     = true
-    Annuler = false
-  */
-
-  const answer =
-    window.confirm(
-      "Voulez-vous vraiment vous déconnecter ?"
-    );
-
-  if(!answer){
-    /*
-      Annuler :
-      on ne fait absolument rien.
-    */
-    return;
-  }
-
-  /*
-    OK :
-    vraie déconnexion Firebase.
-  */
-
-  performLogout();
-};
-
-
-async function performLogout(){
-
-  try{
-
-    await signOut(auth);
-
-    currentUser=null;
-    currentProfile=null;
-
-    updateAuthUI();
-
-    showPage("home");
-
-    toast("Vous êtes maintenant déconnecté.");
-
-  }catch(error){
-
-    console.error(error);
-
-    toast("Erreur lors de la déconnexion.");
-  }
-}
-
-
-/* ======================================================
-   ETAT FIREBASE
-====================================================== */
-
-onAuthStateChanged(auth,async user=>{
-
-  currentUser=user;
-
-  if(user){
-    await loadCurrentProfile();
-  }else{
-    currentProfile=null;
-  }
-
-  updateAuthUI();
-});
-
-
-/* ======================================================
-   PROFIL FIRESTORE
-====================================================== */
-
-async function loadCurrentProfile(){
-
-  if(!auth.currentUser)return;
-
-  try{
-
-    const snap=
-      await getDoc(
-        doc(db,"users",auth.currentUser.uid)
-      );
-
-    if(snap.exists()){
-      currentProfile=snap.data();
-    }else{
-      currentProfile={
-        uid:auth.currentUser.uid,
-        email:auth.currentUser.email,
-        role:"candidate"
-      };
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-    currentProfile={
-      uid:auth.currentUser.uid,
-      email:auth.currentUser.email,
-      role:"candidate"
-    };
-  }
-}
-
-
-/* ======================================================
-   INTERFACE AUTH
-====================================================== */
-
-function updateAuthUI(){
-
-  const logged=!!currentUser;
-
-  document.getElementById("authNav").style.display=
-    logged ? "none" : "block";
-
-  document.getElementById("logoutNav").style.display=
-    logged ? "block" : "none";
-
-  document.getElementById("adminNav").style.display=
-    currentProfile?.role==="admin" ? "block" : "none";
-}
-
-
-/* ======================================================
-   JOBS
-====================================================== */
-
-function renderJobs(){
-
-  const container=
-    document.getElementById("jobsList");
-
-  const search=
-    document.getElementById("searchJob")
-    ?.value.toLowerCase() || "";
-
-  const city=
-    document.getElementById("filterCity")
-    ?.value.toLowerCase() || "";
-
-  const filtered=jobs.filter(job=>{
-
-    const text=
-      `${job.title} ${job.description} ${job.category}`
-      .toLowerCase();
-
-    return (
-      job.status!=="closed" &&
-      text.includes(search) &&
-      String(job.city||"")
-        .toLowerCase()
-        .includes(city)
-    );
-  });
-
-  if(!filtered.length){
-
-    container.innerHTML=
-      `<div class="empty">Aucune offre trouvée.</div>`;
-
-    return;
-  }
-
-  container.innerHTML=filtered.map(job=>{
-
-    const salary=
-      job.salaryMin || job.salaryMax
-      ? `${Number(job.salaryMin||0).toLocaleString()} - ${Number(job.salaryMax||0).toLocaleString()} FCFA`
-      : "Salaire à négocier";
-
-    const favorite=
-      getFavorites().includes(job.id);
-
-    return `
-      <article class="job">
-
-        <h3>${escapeHTML(job.title)}</h3>
-
-        <p>
-          <strong>${escapeHTML(job.companyName||"Entreprise")}</strong>
-          ${job.verified ? " ✓" : ""}
-        </p>
-
-        <div class="job-meta">
-          <span class="tag">${escapeHTML(job.category)}</span>
-          <span class="tag">${escapeHTML(job.contract)}</span>
-          <span class="tag">📍 ${escapeHTML(job.city)}</span>
-          <span class="tag">💰 ${salary}</span>
-        </div>
-
-        <p style="margin:10px 0">
-          ${escapeHTML(job.description)}
-        </p>
-
-        <div class="job-actions">
-
-          <button class="btn btn-primary btn-small"
-                  onclick="applyToJob('${job.id}')">
-            Postuler
-          </button>
-
-          <button class="btn btn-secondary btn-small"
-                  onclick="toggleFavorite('${job.id}')">
-            ${favorite ? "★ Retirer" : "☆ Favori"}
-          </button>
-
-          <button class="btn btn-secondary btn-small"
-                  onclick="viewJob('${job.id}')">
-            Voir détails
-          </button>
-
-        </div>
-      </article>
-    `;
-
-  }).join("");
-}
-
-
-window.viewJob=function(id){
-
-  const job=jobs.find(j=>j.id===id);
-
-  if(!job)return;
-
-  alert(
-`${job.title}
-
-Entreprise : ${job.companyName}
-Catégorie : ${job.category}
-Contrat : ${job.contract}
-Ville : ${job.city}
-Région : ${job.region}
-
-${job.description}`
-  );
-};
-
-
-/* ======================================================
-   FAVORIS
-====================================================== */
-
-function getFavorites(){
-
-  if(!currentUser)return [];
-
-  return getData(
-    "favorites_"+currentUser.uid,
-    []
-  );
-}
-
-window.toggleFavorite=function(id){
-
-  if(!currentUser){
-    openAuth();
-    return;
-  }
-
-  let favorites=getFavorites();
-
-  if(favorites.includes(id)){
-    favorites=favorites.filter(x=>x!==id);
-    toast("Offre retirée des favoris.");
-  }else{
-    favorites.push(id);
-    toast("Offre ajoutée aux favoris.");
-  }
-
-  saveData(
-    "favorites_"+currentUser.uid,
-    favorites
-  );
-
-  renderJobs();
-};
-
-
-function renderFavorites(){
-
-  const container=
-    document.getElementById("favoritesList");
-
-  if(!currentUser){
-    container.innerHTML=
-      `<div class="empty">Connecte-toi pour voir tes favoris.</div>`;
-    return;
-  }
-
-  const favorites=getFavorites();
-
-  const list=
-    jobs.filter(job=>favorites.includes(job.id));
-
-  if(!list.length){
-    container.innerHTML=
-      `<div class="empty">Aucun favori.</div>`;
-    return;
-  }
-
-  container.innerHTML=
-    list.map(job=>`
-      <div class="job">
-        <h3>${escapeHTML(job.title)}</h3>
-        <p>${escapeHTML(job.companyName)}</p>
-        <br>
-        <button class="btn btn-primary btn-small"
-                onclick="applyToJob('${job.id}')">
-          Postuler
-        </button>
-        <button class="btn btn-danger btn-small"
-                onclick="toggleFavorite('${job.id}')">
-          Retirer
-        </button>
-      </div>
-    `).join("");
-}
-
-
-/* ======================================================
-   CANDIDATURE
-====================================================== */
-
-window.applyToJob=function(jobId){
-
-  if(!currentUser){
-    openAuth();
-    return;
-  }
-
-  if(currentProfile?.role!=="candidate"){
-    toast("Seuls les candidats peuvent postuler.");
-    return;
-  }
-
-  const applications=
-    getData(
-      "applications_"+currentUser.uid,
-      []
-    );
-
-  if(applications.some(a=>a.jobId===jobId)){
-    toast("Tu as déjà postulé à cette offre.");
-    return;
-  }
-
-  const job=jobs.find(j=>j.id===jobId);
-
-  if(!job)return;
-
-  const application={
-    id:"app_"+Date.now(),
-    jobId:job.id,
-    jobTitle:job.title,
-    companyId:job.companyId,
-    companyName:job.companyName,
-    candidateId:currentUser.uid,
-    status:"En attente",
-    date:new Date().toISOString()
-  };
-
-  applications.push(application);
-
-  saveData(
-    "applications_"+currentUser.uid,
-    applications
-  );
-
-  /*
-    On conserve aussi l'application dans l'offre
-    pour permettre à l'entreprise de retrouver
-    uniquement ses candidats.
-  */
-
-  job.applications=job.applications||[];
-
-  job.applications.push({
-    applicationId:application.id,
-    candidateId:currentUser.uid,
-    candidateEmail:currentUser.email,
-    status:"En attente"
-  });
-
-  saveData("kaye_jobs",jobs);
-
-  toast("Candidature envoyée.");
-};
-
-
-function renderApplications(){
-
-  const container=
-    document.getElementById("applicationsList");
-
-  if(!currentUser){
-    container.innerHTML=
-      `<div class="empty">Connecte-toi pour voir tes candidatures.</div>`;
-    return;
-  }
-
-  const applications=
-    getData(
-      "applications_"+currentUser.uid,
-      []
-    );
-
-  if(!applications.length){
-    container.innerHTML=
-      `<div class="empty">Tu n'as encore envoyé aucune candidature.</div>`;
-    return;
-  }
-
-  container.innerHTML=
-    applications.map(a=>`
-      <div class="job">
-        <h3>${escapeHTML(a.jobTitle)}</h3>
-        <p>Entreprise : ${escapeHTML(a.companyName)}</p>
-        <p>Statut : <strong>${escapeHTML(a.status)}</strong></p>
-        <small>${new Date(a.date).toLocaleString("fr-FR")}</small>
-      </div>
-    `).join("");
-}
-
-
-/* ======================================================
-   ENTREPRISE — PUBLICATION
-====================================================== */
-
-function updatePublishAccess(){
-
-  const form=document.getElementById("jobForm");
-  const message=document.getElementById("publishLoginMessage");
-
-  const allowed=
-    currentUser &&
-    currentProfile?.role==="company";
-
-  form.style.display=allowed ? "block" : "none";
-  message.style.display=allowed ? "none" : "block";
-}
-
-
-window.publishJob=function(event){
-
-  event.preventDefault();
-
-  if(!currentUser ||
-     currentProfile?.role!=="company"){
-
-    toast("Connecte-toi comme entreprise.");
-    return;
-  }
-
-  const job={
-    id:"job_"+Date.now(),
-    title:document.getElementById("jobTitle").value.trim(),
-    description:document.getElementById("jobDescription").value.trim(),
-    category:document.getElementById("jobCategory").value,
-    contract:document.getElementById("jobContract").value,
-    city:document.getElementById("jobCity").value.trim(),
-    region:document.getElementById("jobRegion").value.trim(),
-    salaryMin:Number(document.getElementById("salaryMin").value)||0,
-    salaryMax:Number(document.getElementById("salaryMax").value)||0,
-    deadline:document.getElementById("jobDeadline").value,
-    companyId:currentUser.uid,
-    companyName:currentProfile.name||"Entreprise",
-    verified:currentProfile.verified===true,
-    status:"open",
-    applications:[],
-    createdAt:new Date().toISOString()
-  };
-
-  jobs.unshift(job);
-
-  saveData("kaye_jobs",jobs);
-
-  document.getElementById("jobForm").reset();
-
-  toast("Offre publiée avec succès.");
-
-  showPage("jobs");
-};
-
-
-/* ======================================================
-   MESSAGES
-====================================================== */
-
-function getMessages(){
-
-  if(!currentUser)return [];
-
-  return getData(
-    "messages_"+currentUser.uid,
-    []
-  );
-}
-
-function renderMessages(){
-
-  const container=
-    document.getElementById("messagesList");
-
-  if(!currentUser){
-    container.innerHTML=
-      `<div class="empty">Connecte-toi pour accéder aux messages.</div>`;
-    return;
-  }
-
-  const messages=getMessages();
-
-  if(!messages.length){
-    container.innerHTML=
-      `<div class="empty">Aucun message.</div>`;
-    return;
-  }
-
-  container.innerHTML=
-    messages.map(m=>`
-      <div class="notification">
-        <strong>${escapeHTML(m.to)}</strong>
-        <p>${escapeHTML(m.text)}</p>
-        <small>${new Date(m.date).toLocaleString("fr-FR")}</small>
-      </div>
-    `).join("");
-}
-
-
-window.sendMessage=function(){
-
-  if(!currentUser){
-    openAuth();
-    return;
-  }
-
-  const to=
-    document.getElementById("messageTo").value.trim();
-
-  const text=
-    document.getElementById("messageText").value.trim();
-
-  if(!to||!text){
-    toast("Remplis tous les champs.");
-    return;
-  }
-
-  const messages=getMessages();
-
-  messages.push({
-    to,
-    text,
-    date:new Date().toISOString()
-  });
-
-  saveData(
-    "messages_"+currentUser.uid,
-    messages
-  );
-
-  document.getElementById("messageTo").value="";
-  document.getElementById("messageText").value="";
-
-  renderMessages();
-
-  toast("Message envoyé.");
-};
-
-
-/* ======================================================
-   NOTIFICATIONS
-====================================================== */
-
-function renderNotifications(){
-
-  const container=
-    document.getElementById("notificationsList");
-
-  if(!currentUser){
-    container.innerHTML=
-      `<div class="empty">Connecte-toi pour voir tes notifications.</div>`;
-    return;
-  }
-
-  const applications=
-    getData(
-      "applications_"+currentUser.uid,
-      []
-    );
-
-  if(!applications.length){
-    container.innerHTML=
-      `<div class="empty">Aucune notification.</div>`;
-    return;
-  }
-
-  container.innerHTML=
-    applications.map(a=>`
-      <div class="notification">
-        📄 Ta candidature pour
-        <strong>${escapeHTML(a.jobTitle)}</strong>
-        est actuellement :
-        <strong>${escapeHTML(a.status)}</strong>.
-      </div>
-    `).join("");
-}
-
-
-/* ======================================================
-   PROFIL
-====================================================== */
-
-function renderProfile(){
-
-  const container=
-    document.getElementById("profileContent");
-
-  if(!currentUser){
-
-    container.innerHTML=`
-      <div class="empty">
-        <p>Tu dois être connecté pour voir ton profil.</p>
-        <br>
-        <button class="btn btn-primary"
-                onclick="openAuth()">
-          Connexion
-        </button>
-      </div>
-    `;
-
-    return;
-  }
-
-  const p=currentProfile||{};
-
-  container.innerHTML=`
-    <div class="form">
-
-      <div class="profile-box">
-
-        <div>
-          <div class="avatar">
-            👤
-          </div>
-        </div>
-
-        <div>
-          <h2>${escapeHTML(p.name||"Mon profil")}</h2>
-
-          <p style="margin-top:8px">
-            ${p.role==="company" ? "🏢 Entreprise" : "👤 Candidat"}
-          </p>
-
-          <p style="margin-top:8px">
-            📧 ${escapeHTML(currentUser.email||"")}
-          </p>
-
-          <p style="margin-top:8px">
-            📱 ${escapeHTML(p.phone||"Non renseigné")}
-          </p>
-
-          <p style="margin-top:8px">
-            ${p.verified
-              ? "✅ Compte vérifié"
-              : "⚠️ Compte non vérifié"}
-          </p>
-        </div>
-
-      </div>
-
-      <hr style="margin:25px 0">
-
-      <h3>Informations du profil</h3>
-
-      <br>
-
-      <div class="form-group">
-        <label>Nom</label>
-        <input id="profileName"
-               value="${escapeHTML(p.name||"")}">
-      </div>
-
-      <div class="form-group">
-        <label>Téléphone</label>
-        <input id="profilePhone"
-               value="${escapeHTML(p.phone||"")}">
-      </div>
-
-      ${
-        p.role==="candidate"
-        ? `
-          <div class="form-group">
-            <label>Présentation</label>
-            <textarea id="profileBio">${escapeHTML(p.bio||"")}</textarea>
-          </div>
-
-          <div class="form-group">
-            <label>Compétences</label>
-            <textarea id="profileSkills">${escapeHTML(p.skills||"")}</textarea>
-          </div>
-
-          <div class="form-group">
-            <label>Formation</label>
-            <textarea id="profileEducation">${escapeHTML(p.education||"")}</textarea>
-          </div>
-
-          <div class="form-group">
-            <label>CV PDF</label>
-            <input type="file"
-                   id="profileCV"
-                   accept="application/pdf">
-          </div>
-        `
-        : `
-          <div class="form-group">
-            <label>Description de l'entreprise</label>
-            <textarea id="companyDescription">${escapeHTML(p.description||"")}</textarea>
-          </div>
-
-          <div class="form-group">
-            <label>Secteur</label>
-            <input id="companySector"
-                   value="${escapeHTML(p.sector||"")}">
-          </div>
-        `
-      }
-
-      <button class="btn btn-primary"
-              onclick="saveProfile()">
-        Enregistrer
-      </button>
-
-    </div>
-  `;
-}
-
-
-window.saveProfile=async function(){
-
-  if(!currentUser)return;
-
-  const data={
-    name:document.getElementById("profileName")?.value.trim()||"",
-    phone:document.getElementById("profilePhone")?.value.trim()||""
-  };
-
-  if(currentProfile?.role==="candidate"){
-
-    data.bio=
-      document.getElementById("profileBio")?.value||"";
-
-    data.skills=
-      document.getElementById("profileSkills")?.value||"";
-
-    data.education=
-      document.getElementById("profileEducation")?.value||"";
-
-  }else{
-
-    data.description=
-      document.getElementById("companyDescription")?.value||"";
-
-    data.sector=
-      document.getElementById("companySector")?.value||"";
-  }
-
-  try{
-
-    await setDoc(
-      doc(db,"users",currentUser.uid),
-      data,
-      {merge:true}
-    );
-
-    await loadCurrentProfile();
-
-    toast("Profil enregistré.");
-
-    renderProfile();
-
-  }catch(error){
-
-    console.error(error);
-
-    toast("Impossible d'enregistrer le profil.");
-  }
-};
-
-
-/* ======================================================
-   ADMINISTRATION
-====================================================== */
-
-function renderAdmin(){
-
-  if(currentProfile?.role!=="admin"){
-
-    document.getElementById("adminContent").innerHTML=
-      `<div class="empty">Accès administrateur refusé.</div>`;
-
-    return;
-  }
-
-  const allUsers=getData("kaye_users",[]);
-
-  const candidates=
-    allUsers.filter(u=>u.role==="candidate");
-
-  const companies=
-    allUsers.filter(u=>u.role==="company");
-
-  const allApplications=
-    allUsers.reduce(
-      (total,u)=>
-        total+getData("applications_"+u.uid,[]).length,
-      0
-    );
-
-  document.getElementById("statCandidates")
-    .textContent=candidates.length;
-
-  document.getElementById("statCompanies")
-    .textContent=companies.length;
-
-  document.getElementById("statJobs")
-    .textContent=jobs.length;
-
-  document.getElementById("statApplications")
-    .textContent=allApplications;
-
-  document.getElementById("adminContent").innerHTML=`
-    <div class="cards">
-
-      <div class="card">
-        <h3>👤 Candidats</h3>
-        <p>${candidates.length} compte(s)</p>
-      </div>
-
-      <div class="card">
-        <h3>🏢 Entreprises</h3>
-        <p>${companies.length} compte(s)</p>
-      </div>
-
-      <div class="card">
-        <h3>💼 Offres</h3>
-        <p>${jobs.length} offre(s)</p>
-      </div>
-
-    </div>
-  `;
-}
-
-
-/* ======================================================
-   INITIALISATION
-====================================================== */
-
-renderJobs();
-updatePublishAccess();
-updateAuthUI();
-
-</script>
-
-</body>
-</html>
+    console.error(err
