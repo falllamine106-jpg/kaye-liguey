@@ -1,0 +1,59 @@
+Kaye Liguey
+
+Trouvez votre emploi, construisez votre avenir.
+
+Kaye Liguey est une plateforme sénégalaise qui met en relation les chercheurs d’emploi et les entreprises.
+
+🎯 Objectif
+
+Permettre aux candidats de :
+
+- créer leur compte ;
+- créer leur profil professionnel ;
+- consulter les offres d’emploi ;
+- rechercher et filtrer les offres ;
+- déposer leur CV ;
+- postuler aux offres ;
+- suivre leurs candidatures ;
+- communiquer avec les entreprises.
+
+Permettre aux entreprises de :
+
+- créer leur compte entreprise ;
+- présenter leur entreprise ;
+- publier des offres d’emploi ;
+- consulter les candidatures reçues ;
+- contacter les candidats ayant postulé ;
+- gérer leurs offres.
+
+👥 Utilisateurs
+
+- 👤 Candidat
+- 🏢 Entreprise
+- 👑 Administrateur
+
+🛠️ Technologies
+
+Le projet sera développé progressivement avec :
+
+- HTML
+- CSS
+- JavaScript
+- Firebase Authentication
+- Cloud Firestore
+
+🔐 Sécurité
+
+Les données personnelles des candidats et des entreprises devront être protégées.
+
+Un candidat ne pourra accéder qu'à ses propres données et candidatures.
+
+Une entreprise ne pourra accéder qu'à ses propres offres et aux candidatures reçues sur ses offres.
+
+L'administrateur pourra gérer la plateforme.
+
+📱 Kaye Liguey
+
+Projet en cours de développement.
+
+Version : 1.0
