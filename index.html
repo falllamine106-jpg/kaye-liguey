@@ -1,1 +1,1223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A1E3F">
+<title>Kaye Liguey</title>
 
+<style>
+:root{
+  --navy:#0A1E3F;
+  --green:#00C853;
+  --green-dark:#00A844;
+  --bg:#F5F7FA;
+  --white:#fff;
+  --text:#222;
+  --muted:#666;
+  --border:#E2E7EE;
+  --danger:#D32F2F;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+header{
+  background:var(--navy);
+  color:white;
+  padding:15px;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.header{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:bold;
+}
+
+.logo span{
+  display:block;
+  font-size:11px;
+  font-weight:normal;
+  opacity:.85;
+  margin-top:3px;
+}
+
+.header-actions{
+  display:flex;
+  gap:8px;
+}
+
+.icon-btn,
+.header-btn{
+  border:1px solid rgba(255,255,255,.35);
+  background:transparent;
+  color:white;
+  border-radius:10px;
+  padding:9px 12px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px 15px 100px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.hero{
+  background:linear-gradient(135deg,#0A1E3F,#173A69);
+  color:white;
+  padding:27px;
+  border-radius:18px;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  margin:0 0 8px;
+  font-size:28px;
+}
+
+.hero p{
+  margin:0 0 18px;
+  opacity:.9;
+}
+
+.search{
+  display:flex;
+  gap:8px;
+}
+
+.search input{
+  flex:1;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:white;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--green);
+}
+
+.primary{
+  border:0;
+  background:var(--green);
+  color:#062510;
+  padding:12px 16px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.secondary{
+  border:0;
+  background:#EEF2F6;
+  color:var(--navy);
+  padding:12px 16px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.danger{
+  border:0;
+  background:#FFEAEA;
+  color:var(--danger);
+  padding:10px 14px;
+  border-radius:10px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:17px;
+  margin-bottom:15px;
+}
+
+.card h2,
+.card h3{
+  margin-top:0;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.grid2{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.job-title{
+  font-size:18px;
+  font-weight:bold;
+  color:var(--navy);
+}
+
+.company{
+  font-weight:bold;
+  margin:7px 0;
+}
+
+.muted{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.salary{
+  color:var(--green-dark);
+  font-weight:bold;
+  margin-top:7px;
+}
+
+.tag{
+  display:inline-block;
+  padding:5px 9px;
+  background:#E9F8EF;
+  color:#087D38;
+  border-radius:20px;
+  font-size:12px;
+  margin:3px;
+}
+
+.verified{
+  color:#087D38;
+  font-weight:bold;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:13px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin:20px 0 12px;
+}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:30px 10px;
+}
+
+.notice{
+  padding:12px;
+  border-radius:10px;
+  background:#EEF7FF;
+  color:#164D76;
+  margin:10px 0;
+  font-size:14px;
+}
+
+.success{
+  background:#E9F8EF;
+  color:#087D38;
+}
+
+.error{
+  background:#FFEAEA;
+  color:#A51F1F;
+}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  border-top:1px solid var(--border);
+  z-index:100;
+}
+
+.bottom{
+  max-width:800px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+
+.nav-btn{
+  border:0;
+  background:white;
+  color:#666;
+  padding:9px 3px;
+  font-size:11px;
+}
+
+.nav-btn strong{
+  display:block;
+  font-size:20px;
+  margin-bottom:3px;
+}
+
+.nav-btn.active{
+  color:var(--green-dark);
+  font-weight:bold;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.58);
+  z-index:200;
+  padding:15px;
+  overflow:auto;
+}
+
+.modal.show{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal-box{
+  width:min(650px,100%);
+  max-height:94vh;
+  overflow:auto;
+  background:white;
+  border-radius:18px;
+  padding:20px;
+}
+
+.close{
+  float:right;
+  border:0;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#eee;
+  font-size:22px;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:17px;
+}
+
+.tabs button{
+  flex:1;
+  border:0;
+  background:#EEF2F6;
+  padding:11px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.tabs button.active{
+  background:var(--navy);
+  color:white;
+}
+
+.list{
+  border-top:1px solid var(--border);
+}
+
+.list-item{
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.stat{
+  text-align:center;
+}
+
+.stat-number{
+  display:block;
+  font-size:28px;
+  font-weight:bold;
+  color:var(--navy);
+}
+
+.hidden{
+  display:none!important;
+}
+
+@media(max-width:750px){
+  .grid,
+  .grid2,
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:23px;
+  }
+
+  .search{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header">
+    <div class="logo">
+      KAYE LIGUEY
+      <span>Trouvez votre emploi, construisez votre avenir.</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="notificationButton">🔔</button>
+      <button class="header-btn" id="authButton">Connexion</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+<!-- ACCUEIL -->
+<section id="homePage" class="page active">
+
+  <div class="hero">
+    <h1>Trouvez votre prochaine opportunité</h1>
+    <p>Découvrez les offres d'emploi et de stage au Sénégal.</p>
+
+    <div class="search">
+      <input
+        id="homeSearch"
+        type="search"
+        placeholder="Rechercher un emploi..."
+      >
+      <button class="primary" id="homeSearchButton">
+        Rechercher
+      </button>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>Offres récentes</h2>
+    <button class="secondary" id="allJobsButton">
+      Voir tout
+    </button>
+  </div>
+
+  <div id="homeJobs" class="grid">
+    <div class="card">Chargement...</div>
+  </div>
+
+</section>
+
+
+<!-- EMPLOIS -->
+<section id="jobsPage" class="page">
+
+  <div class="section-title">
+    <h2>💼 Offres d'emploi</h2>
+  </div>
+
+  <div class="card">
+
+    <div class="form-grid">
+
+      <div>
+        <label>Recherche</label>
+        <input id="jobSearch" placeholder="Titre ou compétence">
+      </div>
+
+      <div>
+        <label>Catégorie</label>
+        <select id="jobCategory">
+          <option value="">Toutes</option>
+          <option>Informatique</option>
+          <option>Gestion</option>
+          <option>Marketing</option>
+          <option>BTP</option>
+          <option>Transport</option>
+          <option>Autre</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Région</label>
+        <input id="jobRegion" placeholder="Dakar, Thiès...">
+      </div>
+
+      <div>
+        <label>Contrat</label>
+        <select id="jobContract">
+          <option value="">Tous</option>
+          <option>CDI</option>
+          <option>CDD</option>
+          <option>Stage</option>
+          <option>Freelance</option>
+        </select>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="jobsList"></div>
+
+</section>
+
+
+<!-- PUBLIER -->
+<section id="publishPage" class="page">
+
+  <div class="section-title">
+    <h2>➕ Publier une offre</h2>
+  </div>
+
+  <div id="publishNotAllowed" class="card notice">
+    Connectez-vous avec un compte entreprise pour publier une offre.
+  </div>
+
+  <form id="offerForm" class="card hidden">
+
+    <div class="form-grid">
+
+      <div>
+        <label>Titre du poste *</label>
+        <input id="offerTitle" required>
+      </div>
+
+      <div>
+        <label>Catégorie *</label>
+        <select id="offerCategory" required>
+          <option value="">Choisir</option>
+          <option>Informatique</option>
+          <option>Gestion</option>
+          <option>Marketing</option>
+          <option>BTP</option>
+          <option>Transport</option>
+          <option>Autre</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Région *</label>
+        <input id="offerRegion" required>
+      </div>
+
+      <div>
+        <label>Ville / localité *</label>
+        <input id="offerCity" required>
+      </div>
+
+      <div>
+        <label>Type de contrat *</label>
+        <select id="offerContract" required>
+          <option value="">Choisir</option>
+          <option>CDI</option>
+          <option>CDD</option>
+          <option>Stage</option>
+          <option>Freelance</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Salaire</label>
+        <input
+          id="offerSalary"
+          placeholder="Ex. 150 000 FCFA/mois"
+        >
+      </div>
+
+      <div>
+        <label>Formation demandée</label>
+        <input id="offerEducation">
+      </div>
+
+      <div>
+        <label>Expérience</label>
+        <input
+          id="offerExperience"
+          placeholder="Ex. 1 an"
+        >
+      </div>
+
+      <div>
+        <label>Date limite</label>
+        <input id="offerDeadline" type="date">
+      </div>
+
+      <div>
+        <label>Compétences</label>
+        <input
+          id="offerSkills"
+          placeholder="HTML, Excel, communication..."
+        >
+      </div>
+
+      <div class="full">
+        <label>Description *</label>
+        <textarea
+          id="offerDescription"
+          rows="7"
+          required
+        ></textarea>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="submit">
+        Publier l'offre
+      </button>
+    </div>
+
+    <div id="offerMessage"></div>
+
+  </form>
+
+  <div id="myOffersSection" class="hidden">
+    <h3>Mes offres</h3>
+    <div id="myOffers"></div>
+  </div>
+
+</section>
+
+
+<!-- MESSAGES -->
+<section id="messagesPage" class="page">
+
+  <div class="section-title">
+    <h2>💬 Messages</h2>
+  </div>
+
+  <div id="messagesBox" class="card">
+    <div class="empty">
+      Connectez-vous pour voir vos messages.
+    </div>
+  </div>
+
+</section>
+
+
+<!-- PROFIL -->
+<section id="profilePage" class="page">
+
+  <div class="section-title">
+    <h2>👤 Mon profil</h2>
+  </div>
+
+  <div id="profileBox" class="card">
+    <div class="empty">
+      Connectez-vous pour gérer votre profil.
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ADMIN -->
+<section id="adminPage" class="page">
+
+  <div class="section-title">
+    <h2>👑 Administration</h2>
+  </div>
+
+  <div id="adminBox"></div>
+
+</section>
+
+</main>
+
+
+<!-- NAVIGATION -->
+<nav class="bottom-nav">
+
+  <div class="bottom">
+
+    <button class="nav-btn active" data-page="homePage">
+      <strong>🏠</strong>
+      Accueil
+    </button>
+
+    <button class="nav-btn" data-page="jobsPage">
+      <strong>💼</strong>
+      Emplois
+    </button>
+
+    <button class="nav-btn" data-page="publishPage">
+      <strong>➕</strong>
+      Publier
+    </button>
+
+    <button class="nav-btn" data-page="messagesPage">
+      <strong>💬</strong>
+      Messages
+    </button>
+
+    <button class="nav-btn" data-page="profilePage">
+      <strong>👤</strong>
+      Profil
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- MODAL CONNEXION -->
+<div class="modal" id="authModal">
+
+  <div class="modal-box">
+
+    <button class="close" data-close="authModal">
+      ×
+    </button>
+
+    <h2 id="authTitle">Connexion</h2>
+
+    <div class="tabs">
+
+      <button id="loginTab" class="active">
+        Connexion
+      </button>
+
+      <button id="registerTab">
+        Inscription
+      </button>
+
+    </div>
+
+
+    <!-- LOGIN -->
+    <form id="loginForm">
+
+      <label>Email</label>
+      <input
+        id="loginEmail"
+        type="email"
+        required
+      >
+
+      <br>
+
+      <label>Mot de passe</label>
+      <input
+        id="loginPassword"
+        type="password"
+        required
+      >
+
+      <div class="actions">
+
+        <button class="primary" type="submit">
+          Se connecter
+        </button>
+
+        <button
+          class="secondary"
+          type="button"
+          id="forgotPassword"
+        >
+          Mot de passe oublié
+        </button>
+
+      </div>
+
+      <div id="loginMessage"></div>
+
+    </form>
+
+
+    <!-- INSCRIPTION -->
+    <form id="registerForm" class="hidden">
+
+      <div class="notice">
+        📱 La validation du numéro par SMS est obligatoire.
+      </div>
+
+      <div class="form-grid">
+
+        <div>
+          <label>Type de compte *</label>
+          <select id="registerRole" required>
+            <option value="">Choisir</option>
+            <option value="candidate">Candidat</option>
+            <option value="company">Entreprise</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Nom complet / entreprise *</label>
+          <input id="registerName" required>
+        </div>
+
+        <div>
+          <label>Email *</label>
+          <input
+            id="registerEmail"
+            type="email"
+            required
+          >
+        </div>
+
+        <div>
+          <label>Téléphone *</label>
+          <input
+            id="registerPhone"
+            type="tel"
+            placeholder="+221 77 000 00 00"
+            required
+          >
+        </div>
+
+        <div>
+          <label>Mot de passe *</label>
+          <input
+            id="registerPassword"
+            type="password"
+            minlength="6"
+            required
+          >
+        </div>
+
+        <div>
+          <label>Ville</label>
+          <input id="registerCity">
+        </div>
+
+        <div>
+          <label>Région</label>
+          <input id="registerRegion">
+        </div>
+
+        <div>
+          <label>Domaine / secteur</label>
+          <input id="registerSector">
+        </div>
+
+        <div class="full">
+          <label>Présentation</label>
+          <textarea
+            id="registerBio"
+            rows="4"
+          ></textarea>
+        </div>
+
+      </div>
+
+      <br>
+
+      <label>
+        <input
+          id="terms"
+          type="checkbox"
+          required
+          style="width:auto"
+        >
+        J'accepte les conditions d'utilisation.
+      </label>
+
+      <div class="actions">
+
+        <button
+          class="primary"
+          type="submit"
+        >
+          Créer mon compte
+        </button>
+
+      </div>
+
+      <div id="registerMessage"></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- MODAL SMS -->
+<div class="modal" id="smsModal">
+
+  <div class="modal-box">
+
+    <button class="close" data-close="smsModal">
+      ×
+    </button>
+
+    <h2>📱 Vérification SMS</h2>
+
+    <p>
+      Un code à 6 chiffres a été envoyé à votre téléphone.
+    </p>
+
+    <label>Code reçu par SMS</label>
+
+    <input
+      id="smsCode"
+      inputmode="numeric"
+      maxlength="6"
+      placeholder="123456"
+    >
+
+    <div class="actions">
+
+      <button
+        class="primary"
+        id="verifySMS"
+        type="button"
+      >
+        Vérifier
+      </button>
+
+      <button
+        class="secondary"
+        id="resendSMS"
+        type="button"
+      >
+        Renvoyer
+      </button>
+
+    </div>
+
+    <div id="smsMessage"></div>
+
+  </div>
+
+</div>
+
+
+<!-- reCAPTCHA -->
+<div id="recaptcha-container"></div>
+
+
+<!-- MODAL CANDIDATURE -->
+<div class="modal" id="applicationModal">
+
+  <div class="modal-box">
+
+    <button class="close" data-close="applicationModal">
+      ×
+    </button>
+
+    <h2>📝 Postuler</h2>
+
+    <div id="applicationOffer"></div>
+
+    <form id="applicationForm">
+
+      <label>Message de candidature</label>
+
+      <textarea
+        id="applicationMessage"
+        rows="6"
+        placeholder="Présentez brièvement votre candidature..."
+      ></textarea>
+
+      <br>
+
+      <label>CV PDF</label>
+
+      <input
+        id="cvFile"
+        type="file"
+        accept="application/pdf"
+      >
+
+      <div class="notice">
+        Votre candidature sera transmise uniquement à l'entreprise
+        qui a publié cette offre.
+      </div>
+
+      <div class="actions">
+
+        <button class="primary" type="submit">
+          Envoyer ma candidature
+        </button>
+
+      </div>
+
+      <div id="applicationMessageResult"></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- MODAL ENTREPRISE -->
+<div class="modal" id="companyModal">
+
+  <div class="modal-box">
+
+    <button class="close" data-close="companyModal">
+      ×
+    </button>
+
+    <div id="companyDetails"></div>
+
+  </div>
+
+</div>
+
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  RecaptchaVerifier,
+  PhoneAuthProvider,
+  linkWithCredential,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  query,
+  where,
+  orderBy,
+  limit,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-storage.js";
+
+
+/* =========================================================
+   CONFIGURATION FIREBASE DE KAYE LIGUEY
+========================================================= */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvtl0",
+
+  authDomain:
+    "kaye-liguey.firebaseapp.com",
+
+  projectId:
+    "kaye-liguey",
+
+  storageBucket:
+    "kaye-liguey.firebasestorage.app",
+
+  messagingSenderId:
+    "6308207019",
+
+  appId:
+    "1:6308207019:web:00c6c29ac26bfff7cb1aee",
+
+  measurementId:
+    "G-E8YSXJDLJD"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const storage = getStorage(app);
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let currentUser = null;
+let currentProfile = null;
+
+let smsVerificationId = null;
+let pendingRegistration = null;
+
+let currentOffer = null;
+
+let recaptchaVerifier = null;
+
+
+/* =========================================================
+   OUTILS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+function showMessage(id,text,type="notice"){
+
+  const element = $(id);
+
+  if(!element) return;
+
+  if(!text){
+
+    element.innerHTML = "";
+
+    return;
+  }
+
+  element.innerHTML =
+    `<div class="${type} notice">${escapeHTML(text)}</div>`;
+
+}
+
+
+function normalizePhone(phone){
+
+  let value =
+    String(phone || "")
+      .replace(/[^\d+]/g,"");
+
+  if(value.startsWith("00")){
+
+    value =
+      "+" + value.substring(2);
+
+  }
+
+  if(/^7\d{8}$/.test(value)){
+
+    value =
+      "+221" + value;
+
+  }
+
+  if(/^2217\d{8}$/.test(value)){
+
+    value =
+      "+" + value;
+
+  }
+
+  return value;
+}
+
+
+function validSenegalPhone(phone){
+
+  return /^\+2217\d{8}$/.test(phone);
+
+}
+
+
+function friendlyError(error){
+
+  const code = error?.code || "";
+
+  const messages = {
+
+    "auth/email-already-in-use":
+      "Cette adresse email est déjà utilisée.",
+
+    "auth/invalid-email":
+      "Adresse email invalide.",
+
+    "auth/weak-password":
+      "Le mot de passe doit contenir au moins 6 caractères.",
+
+    "auth/invalid-credential":
+      "Email ou mot de passe incorrect.",
+
+    "auth/wrong-password":
+      
