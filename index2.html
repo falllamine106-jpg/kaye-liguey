@@ -2,29 +2,26 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KAYE LIGUEY</title>
 
 <style>
+:root{
+  --navy:#0A1E3F;
+  --green:#00C853;
+  --green2:#00A844;
+  --bg:#f4f7fa;
+  --white:#fff;
+  --text:#172033;
+  --muted:#687386;
+  --border:#e2e7ef;
+  --danger:#e53935;
+}
+
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
-}
-
-:root{
-  --primary:#0f766e;
-  --primary2:#14b8a6;
-  --dark:#0f172a;
-  --text:#1e293b;
-  --muted:#64748b;
-  --bg:#f1f5f9;
-  --white:#fff;
-  --border:#e2e8f0;
-  --danger:#dc2626;
-  --success:#16a34a;
-  --warning:#d97706;
-  --shadow:0 10px 30px rgba(15,23,42,.08);
 }
 
 body{
@@ -33,10 +30,7 @@ body{
   color:var(--text);
 }
 
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
   font:inherit;
 }
 
@@ -44,544 +38,57 @@ button{
   cursor:pointer;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+.hidden{
+  display:none!important;
 }
 
-/* HEADER */
-
 header{
-  background:#fff;
-  border-bottom:1px solid var(--border);
+  background:var(--navy);
+  color:white;
   position:sticky;
   top:0;
   z-index:100;
 }
 
-.navbar{
+.header-inner{
   max-width:1200px;
   margin:auto;
-  min-height:72px;
+  padding:15px 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:12px 20px;
-  gap:20px;
+  gap:15px;
 }
 
 .logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:22px;
-  font-weight:900;
-  color:var(--primary);
-}
-
-.logo-icon{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  font-size:23px;
+  font-weight:800;
   color:white;
-  font-weight:900;
 }
 
-.nav-links{
-  display:flex;
-  gap:5px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-.nav-links button{
-  background:transparent;
-  border:0;
-  padding:10px 12px;
-  border-radius:10px;
-  color:var(--text);
-}
-
-.nav-links button:hover{
-  background:#f0fdfa;
-  color:var(--primary);
+.logo span{
+  color:var(--green);
 }
 
 .header-actions{
   display:flex;
+  align-items:center;
   gap:8px;
-  align-items:center;
 }
 
-.btn{
-  border:0;
-  border-radius:10px;
-  padding:11px 16px;
-  font-weight:700;
-  transition:.2s;
-}
-
-.btn:hover{
-  transform:translateY(-1px);
-}
-
-.btn-primary{
-  background:var(--primary);
-  color:white;
-}
-
-.btn-secondary{
-  background:#e2e8f0;
-  color:var(--dark);
-}
-
-.btn-danger{
-  background:var(--danger);
-  color:white;
-}
-
-.btn-success{
-  background:var(--success);
-  color:white;
-}
-
-.btn-warning{
-  background:#f59e0b;
-  color:white;
-}
-
-.btn-outline{
-  background:white;
-  border:1px solid var(--border);
-}
-
-/* HERO */
-
-.hero{
-  background:
-    radial-gradient(circle at 10% 20%,rgba(20,184,166,.25),transparent 30%),
-    linear-gradient(135deg,#0f172a,#134e4a);
-  color:white;
-  padding:80px 20px;
-}
-
-.hero-content{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:50px;
-  align-items:center;
-}
-
-.hero h1{
-  font-size:clamp(38px,6vw,68px);
-  line-height:1.05;
-  margin-bottom:20px;
-}
-
-.hero h1 span{
-  color:#5eead4;
-}
-
-.hero p{
-  font-size:19px;
-  line-height:1.7;
-  color:#cbd5e1;
-  max-width:650px;
-}
-
-.hero-buttons{
-  display:flex;
-  gap:12px;
-  margin-top:30px;
-  flex-wrap:wrap;
-}
-
-.hero-card{
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:25px;
-  padding:30px;
-  backdrop-filter:blur(10px);
-}
-
-.hero-card h3{
-  margin-bottom:20px;
-}
-
-.stat{
-  display:flex;
-  justify-content:space-between;
-  padding:15px 0;
-  border-bottom:1px solid rgba(255,255,255,.12);
-}
-
-.stat:last-child{
-  border-bottom:0;
-}
-
-/* CONTAINER */
-
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:45px 20px;
-}
-
-.section-title{
-  margin-bottom:25px;
-}
-
-.section-title h2{
-  font-size:30px;
-}
-
-.section-title p{
-  color:var(--muted);
-  margin-top:7px;
-}
-
-/* SEARCH */
-
-.search-box{
-  background:white;
-  padding:20px;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr auto;
-  gap:10px;
-  margin-top:-35px;
-  position:relative;
-}
-
-.input,
-.select,
-.textarea{
-  width:100%;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:12px 14px;
-  outline:none;
-  background:white;
-}
-
-.input:focus,
-.select:focus,
-.textarea:focus{
-  border-color:var(--primary);
-  box-shadow:0 0 0 3px rgba(20,184,166,.12);
-}
-
-/* CARDS */
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:22px;
-  box-shadow:var(--shadow);
-}
-
-.job-card{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-
-.job-head{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.company{
-  color:var(--primary);
-  font-weight:700;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  width:max-content;
-  padding:5px 9px;
-  border-radius:999px;
-  background:#ecfdf5;
-  color:#047857;
-  font-size:12px;
-  font-weight:700;
-}
-
-.job-info{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  color:var(--muted);
-  font-size:14px;
-}
-
-.card-actions{
-  display:flex;
-  gap:8px;
-  margin-top:auto;
-  flex-wrap:wrap;
-}
-
-/* DASHBOARD */
-
-.dashboard{
-  display:grid;
-  grid-template-columns:240px 1fr;
-  gap:20px;
-}
-
-.sidebar{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:12px;
-  height:max-content;
-  position:sticky;
-  top:95px;
-}
-
-.sidebar button{
-  width:100%;
-  text-align:left;
+.icon-btn{
   background:transparent;
-  border:0;
-  padding:12px;
+  border:1px solid rgba(255,255,255,.2);
+  color:white;
   border-radius:10px;
-  margin-bottom:4px;
+  padding:10px 13px;
 }
 
-.sidebar button:hover,
-.sidebar button.active{
-  background:#ecfdf5;
-  color:var(--primary);
-}
-
-.dashboard-content{
-  min-width:0;
-}
-
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-bottom:20px;
-}
-
-.stat-card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px;
-}
-
-.stat-card .number{
-  font-size:30px;
-  font-weight:900;
-  margin-top:8px;
-}
-
-/* TABLE */
-
-.table-wrap{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:18px;
-  overflow:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:650px;
-}
-
-th,td{
-  padding:14px;
-  border-bottom:1px solid var(--border);
-  text-align:left;
-}
-
-th{
-  background:#f8fafc;
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(15,23,42,.65);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:500;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  background:white;
-  width:min(560px,100%);
-  max-height:90vh;
-  overflow:auto;
-  border-radius:20px;
-  padding:25px;
-}
-
-.modal-header{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  margin-bottom:20px;
-}
-
-.close{
-  border:0;
-  background:#f1f5f9;
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  font-size:20px;
-}
-
-.form-group{
-  margin-bottom:15px;
-}
-
-.form-group label{
-  display:block;
-  font-weight:700;
-  margin-bottom:7px;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-/* TOAST */
-
-.toast-container{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:1000;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.toast{
-  background:#0f172a;
-  color:white;
-  padding:14px 18px;
-  border-radius:12px;
-  box-shadow:var(--shadow);
-  animation:slideIn .25s ease;
-  max-width:350px;
-}
-
-@keyframes slideIn{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-/* EMPTY */
-
-.empty{
-  background:white;
-  border:1px dashed var(--border);
-  border-radius:18px;
-  padding:45px 20px;
-  text-align:center;
-  color:var(--muted);
-}
-
-/* PROFILE */
-
-.profile-header{
-  display:flex;
-  gap:20px;
-  align-items:center;
-  margin-bottom:25px;
-}
-
-.avatar{
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
-  color:white;
-  display:grid;
-  place-items:center;
-  font-size:28px;
-  font-weight:900;
-  overflow:hidden;
-}
-
-.avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* FOOTER */
-
-footer{
-  background:#0f172a;
-  color:#cbd5e1;
-  margin-top:50px;
-}
-
-.footer-content{
+main{
   max-width:1200px;
   margin:auto;
-  padding:40px 20px;
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:30px;
+  padding:25px 18px 100px;
 }
-
-.footer-title{
-  color:white;
-  font-weight:900;
-  margin-bottom:12px;
-}
-
-footer button{
-  background:none;
-  border:0;
-  color:#cbd5e1;
-  display:block;
-  margin:8px 0;
-}
-
-/* PAGES */
 
 .page{
   display:none;
@@ -591,81 +98,353 @@ footer button{
   display:block;
 }
 
-/* MOBILE */
+.hero{
+  background:linear-gradient(135deg,var(--navy),#173c72);
+  color:white;
+  border-radius:22px;
+  padding:45px 30px;
+  margin-bottom:25px;
+}
 
-@media(max-width:900px){
-  .nav-links{
-    display:none;
-  }
+.hero h1{
+  font-size:clamp(30px,5vw,52px);
+  margin-bottom:12px;
+}
 
-  .hero-content{
-    grid-template-columns:1fr;
-  }
+.hero p{
+  font-size:18px;
+  color:#e6edf7;
+  max-width:700px;
+  line-height:1.6;
+}
 
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-  }
+.hero-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:25px;
+}
 
-  .search-box{
-    grid-template-columns:1fr 1fr;
-  }
+.btn{
+  border:none;
+  border-radius:10px;
+  padding:12px 17px;
+  font-weight:700;
+  min-height:44px;
+}
 
-  .dashboard{
-    grid-template-columns:1fr;
-  }
+.btn-primary{
+  background:var(--green);
+  color:#062d18;
+}
 
-  .sidebar{
-    position:static;
-    display:flex;
-    overflow:auto;
-    gap:5px;
-  }
+.btn-primary:hover{
+  background:var(--green2);
+  color:white;
+}
 
-  .sidebar button{
-    width:auto;
-    white-space:nowrap;
-  }
+.btn-dark{
+  background:var(--navy);
+  color:white;
+}
 
-  .stats-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+.btn-light{
+  background:white;
+  color:var(--navy);
+  border:1px solid var(--border);
+}
+
+.btn-danger{
+  background:var(--danger);
+  color:white;
+}
+
+.btn-small{
+  padding:9px 12px;
+  min-height:38px;
+  font-size:14px;
+}
+
+.search-box{
+  background:white;
+  padding:15px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  display:flex;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.search-box input{
+  flex:1;
+}
+
+input,select,textarea{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px;
+  background:white;
+  outline:none;
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:var(--green);
+}
+
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:18px;
+}
+
+.card h3{
+  color:var(--navy);
+  margin-bottom:8px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.job-card{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.job-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.badge{
+  display:inline-flex;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#e9f8ef;
+  color:#087b39;
+  font-size:12px;
+  font-weight:700;
+}
+
+.badge-blue{
+  background:#eaf1ff;
+  color:#275db8;
+}
+
+.badge-red{
+  background:#ffebeb;
+  color:#b91c1c;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:8px;
+}
+
+.section-title{
+  margin:25px 0 15px;
+}
+
+.form{
+  max-width:750px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  border-top:1px solid var(--border);
+  z-index:200;
+}
+
+.nav-inner{
+  max-width:900px;
+  margin:auto;
+  display:flex;
+  justify-content:space-around;
+  overflow-x:auto;
+}
+
+.nav button{
+  border:0;
+  background:white;
+  color:var(--muted);
+  padding:13px 12px;
+  min-width:75px;
+  font-size:12px;
+}
+
+.nav button.active{
+  color:var(--green2);
+  font-weight:800;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:500;
+}
+
+.modal-box{
+  width:min(500px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:white;
+  border-radius:18px;
+  padding:25px;
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.close{
+  border:0;
+  background:#eee;
+  border-radius:8px;
+  width:40px;
+  height:40px;
+}
+
+.role-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.role-btn{
+  border:2px solid var(--border);
+  background:white;
+  border-radius:12px;
+  padding:16px;
+  font-weight:700;
+}
+
+.role-btn.selected{
+  border-color:var(--green);
+  background:#edfff4;
+}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;
+}
+
+.stat{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:20px;
+}
+
+.stat strong{
+  display:block;
+  font-size:28px;
+  color:var(--navy);
+  margin-top:5px;
+}
+
+.alert{
+  padding:13px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+.alert-success{
+  background:#e8f8ee;
+  color:#087b39;
+}
+
+.alert-error{
+  background:#ffeded;
+  color:#a61919;
+}
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:var(--muted);
+}
+
+.profile-head{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.avatar{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:var(--navy);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  font-weight:800;
 }
 
 @media(max-width:600px){
-  .navbar{
-    padding:10px 12px;
-  }
-
-  .logo{
-    font-size:18px;
-  }
-
-  .header-actions .btn-secondary{
-    display:none;
-  }
-
   .hero{
-    padding:55px 20px;
-  }
-
-  .cards{
-    grid-template-columns:1fr;
+    padding:30px 20px;
   }
 
   .search-box{
+    flex-direction:column;
+  }
+
+  .role-grid{
     grid-template-columns:1fr;
   }
 
-  .form-grid{
-    grid-template-columns:1fr;
+  .header-inner{
+    padding:12px;
   }
 
-  .stats-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .footer-content{
-    grid-template-columns:1fr;
+  main{
+    padding-left:12px;
+    padding-right:12px;
   }
 }
 </style>
@@ -674,519 +453,649 @@ footer button{
 <body>
 
 <header>
-  <div class="navbar">
-
-    <button class="logo" onclick="showPage('home')" style="border:0;background:none">
-      <span class="logo-icon">KL</span>
-      <span>KAYE LIGUEY</span>
-    </button>
-
-    <nav class="nav-links">
-      <button onclick="showPage('home')">🏠 Accueil</button>
-      <button onclick="showPage('jobs')">💼 Emplois</button>
-      <button onclick="showPage('companies')">🏢 Entreprises</button>
-      <button onclick="showPage('about')">ℹ️ À propos</button>
-    </nav>
+  <div class="header-inner">
+    <div class="logo">KAYE <span>LIGUEY</span></div>
 
     <div class="header-actions">
-      <button class="btn btn-secondary" onclick="openLogin()">Connexion</button>
-      <button class="btn btn-primary" onclick="openRegister()">Créer un compte</button>
+      <button class="icon-btn" id="notificationBtn" type="button">🔔</button>
+      <button class="icon-btn" id="authBtn" type="button">Connexion</button>
     </div>
-
   </div>
 </header>
 
+<main>
 
 <!-- ACCUEIL -->
+<section id="homePage" class="page active">
 
-<main id="home" class="page active">
+  <div class="hero">
+    <h1>Trouvez votre emploi.</h1>
+    <p>
+      Trouvez votre emploi, construisez votre avenir.
+      KAYE LIGUEY connecte les chercheurs d'emploi et les entreprises.
+    </p>
 
-<section class="hero">
-  <div class="hero-content">
+    <div class="hero-actions">
+      <button class="btn btn-primary" id="findJobBtn" type="button">
+        🔎 Rechercher un emploi
+      </button>
 
-    <div>
-      <span class="badge">🇸🇳 Plateforme sénégalaise</span>
-
-      <h1>
-        Trouvez votre <span>emploi</span>,
-        construisez votre avenir.
-      </h1>
-
-      <p>
-        KAYE LIGUEY met en relation les candidats
-        et les entreprises pour faciliter la recherche
-        d'emploi au Sénégal.
-      </p>
-
-      <div class="hero-buttons">
-        <button class="btn btn-primary" onclick="showPage('jobs')">
-          🔎 Rechercher un emploi
-        </button>
-
-        <button class="btn btn-secondary" onclick="openRegister()">
-          🚀 Créer mon compte
-        </button>
-      </div>
+      <button class="btn btn-light" id="publishHeroBtn" type="button">
+        ➕ Publier une offre
+      </button>
     </div>
-
-    <div class="hero-card">
-      <h3>📊 KAYE LIGUEY</h3>
-
-      <div class="stat">
-        <span>Offres disponibles</span>
-        <strong id="heroJobs">0</strong>
-      </div>
-
-      <div class="stat">
-        <span>Entreprises</span>
-        <strong id="heroCompanies">0</strong>
-      </div>
-
-      <div class="stat">
-        <span>Candidatures</span>
-        <strong id="heroApplications">0</strong>
-      </div>
-    </div>
-
   </div>
+
+  <div class="search-box">
+    <input id="homeSearch" type="search" placeholder="Rechercher un emploi...">
+    <button class="btn btn-primary" id="searchBtn" type="button">Rechercher</button>
+  </div>
+
+  <h2 class="section-title">💼 Offres récentes</h2>
+  <div id="homeJobs" class="grid"></div>
+
 </section>
 
 
-<div class="container">
+<!-- JOBS -->
+<section id="jobsPage" class="page">
+
+  <h1 class="section-title">💼 Offres d'emploi</h1>
 
   <div class="search-box">
+    <input id="jobsSearch" type="search" placeholder="Métier, compétence...">
 
-    <input
-      id="homeKeyword"
-      class="input"
-      placeholder="Métier, compétence, entreprise..."
-    >
-
-    <select id="homeCategory" class="select">
-      <option value="">Toutes catégories</option>
-      <option>Informatique</option>
-      <option>Commerce</option>
-      <option>Marketing</option>
-      <option>Administration</option>
-      <option>Finance</option>
-      <option>Transport</option>
-      <option>Communication</option>
+    <select id="jobsCity">
+      <option value="">Toutes les villes</option>
+      <option>Dakar</option>
+      <option>Thiès</option>
+      <option>Mbour</option>
+      <option>Touba</option>
+      <option>Saint-Louis</option>
     </select>
 
-    <input
-      id="homeCity"
-      class="input"
-      placeholder="Ville"
-    >
-
-    <button class="btn btn-primary" onclick="searchHome()">
-      Rechercher
+    <button class="btn btn-primary" id="filterJobsBtn" type="button">
+      Filtrer
     </button>
-
   </div>
 
+  <div id="jobsList" class="grid"></div>
 
-  <section style="margin-top:70px">
+</section>
 
-    <div class="section-title">
-      <h2>🔥 Offres récentes</h2>
-      <p>Découvrez les dernières opportunités.</p>
+
+<!-- PUBLIER -->
+<section id="publishPage" class="page">
+
+  <h1 class="section-title">➕ Publier une offre</h1>
+
+  <div id="publishLoginMessage" class="alert alert-error hidden">
+    Vous devez être connecté en tant qu'entreprise.
+  </div>
+
+  <div class="card form">
+
+    <div class="form-group">
+      <label for="offerTitle">Titre du poste</label>
+      <input id="offerTitle" placeholder="Ex : Développeur Web">
     </div>
 
-    <div id="homeJobs" class="cards"></div>
+    <div class="form-group">
+      <label for="offerDescription">Description</label>
+      <textarea id="offerDescription" placeholder="Décrivez le poste..."></textarea>
+    </div>
 
-  </section>
-
-</div>
-
-</main>
-
-
-<!-- EMPLOIS -->
-
-<main id="jobs" class="page">
-
-<div class="container">
-
-  <div class="section-title">
-    <h2>💼 Toutes les offres</h2>
-    <p>Recherchez l'emploi qui correspond à votre profil.</p>
-  </div>
-
-  <div class="card" style="margin-bottom:25px">
-
-    <div class="form-grid">
-
-      <input
-        id="jobSearch"
-        class="input"
-        placeholder="Rechercher..."
-        oninput="renderJobs()"
-      >
-
-      <select
-        id="jobCategory"
-        class="select"
-        onchange="renderJobs()"
-      >
-        <option value="">Toutes catégories</option>
+    <div class="form-group">
+      <label for="offerCategory">Catégorie</label>
+      <select id="offerCategory">
+        <option value="">Choisir</option>
         <option>Informatique</option>
-        <option>Commerce</option>
+        <option>Gestion</option>
         <option>Marketing</option>
-        <option>Administration</option>
-        <option>Finance</option>
+        <option>BTP</option>
         <option>Transport</option>
-        <option>Communication</option>
+        <option>Commerce</option>
+        <option>Autre</option>
       </select>
+    </div>
 
-      <input
-        id="jobCity"
-        class="input"
-        placeholder="Ville"
-        oninput="renderJobs()"
-      >
+    <div class="form-group">
+      <label for="offerCity">Ville</label>
+      <input id="offerCity" placeholder="Dakar">
+    </div>
 
-      <select
-        id="jobContract"
-        class="select"
-        onchange="renderJobs()"
-      >
-        <option value="">Tous contrats</option>
+    <div class="form-group">
+      <label for="offerRegion">Région</label>
+      <input id="offerRegion" placeholder="Dakar">
+    </div>
+
+    <div class="form-group">
+      <label for="offerContract">Contrat</label>
+      <select id="offerContract">
         <option>CDI</option>
         <option>CDD</option>
         <option>Stage</option>
         <option>Freelance</option>
         <option>Temps partiel</option>
       </select>
-
     </div>
 
+    <div class="form-group">
+      <label for="offerSalary">Salaire</label>
+      <input id="offerSalary" placeholder="Ex : 200 000 FCFA">
+    </div>
+
+    <button class="btn btn-primary" id="publishOfferBtn" type="button">
+      Publier l'offre
+    </button>
+
   </div>
 
-  <div id="jobsList" class="cards"></div>
-
-</div>
-
-</main>
+</section>
 
 
-<!-- ENTREPRISES -->
+<!-- APPLICATIONS -->
+<section id="applicationsPage" class="page">
 
-<main id="companies" class="page">
+  <h1 class="section-title">📝 Mes candidatures</h1>
+  <div id="applicationsList"></div>
 
-<div class="container">
-
-  <div class="section-title">
-    <h2>🏢 Entreprises</h2>
-    <p>Découvrez les entreprises présentes sur KAYE LIGUEY.</p>
-  </div>
-
-  <div id="companiesList" class="cards"></div>
-
-</div>
-
-</main>
+</section>
 
 
-<!-- À PROPOS -->
+<!-- FAVORIS -->
+<section id="favoritesPage" class="page">
 
-<main id="about" class="page">
+  <h1 class="section-title">⭐ Mes favoris</h1>
+  <div id="favoritesList" class="grid"></div>
 
-<div class="container">
+</section>
+
+
+<!-- MESSAGES -->
+<section id="messagesPage" class="page">
+
+  <h1 class="section-title">💬 Messages</h1>
+
+  <div id="messagesList"></div>
 
   <div class="card">
+    <h3>Envoyer un message</h3>
 
-    <h2>À propos de KAYE LIGUEY</h2>
+    <div class="form-group">
+      <label>Destinataire</label>
+      <input id="messageReceiver" placeholder="ID utilisateur">
+    </div>
 
-    <p style="line-height:1.8;margin-top:15px">
-      KAYE LIGUEY est une plateforme destinée à rapprocher
-      les chercheurs d'emploi et les entreprises.
-      Elle permet aux candidats de rechercher des offres,
-      déposer leurs candidatures et suivre leur évolution.
-    </p>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea id="messageText" placeholder="Votre message..."></textarea>
+    </div>
 
-    <p style="line-height:1.8;margin-top:15px">
-      Les entreprises peuvent publier leurs offres,
-      consulter les candidatures reçues et communiquer
-      avec les candidats.
-    </p>
-
+    <button class="btn btn-primary" id="sendMessageBtn" type="button">
+      Envoyer
+    </button>
   </div>
 
-</div>
-
-</main>
+</section>
 
 
-<!-- TABLEAU DE BORD -->
+<!-- NOTIFICATIONS -->
+<section id="notificationsPage" class="page">
 
-<main id="dashboard" class="page">
+  <h1 class="section-title">🔔 Notifications</h1>
+  <div id="notificationsList"></div>
 
-<div class="container">
+</section>
 
-  <div class="dashboard">
 
-    <aside class="sidebar">
+<!-- PROFIL -->
+<section id="profilePage" class="page">
 
-      <button class="active" onclick="dashboardTab('overview',this)">
-        📊 Tableau de bord
-      </button>
+  <h1 class="section-title">👤 Mon profil</h1>
 
-      <button onclick="dashboardTab('applications',this)">
-        📄 Candidatures
-      </button>
+  <div id="profileContent"></div>
 
-      <button onclick="dashboardTab('favorites',this)">
-        ❤️ Favoris
-      </button>
-
-      <button onclick="dashboardTab('messages',this)">
-        💬 Messages
-      </button>
-
-      <button onclick="dashboardTab('notifications',this)">
-        🔔 Notifications
-      </button>
-
-      <button onclick="dashboardTab('profile',this)">
-        👤 Mon profil
-      </button>
-
-      <button id="companyPublishButton" onclick="openPublishJob()">
-        ➕ Publier une offre
-      </button>
-
-      <button id="adminButton" onclick="showPage('admin')">
-        👑 Administration
-      </button>
-
-      <button onclick="logout()">
-        🚪 Déconnexion
-      </button>
-
-    </aside>
-
-    <section id="dashboardContent" class="dashboard-content"></section>
-
-  </div>
-
-</div>
-
-</main>
+</section>
 
 
 <!-- ADMIN -->
+<section id="adminPage" class="page">
 
-<main id="admin" class="page">
+  <h1 class="section-title">👑 Administration</h1>
 
-<div class="container">
-
-  <div class="section-title">
-    <h2>👑 Administration</h2>
-    <p>Gestion de la plateforme.</p>
-  </div>
-
-  <div class="stats-grid">
-
-    <div class="stat-card">
-      <small>Utilisateurs</small>
-      <div class="number" id="adminUsers">0</div>
+  <div class="stat-grid">
+    <div class="stat">
+      Utilisateurs
+      <strong id="adminUsersCount">0</strong>
     </div>
 
-    <div class="stat-card">
-      <small>Entreprises</small>
-      <div class="number" id="adminCompanies">0</div>
+    <div class="stat">
+      Offres
+      <strong id="adminOffersCount">0</strong>
     </div>
 
-    <div class="stat-card">
-      <small>Offres</small>
-      <div class="number" id="adminJobs">0</div>
+    <div class="stat">
+      Candidatures
+      <strong id="adminApplicationsCount">0</strong>
     </div>
-
-    <div class="stat-card">
-      <small>Candidatures</small>
-      <div class="number" id="adminApplications">0</div>
-    </div>
-
-  </div>
-
-  <div class="card" style="margin-bottom:20px">
-    <h3>Gestion des offres</h3>
-    <div id="adminJobsList" style="margin-top:15px"></div>
   </div>
 
   <div class="card">
     <h3>Gestion des utilisateurs</h3>
-    <div id="adminUsersList" style="margin-top:15px"></div>
+    <div id="adminUsers"></div>
   </div>
 
-</div>
+  <div class="card">
+    <h3>Gestion des offres</h3>
+    <div id="adminOffers"></div>
+  </div>
+
+</section>
 
 </main>
 
 
-<!-- MODAL CONNEXION -->
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-inner">
 
-<div id="loginModal" class="modal">
+    <button type="button" data-page="homePage">🏠<br>Accueil</button>
 
-<div class="modal-box">
+    <button type="button" data-page="jobsPage">💼<br>Jobs</button>
 
-  <div class="modal-header">
-    <h2>🔐 Connexion</h2>
-    <button class="close" onclick="closeModal('loginModal')">×</button>
+    <button type="button" data-page="publishPage">➕<br>Publier</button>
+
+    <button type="button" data-page="applicationsPage">📝<br>Candidatures</button>
+
+    <button type="button" data-page="favoritesPage">⭐<br>Favoris</button>
+
+    <button type="button" data-page="messagesPage">💬<br>Messages</button>
+
+    <button type="button" data-page="profilePage">👤<br>Profil</button>
+
   </div>
+</nav>
 
-  <form onsubmit="login(event)">
 
-    <div class="form-group">
-      <label>Email</label>
-      <input
-        id="loginEmail"
-        class="input"
-        type="email"
-        required
-      >
+<!-- AUTH MODAL -->
+<div id="authModal" class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <h2 id="authTitle">Connexion</h2>
+      <button class="close" id="closeAuthBtn" type="button">✕</button>
     </div>
 
-    <div class="form-group">
-      <label>Mot de passe</label>
-      <input
-        id="loginPassword"
-        class="input"
-        type="password"
-        required
-      >
-    </div>
+    <div id="authMessage"></div>
 
-    <button class="btn btn-primary" style="width:100%">
-      Se connecter
-    </button>
-
-  </form>
-
-  <button
-    class="btn btn-outline"
-    style="width:100%;margin-top:10px"
-    onclick="openRegister();closeModal('loginModal')"
-  >
-    Créer un compte
-  </button>
-
-</div>
-</div>
-
-
-<!-- MODAL INSCRIPTION -->
-
-<div id="registerModal" class="modal">
-
-<div class="modal-box">
-
-  <div class="modal-header">
-    <h2>🚀 Créer un compte</h2>
-    <button class="close" onclick="closeModal('registerModal')">×</button>
-  </div>
-
-  <form onsubmit="register(event)">
-
-    <div class="form-group">
-
-      <label>Type de compte</label>
-
-      <select id="registerRole" class="select">
-        <option value="candidate">👤 Candidat</option>
-        <option value="company">🏢 Entreprise</option>
-      </select>
-
-    </div>
-
-    <div class="form-group">
-      <label>Nom complet / Nom de l'entreprise</label>
-      <input id="registerName" class="input" required>
-    </div>
-
-    <div class="form-group">
-      <label>Email</label>
-      <input id="registerEmail" class="input" type="email" required>
-    </div>
-
-    <div class="form-group">
-      <label>Téléphone</label>
-      <input id="registerPhone" class="input" required>
-    </div>
-
-    <div class="form-group">
-      <label>Mot de passe</label>
-      <input id="registerPassword" class="input" type="password" minlength="6" required>
-    </div>
-
-    <button class="btn btn-primary" style="width:100%">
-      Créer mon compte
-    </button>
-
-  </form>
-
-</div>
-</div>
-
-
-<!-- MODAL OFFRE -->
-
-<div id="jobModal" class="modal">
-
-<div class="modal-box">
-
-  <div class="modal-header">
-    <h2>➕ Publier une offre</h2>
-    <button class="close" onclick="closeModal('jobModal')">×</button>
-  </div>
-
-  <form onsubmit="publishJob(event)">
-
-    <div class="form-group">
-      <label>Titre du poste</label>
-      <input id="jobTitleInput" class="input" required>
-    </div>
-
-    <div class="form-grid">
+    <div id="loginForm">
 
       <div class="form-group">
-        <label>Catégorie</label>
+        <label>Email</label>
+        <input id="loginEmail" type="email" placeholder="email@example.com">
+      </div>
 
-        <select id="jobCategoryInput" class="select" required>
-          <option value="">Choisir</option>
-          <option>Informatique</option>
-          <option>Commerce</option>
-          <option>Marketing</option>
-          <option>Administration</option>
-          <option>Finance</option>
-          <option>Transport</option>
-          <option>Communication</option>
-        </select>
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <input id="loginPassword" type="password" placeholder="Mot de passe">
+      </div>
+
+      <button class="btn btn-primary" id="loginBtn" type="button">
+        Se connecter
+      </button>
+
+      <br><br>
+
+      <button class="btn btn-light" id="showRegisterBtn" type="button">
+        Créer un compte
+      </button>
+
+      <br><br>
+
+      <button class="btn btn-light" id="forgotPasswordBtn" type="button">
+        Mot de passe oublié ?
+      </button>
+
+    </div>
+
+
+    <div id="registerForm" class="hidden">
+
+      <h3>Créer un compte</h3>
+
+      <br>
+
+      <div class="role-grid">
+
+        <button class="role-btn selected" data-role="candidate" type="button">
+          👤 Candidat
+        </button>
+
+        <button class="role-btn" data-role="company" type="button">
+          🏢 Entreprise
+        </button>
 
       </div>
 
       <div class="form-group">
-        <label>Contrat</label>
-
-        <select id="jobContractInput" class="select" required>
-          <option>CDI</option>
-          <option>CDD</option>
-          <option>Stage</option>
-          <option>Freelance</option>
-          <option>Temps partiel</option>
-        </select>
-
+        <label>Nom / Nom de l'entreprise</label>
+        <input id="registerName" placeholder="Votre nom">
       </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input id="registerEmail" type="email" placeholder="email@example.com">
+      </div>
+
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <input id="registerPassword" type="password" placeholder="Minimum 6 caractères">
+      </div>
+
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input id="registerPhone" type="tel" placeholder="+221...">
+      </div>
+
+      <button class="btn btn-primary" id="registerBtn" type="button">
+        Créer mon compte
+      </button>
+
+      <br><br>
+
+      <button class="btn btn-light" id="showLoginBtn" type="button">
+        J'ai déjà un compte
+      </button>
 
     </div>
 
-    <div class="form-grid">
+  </div>
+</div>
 
-      <div class="form-group">
-        <label>Ville</label>
-        <input id="jobCityInput" class="input" required>
-      </div>
 
-      <div class="form-group">
-   
+<!-- DETAILS OFFER -->
+<div id="offerModal" class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <h2>Détails de l'offre</h2>
+      <button class="close" id="closeOfferBtn" type="button">✕</button>
+    </div>
+
+    <div id="offerDetails"></div>
+
+  </div>
+
+</div>
+
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  setDoc,
+  getDoc,
+  getDocs,
+  doc,
+  query,
+  where,
+  orderBy,
+  limit,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvtl0",
+  authDomain: "kaye-liguey.firebaseapp.com",
+  projectId: "kaye-liguey",
+  storageBucket: "kaye-liguey.firebasestorage.app",
+  messagingSenderId: "6308207019",
+  appId: "1:6308207019:web:00c6c29ac26bfff7cb1aee",
+  measurementId: "G-E8YSXJDLJD"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+/* =========================================================
+   ÉTAT
+========================================================= */
+
+let currentUser = null;
+let currentProfile = null;
+let selectedRole = "candidate";
+let allOffers = [];
+let currentOffer = null;
+
+
+/* =========================================================
+   OUTILS
+========================================================= */
+
+function $(id){
+  return document.getElementById(id);
+}
+
+function show(id){
+  $(id)?.classList.remove("hidden");
+}
+
+function hide(id){
+  $(id)?.classList.add("hidden");
+}
+
+function escapeHTML(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function showMessage(text,type="success"){
+  const box = $("authMessage");
+
+  if(!box) return;
+
+  box.innerHTML =
+    `<div class="alert ${type === "error" ? "alert-error" : "alert-success"}">
+      ${escapeHTML(text)}
+    </div>`;
+}
+
+function openAuth(){
+  show("authModal");
+}
+
+function closeAuth(){
+  hide("authModal");
+}
+
+function navigate(pageId){
+
+  document.querySelectorAll(".page").forEach(page=>{
+    page.classList.remove("active");
+  });
+
+  const page = $(pageId);
+
+  if(page){
+    page.classList.add("active");
+  }
+
+  document.querySelectorAll(".nav button").forEach(button=>{
+    button.classList.toggle(
+      "active",
+      button.dataset.page === pageId
+    );
+  });
+
+  if(pageId === "jobsPage"){
+    renderJobs(allOffers);
+  }
+
+  if(pageId === "applicationsPage"){
+    loadApplications();
+  }
+
+  if(pageId === "favoritesPage"){
+    loadFavorites();
+  }
+
+  if(pageId === "messagesPage"){
+    loadMessages();
+  }
+
+  if(pageId === "notificationsPage"){
+    loadNotifications();
+  }
+
+  if(pageId === "profilePage"){
+    renderProfile();
+  }
+
+  if(pageId === "adminPage"){
+    loadAdmin();
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+document.querySelectorAll(".nav button").forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    const page = button.dataset.page;
+
+    if(page === "publishPage" &&
+       (!currentUser || currentProfile?.role !== "company")){
+
+      openAuth();
+      showMessage(
+        "Connectez-vous avec un compte entreprise pour publier une offre.",
+        "error"
+      );
+      return;
+    }
+
+    if(
+      ["applicationsPage","favoritesPage","messagesPage","notificationsPage","profilePage"]
+      .includes(page)
+      && !currentUser
+    ){
+      openAuth();
+      showMessage("Connectez-vous pour accéder à cette section.","error");
+      return;
+    }
+
+    if(page === "adminPage" && currentProfile?.role !== "admin"){
+      alert("Accès réservé à l'administrateur.");
+      return;
+    }
+
+    navigate(page);
+  });
+
+});
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+$("authBtn").addEventListener("click",()=>{
+
+  if(currentUser){
+
+    const answer = confirm(
+      "Voulez-vous vraiment vous déconnecter ?"
+    );
+
+    if(answer){
+      signOut(auth)
+        .then(()=>{
+          alert("Vous êtes déconnecté.");
+          navigate("homePage");
+        })
+        .catch(error=>{
+          alert(error.message);
+        });
+    }
+
+  }else{
+    openAuth();
+  }
+
+});
+
+
+$("closeAuthBtn").addEventListener("click",closeAuth);
+
+$("showRegisterBtn").addEventListener("click",()=>{
+
+  hide("loginForm");
+  show("registerForm");
+
+  $("authTitle").textContent = "Créer un compte";
+  $("authMessage").innerHTML = "";
+
+});
+
+
+$("showLoginBtn").addEventListener("click",()=>{
+
+  hide("registerForm");
+  show("loginForm");
+
+  $("authTitle").textContent = "Connexion";
+  $("authMessage").innerHTML = "";
+
+});
+
+
+/* =========================================================
+   CHOIX DU ROLE
+========================================================= */
+
+document.querySelectorAll(".role-btn").forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    documen
