@@ -1024,7 +1024,7 @@ label{
 </div>
 
 
-<script type="module">
+<const ascript type="module">
 
 /* =========================================================
    FIREBASE
@@ -1103,7 +1103,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+uth = getAuth(app);
 
 const db = getFirestore(app);
 
@@ -1220,3 +1220,34 @@ function friendlyError(error){
       "Email ou mot de passe incorrect.",
 
     "auth/wrong-password":     
+function friendlyError(error){
+
+  const code = error?.code || "";
+
+  const messages = {
+
+    "auth/email-already-in-use":
+      "Cette adresse email est déjà utilisée.",
+
+    "auth/invalid-email":
+      "Adresse email invalide.",
+
+    "auth/weak-password":
+      "Le mot de passe doit contenir au moins 6 caractères.",
+
+    "auth/invalid-credential":
+      "Email ou mot de passe incorrect.",
+
+    "auth/wrong-password":
+      "Mot de passe incorrect.",
+
+    "auth/user-not-found":
+      "Utilisateur introuvable.",
+
+    "auth/too-many-requests":
+      "Trop de tentatives. Réessayez plus tard."
+
+  };
+
+  return messages[code] || error.message || "Une erreur est survenue.";
+  }
