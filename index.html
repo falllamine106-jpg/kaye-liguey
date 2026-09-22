@@ -1202,7 +1202,54 @@ function validSenegalPhone(phone){
 
 
   function friendlyError(error){
+// Navigation
 
+document.querySelectorAll(".nav-btn").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    const pageId = btn.dataset.page;
+
+    document.querySelectorAll(".page").forEach(page => {
+      page.classList.remove("active");
+    });
+
+    document.getElementById(pageId)?.classList.add("active");
+
+    document.querySelectorAll(".nav-btn").forEach(b => {
+      b.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+
+  });
+
+});
+
+// Fenêtre connexion
+
+const authButton = document.getElementById("authButton");
+const authModal = document.getElementById("authModal");
+
+if(authButton && authModal){
+
+  authButton.addEventListener("click", () => {
+    authModal.classList.add("show");
+  });
+
+}
+
+document.querySelectorAll("[data-close]").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    const id = btn.dataset.close;
+
+    document.getElementById(id)?.classList.remove("show");
+
+  });
+
+});
   const code = error?.code || "";
 
   const messages = {
