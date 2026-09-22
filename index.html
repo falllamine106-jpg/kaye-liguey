@@ -1278,7 +1278,93 @@ document.querySelectorAll("[data-close]").forEach(btn => {
   });
 
 });
-  
+  // NOTIFICATIONS
+const notificationButton = document.getElementById("notificationButton");
+
+if(notificationButton){
+  notificationButton.addEventListener("click", () => {
+    alert("Aucune notification pour le moment.");
+  });
+}
+
+// VOIR TOUT
+const allJobsButton = document.getElementById("allJobsButton");
+
+if(allJobsButton){
+  allJobsButton.addEventListener("click", () => {
+
+    document.querySelectorAll(".page").forEach(page=>{
+      page.classList.remove("active");
+    });
+
+    document.getElementById("jobsPage").classList.add("active");
+
+    document.querySelectorAll(".nav-btn").forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+    document.querySelector('[data-page="jobsPage"]')
+      ?.classList.add("active");
+  });
+}
+
+// MOT DE PASSE OUBLIE
+const forgotPassword = document.getElementById("forgotPassword");
+
+if(forgotPassword){
+  forgotPassword.addEventListener("click", () => {
+
+    const email =
+      document.getElementById("loginEmail").value;
+
+    if(!email){
+      alert("Entrez votre email d'abord.");
+      return;
+    }
+
+    sendPasswordResetEmail(auth,email)
+      .then(()=>{
+        alert("Email de réinitialisation envoyé.");
+      })
+      .catch(error=>{
+        alert(friendlyError(error));
+      });
+  });
+}
+
+// ONGLETS CONNEXION / INSCRIPTION
+const loginTab = document.getElementById("loginTab");
+const registerTab = document.getElementById("registerTab");
+
+if(loginTab && registerTab){
+
+  loginTab.addEventListener("click", ()=>{
+
+    loginTab.classList.add("active");
+    registerTab.classList.remove("active");
+
+    document.getElementById("loginForm")
+      .classList.remove("hidden");
+
+    document.getElementById("registerForm")
+      .classList.add("hidden");
+
+  });
+
+  registerTab.addEventListener("click", ()=>{
+
+    registerTab.classList.add("active");
+    loginTab.classList.remove("active");
+
+    document.getElementById("registerForm")
+      .classList.remove("hidden");
+
+    document.getElementById("loginForm")
+      .classList.add("hidden");
+
+  });
+
+  }
 
   </script>
 </body>
