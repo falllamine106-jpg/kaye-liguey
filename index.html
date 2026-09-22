@@ -1024,9 +1024,9 @@ label{
 </div>
 
 
-<const ascript type="module">
+<script type="module">
 
-/* =========================================================
+  /* =========================================================
    FIREBASE
 ========================================================= */
 
@@ -1103,7 +1103,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-uth = getAuth(app);
+const auth = getAuth(app);
 
 const db = getFirestore(app);
 
@@ -1220,7 +1220,7 @@ function validSenegalPhone(phone){
       "Email ou mot de passe incorrect.",
 
     "auth/wrong-password":
-      "Mot de passe incorrect.",
+      "Mot de passe incorrect."
 
     "auth/user-not-found":
       "Utilisateur introuvable.",
@@ -1232,4 +1232,7 @@ function validSenegalPhone(phone){
 
   return messages[code] || error.message || "Une erreur est survenue.";
 }
+  </script>
+</body>
+</html>
 
