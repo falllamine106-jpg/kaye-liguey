@@ -1199,9 +1199,37 @@ function validSenegalPhone(phone){
   return /^\+2217\d{8}$/.test(phone);
 
 }
+function friendlyError(error){
 
+  const code = error?.code || "";
 
-  function friendlyError(error){
+  const messages = {
+
+    "auth/email-already-in-use":
+      "Cette adresse email est déjà utilisée.",
+
+    "auth/invalid-email":
+      "Adresse email invalide.",
+
+    "auth/weak-password":
+      "Le mot de passe doit contenir au moins 6 caractères.",
+
+    "auth/invalid-credential":
+      "Email ou mot de passe incorrect.",
+
+    "auth/wrong-password":
+      "Mot de passe incorrect.",
+
+    "auth/user-not-found":
+      "Utilisateur introuvable.",
+
+    "auth/too-many-requests":
+      "Trop de tentatives. Réessayez plus tard."
+
+  };
+
+  return messages[code] || error.message || "Une erreur est survenue.";
+  }
 // Navigation
 
 document.querySelectorAll(".nav-btn").forEach(btn => {
@@ -1250,35 +1278,8 @@ document.querySelectorAll("[data-close]").forEach(btn => {
   });
 
 });
-  const code = error?.code || "";
+  
 
-  const messages = {
-
-    "auth/email-already-in-use":
-      "Cette adresse email est déjà utilisée.",
-
-    "auth/invalid-email":
-      "Adresse email invalide.",
-
-    "auth/weak-password":
-      "Le mot de passe doit contenir au moins 6 caractères.",
-
-    "auth/invalid-credential":
-      "Email ou mot de passe incorrect.",
-
-    "auth/wrong-password":
-      "Mot de passe incorrect."
-
-    "auth/user-not-found":
-      "Utilisateur introuvable.",
-
-    "auth/too-many-requests":
-      "Trop de tentatives. Réessayez plus tard."
-
-  };
-
-  return messages[code] || error.message || "Une erreur est survenue.";
-}
   </script>
 </body>
 </html>
