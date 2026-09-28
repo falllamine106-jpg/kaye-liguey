@@ -1365,6 +1365,44 @@ if(loginTab && registerTab){
   });
 
   }
+   // CONNEXION
+
+const loginForm = document.getElementById("loginForm");
+
+if(loginForm){
+
+  loginForm.addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+    try{
+
+      const email =
+        document.getElementById("loginEmail").value;
+
+      const password =
+        document.getElementById("loginPassword").value;
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      alert("Connexion réussie");
+
+      document.getElementById("authModal")
+        .classList.remove("show");
+
+    }catch(error){
+
+      alert(friendlyError(error));
+
+    }
+
+  });
+
+}
 
   </script>
 </body>
