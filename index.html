@@ -1256,8 +1256,10 @@ document.querySelectorAll(".nav-btn").forEach(btn => {
 
 // Fenêtre connexion
 
-const authButton = document.getElementById("authButton");
-const authModal = document.getElementById("authModal");
+const authButton = 
+document.getElementById("authButton");
+const authModal = 
+document.getElementById("authModal");
 
 if(authButton && authModal){
 
@@ -1274,10 +1276,33 @@ document.querySelectorAll("[data-close]").forEach(btn => {
     const id = btn.dataset.close;
 
     document.getElementById(id)?.classList.remove("show");
+document.querySelectorAll("[data-close]").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    const id = btn.dataset.close;
+
+    document.getElementById(id)?.classList.remove("show");
 
   });
 
 });
+    // CONNEXION
+
+const loginForm = document.getElementById("loginForm");
+
+if(loginForm){
+
+  loginForm.addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+    alert("Bouton détecté");
+
+  });
+
+}
+
   // NOTIFICATIONS
 const notificationButton = document.getElementById("notificationButton");
 
