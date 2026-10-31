@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kaye Liguey - Emploi au Sénégal</title>
+
 <style>
 :root{--navy:#0A1E3F;--green:#00C853;--bg:#f4f7fa}
 *{box-sizing:border-box}
@@ -13,10 +14,10 @@ header{background:var(--navy);color:white;padding:20px;text-align:center}
 header h1{margin:0;font-size:25px}
 header p{margin:7px 0 0;color:#dce6f5}
 main{max-width:700px;margin:auto;padding:18px 14px 40px}
-.screen{display:none}.screen.active{display:block}
+.screen{display:none}
+.screen.active{display:block}
 .card{background:white;padding:20px;border-radius:16px;margin:14px 0;box-shadow:0 3px 14px #0a1e3f12}
-h2{color:var(--navy);margin-top:5px}
-h3{color:var(--navy)}
+h2,h3{color:var(--navy)}
 button{border:0;border-radius:10px;padding:14px 16px;background:var(--green);color:#062414;font-weight:bold;font-size:15px;cursor:pointer;width:100%;margin:7px 0}
 button.secondary{background:var(--navy);color:white}
 button.light{background:#e8eef5;color:var(--navy)}
@@ -29,15 +30,45 @@ label{font-weight:bold;font-size:14px;color:#26364c;display:block}
 .small{font-size:13px;color:#65748a}
 .notice{background:#e8f8ee;color:#176b36;padding:12px;border-radius:9px;font-size:13px;margin:10px 0}
 .warning{background:#fff5df;color:#79520a;padding:12px;border-radius:9px;font-size:13px;margin:10px 0}
-#splash{position:fixed;inset:0;background:var(--navy);color:white;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:10}
+
+/* CORRECTION DE L'ECRAN DE DEMARRAGE */
+#splash{
+  position:fixed;
+  inset:0;
+  background:var(--navy);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:1000;
+  animation:splashOut .6s ease 1.8s forwards;
+  pointer-events:none;
+}
 #splash h1{font-size:34px;letter-spacing:1px}
-.logo{width:95px;height:95px;border:3px solid var(--green);border-radius:50%;display:grid;place-items:center;font-size:43px;animation:pulse 1s infinite alternate}
+.logo{
+  width:95px;
+  height:95px;
+  border:3px solid var(--green);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:43px;
+  animation:pulse 1s infinite alternate;
+}
 @keyframes pulse{to{transform:scale(1.09)}}
+@keyframes splashOut{
+  to{
+    opacity:0;
+    visibility:hidden;
+  }
+}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
 .actions button{flex:1;min-width:120px}
 footer{text-align:center;color:#8290a2;font-size:12px;padding:20px}
 </style>
 </head>
+
 <body>
 
 <div id="splash">
@@ -52,306 +83,387 @@ footer{text-align:center;color:#8290a2;font-size:12px;padding:20px}
 </header>
 
 <main>
-  <section id="welcome" class="screen active">
-    <div class="card" style="text-align:center">
-      <h2>Bienvenue sur Kaye Liguey !</h2>
-      <p>Trouvez un emploi ou recrutez les talents dont votre entreprise a besoin.</p>
-      <button onclick="show('candidate')">👤 Je cherche un emploi</button>
-      <button class="secondary" onclick="show('company')">🏢 Je suis une entreprise</button>
-    </div>
-  </section>
 
-  <!-- INSCRIPTION CANDIDAT -->
-  <section id="candidate" class="screen">
-    <div class="card">
-      <h2>👤 Inscription du candidat</h2>
-      <p>Complétez votre profil pour permettre aux entreprises de mieux connaître votre parcours.</p>
+<!-- PAGE D'ACCUEIL -->
+<section id="welcome" class="screen active">
+  <div class="card" style="text-align:center">
+    <h2>Bienvenue sur Kaye Liguey !</h2>
+    <p>Trouvez un emploi ou recrutez les talents dont votre entreprise a besoin.</p>
+    <button onclick="show('candidate')">👤 Je cherche un emploi</button>
+    <button class="secondary" onclick="show('company')">🏢 Je suis une entreprise</button>
+  </div>
+</section>
 
-      <form id="candidateForm">
-        <h3 class="section-title">1. Informations personnelles</h3>
+<!-- INSCRIPTION CANDIDAT -->
+<section id="candidate" class="screen">
+<div class="card">
+<h2>👤 Inscription du candidat</h2>
+<p>Complétez votre profil professionnel.</p>
 
-        <label>Prénom *</label>
-        <input id="firstName" required autocomplete="given-name" placeholder="Votre prénom">
+<form id="candidateForm">
 
-        <label>Nom *</label>
-        <input id="lastName" required autocomplete="family-name" placeholder="Votre nom">
+<h3 class="section-title">1. Informations personnelles</h3>
 
-        <label>Date de naissance *</label>
-        <input id="birthDate" type="date" required>
-        <p class="field-help">Votre âge sera calculé automatiquement.</p>
+<label>Prénom *</label>
+<input id="firstName" required placeholder="Votre prénom">
 
-        <label>Âge</label>
-        <input id="ageDisplay" readonly placeholder="Calcul automatique">
+<label>Nom *</label>
+<input id="lastName" required placeholder="Votre nom">
 
-        <label>Sexe (facultatif)</label>
-        <select id="gender">
-          <option value="">Je préfère ne pas préciser</option>
-          <option>Femme</option>
-          <option>Homme</option>
-          <option>Autre</option>
-        </select>
+<label>Date de naissance *</label>
+<input id="birthDate" type="date" required>
 
-        <label>Numéro de téléphone *</label>
-        <input id="candidatePhone" type="tel" required placeholder="Exemple : 77 000 00 00">
+<label>Âge</label>
+<input id="ageDisplay" readonly placeholder="Calcul automatique">
 
-        <label>Adresse e-mail *</label>
-        <input id="candidateEmail" type="email" required placeholder="exemple@email.com">
+<label>Sexe (facultatif)</label>
+<select id="gender">
+<option value="">Je préfère ne pas préciser</option>
+<option>Femme</option>
+<option>Homme</option>
+<option>Autre</option>
+</select>
 
-        <label>Adresse de résidence *</label>
-        <input id="candidateAddress" required placeholder="Quartier, rue ou adresse">
+<label>Numéro de téléphone *</label>
+<input id="candidatePhone" type="tel" required placeholder="77 000 00 00">
 
-        <label>Ville *</label>
-        <input id="candidateCity" required placeholder="Exemple : Dakar">
+<label>Adresse e-mail *</label>
+<input id="candidateEmail" type="email" required placeholder="exemple@email.com">
 
-        <label>Région</label>
-        <select id="candidateRegion">
-          <option value="">Choisir une région</option>
-          <option>Dakar</option><option>Diourbel</option><option>Fatick</option>
-          <option>Kaffrine</option><option>Kaolack</option><option>Kédougou</option>
-          <option>Kolda</option><option>Louga</option><option>Matam</option>
-          <option>Saint-Louis</option><option>Sédhiou</option><option>Tambacounda</option>
-          <option>Thiès</option><option>Ziguinchor</option>
-        </select>
+<label>Adresse de résidence *</label>
+<input id="candidateAddress" required placeholder="Quartier, rue ou adresse">
 
-        <h3 class="section-title">2. Formation et études</h3>
+<label>Ville *</label>
+<input id="candidateCity" required placeholder="Exemple : Dakar">
 
-        <label>Niveau d'études *</label>
-        <select id="educationLevel" required>
-          <option value="">Choisir votre niveau</option>
-          <option>Sans diplôme</option>
-          <option>Élémentaire</option>
-          <option>BFEM</option>
-          <option>Baccalauréat</option>
-          <option>BAC +1</option>
-          <option>BAC +2 (BTS / DUT / DEUG)</option>
-          <option>BAC +3 (Licence)</option>
-          <option>BAC +4</option>
-          <option>BAC +5 (Master)</option>
-          <option>Doctorat</option>
-          <option>Formation professionnelle</option>
-          <option>Autre</option>
-        </select>
+<label>Région</label>
+<select id="candidateRegion">
+<option value="">Choisir une région</option>
+<option>Dakar</option><option>Diourbel</option>
+<option>Fatick</option><option>Kaffrine</option>
+<option>Kaolack</option><option>Kédougou</option>
+<option>Kolda</option><option>Louga</option>
+<option>Matam</option><option>Saint-Louis</option>
+<option>Sédhiou</option><option>Tambacounda</option>
+<option>Thiès</option><option>Ziguinchor</option>
+</select>
 
-        <label>Filière ou spécialité *</label>
-        <input id="studyField" required placeholder="Exemple : Informatique de gestion">
+<h3 class="section-title">2. Formation et études</h3>
 
-        <label>Établissement de formation</label>
-        <input id="school" placeholder="Université, école ou centre de formation">
+<label>Niveau d'études *</label>
+<select id="educationLevel" required>
+<option value="">Choisir votre niveau</option>
+<option>Sans diplôme</option>
+<option>Élémentaire</option>
+<option>BFEM</option>
+<option>Baccalauréat</option>
+<option>BAC +1</option>
+<option>BAC +2 (BTS / DUT / DEUG)</option>
+<option>BAC +3 (Licence)</option>
+<option>BAC +4</option>
+<option>BAC +5 (Master)</option>
+<option>Doctorat</option>
+<option>Formation professionnelle</option>
+<option>Autre</option>
+</select>
 
-        <label>Diplôme obtenu ou en cours</label>
-        <input id="diploma" placeholder="Exemple : Licence en cours">
+<label>Filière ou spécialité *</label>
+<input id="studyField" required placeholder="Exemple : Informatique de gestion">
 
-        <label>Année d'obtention ou année prévue</label>
-        <input id="graduationYear" type="number" min="1980" max="2100" placeholder="Exemple : 2027">
+<label>Établissement de formation</label>
+<input id="school" placeholder="Université, école ou centre">
 
-        <h3 class="section-title">3. Expérience professionnelle</h3>
+<label>Diplôme obtenu ou en cours</label>
+<input id="diploma" placeholder="Exemple : Licence en cours">
 
-        <label>Votre situation *</label>
-        <select id="experienceStatus" required>
-          <option value="">Choisir</option>
-          <option>Je suis débutant(e)</option>
-          <option>J'ai déjà effectué un stage</option>
-          <option>J'ai une expérience professionnelle</option>
-        </select>
+<label>Année d'obtention ou année prévue</label>
+<input id="graduationYear" type="number" min="1980" max="2100" placeholder="Exemple : 2027">
 
-        <label>Nombre d'années d'expérience</label>
-        <select id="experienceYears">
-          <option>0 an</option><option>Moins d'un an</option>
-          <option>1 à 2 ans</option><option>3 à 5 ans</option>
-          <option>6 à 10 ans</option><option>Plus de 10 ans</option>
-        </select>
+<h3 class="section-title">3. Expérience professionnelle</h3>
 
-        <label>Postes déjà occupés ou stages effectués</label>
-        <textarea id="pastExperience" rows="3" placeholder="Décrivez vos expériences, même les stages..."></textarea>
+<label>Votre situation *</label>
+<select id="experienceStatus" required>
+<option value="">Choisir</option>
+<option>Je suis débutant(e)</option>
+<option>J'ai déjà effectué un stage</option>
+<option>J'ai une expérience professionnelle</option>
+</select>
 
-        <h3 class="section-title">4. Compétences et recherche d'emploi</h3>
+<label>Nombre d'années d'expérience</label>
+<select id="experienceYears">
+<option>0 an</option>
+<option>Moins d'un an</option>
+<option>1 à 2 ans</option>
+<option>3 à 5 ans</option>
+<option>6 à 10 ans</option>
+<option>Plus de 10 ans</option>
+</select>
 
-        <label>Domaine professionnel recherché *</label>
-        <select id="candidateDomain" required>
-          <option value="">Choisir un domaine</option>
-          <option>Informatique</option><option>Gestion</option>
-          <option>Marketing et communication</option><option>BTP</option>
-          <option>Transport et logistique</option><option>Commerce</option>
-          <option>Droit et administration</option><option>Comptabilité et finance</option>
-          <option>Santé</option><option>Éducation</option><option>Autre</option>
-        </select>
+<label>Postes occupés ou stages effectués</label>
+<textarea id="pastExperience" rows="3" placeholder="Décrivez vos expériences..."></textarea>
 
-        <label>Vos compétences</label>
-        <textarea id="skills" rows="3" placeholder="Exemple : Word, Excel, développement web, comptabilité..."></textarea>
+<h3 class="section-title">4. Compétences et recherche d'emploi</h3>
 
-        <label>Langues parlées</label>
-        <input id="languages" placeholder="Exemple : Français, Wolof, Anglais">
+<label>Domaine professionnel recherché *</label>
+<select id="candidateDomain" required>
+<option value="">Choisir un domaine</option>
+<option>Informatique</option>
+<option>Gestion</option>
+<option>Marketing et communication</option>
+<option>BTP</option>
+<option>Transport et logistique</option>
+<option>Commerce</option>
+<option>Droit et administration</option>
+<option>Comptabilité et finance</option>
+<option>Santé</option>
+<option>Éducation</option>
+<option>Autre</option>
+</select>
 
-        <label>Type de contrat recherché *</label>
-        <select id="contractType" required>
-          <option value="">Choisir</option>
-          <option>Stage</option><option>CDD</option><option>CDI</option>
-          <option>Alternance</option><option>Freelance</option>
-          <option>Emploi temporaire</option><option>Tout type de contrat</option>
-        </select>
+<label>Vos compétences</label>
+<textarea id="skills" rows="3" placeholder="Word, Excel, développement web, comptabilité..."></textarea>
 
-        <label>Disponibilité</label>
-        <select id="availability">
-          <option>Immédiate</option><option>Dans 15 jours</option>
-          <option>Dans un mois</option><option>À convenir</option>
-        </select>
+<label>Langues parlées</label>
+<input id="languages" placeholder="Français, Wolof, Anglais...">
 
-        <h3 class="section-title">5. Documents professionnels</h3>
+<label>Type de contrat recherché *</label>
+<select id="contractType" required>
+<option value="">Choisir</option>
+<option>Stage</option>
+<option>CDD</option>
+<option>CDI</option>
+<option>Alternance</option>
+<option>Freelance</option>
+<option>Emploi temporaire</option>
+<option>Tout type de contrat</option>
+</select>
 
-        <label>Votre CV (PDF de préférence) *</label>
-        <input id="cvFile" type="file" accept=".pdf,.doc,.docx" required>
-        <p class="field-help">Le fichier sera sélectionné sur votre téléphone. Son envoi sécurisé sera activé avec Firebase Storage.</p>
+<label>Disponibilité</label>
+<select id="availability">
+<option>Immédiate</option>
+<option>Dans 15 jours</option>
+<option>Dans un mois</option>
+<option>À convenir</option>
+</select>
 
-        <label>Lettre de motivation (facultatif)</label>
-        <input id="letterFile" type="file" accept=".pdf,.doc,.docx">
+<h3 class="section-title">5. Documents professionnels</h3>
 
-        <label>Diplômes ou certificats (facultatif)</label>
-        <input id="certificateFile" type="file" accept=".pdf,.jpg,.jpeg,.png" multiple>
+<label>Votre CV (PDF de préférence) *</label>
+<input id="cvFile" type="file" accept=".pdf,.doc,.docx" required>
 
-        <div class="warning">
-          Version de démonstration : n'utilisez pas encore vos vrais documents ni vos informations personnelles. L'enregistrement sécurisé sur Firebase sera configuré à l'étape suivante.
-        </div>
+<label>Lettre de motivation (facultatif)</label>
+<input id="letterFile" type="file" accept=".pdf,.doc,.docx">
 
-        <button type="submit">Créer mon profil candidat</button>
-      </form>
-      <button class="light" onclick="show('welcome')">Retour</button>
-    </div>
-  </section>
+<label>Diplômes ou certificats (facultatif)</label>
+<input id="certificateFile" type="file" accept=".pdf,.jpg,.jpeg,.png" multiple>
 
-  <!-- INSCRIPTION ENTREPRISE -->
-  <section id="company" class="screen">
-    <div class="card">
-      <h2>🏢 Inscription entreprise</h2>
-      <form id="companyForm">
-        <label>Nom de l'entreprise *</label>
-        <input id="companyName" required placeholder="Nom de votre entreprise">
-        <label>E-mail professionnel *</label>
-        <input id="companyEmail" type="email" required placeholder="contact@entreprise.com">
-        <label>Téléphone *</label>
-        <input id="companyPhone" required type="tel" placeholder="Téléphone de l'entreprise">
-        <label>Ville *</label>
-        <input id="companyCity" required placeholder="Exemple : Dakar">
-        <label>Secteur d'activité *</label>
-        <input id="companySector" required placeholder="Exemple : Informatique">
-        <label>Description de l'entreprise</label>
-        <textarea id="companyDescription" rows="3" placeholder="Présentez votre entreprise"></textarea>
-        <button type="submit">Créer mon espace entreprise</button>
-      </form>
-      <button class="light" onclick="show('welcome')">Retour</button>
-    </div>
-  </section>
+<div class="warning">
+Version de démonstration : les documents ne sont pas encore envoyés sur Firebase. N'utilisez pas encore de vrais documents ni d'informations personnelles.
+</div>
 
-  <section id="candidateHome" class="screen">
-    <div class="card">
-      <h2 id="candidateGreeting">Bienvenue !</h2>
-      <p id="candidateSummary"></p>
-      <button onclick="show('offers')">🔎 Voir les offres d'emploi</button>
-      <button class="secondary" onclick="show('myApplications')">📄 Mes candidatures</button>
-      <button class="light" onclick="show('welcome')">Changer d'espace</button>
-    </div>
-  </section>
+<button type="submit">Créer mon profil candidat</button>
+</form>
 
-  <section id="companyHome" class="screen">
-    <div class="card">
-      <h2 id="companyGreeting">Espace entreprise</h2>
-      <p>Gérez vos offres et consultez les candidatures reçues.</p>
-      <button onclick="show('publish')">➕ Publier une offre</button>
-      <button class="secondary" onclick="show('myOffers')">📋 Mes offres et candidatures</button>
-      <button class="light" onclick="show('welcome')">Changer d'espace</button>
-    </div>
-  </section>
+<button class="light" onclick="show('welcome')">Retour</button>
+</div>
+</section>
 
-  <section id="offers" class="screen">
-    <div class="card">
-      <h2>🔎 Offres d'emploi</h2>
-      <input id="searchOffer" placeholder="Rechercher un poste ou une ville..." oninput="renderOffers()">
-      <div id="offersList"></div>
-      <button class="light" onclick="show('candidateHome')">Retour à mon espace</button>
-    </div>
-  </section>
+<!-- INSCRIPTION ENTREPRISE -->
+<section id="company" class="screen">
+<div class="card">
+<h2>🏢 Inscription entreprise</h2>
 
-  <section id="publish" class="screen">
-    <div class="card">
-      <h2>➕ Publier une offre</h2>
-      <form id="jobForm">
-        <label>Titre du poste *</label>
-        <input id="jobTitle" required placeholder="Exemple : Développeur web">
-        <label>Type de contrat *</label>
-        <select id="jobType"><option>Stage</option><option>CDD</option><option>CDI</option><option>Freelance</option><option>Alternance</option></select>
-        <label>Domaine</label>
-        <input id="jobDomain" placeholder="Exemple : Informatique">
-        <label>Ville *</label>
-        <input id="jobCity" required placeholder="Exemple : Dakar">
-        <label>Salaire en FCFA (facultatif)</label>
-        <input id="jobSalary" type="number" min="0" placeholder="Exemple : 100000">
-        <label>Description du poste *</label>
-        <textarea id="jobDescription" rows="5" required placeholder="Missions, profil recherché, compétences..."></textarea>
-        <button type="submit">Publier l'offre</button>
-      </form>
-      <button class="light" onclick="show('companyHome')">Retour à mon espace</button>
-    </div>
-  </section>
+<form id="companyForm">
+<label>Nom de l'entreprise *</label>
+<input id="companyName" required placeholder="Nom de votre entreprise">
 
-  <section id="myOffers" class="screen">
-    <div class="card">
-      <h2>📋 Mes offres publiées</h2>
-      <div id="companyOffersList"></div>
-      <button class="light" onclick="show('companyHome')">Retour</button>
-    </div>
-  </section>
+<label>E-mail professionnel *</label>
+<input id="companyEmail" type="email" required placeholder="contact@entreprise.com">
 
-  <section id="myApplications" class="screen">
-    <div class="card">
-      <h2>📄 Mes candidatures</h2>
-      <div id="applicationsList"></div>
-      <button class="light" onclick="show('candidateHome')">Retour</button>
-    </div>
-  </section>
+<label>Téléphone *</label>
+<input id="companyPhone" required type="tel" placeholder="Téléphone">
+
+<label>Ville *</label>
+<input id="companyCity" required placeholder="Exemple : Dakar">
+
+<label>Secteur d'activité *</label>
+<input id="companySector" required placeholder="Exemple : Informatique">
+
+<label>Description de l'entreprise</label>
+<textarea id="companyDescription" rows="3" placeholder="Présentez votre entreprise"></textarea>
+
+<button type="submit">Créer mon espace entreprise</button>
+</form>
+
+<button class="light" onclick="show('welcome')">Retour</button>
+</div>
+</section>
+
+<!-- ESPACE CANDIDAT -->
+<section id="candidateHome" class="screen">
+<div class="card">
+<h2 id="candidateGreeting">Bienvenue !</h2>
+<p id="candidateSummary"></p>
+<button onclick="show('offers')">🔎 Voir les offres d'emploi</button>
+<button class="secondary" onclick="show('myApplications')">📄 Mes candidatures</button>
+<button class="light" onclick="show('welcome')">Changer d'espace</button>
+</div>
+</section>
+
+<!-- ESPACE ENTREPRISE -->
+<section id="companyHome" class="screen">
+<div class="card">
+<h2 id="companyGreeting">Espace entreprise</h2>
+<p>Gérez vos offres et consultez les candidatures reçues.</p>
+<button onclick="show('publish')">➕ Publier une offre</button>
+<button class="secondary" onclick="show('myOffers')">📋 Mes offres et candidatures</button>
+<button class="light" onclick="show('welcome')">Changer d'espace</button>
+</div>
+</section>
+
+<!-- OFFRES -->
+<section id="offers" class="screen">
+<div class="card">
+<h2>🔎 Offres d'emploi</h2>
+<input id="searchOffer" placeholder="Rechercher un poste ou une ville..." oninput="renderOffers()">
+<div id="offersList"></div>
+<button class="light" onclick="show('candidateHome')">Retour à mon espace</button>
+</div>
+</section>
+
+<!-- PUBLICATION D'OFFRE -->
+<section id="publish" class="screen">
+<div class="card">
+<h2>➕ Publier une offre</h2>
+
+<form id="jobForm">
+<label>Titre du poste *</label>
+<input id="jobTitle" required placeholder="Exemple : Développeur web">
+
+<label>Type de contrat *</label>
+<select id="jobType">
+<option>Stage</option><option>CDD</option>
+<option>CDI</option><option>Freelance</option>
+<option>Alternance</option>
+</select>
+
+<label>Domaine</label>
+<input id="jobDomain" placeholder="Exemple : Informatique">
+
+<label>Ville *</label>
+<input id="jobCity" required placeholder="Exemple : Dakar">
+
+<label>Salaire en FCFA (facultatif)</label>
+<input id="jobSalary" type="number" min="0" placeholder="Exemple : 100000">
+
+<label>Description du poste *</label>
+<textarea id="jobDescription" rows="5" required placeholder="Missions, profil recherché, compétences..."></textarea>
+
+<button type="submit">Publier l'offre</button>
+</form>
+
+<button class="light" onclick="show('companyHome')">Retour à mon espace</button>
+</div>
+</section>
+
+<!-- MES OFFRES -->
+<section id="myOffers" class="screen">
+<div class="card">
+<h2>📋 Mes offres publiées</h2>
+<div id="companyOffersList"></div>
+<button class="light" onclick="show('companyHome')">Retour</button>
+</div>
+</section>
+
+<!-- MES CANDIDATURES -->
+<section id="myApplications" class="screen">
+<div class="card">
+<h2>📄 Mes candidatures</h2>
+<div id="applicationsList"></div>
+<button class="light" onclick="show('candidateHome')">Retour</button>
+</div>
+</section>
+
 </main>
 
 <footer>Kaye Liguey © 2026 — Plateforme emploi au Sénégal</footer>
 
 <script>
 const $ = id => document.getElementById(id);
+
 let currentCandidate = null;
 let currentCompany = null;
 let jobs = JSON.parse(localStorage.getItem("kl_jobs") || "[]");
 let applications = [];
 
+/* NAVIGATION ENTRE LES ECRANS */
 function show(id){
-  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  $(id).classList.add("active");
+  document.querySelectorAll(".screen").forEach(s=>{
+    s.classList.remove("active");
+  });
+
+  const page=$(id);
+  if(page) page.classList.add("active");
+
   if(id==="offers") renderOffers();
   if(id==="myOffers") renderCompanyOffers();
   if(id==="myApplications") renderApplications();
 }
 
-setTimeout(()=>{
-  $("splash").style.display="none";
-  show("welcome");
-},1500);
+/* CORRECTION DU LOGO : PASSAGE AUTOMATIQUE A L'ACCUEIL */
+window.addEventListener("load",function(){
+  setTimeout(function(){
+    const splash=$("splash");
+    if(splash) splash.style.display="none";
+    show("welcome");
+  },2400);
+});
 
+/* CALCUL AUTOMATIQUE DE L'AGE */
 $("birthDate").addEventListener("change",()=>{
   const value=$("birthDate").value;
-  if(!value){$("ageDisplay").value="";return;}
+  if(!value){
+    $("ageDisplay").value="";
+    return;
+  }
+
   const birth=new Date(value+"T00:00:00");
   const today=new Date();
+
   let age=today.getFullYear()-birth.getFullYear();
-  const beforeBirthday=today.getMonth()<birth.getMonth()||
-    (today.getMonth()===birth.getMonth()&&today.getDate()<birth.getDate());
+
+  const beforeBirthday=
+    today.getMonth()<birth.getMonth() ||
+    (today.getMonth()===birth.getMonth() &&
+    today.getDate()<birth.getDate());
+
   if(beforeBirthday) age--;
+
   $("ageDisplay").value=age>=0?age+" ans":"Date invalide";
 });
 
+/* INSCRIPTION CANDIDAT */
 $("candidateForm").addEventListener("submit",e=>{
   e.preventDefault();
+
   const birth=new Date($("birthDate").value+"T00:00:00");
   const today=new Date();
+
   let age=today.getFullYear()-birth.getFullYear();
-  if(today.getMonth()<birth.getMonth()||
-    (today.getMonth()===birth.getMonth()&&today.getDate()<birth.getDate())) age--;
-  if(age<13||age>100){alert("Vérifiez la date de naissance.");return;}
-  if(!$("cvFile").files.length){alert("Veuillez sélectionner votre CV.");return;}
+
+  if(today.getMonth()<birth.getMonth() ||
+    (today.getMonth()===birth.getMonth() &&
+    today.getDate()<birth.getDate())) age--;
+
+  if(age<13 || age>100){
+    alert("Vérifiez la date de naissance.");
+    return;
+  }
+
+  if(!$("cvFile").files.length){
+    alert("Veuillez sélectionner votre CV.");
+    return;
+  }
 
   currentCandidate={
     firstName:$("firstName").value.trim(),
@@ -382,13 +494,20 @@ $("candidateForm").addEventListener("submit",e=>{
   };
 
   $("candidateGreeting").textContent="Bienvenue, "+currentCandidate.firstName+" !";
-  $("candidateSummary").textContent="Profil : "+currentCandidate.education+" · "+currentCandidate.domain+" · "+currentCandidate.age+" ans.";
-  alert("Votre profil de démonstration a été créé. Il n'est pas encore envoyé sur Firebase.");
+
+  $("candidateSummary").textContent=
+    "Profil : "+currentCandidate.education+
+    " · "+currentCandidate.domain+
+    " · "+currentCandidate.age+" ans.";
+
+  alert("Profil de démonstration créé. Il n'est pas encore envoyé sur Firebase.");
   show("candidateHome");
 });
 
+/* INSCRIPTION ENTREPRISE */
 $("companyForm").addEventListener("submit",e=>{
   e.preventDefault();
+
   currentCompany={
     name:$("companyName").value.trim(),
     email:$("companyEmail").value.trim(),
@@ -397,13 +516,20 @@ $("companyForm").addEventListener("submit",e=>{
     sector:$("companySector").value.trim(),
     description:$("companyDescription").value.trim()
   };
+
   $("companyGreeting").textContent="Bienvenue, "+currentCompany.name+" !";
   show("companyHome");
 });
 
+/* PUBLICATION D'UNE OFFRE */
 $("jobForm").addEventListener("submit",e=>{
   e.preventDefault();
-  if(!currentCompany){alert("Créez d'abord votre espace entreprise.");return;}
+
+  if(!currentCompany){
+    alert("Créez d'abord votre espace entreprise.");
+    return;
+  }
+
   const job={
     id:Date.now(),
     title:$("jobTitle").value.trim(),
@@ -415,56 +541,127 @@ $("jobForm").addEventListener("submit",e=>{
     company:currentCompany.name,
     companyEmail:currentCompany.email
   };
+
   jobs.unshift(job);
   localStorage.setItem("kl_jobs",JSON.stringify(jobs));
+
   $("jobForm").reset();
+
   alert("Offre ajoutée à la démonstration locale.");
   show("myOffers");
 });
 
+/* SECURISATION DE L'AFFICHAGE DU TEXTE */
 function escapeHTML(value){
-  return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  return String(value??"").replace(/[&<>"']/g,c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c]));
 }
 
+/* AFFICHAGE DES OFFRES */
 function renderOffers(){
   const q=($("searchOffer").value||"").toLowerCase();
-  const list=jobs.filter(j=>(j.title+" "+j.city+" "+j.type+" "+j.company+" "+j.domain).toLowerCase().includes(q));
-  $("offersList").innerHTML=list.length?list.map(j=>`
-    <div class="job">
-      <h3>${escapeHTML(j.title)}</h3>
-      <p><b>${escapeHTML(j.company)}</b> · ${escapeHTML(j.city)}</p>
-      <p class="small">${escapeHTML(j.type)} · ${escapeHTML(j.domain||"Domaine non précisé")} ${j.salary?"· "+escapeHTML(j.salary)+" FCFA":""}</p>
-      <p>${escapeHTML(j.description)}</p>
-      <button onclick="applyToJob(${j.id})">Envoyer ma candidature</button>
-    </div>`).join(""):"<p>Aucune offre pour le moment.</p>";
+
+  const list=jobs.filter(j=>
+    (j.title+" "+j.city+" "+j.type+" "+j.company+" "+j.domain)
+    .toLowerCase().includes(q)
+  );
+
+  $("offersList").innerHTML=list.length?
+    list.map(j=>`
+      <div class="job">
+        <h3>${escapeHTML(j.title)}</h3>
+        <p><b>${escapeHTML(j.company)}</b> · ${escapeHTML(j.city)}</p>
+        <p class="small">
+          ${escapeHTML(j.type)} ·
+          ${escapeHTML(j.domain||"Domaine non précisé")}
+          ${j.salary?"· "+escapeHTML(j.salary)+" FCFA":""}
+        </p>
+        <p>${escapeHTML(j.description)}</p>
+        <button onclick="applyToJob(${j.id})">Envoyer ma candidature</button>
+      </div>
+    `).join("")
+    :"<p>Aucune offre pour le moment.</p>";
 }
 
+/* ENVOI D'UNE CANDIDATURE DE DEMONSTRATION */
 function applyToJob(id){
-  if(!currentCandidate){alert("Créez d'abord votre profil candidat.");show("candidate");return;}
-  if(applications.some(a=>a.jobId===id&&a.email===currentCandidate.email)){
-    alert("Vous avez déjà postulé à cette offre.");return;
+  if(!currentCandidate){
+    alert("Créez d'abord votre profil candidat.");
+    show("candidate");
+    return;
   }
+
+  if(applications.some(a=>
+    a.jobId===id && a.email===currentCandidate.email
+  )){
+    alert("Vous avez déjà postulé à cette offre.");
+    return;
+  }
+
   const job=jobs.find(j=>j.id===id);
-  if(!job)return;
+  if(!job) return;
+
   applications.unshift({
-    jobId:id,title:job.title,company:job.company,
-    name:currentCandidate.name,email:currentCandidate.email,
+    jobId:id,
+    title:job.title,
+    company:job.company,
+    name:currentCandidate.name,
+    email:currentCandidate.email,
     status:"Envoyée"
   });
+
   alert("Candidature ajoutée à cette démonstration.");
   show("myApplications");
 }
 
+/* AFFICHAGE DES CANDIDATURES DU CANDIDAT */
 function renderApplications(){
-  const mine=currentCandidate?applications.filter(a=>a.email===currentCandidate.email):[];
-  $("applicationsList").innerHTML=mine.length?mine.map(a=>`
-    <div class="job"><h3>${escapeHTML(a.title)}</h3>
-    <p>${escapeHTML(a.company)}</p><p class="small">Statut : ${escapeHTML(a.status)}</p></div>
-  `).join(""):"<p>Vous n'avez pas encore envoyé de candidature.</p>";
+  const mine=currentCandidate?
+    applications.filter(a=>a.email===currentCandidate.email):[];
+
+  $("applicationsList").innerHTML=mine.length?
+    mine.map(a=>`
+      <div class="job">
+        <h3>${escapeHTML(a.title)}</h3>
+        <p>${escapeHTML(a.company)}</p>
+        <p class="small">Statut : ${escapeHTML(a.status)}</p>
+      </div>
+    `).join("")
+    :"<p>Vous n'avez pas encore envoyé de candidature.</p>";
 }
 
+/* AFFICHAGE DES OFFRES DE L'ENTREPRISE */
 function renderCompanyOffers(){
-  const mine=currentCompany?jobs.filter(j=>j.companyEmail===currentCompany.email):[];
-  $("companyOffersList").innerHTML=mine.length?mine.map(j=>{
-    const received=applications.filter(a=>a.jobId===j.id);
-    return `<div class="job"><h3>${escapeHTML(j.title)}</h
+  const mine=currentCompany?
+    jobs.filter(j=>j.companyEmail===currentCompany.email):[];
+
+  $("companyOffersList").innerHTML=mine.length?
+    mine.map(j=>{
+      const received=applications.filter(a=>a.jobId===j.id);
+
+      return `
+        <div class="job">
+          <h3>${escapeHTML(j.title)}</h3>
+          <p>${escapeHTML(j.city)} · ${escapeHTML(j.type)}</p>
+          <p><b>${received.length}</b> candidature(s) reçue(s)</p>
+          ${received.map(a=>`
+            <div class="notice">
+              ${escapeHTML(a.name)} — ${escapeHTML(a.email)}
+              <br>Statut : ${escapeHTML(a.status)}
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }).join("")
+    :"<p>Vous n'avez pas encore publié d'offre.</p>";
+}
+</script>
+
+</body>
+                </html>
+  
