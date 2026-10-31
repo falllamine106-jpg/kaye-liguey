@@ -55,7 +55,6 @@ footer{text-align:center;color:#8290a2;font-size:12px;padding:20px}
 
 <main>
 
-<!-- ACCUEIL -->
 <section id="welcome" class="screen active">
   <div class="card" style="text-align:center">
     <h2>Bienvenue sur Kaye Liguey !</h2>
@@ -67,7 +66,6 @@ footer{text-align:center;color:#8290a2;font-size:12px;padding:20px}
   </div>
 </section>
 
-<!-- CONNEXION -->
 <section id="login" class="screen">
   <div class="card">
     <h2>Connexion à mon compte</h2>
@@ -82,7 +80,6 @@ footer{text-align:center;color:#8290a2;font-size:12px;padding:20px}
   </div>
 </section>
 
-<!-- INSCRIPTION CANDIDAT -->
 <section id="candidate" class="screen">
 <div class="card">
 <h2>👤 Inscription du candidat</h2>
@@ -108,9 +105,7 @@ footer{text-align:center;color:#8290a2;font-size:12px;padding:20px}
 <label>Sexe (facultatif)</label>
 <select id="gender">
 <option value="">Je préfère ne pas préciser</option>
-<option>Femme</option>
-<option>Homme</option>
-<option>Autre</option>
+<option>Femme</option><option>Homme</option><option>Autre</option>
 </select>
 <label>Numéro de téléphone *</label>
 <input id="candidatePhone" type="tel" required placeholder="77 000 00 00">
@@ -121,40 +116,32 @@ footer{text-align:center;color:#8290a2;font-size:12px;padding:20px}
 <label>Région</label>
 <select id="candidateRegion">
 <option value="">Choisir une région</option>
-<option>Dakar</option><option>Diourbel</option>
-<option>Fatick</option><option>Kaffrine</option>
-<option>Kaolack</option><option>Kédougou</option>
-<option>Kolda</option><option>Louga</option>
-<option>Matam</option><option>Saint-Louis</option>
-<option>Sédhiou</option><option>Tambacounda</option>
-<option>Thiès</option><option>Ziguinchor</option>
+<option>Dakar</option><option>Diourbel</option><option>Fatick</option>
+<option>Kaffrine</option><option>Kaolack</option><option>Kédougou</option>
+<option>Kolda</option><option>Louga</option><option>Matam</option>
+<option>Saint-Louis</option><option>Sédhiou</option>
+<option>Tambacounda</option><option>Thiès</option><option>Ziguinchor</option>
 </select>
 
 <h3 class="section-title">3. Formation et études</h3>
 <label>Niveau d'études *</label>
 <select id="educationLevel" required>
 <option value="">Choisir votre niveau</option>
-<option>Sans diplôme</option>
-<option>Élémentaire</option>
-<option>BFEM</option>
-<option>Baccalauréat</option>
-<option>BAC +1</option>
+<option>Sans diplôme</option><option>Élémentaire</option>
+<option>BFEM</option><option>Baccalauréat</option><option>BAC +1</option>
 <option>BAC +2 (BTS / DUT / DEUG)</option>
-<option>BAC +3 (Licence)</option>
-<option>BAC +4</option>
-<option>BAC +5 (Master)</option>
-<option>Doctorat</option>
-<option>Formation professionnelle</option>
-<option>Autre</option>
+<option>BAC +3 (Licence)</option><option>BAC +4</option>
+<option>BAC +5 (Master)</option><option>Doctorat</option>
+<option>Formation professionnelle</option><option>Autre</option>
 </select>
 <label>Filière ou spécialité *</label>
 <input id="studyField" required placeholder="Exemple : Informatique de gestion">
 <label>Établissement de formation</label>
-<input id="school" placeholder="Université, école ou centre">
+<input id="school">
 <label>Diplôme obtenu ou en cours</label>
-<input id="diploma" placeholder="Exemple : Licence en cours">
+<input id="diploma">
 <label>Année d'obtention ou année prévue</label>
-<input id="graduationYear" type="number" min="1980" max="2100" placeholder="Exemple : 2027">
+<input id="graduationYear" type="number" min="1980" max="2100">
 
 <h3 class="section-title">4. Expérience professionnelle</h3>
 <label>Votre situation *</label>
@@ -166,12 +153,9 @@ footer{text-align:center;color:#8290a2;font-size:12px;padding:20px}
 </select>
 <label>Nombre d'années d'expérience</label>
 <select id="experienceYears">
-<option>0 an</option>
-<option>Moins d'un an</option>
-<option>1 à 2 ans</option>
-<option>3 à 5 ans</option>
-<option>6 à 10 ans</option>
-<option>Plus de 10 ans</option>
+<option>0 an</option><option>Moins d'un an</option>
+<option>1 à 2 ans</option><option>3 à 5 ans</option>
+<option>6 à 10 ans</option><option>Plus de 10 ans</option>
 </select>
 <label>Postes occupés ou stages effectués</label>
 <textarea id="pastExperience" rows="3"></textarea>
@@ -180,17 +164,11 @@ footer{text-align:center;color:#8290a2;font-size:12px;padding:20px}
 <label>Domaine professionnel recherché *</label>
 <select id="candidateDomain" required>
 <option value="">Choisir un domaine</option>
-<option>Informatique</option>
-<option>Gestion</option>
-<option>Marketing et communication</option>
-<option>BTP</option>
-<option>Transport et logistique</option>
-<option>Commerce</option>
-<option>Droit et administration</option>
-<option>Comptabilité et finance</option>
-<option>Santé</option>
-<option>Éducation</option>
-<option>Autre</option>
+<option>Informatique</option><option>Gestion</option>
+<option>Marketing et communication</option><option>BTP</option>
+<option>Transport et logistique</option><option>Commerce</option>
+<option>Droit et administration</option><option>Comptabilité et finance</option>
+<option>Santé</option><option>Éducation</option><option>Autre</option>
 </select>
 <label>Vos compétences</label>
 <textarea id="skills" rows="3"></textarea>
@@ -226,7 +204,6 @@ Le profil sera enregistré dans Firebase. Le fichier CV lui-même ne sera pas t�
 </div>
 </section>
 
-<!-- INSCRIPTION ENTREPRISE -->
 <section id="company" class="screen">
 <div class="card">
 <h2>🏢 Inscription entreprise</h2>
@@ -251,7 +228,6 @@ Le profil sera enregistré dans Firebase. Le fichier CV lui-même ne sera pas t�
 </div>
 </section>
 
-<!-- ESPACE CANDIDAT -->
 <section id="candidateHome" class="screen">
 <div class="card">
 <h2 id="candidateGreeting">Bienvenue !</h2>
@@ -262,7 +238,6 @@ Le profil sera enregistré dans Firebase. Le fichier CV lui-même ne sera pas t�
 </div>
 </section>
 
-<!-- ESPACE ENTREPRISE -->
 <section id="companyHome" class="screen">
 <div class="card">
 <h2 id="companyGreeting">Espace entreprise</h2>
@@ -273,7 +248,6 @@ Le profil sera enregistré dans Firebase. Le fichier CV lui-même ne sera pas t�
 </div>
 </section>
 
-<!-- OFFRES -->
 <section id="offers" class="screen">
 <div class="card">
 <h2>🔎 Offres d'emploi</h2>
@@ -283,7 +257,6 @@ Le profil sera enregistré dans Firebase. Le fichier CV lui-même ne sera pas t�
 </div>
 </section>
 
-<!-- PUBLICATION -->
 <section id="publish" class="screen">
 <div class="card">
 <h2>➕ Publier une offre</h2>
@@ -309,7 +282,6 @@ Le profil sera enregistré dans Firebase. Le fichier CV lui-même ne sera pas t�
 </div>
 </section>
 
-<!-- MES OFFRES -->
 <section id="myOffers" class="screen">
 <div class="card">
 <h2>📋 Mes offres publiées</h2>
@@ -318,7 +290,6 @@ Le profil sera enregistré dans Firebase. Le fichier CV lui-même ne sera pas t�
 </div>
 </section>
 
-<!-- MES CANDIDATURES -->
 <section id="myApplications" class="screen">
 <div class="card">
 <h2>📄 Mes candidatures</h2>
@@ -330,250 +301,257 @@ Le profil sera enregistré dans Firebase. Le fichier CV lui-même ne sera pas t�
 </main>
 <footer>Kaye Liguey © 2026 — Plateforme emploi au Sénégal</footer>
 
+<!-- CORRECTION INTÉGRÉE : L'ACCUEIL S'AFFICHE MÊME SI FIREBASE A UN PROBLÈME -->
+<script>
+(function(){
+  function afficherAccueil(){
+    const splash=document.getElementById("splash");
+    const welcome=document.getElementById("welcome");
+
+    document.querySelectorAll(".screen").forEach(function(screen){
+      screen.classList.remove("active");
+    });
+
+    if(welcome) welcome.classList.add("active");
+
+    if(splash){
+      splash.classList.add("hide");
+      setTimeout(function(){
+        splash.style.display="none";
+      },550);
+    }
+  }
+
+  setTimeout(afficherAccueil,1500);
+})();
+</script>
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import {
-  getAuth, createUserWithEmailAndPassword,
-  signInWithEmailAndPassword, onAuthStateChanged, signOut
+ getAuth,createUserWithEmailAndPassword,
+ signInWithEmailAndPassword,onAuthStateChanged,signOut
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 import {
-  getFirestore, doc, setDoc, getDoc,
-  collection, addDoc, getDocs, query, where, serverTimestamp
+ getFirestore,doc,setDoc,getDoc,
+ collection,addDoc,getDocs,query,where,serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-/* CONFIGURATION FIREBASE */
-const firebaseConfig = {
-  apiKey: "AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvtl0",
-  authDomain: "kaye-liguey.firebaseapp.com",
-  projectId: "kaye-liguey",
-  storageBucket: "kaye-liguey.firebasestorage.app",
-  messagingSenderId: "6308207019",
-  appId: "1:6308207019:web:00c6c29ac26bfff7cb1aee",
-  measurementId: "G-E8YSXJDLJD"
+const firebaseConfig={
+ apiKey:"AIzaSyDEXy-VTC7nQ5KCe9x4s70j1tWtLrBvtl0",
+ authDomain:"kaye-liguey.firebaseapp.com",
+ projectId:"kaye-liguey",
+ storageBucket:"kaye-liguey.firebasestorage.app",
+ messagingSenderId:"6308207019",
+ appId:"1:6308207019:web:00c6c29ac26bfff7cb1aee",
+ measurementId:"G-E8YSXJDLJD"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const $=id=>document.getElementById(id);
 
-const $ = id => document.getElementById(id);
-let currentUser = null;
-let currentProfile = null;
-let jobs = [];
+let currentUser=null;
+let currentProfile=null;
+let jobs=[];
 
-/* NAVIGATION */
-window.show = function(id){
-  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  const page=$(id);
-  if(page) page.classList.add("active");
-
-  if(id==="offers") renderOffers();
-  if(id==="myOffers") renderCompanyOffers();
-  if(id==="myApplications") renderApplications();
+window.show=function(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ const page=$(id);
+ if(page) page.classList.add("active");
+ if(id==="offers") renderOffers();
+ if(id==="myOffers") renderCompanyOffers();
+ if(id==="myApplications") renderApplications();
 };
 
-/* MESSAGES D'ERREUR */
 function cleanError(error){
-  const messages={
-    "auth/email-already-in-use":"Cette adresse e-mail possède déjà un compte. Connectez-vous.",
-    "auth/invalid-email":"Adresse e-mail invalide.",
-    "auth/weak-password":"Le mot de passe doit contenir au moins 6 caractères.",
-    "auth/invalid-credential":"E-mail ou mot de passe incorrect.",
-    "auth/user-not-found":"Aucun compte trouvé avec cet e-mail.",
-    "auth/wrong-password":"Mot de passe incorrect.",
-    "permission-denied":"Accès refusé par les règles Firestore. Vérifiez les règles de sécurité."
-  };
-  return messages[error.code] || error.message || "Une erreur est survenue.";
+ const messages={
+ "auth/email-already-in-use":"Cette adresse e-mail possède déjà un compte. Connectez-vous.",
+ "auth/invalid-email":"Adresse e-mail invalide.",
+ "auth/weak-password":"Le mot de passe doit contenir au moins 6 caractères.",
+ "auth/invalid-credential":"E-mail ou mot de passe incorrect.",
+ "permission-denied":"Accès refusé par les règles Firestore."
+ };
+ return messages[error.code]||error.message||"Une erreur est survenue.";
 }
 
-/* PROTECTION DU TEXTE AFFICHÉ */
 function escapeHTML(value){
-  return String(value??"").replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
+ return String(value??"").replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
 
-/* CALCUL DE L'ÂGE */
 function calculateAge(value){
-  const birth=new Date(value+"T00:00:00");
-  const today=new Date();
-  let age=today.getFullYear()-birth.getFullYear();
-  if(today.getMonth()<birth.getMonth() ||
-    (today.getMonth()===birth.getMonth() && today.getDate()<birth.getDate())){
-    age--;
-  }
-  return age;
+ const birth=new Date(value+"T00:00:00");
+ const today=new Date();
+ let age=today.getFullYear()-birth.getFullYear();
+ if(today.getMonth()<birth.getMonth()||
+ (today.getMonth()===birth.getMonth()&&today.getDate()<birth.getDate())) age--;
+ return age;
 }
 
 $("birthDate").addEventListener("change",()=>{
-  const value=$("birthDate").value;
-  $("ageDisplay").value=value?calculateAge(value)+" ans":"";
+ const value=$("birthDate").value;
+ $("ageDisplay").value=value?calculateAge(value)+" ans":"";
 });
 
-/* ÉCRAN DE DÉMARRAGE */
-window.addEventListener("load",()=>{
-  setTimeout(()=>{
-    $("splash").classList.add("hide");
-    setTimeout(()=>$("splash").style.display="none",550);
-  },1500);
-});
-
-/* CHARGER LE PROFIL FIREBASE */
 async function getUserProfile(user){
-  const profileDoc=await getDoc(doc(db,"users",user.uid));
-  return profileDoc.exists()?profileDoc.data():null;
+ const profileDoc=await getDoc(doc(db,"users",user.uid));
+ return profileDoc.exists()?profileDoc.data():null;
 }
 
-/* OUVRIR LE BON ESPACE */
 function enterSpace(profile){
-  currentProfile=profile;
-
-  if(profile.role==="candidate"){
-    $("candidateGreeting").textContent="Bienvenue, "+(profile.firstName||"candidat")+" !";
-    $("candidateSummary").textContent=
-      "Profil : "+(profile.education||"")+
-      " · "+(profile.domain||"");
-    show("candidateHome");
-  }else if(profile.role==="company"){
-    $("companyGreeting").textContent=
-      "Bienvenue, "+(profile.companyName||"entreprise")+" !";
-    show("companyHome");
-  }else{
-    show("welcome");
-  }
+ currentProfile=profile;
+ if(profile.role==="candidate"){
+  $("candidateGreeting").textContent="Bienvenue, "+(profile.firstName||"candidat")+" !";
+  $("candidateSummary").textContent="Profil : "+(profile.education||"")+" · "+(profile.domain||"");
+  show("candidateHome");
+ }else if(profile.role==="company"){
+  $("companyGreeting").textContent="Bienvenue, "+(profile.companyName||"entreprise")+" !";
+  show("companyHome");
+ }else{
+  show("welcome");
+ }
 }
 
-/* SURVEILLER LA CONNEXION */
 onAuthStateChanged(auth,async user=>{
-  currentUser=user;
-
-  if(user){
-    try{
-      const profile=await getUserProfile(user);
-      if(profile){
-        enterSpace(profile);
-        $("firebaseStatus").textContent="Connecté à Firebase.";
-      }else{
-        $("firebaseStatus").textContent="Profil introuvable dans Firestore.";
-        alert("Compte connecté, mais profil introuvable. Contactez l'assistance.");
-      }
-    }catch(error){
-      $("firebaseStatus").textContent="Erreur : "+cleanError(error);
-    }
-  }else{
-    currentProfile=null;
-    $("firebaseStatus").textContent="Firebase prêt. Créez un compte ou connectez-vous.";
+ currentUser=user;
+ if(user){
+  try{
+   const profile=await getUserProfile(user);
+   if(profile){
+    enterSpace(profile);
+    $("firebaseStatus").textContent="Connecté à Firebase.";
+   }else{
+    $("firebaseStatus").textContent="Profil introuvable dans Firestore.";
+    show("welcome");
+   }
+  }catch(error){
+   $("firebaseStatus").textContent="Erreur : "+cleanError(error);
+   show("welcome");
   }
+ }else{
+  currentProfile=null;
+  $("firebaseStatus").textContent="Firebase prêt. Créez un compte ou connectez-vous.";
+ }
 });
 
-/* INSCRIPTION CANDIDAT */
 $("candidateForm").addEventListener("submit",async e=>{
-  e.preventDefault();
+ e.preventDefault();
+ const age=calculateAge($("birthDate").value);
+ if(age<0||age>100){alert("Vérifiez la date de naissance.");return;}
+ if(!$("cvFile").files.length){alert("Veuillez sélectionner votre CV.");return;}
 
-  const age=calculateAge($("birthDate").value);
-  if(age<0 || age>100){
-    alert("Vérifiez la date de naissance.");
-    return;
-  }
+ const email=$("candidateEmail").value.trim().toLowerCase();
+ const profile={
+  role:"candidate",
+  firstName:$("firstName").value.trim(),
+  lastName:$("lastName").value.trim(),
+  name:$("firstName").value.trim()+" "+$("lastName").value.trim(),
+  email,birthDate:$("birthDate").value,age,
+  gender:$("gender").value,
+  phone:$("candidatePhone").value.trim(),
+  address:$("candidateAddress").value.trim(),
+  city:$("candidateCity").value.trim(),
+  region:$("candidateRegion").value,
+  education:$("educationLevel").value,
+  studyField:$("studyField").value.trim(),
+  school:$("school").value.trim(),
+  diploma:$("diploma").value.trim(),
+  graduationYear:$("graduationYear").value,
+  experienceStatus:$("experienceStatus").value,
+  experienceYears:$("experienceYears").value,
+  pastExperience:$("pastExperience").value.trim(),
+  domain:$("candidateDomain").value,
+  skills:$("skills").value.trim(),
+  languages:$("languages").value.trim(),
+  contract:$("contractType").value,
+  availability:$("availability").value,
+  cvName:$("cvFile").files[0].name,
+  createdAt:serverTimestamp()
+ };
 
-  if(!$("cvFile").files.length){
-    alert("Veuillez sélectionner votre CV.");
-    return;
-  }
-
-  const email=$("candidateEmail").value.trim().toLowerCase();
-
-  const profile={
-    role:"candidate",
-    firstName:$("firstName").value.trim(),
-    lastName:$("lastName").value.trim(),
-    name:$("firstName").value.trim()+" "+$("lastName").value.trim(),
-    email:email,
-    birthDate:$("birthDate").value,
-    age:age,
-    gender:$("gender").value,
-    phone:$("candidatePhone").value.trim(),
-    address:$("candidateAddress").value.trim(),
-    city:$("candidateCity").value.trim(),
-    region:$("candidateRegion").value,
-    education:$("educationLevel").value,
-    studyField:$("studyField").value.trim(),
-    school:$("school").value.trim(),
-    diploma:$("diploma").value.trim(),
-    graduationYear:$("graduationYear").value,
-    experienceStatus:$("experienceStatus").value,
-    experienceYears:$("experienceYears").value,
-    pastExperience:$("pastExperience").value.trim(),
-    domain:$("candidateDomain").value,
-    skills:$("skills").value.trim(),
-    languages:$("languages").value.trim(),
-    contract:$("contractType").value,
-    availability:$("availability").value,
-    cvName:$("cvFile").files[0].name,
-    createdAt:serverTimestamp()
-  };
-
-  try{
-    const credential=await createUserWithEmailAndPassword(
-      auth,email,$("candidatePassword").value
-    );
-
-    await setDoc(doc(db,"users",credential.user.uid),profile);
-    currentUser=credential.user;
-    enterSpace(profile);
-
-    alert("Votre compte candidat et votre profil ont été enregistrés dans Firebase. Le fichier CV lui-même n'a pas été téléversé.");
-  }catch(error){
-    alert("Inscription impossible : "+cleanError(error));
-  }
+ try{
+  const credential=await createUserWithEmailAndPassword(auth,email,$("candidatePassword").value);
+  await setDoc(doc(db,"users",credential.user.uid),profile);
+  currentUser=credential.user;
+  enterSpace(profile);
+  alert("Profil enregistré. Le fichier CV lui-même n'a pas été téléversé.");
+ }catch(error){
+  alert("Inscription impossible : "+cleanError(error));
+ }
 });
 
-/* INSCRIPTION ENTREPRISE */
 $("companyForm").addEventListener("submit",async e=>{
-  e.preventDefault();
+ e.preventDefault();
+ const email=$("companyEmail").value.trim().toLowerCase();
+ const profile={
+  role:"company",
+  companyName:$("companyName").value.trim(),
+  email,
+  phone:$("companyPhone").value.trim(),
+  city:$("companyCity").value.trim(),
+  sector:$("companySector").value.trim(),
+  description:$("companyDescription").value.trim(),
+  createdAt:serverTimestamp()
+ };
 
-  const email=$("companyEmail").value.trim().toLowerCase();
-
-  const profile={
-    role:"company",
-    companyName:$("companyName").value.trim(),
-    email:email,
-    phone:$("companyPhone").value.trim(),
-    city:$("companyCity").value.trim(),
-    sector:$("companySector").value.trim(),
-    description:$("companyDescription").value.trim(),
-    createdAt:serverTimestamp()
-  };
-
-  try{
-    const credential=await createUserWithEmailAndPassword(
-      auth,email,$("companyPassword").value
-    );
-
-    await setDoc(doc(db,"users",credential.user.uid),profile);
-    currentUser=credential.user;
-    enterSpace(profile);
-
-    alert("Votre compte entreprise a été créé et enregistré dans Firebase.");
-  }catch(error){
-    alert("Inscription impossible : "+cleanError(error));
-  }
+ try{
+  const credential=await createUserWithEmailAndPassword(auth,email,$("companyPassword").value);
+  await setDoc(doc(db,"users",credential.user.uid),profile);
+  currentUser=credential.user;
+  enterSpace(profile);
+  alert("Votre compte entreprise a été créé.");
+ }catch(error){
+  alert("Inscription impossible : "+cleanError(error));
+ }
 });
 
-/* CONNEXION */
 $("loginForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-
-  try{
-    await signInWithEmailAndPassword(
-      auth,
-      $("loginEmail").value.trim(),
-      $("loginPassword").value
-    );
-  }catch(error){
-    alert("Connexion impossible : "+cleanError(error));
-  }
+ e.preventDefault();
+ try{
+  await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value);
+ }catch(error){
+  alert("Connexion impossible : "+cleanError(error));
+ }
 });
 
-/* DÉCONNEXION */
-window.logou
+window.logout=async function(){
+ try{
+  await signOut(auth);
+  currentUser=null;
+  currentProfile=null;
+  show("welcome");
+ }catch(error){
+  alert("Erreur de déconnexion : "+cleanError(error));
+ }
+};
+
+$("jobForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!currentUser||!currentProfile||currentProfile.role!=="company"){
+  alert("Connectez-vous avec un compte entreprise.");
+  show("login");
+  return;
+ }
+
+ const job={
+  ownerUid:currentUser.uid,
+  companyName:currentProfile.companyName,
+  title:$("jobTitle").value.trim(),
+  type:$("jobType").value,
+  domain:$("jobDomain").value.trim(),
+  city:$("jobCity").value.trim(),
+  salary:$("jobSalary").value.trim(),
+  description:$("jobDescription").value.trim(),
+  createdAt:serverTimestamp()
+ };
+
+ try{
+  await addDoc(collection(db,"offers"),job);
+  $("jobForm").reset();
+  alert("Offre publiée dans Firebase.");
+  show("myOffers");
+ }catch(error){
+  alert("Publication impossible : "+cleanError(erro
