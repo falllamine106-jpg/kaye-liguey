@@ -326,6 +326,36 @@ Le profil sera enregistré dans Firebase. Le fichier CV lui-même ne sera pas t�
 })();
 </script>
 
+<script>
+/* NAVIGATION INDÉPENDANTE DE FIREBASE */
+window.show = function(id) {
+  document.querySelectorAll(".screen").forEach(function(screen) {
+    screen.classList.remove("active");
+  });
+
+  const destination = document.getElementById(id);
+
+  if (destination) {
+    destination.classList.add("active");
+    window.scrollTo(0, 0);
+  } else {
+    alert("Écran introuvable : " + id);
+  }
+
+  if (id === "offers" && typeof window.renderOffers === "function") {
+    window.renderOffers();
+  }
+
+  if (id === "myOffers" && typeof window.renderCompanyOffers === "function") {
+    window.renderCompanyOffers();
+  }
+
+  if (id === "myApplications" && typeof window.renderApplications === "function") {
+    window.renderApplications();
+  }
+};
+</script>
+  
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import {
