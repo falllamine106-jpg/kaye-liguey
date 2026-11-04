@@ -446,25 +446,35 @@ function enterSpace(profile){
 }
 
 onAuthStateChanged(auth,async user=>{
- currentUser=user;
- if(user){
-  try{
-   const profile=await getUserProfile(user);
-   if(profile){
-    enterSpace(profile);
-    $("firebaseStatus").textContent="Connecté à Firebase.";
-   }else{
-    $("firebaseStatus").textContent="Profil introuvable dans Firestore.";
-    show("welcome");
-   }
-  }catch(error){
-   $("firebaseStatus").textContent="Erreur : "+cleanError(error);
-   show("welcome");
+onAuthStateChanged(auth, async user => {
+  currentUser = user;
+
+  if (!user) {
+    currentProfile = null;
+    $("firebaseStatus").textContent =
+      "Firebase prêt. Connectez-vous ou créez un compte.";
+    return;
   }
- }else{
-  currentProfile=null;
-  $("firebaseStatus").textContent="Firebase prêt. Créez un compte ou connectez-vous.";
- }
+
+  try {
+    const profile = await getUserProfile(user);
+
+    if (!profile) {
+      currentProfile = null;
+      $("firebaseStatus").textContent =
+        "Profil introuvable. Vérifiez votre compte dans Firestore.";
+      show("login");
+      return;
+    }
+
+    enterSpace(profile);
+    $("firebaseStatus").textContent = "Connecté à Firebase.";
+
+  } catch (error) {
+    $("firebaseStatus").textContent =
+      "Erreur de lecture : " + cleanError(error);
+    show("login");
+  }
 });
 
 $("candidateForm").addEventListener("submit",async e=>{
@@ -538,13 +548,36 @@ $("companyForm").addEventListener("submit",async e=>{
  }
 });
 
-$("loginForm").addEventListener("submit",async e=>{
- e.preventDefault();
- try{
-  await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value);
- }catch(error){
-  alert("Connexion impossible : "+cleanError(error));
- }
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const button = $("loginForm").querySelector('button[type="submit"]');
+  button.disabled = true;
+  button.textContent = "Connexion en cours...";
+
+  try {
+    const credential = await signInWithEmailAndPassword(
+      auth,
+      $("loginEmail").value.trim(),
+      $("loginPassword").value
+    );
+
+    const profile = await getUserProfile(credential.user);
+
+    if (!profile) {
+      alert("Compte reconnu, mais profil introuvable dans Firestore.");
+      return;
+    }
+
+    currentUser = credential.user;
+    enterSpace(profile);
+
+  } catch (error) {
+    alert("Connexion impossible : " + cleanError(error));
+  } finally {
+    button.disabled = false;
+    button.textContent = "Se connecter";
+  }
 });
 
 window.logout=async function(){
